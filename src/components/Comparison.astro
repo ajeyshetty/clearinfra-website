@@ -1,0 +1,85 @@
+---
+const comparisons = [
+  {
+    parameter: "Design Feedback Loop",
+    traditional: "2 to 4 weeks across consulting firms",
+    clearinfra: "Instantaneous (< 0.5 seconds)",
+    winner: true
+  },
+  {
+    parameter: "Software Fragmentation",
+    traditional: "5+ disconnected tools (CAD, IES/eQuest, Excel, EnergyPlus)",
+    clearinfra: "Single unified direct-to-desktop operating system",
+    winner: true
+  },
+  {
+    parameter: "Optimization Scope",
+    traditional: "Manual trial-and-error testing 3-5 variations",
+    clearinfra: "Autonomous Pareto optimization testing thousands of scenarios",
+    winner: true
+  },
+  {
+    parameter: "Financial Integration",
+    traditional: "Disconnected rule-of-thumb spreadsheets",
+    clearinfra: "Dynamic CAPEX, OPEX, NPV, and IRR synced to physics",
+    winner: true
+  },
+  {
+    parameter: "Regulatory Compliance",
+    traditional: "Post-design manual reporting audits",
+    clearinfra: "Real-time automated NBC & ECBC compliance checks",
+    winner: true
+  },
+  {
+    parameter: "Auditability & Parity",
+    traditional: "Opaque consultant models with variable assumptions",
+    clearinfra: "Verified EnergyPlus v25.1 parity with one-click IDF export",
+    winner: true
+  }
+];
+---
+
+<section id="comparison" class="py-24 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <span class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-semibold">The Competitive Edge</span>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Eliminate the 80-Hour Consulting Bottleneck.
+      </h2>
+      <p class="text-slate-400 text-base sm:text-lg">
+        See how Clearinfra transforms slow, fragmented manual engineering into instant sustainable intelligence.
+      </p>
+    </div>
+
+    <!-- Comparison Table Card -->
+    <div class="max-w-4xl mx-auto rounded-2xl border border-slate-800 bg-slate-900/60 overflow-hidden shadow-2xl">
+      <div class="grid grid-cols-12 bg-slate-950/80 px-6 py-4 border-b border-slate-800 text-xs font-mono uppercase tracking-wider">
+        <div class="col-span-4 text-slate-400">Capability</div>
+        <div class="col-span-4 text-slate-400">Traditional Consulting</div>
+        <div class="col-span-4 text-emerald-400 font-bold flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          Clearinfra OS
+        </div>
+      </div>
+
+      <div class="divide-y divide-slate-800/80">
+        {comparisons.map((row) => (
+          <div class="grid grid-cols-12 px-6 py-5 items-center hover:bg-slate-800/30 transition-colors">
+            <div class="col-span-4 text-sm font-semibold text-white">
+              {row.parameter}
+            </div>
+            <div class="col-span-4 text-xs sm:text-sm text-slate-400 pr-4">
+              {row.traditional}
+            </div>
+            <div class="col-span-4 text-xs sm:text-sm text-emerald-300 font-medium flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>{row.clearinfra}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

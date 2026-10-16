@@ -1,0 +1,44 @@
+---
+const stats = [
+  {
+    value: "1,000x",
+    label: "Decision Velocity",
+    desc: "Compressing 80+ hours of multi-software consulting into sub-second physics iteration."
+  },
+  {
+    value: "< 1%",
+    label: "Simulation Discrepancy",
+    desc: "First-principles thermal and HVAC calculations calibrated against EnergyPlus & IESVE."
+  },
+  {
+    value: "100%",
+    label: "Automated Compliance",
+    desc: "Instant checking against India NBC 2016 Part 8, ECBC, ASHRAE 90.1, and ISO 13790."
+  },
+  {
+    value: "Up to 35%",
+    label: "CAPEX & Carbon Abated",
+    desc: "Simultaneous Pareto optimization of chiller sizing, envelope U-values, and PV integration."
+  }
+];
+---
+
+<section class="border-y border-slate-800 bg-slate-950/70 py-16 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {stats.map((item) => (
+        <div class="flex flex-col space-y-2 border-l-2 border-emerald-500/50 pl-4 sm:pl-6">
+          <span class="text-3xl sm:text-4xl font-extrabold text-white font-mono tracking-tight">
+            {item.value}
+          </span>
+          <span class="text-sm font-bold text-emerald-400 uppercase tracking-wide font-mono">
+            {item.label}
+          </span>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            {item.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
