@@ -9,7 +9,7 @@ const complianceModules = [
   {
     code: "NBC 2016 PART 8 // BUILDING SERVICES",
     title: "Daylighting, Ventilation & Thermal Comfort",
-    clauses: "Section 1 (Lighting & Natural Ventilation) & Section 3 (HVAC)",
+    clauses: "Sec. 1 (Lighting & Ventilation), Sec. 3 (HVAC)",
     detail: "Verifies minimum daylight factors, Spatial Daylight Autonomy (sDA), fresh air ach/cfm rates per occupancy category, and indoor thermal comfort conditions."
   },
   {
@@ -29,14 +29,14 @@ const complianceModules = [
       <!-- Left Narrative -->
       <div class="reveal lg:col-span-5 space-y-6">
         <span class="text-xs font-mono uppercase tracking-widest text-teal-700 font-semibold">Proprietary Technology</span>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-900 tracking-tight leading-tight">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-900 tracking-tight leading-tight text-balance">
           First-principles physics meets native agentic AI.
         </h2>
         <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
           In conventional consulting, energy and daylight models take weeks to assemble across disconnected third-party tools—meaning engineering feedback often arrives after architectural decisions have already moved on.
         </p>
         <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-          To change this, we built the <strong class="text-slate-900 font-semibold">Clearinfra Editor</strong> in-house. It combines an hourly ISO 13790 thermal &amp; psychrometric physics engine with a <strong class="text-slate-900 font-semibold">native function-calling AI agent</strong> and proactive Pareto optimizer.
+          To change this, we built <strong class="text-slate-900 font-semibold">Clearinfra Studio</strong> in-house. It combines an hourly ISO 13790 thermal &amp; psychrometric physics engine with a <strong class="text-slate-900 font-semibold">native function-calling AI agent</strong> and proactive Pareto optimizer.
         </p>
 
         <!-- 3 Pillar Cards on Stone -->
@@ -67,7 +67,7 @@ const complianceModules = [
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 text-[11px] sm:text-xs font-mono text-slate-400 mb-5 sm:mb-6 pb-3.5 sm:pb-4 border-b border-white/[0.08]">
             <span class="text-slate-200 font-medium">
               <span class="sm:hidden">CLEARINFRA // SYSTEM TOPOLOGY</span>
-              <span class="hidden sm:inline">CLEARINFRA EDITOR // INTERNAL SYSTEM TOPOLOGY</span>
+              <span class="hidden sm:inline">CLEARINFRA STUDIO // INTERNAL SYSTEM TOPOLOGY</span>
             </span>
             <span class="text-emerald-400 text-[10px] sm:text-xs">Physics + Agentic AI + Graph-RAG</span>
           </div>
@@ -249,7 +249,7 @@ const complianceModules = [
       <div class="reveal flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
         <div class="max-w-2xl space-y-3">
           <span class="text-xs font-mono uppercase tracking-widest text-teal-700 font-semibold">Statutory &amp; Code Intelligence</span>
-          <h3 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-900 tracking-tight">
+          <h3 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-900 tracking-tight text-balance">
             Built-in NBC 2016 &amp; ECBC compliance module.
           </h3>
         </div>
@@ -265,14 +265,14 @@ const complianceModules = [
               <span class="inline-block text-[10px] sm:text-[11px] font-mono font-semibold text-teal-800 bg-teal-500/10 px-2.5 py-1 rounded border border-teal-600/20">
                 {mod.code}
               </span>
-              <h4 class="text-xl font-semibold text-slate-900">
+              <h4 class="text-xl font-semibold text-slate-900 text-balance lg:min-h-[3.5rem]">
                 {mod.title}
               </h4>
               <p class="text-sm text-slate-600 leading-relaxed">
                 {mod.detail}
               </p>
             </div>
-            <div class="pt-4 border-t border-slate-900/[0.06] text-xs font-mono text-slate-500">
+            <div class="pt-4 border-t border-slate-900/[0.06] text-xs font-mono text-slate-500 lg:min-h-[3rem]">
               Scope: <span class="text-slate-700">{mod.clauses}</span>
             </div>
           </div>

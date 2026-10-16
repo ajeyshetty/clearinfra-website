@@ -12,9 +12,10 @@
           <span>BUILDING PHYSICS, AI &amp; COMPLIANCE PRACTICE</span>
         </div>
 
-        <h1 class="text-[28px] sm:text-5xl 2xl:text-6xl font-semibold tracking-tight text-slate-900 leading-[1.14] sm:leading-[1.08]">
-          High-performance building advisory,
-          <span class="block sm:inline text-[22.5px] sm:text-5xl 2xl:text-6xl text-teal-700 font-normal italic mt-1 sm:mt-0 whitespace-nowrap sm:whitespace-normal">powered by proprietary physics.</span>
+        <h1 class="text-[27px] sm:text-4xl lg:text-[42px] 2xl:text-[46px] font-semibold tracking-tight text-slate-900 leading-[1.15] sm:leading-[1.12]">
+          <span class="block">High-performance</span>
+          <span class="block">building advisory,</span>
+          <span class="block text-[21px] sm:text-2xl lg:text-[28px] 2xl:text-[30px] text-teal-700 font-normal italic mt-1.5 sm:mt-2 lg:whitespace-nowrap">powered by proprietary physics.</span>
         </h1>
 
         <p class="text-[14.5px] sm:text-lg text-slate-600 leading-[23.5px] sm:leading-relaxed font-normal max-w-[330px] sm:max-w-none mx-auto sm:mx-0">
@@ -56,7 +57,7 @@
         </div>
       </div>
 
-      <!-- Right 7 Cols: High-Contrast Dark CAD Viewport (Clearinfra Editor) -->
+      <!-- Right 7 Cols: High-Contrast Dark CAD Viewport (Clearinfra Studio) -->
       <div id="interactive-demo" class="xl:col-span-7">
         <div class="rounded-2xl border border-slate-900/80 bg-[#0B0F17] text-slate-100 shadow-2xl shadow-slate-950/25 overflow-hidden">
           <!-- Top CAD Window Bar -->
@@ -67,7 +68,7 @@
                 <span class="w-2.5 h-2.5 rounded-full bg-slate-700"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-slate-700"></span>
               </div>
-              <span class="text-slate-200 font-medium whitespace-nowrap">CLEARINFRA EDITOR</span>
+              <span class="text-slate-200 font-medium whitespace-nowrap">CLEARINFRA STUDIO</span>
               <span class="hidden sm:inline-block text-slate-600">|</span>
               <span class="hidden sm:inline-block text-slate-400 truncate">Physics · Native AI · NBC/ECBC</span>
             </div>
@@ -99,84 +100,34 @@
                 </div>
               </div>
 
-              <!-- Central Isometric SVG Building Visualization -->
-              <div class="my-auto py-2 flex items-center justify-center">
-                <svg viewBox="0 0 520 290" class="w-full max-w-[450px] h-auto overflow-visible">
-                  <defs>
-                    <linearGradient id="solarArcGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.05" />
-                      <stop offset="50%" stop-color="#f59e0b" stop-opacity="0.45" />
-                      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.05" />
-                    </linearGradient>
-                    <linearGradient id="roofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9" />
-                      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9" />
-                    </linearGradient>
-                    <linearGradient id="leftWallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.75" />
-                      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.85" />
-                    </linearGradient>
-                    <linearGradient id="rightWallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.9" />
-                      <stop offset="100%" stop-color="#090d16" stop-opacity="0.95" />
-                    </linearGradient>
-                  </defs>
+              <!-- Central 3D Three.js Building Viewport (Clearinfra Studio Twin) -->
+              <div id="three-container" class="relative w-full h-[250px] sm:h-[310px] my-auto overflow-hidden rounded-xl border border-white/[0.05] bg-[#07090e]/60">
+                <canvas id="three-building-canvas" class="w-full h-full block cursor-grab active:cursor-grabbing"></canvas>
+                
+                <!-- Overlay: Drag to Orbit Badge -->
+                <div class="absolute top-2.5 right-2.5 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#07090e]/85 border border-white/10 text-[10px] font-mono text-emerald-400 backdrop-blur-xs shadow-sm">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>3D TWIN · DRAG TO ROTATE</span>
+                </div>
 
-                  <!-- Ground Isometric Compass Ring -->
-                  <ellipse cx="260" cy="230" rx="175" ry="50" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3 3" />
-                  <text x="260" y="173" text-anchor="middle" fill="#64748b" font-size="9" font-family="JetBrains Mono">N</text>
-                  <text x="448" y="233" text-anchor="middle" fill="#64748b" font-size="9" font-family="JetBrains Mono">E</text>
-                  <text x="260" y="290" text-anchor="middle" fill="#64748b" font-size="9" font-family="JetBrains Mono">S</text>
-                  <text x="72" y="233" text-anchor="middle" fill="#64748b" font-size="9" font-family="JetBrains Mono">W</text>
+                <!-- Overlay: Real-time Dynamic WWR & Solar DNI callout badge -->
+                <div class="absolute bottom-2.5 left-2.5 pointer-events-none flex items-center gap-2 text-[10px] font-mono text-slate-400 bg-[#07090e]/85 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-xs">
+                  <span id="viz-wwr-callout" class="text-emerald-400 font-semibold">WWR: 40%</span>
+                  <span class="text-slate-600">|</span>
+                  <span id="viz-dni-label" class="text-amber-300">760 W/m²</span>
+                </div>
 
-                  <!-- Solar Path Arc -->
-                  <path d="M 85 230 C 120 45, 400 45, 435 230" fill="none" stroke="url(#solarArcGrad)" stroke-width="1.75" stroke-dasharray="4 4" />
-
-                  <!-- Animated Sun Group -->
-                  <g class="animate-float">
-                    <line id="solar-ray-1" x1="152" y1="78" x2="215" y2="128" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.45" class="animate-dash" />
-                    <line id="solar-ray-2" x1="152" y1="78" x2="205" y2="168" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.35" class="animate-dash" />
-                    <line id="solar-ray-3" x1="152" y1="78" x2="260" y2="105" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.4" class="animate-dash" />
-
-                    <circle cx="152" cy="78" r="14" fill="#f59e0b" fill-opacity="0.14" />
-                    <circle cx="152" cy="78" r="6" fill="#fbbf24" />
-                    <text x="152" y="56" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="JetBrains Mono" id="viz-dni-label">760 W/m²</text>
-                  </g>
-
-                  <!-- Isometric Building Base Shadow -->
-                  <polygon points="260,264 150,214 260,164 370,214" fill="rgba(16, 185, 129, 0.04)" stroke="rgba(16, 185, 129, 0.2)" stroke-width="1" />
-
-                  <!-- Left Facade -->
-                  <polygon points="160,212 260,258 260,126 160,80" fill="url(#leftWallGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" />
-
-                  <!-- Right Facade -->
-                  <polygon points="360,212 260,258 260,126 360,80" fill="url(#rightWallGrad)" stroke="rgba(255,255,255,0.16)" stroke-width="1.2" />
-
-                  <!-- Roof Plate -->
-                  <polygon points="260,34 160,80 260,126 360,80" fill="url(#roofGrad)" stroke="rgba(16, 185, 129, 0.45)" stroke-width="1.4" />
-                  <line x1="210" y1="57" x2="310" y2="103" stroke="rgba(255,255,255,0.08)" stroke-width="0.75" />
-                  <line x1="310" y1="57" x2="210" y2="103" stroke="rgba(255,255,255,0.08)" stroke-width="0.75" />
-
-                  <!-- 5 Floors of Dynamic Glazing Bands -->
-                  <polygon class="wwr-band-left" points="166,89 254,130 254,142 166,101" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
-                  <polygon class="wwr-band-right" points="354,89 266,130 266,142 354,101" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
-
-                  <polygon class="wwr-band-left" points="166,114 254,155 254,167 166,126" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
-                  <polygon class="wwr-band-right" points="354,114 266,155 266,167 354,126" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
-
-                  <polygon class="wwr-band-left" points="166,139 254,180 254,192 166,151" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
-                  <polygon class="wwr-band-right" points="354,139 266,180 266,192 354,151" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
-
-                  <polygon class="wwr-band-left" points="166,164 254,205 254,217 166,176" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
-                  <polygon class="wwr-band-right" points="354,164 266,205 266,217 354,176" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
-
-                  <polygon class="wwr-band-left" points="166,189 254,230 254,242 166,201" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
-                  <polygon class="wwr-band-right" points="354,189 266,230 266,242 354,201" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
-
-                  <!-- Dimension Callout Lines -->
-                  <line x1="375" y1="80" x2="375" y2="212" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1" />
-                  <text x="384" y="150" fill="#10b981" font-size="9.5" font-family="JetBrains Mono" id="viz-wwr-callout">WWR: 40%</text>
-                </svg>
+                <!-- Overlay: Reset Camera View Button -->
+                <button
+                  id="btn-reset-cam"
+                  type="button"
+                  title="Reset 3D Camera View"
+                  class="absolute bottom-2.5 right-2.5 flex items-center justify-center w-7 h-7 rounded-md bg-[#07090e]/85 hover:bg-slate-800 border border-white/10 text-slate-300 hover:text-white transition-colors cursor-pointer"
+                >
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                </button>
               </div>
 
               <!-- Bottom Status Strip inside Canvas -->
@@ -308,17 +259,20 @@
 </section>
 
 <script>
-  const climateData: Record<string, { label: string; baseEpi: number; solarFactor: number; dni: string }> = {
-    bengaluru: { label: 'Bengaluru (Temperate)', baseEpi: 62, solarFactor: 0.72, dni: '760 W/m²' },
-    mumbai:    { label: 'Mumbai (Warm-Humid)',   baseEpi: 88, solarFactor: 1.05, dni: '840 W/m²' },
-    delhi:     { label: 'New Delhi (Composite)', baseEpi: 92, solarFactor: 1.12, dni: '890 W/m²' },
-    ahmedabad: { label: 'Ahmedabad (Hot-Dry)',   baseEpi: 98, solarFactor: 1.25, dni: '960 W/m²' },
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+
+  const climateData: Record<string, { label: string; baseEpi: number; solarFactor: number; dni: string; sunPos: [number, number, number] }> = {
+    bengaluru: { label: 'Bengaluru (Temperate)', baseEpi: 62, solarFactor: 0.72, dni: '760 W/m²', sunPos: [16, 22, 14] },
+    mumbai:    { label: 'Mumbai (Warm-Humid)',   baseEpi: 88, solarFactor: 1.05, dni: '840 W/m²', sunPos: [18, 20, 16] },
+    delhi:     { label: 'New Delhi (Composite)', baseEpi: 92, solarFactor: 1.12, dni: '890 W/m²', sunPos: [20, 18, 12] },
+    ahmedabad: { label: 'Ahmedabad (Hot-Dry)',   baseEpi: 98, solarFactor: 1.25, dni: '960 W/m²', sunPos: [15, 24, 10] },
   };
 
-  const glazingData: Record<string, { shgc: number; uval: number; colorLeft: string; colorRight: string }> = {
-    single: { shgc: 0.58, uval: 2.8, colorLeft: 'rgba(245, 158, 11, 0.38)', colorRight: 'rgba(245, 158, 11, 0.24)' },
-    lowe:   { shgc: 0.28, uval: 1.6, colorLeft: 'rgba(56, 189, 248, 0.34)', colorRight: 'rgba(56, 189, 248, 0.20)' },
-    triple: { shgc: 0.22, uval: 1.1, colorLeft: 'rgba(16, 185, 129, 0.35)', colorRight: 'rgba(16, 185, 129, 0.22)' },
+  const glazingData: Record<string, { shgc: number; uval: number }> = {
+    single: { shgc: 0.58, uval: 2.8 },
+    lowe:   { shgc: 0.28, uval: 1.6 },
+    triple: { shgc: 0.22, uval: 1.1 },
   };
 
   let currentClimate = 'bengaluru';
@@ -341,11 +295,348 @@
   const vizWwrCallout = document.getElementById('viz-wwr-callout');
   const vizShgcReadout = document.getElementById('viz-shgc-readout');
 
-  const leftBands = document.querySelectorAll('.wwr-band-left');
-  const rightBands = document.querySelectorAll('.wwr-band-right');
+  // ─── 3D THREE.JS DIGITAL TWIN (CLEARINFRA STUDIO RUNTIME) ───
+  const container = document.getElementById('three-container') as HTMLDivElement | null;
+  const canvas = document.getElementById('three-building-canvas') as HTMLCanvasElement | null;
 
-  const baseFloorsY = [89, 114, 139, 164, 189];
+  let updateThreeBuilding: ((wwr: number, glazing: string, climate: string) => void) | null = null;
 
+  if (container && canvas) {
+    try {
+      const scene = new THREE.Scene();
+
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance',
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.15;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+      const camera = new THREE.PerspectiveCamera(38, container.clientWidth / Math.max(1, container.clientHeight), 0.1, 150);
+      const defaultCamPos = new THREE.Vector3(22, 17, 22);
+      const defaultTarget = new THREE.Vector3(0, 7.2, 0);
+      camera.position.copy(defaultCamPos);
+
+      const controls = new OrbitControls(camera, canvas);
+      controls.target.copy(defaultTarget);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.06;
+      controls.maxPolarAngle = Math.PI / 2 - 0.05;
+      controls.minDistance = 14;
+      controls.maxDistance = 45;
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 0.6;
+
+      let idleTimer: any = null;
+      controls.addEventListener('start', () => {
+        controls.autoRotate = false;
+        clearTimeout(idleTimer);
+      });
+      controls.addEventListener('end', () => {
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+          controls.autoRotate = true;
+        }, 3500);
+      });
+
+      const resetBtn = document.getElementById('btn-reset-cam');
+      resetBtn?.addEventListener('click', () => {
+        camera.position.copy(defaultCamPos);
+        controls.target.copy(defaultTarget);
+        controls.update();
+      });
+
+      // Ground Datum & Coordinate Grid
+      const gridHelper = new THREE.GridHelper(30, 16, 0x10b981, 0x1e293b);
+      gridHelper.position.y = -0.01;
+      const gridMat = gridHelper.material as THREE.Material;
+      gridMat.transparent = true;
+      gridMat.opacity = 0.35;
+      scene.add(gridHelper);
+
+      // Subtle Pedestal Disc
+      const groundDisc = new THREE.Mesh(
+        new THREE.CircleGeometry(15, 36),
+        new THREE.MeshBasicMaterial({ color: 0x07090e, transparent: true, opacity: 0.85 })
+      );
+      groundDisc.rotation.x = -Math.PI / 2;
+      groundDisc.position.y = -0.02;
+      scene.add(groundDisc);
+
+      // Compass Ring
+      const ring = new THREE.Mesh(
+        new THREE.RingGeometry(11, 11.15, 48),
+        new THREE.MeshBasicMaterial({ color: 0x334155, side: THREE.DoubleSide, transparent: true, opacity: 0.45 })
+      );
+      ring.rotation.x = -Math.PI / 2;
+      ring.position.y = 0.01;
+      scene.add(ring);
+
+      // Studio Lighting
+      const ambientLight = new THREE.AmbientLight(0x1e293b, 1.4);
+      scene.add(ambientLight);
+
+      const hemiLight = new THREE.HemisphereLight(0x38bdf8, 0x090d16, 0.65);
+      scene.add(hemiLight);
+
+      const sunLight = new THREE.DirectionalLight(0xfffbeb, 2.4);
+      sunLight.position.set(16, 22, 14);
+      sunLight.castShadow = true;
+      sunLight.shadow.mapSize.width = 1024;
+      sunLight.shadow.mapSize.height = 1024;
+      sunLight.shadow.camera.near = 1;
+      sunLight.shadow.camera.far = 60;
+      sunLight.shadow.camera.left = -15;
+      sunLight.shadow.camera.right = 15;
+      sunLight.shadow.camera.top = 15;
+      sunLight.shadow.camera.bottom = -15;
+      sunLight.shadow.bias = -0.0005;
+      scene.add(sunLight);
+
+      // Sun Indicator Orb
+      const sunOrb = new THREE.Mesh(
+        new THREE.SphereGeometry(0.55, 16, 16),
+        new THREE.MeshBasicMaterial({ color: 0xfbbf24 })
+      );
+      sunOrb.position.copy(sunLight.position);
+      scene.add(sunOrb);
+
+      // Building Geometry & Parameters
+      const numFloors = 5;
+      const floorHeight = 2.7;
+      const slabH = 0.22;
+      const towerW = 11.6;
+      const towerD = 7.8;
+      const clearHeight = floorHeight - slabH;
+
+      const buildingGroup = new THREE.Group();
+      scene.add(buildingGroup);
+
+      // Materials
+      const slabMat = new THREE.MeshStandardMaterial({
+        color: 0x1e293b,
+        roughness: 0.55,
+        metalness: 0.25,
+      });
+      const slabEdgeMat = new THREE.LineBasicMaterial({
+        color: 0x475569,
+        transparent: true,
+        opacity: 0.55,
+      });
+
+      const coreMat = new THREE.MeshStandardMaterial({
+        color: 0x0d131f,
+        roughness: 0.85,
+      });
+
+      const columnMat = new THREE.MeshStandardMaterial({
+        color: 0x334155,
+        roughness: 0.35,
+        metalness: 0.5,
+      });
+
+      const spandrelMat = new THREE.MeshStandardMaterial({
+        color: 0x161e2e,
+        roughness: 0.5,
+        metalness: 0.3,
+      });
+
+      // Glass Material with real-time physical properties
+      const glassMat = new THREE.MeshPhysicalMaterial({
+        color: new THREE.Color(0x38bdf8),
+        emissive: new THREE.Color(0x0284c7),
+        emissiveIntensity: 0.18,
+        roughness: 0.08,
+        metalness: 0.1,
+        transmission: 0.55,
+        transparent: true,
+        opacity: 0.68,
+        depthWrite: false,
+        side: THREE.DoubleSide,
+      });
+
+      const glassEdgeMat = new THREE.LineBasicMaterial({
+        color: 0x67e8f9,
+        transparent: true,
+        opacity: 0.35,
+      });
+
+      // Central Concrete Core
+      const coreMesh = new THREE.Mesh(
+        new THREE.BoxGeometry(4.2, numFloors * floorHeight, 3.2),
+        coreMat
+      );
+      coreMesh.position.set(0, (numFloors * floorHeight) / 2, 0);
+      coreMesh.castShadow = true;
+      coreMesh.receiveShadow = true;
+      buildingGroup.add(coreMesh);
+
+      // 4 Corner Structural Columns
+      const colPositions = [
+        [-towerW / 2 + 0.15, -towerD / 2 + 0.15],
+        [towerW / 2 - 0.15, -towerD / 2 + 0.15],
+        [-towerW / 2 + 0.15, towerD / 2 - 0.15],
+        [towerW / 2 - 0.15, towerD / 2 - 0.15],
+      ];
+      const colGeo = new THREE.BoxGeometry(0.28, numFloors * floorHeight, 0.28);
+      colPositions.forEach(([cx, cz]) => {
+        const col = new THREE.Mesh(colGeo, columnMat);
+        col.position.set(cx, (numFloors * floorHeight) / 2, cz);
+        col.castShadow = true;
+        buildingGroup.add(col);
+      });
+
+      // Array of Dynamic Glazing Meshes
+      const glassMeshes: THREE.Mesh[] = [];
+
+      // Build Floors & Slabs
+      for (let i = 0; i < numFloors; i++) {
+        // Floor Slab
+        const slabGeo = new THREE.BoxGeometry(towerW + 0.25, slabH, towerD + 0.25);
+        const slabMesh = new THREE.Mesh(slabGeo, slabMat);
+        slabMesh.position.set(0, i * floorHeight + slabH / 2, 0);
+        slabMesh.castShadow = true;
+        slabMesh.receiveShadow = true;
+        buildingGroup.add(slabMesh);
+        slabMesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(slabGeo), slabEdgeMat));
+
+        // Interior Floor Plate
+        const floorPlate = new THREE.Mesh(
+          new THREE.BoxGeometry(towerW - 0.2, 0.04, towerD - 0.2),
+          new THREE.MeshBasicMaterial({ color: 0x0f172a })
+        );
+        floorPlate.position.set(0, i * floorHeight + slabH + 0.02, 0);
+        buildingGroup.add(floorPlate);
+
+        // Dynamic Glass Ribbon Band (unit height 1, scaled dynamically via updateThreeBuilding)
+        const glassGeo = new THREE.BoxGeometry(towerW - 0.02, 1, towerD - 0.02);
+        const glassMesh = new THREE.Mesh(glassGeo, glassMat);
+        glassMesh.castShadow = true;
+        buildingGroup.add(glassMesh);
+        glassMesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(glassGeo), glassEdgeMat));
+
+        glassMeshes.push(glassMesh);
+      }
+
+      // Roof Slab
+      const roofSlabGeo = new THREE.BoxGeometry(towerW + 0.25, slabH + 0.05, towerD + 0.25);
+      const roofSlab = new THREE.Mesh(roofSlabGeo, slabMat);
+      roofSlab.position.set(0, numFloors * floorHeight + slabH / 2, 0);
+      roofSlab.castShadow = true;
+      roofSlab.receiveShadow = true;
+      buildingGroup.add(roofSlab);
+      roofSlab.add(new THREE.LineSegments(new THREE.EdgesGeometry(roofSlabGeo), slabEdgeMat));
+
+      // Roof Parapet
+      const parapetGeo = new THREE.BoxGeometry(towerW + 0.25, 0.35, towerD + 0.25);
+      const parapetMesh = new THREE.Mesh(parapetGeo, spandrelMat);
+      parapetMesh.position.set(0, numFloors * floorHeight + slabH + 0.18, 0);
+      buildingGroup.add(parapetMesh);
+
+      // Roof Mechanical Lift Penthouse
+      const penthouseGeo = new THREE.BoxGeometry(3.6, 1.5, 3.2);
+      const penthouse = new THREE.Mesh(penthouseGeo, slabMat);
+      penthouse.position.set(-2.2, numFloors * floorHeight + slabH + 0.75, 0);
+      penthouse.castShadow = true;
+      penthouse.receiveShadow = true;
+      buildingGroup.add(penthouse);
+      penthouse.add(new THREE.LineSegments(new THREE.EdgesGeometry(penthouseGeo), slabEdgeMat));
+
+      // Rooftop Solar PV Canopy (Angled towards South)
+      const pvRack = new THREE.Group();
+      pvRack.position.set(2.4, numFloors * floorHeight + slabH + 0.6, 0);
+      pvRack.rotation.x = 0.18; // 10 degree tilt
+      const pvGeo = new THREE.BoxGeometry(4.2, 0.06, 3.2);
+      const pvMat = new THREE.MeshStandardMaterial({
+        color: 0x0284c7,
+        roughness: 0.2,
+        metalness: 0.65,
+      });
+      const pvMesh = new THREE.Mesh(pvGeo, pvMat);
+      pvMesh.castShadow = true;
+      pvRack.add(pvMesh);
+      pvRack.add(new THREE.LineSegments(new THREE.EdgesGeometry(pvGeo), new THREE.LineBasicMaterial({ color: 0x38bdf8, opacity: 0.4, transparent: true })));
+      buildingGroup.add(pvRack);
+
+      // Rooftop HVAC Chiller Box
+      const chillerGeo = new THREE.BoxGeometry(1.6, 0.8, 1.3);
+      const chiller = new THREE.Mesh(chillerGeo, columnMat);
+      chiller.position.set(-2.2, numFloors * floorHeight + slabH + 1.5 + 0.4, 0);
+      chiller.castShadow = true;
+      buildingGroup.add(chiller);
+
+      // Function to dynamically update 3D building from simulator controls
+      updateThreeBuilding = (wwrPct: number, glazingKey: string, climateKey: string) => {
+        // 1. Update Glass Bands Height & Position
+        const gHeight = Math.max(0.4, (wwrPct / 100) * clearHeight);
+        glassMeshes.forEach((mesh, idx) => {
+          mesh.scale.y = gHeight;
+          mesh.position.y = idx * floorHeight + slabH + (clearHeight - gHeight) / 2 + gHeight / 2;
+        });
+
+        // 2. Update Glass Material Color & Opacity
+        if (glazingKey === 'single') {
+          glassMat.color.setHex(0x94a3b8);
+          glassMat.emissive.setHex(0x334155);
+          glassMat.emissiveIntensity = 0.12;
+          glassMat.opacity = 0.52;
+          glassEdgeMat.color.setHex(0x94a3b8);
+        } else if (glazingKey === 'triple') {
+          glassMat.color.setHex(0x10b981);
+          glassMat.emissive.setHex(0x059669);
+          glassMat.emissiveIntensity = 0.22;
+          glassMat.opacity = 0.74;
+          glassEdgeMat.color.setHex(0x34d399);
+        } else {
+          // lowe default
+          glassMat.color.setHex(0x38bdf8);
+          glassMat.emissive.setHex(0x0284c7);
+          glassMat.emissiveIntensity = 0.18;
+          glassMat.opacity = 0.68;
+          glassEdgeMat.color.setHex(0x67e8f9);
+        }
+
+        // 3. Update Sun Angle & Intensity based on Climate
+        const c = climateData[climateKey];
+        if (c) {
+          sunLight.intensity = c.solarFactor * 2.3;
+          sunLight.position.set(...c.sunPos);
+          sunOrb.position.copy(sunLight.position);
+        }
+      };
+
+      // Render Loop
+      function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Resize Observer
+      const ro = new ResizeObserver(() => {
+        if (!container || !renderer || !camera) return;
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        if (w === 0 || h === 0) return;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      });
+      ro.observe(container);
+
+    } catch (err) {
+      console.warn('Three.js initialization notice:', err);
+    }
+  }
+
+  // ─── CHARRETTE SIMULATION STATE & CONTROLS ───
   function updateSimulation() {
     const c = climateData[currentClimate];
     const g = glazingData[currentGlazing];
@@ -396,23 +687,10 @@
 
     updateSliderTrack(currentWwr);
 
-    // Continuous sub-pixel scaling for fluid 3D SVG building facade animation
-    const bandHeight = Math.max(3.5, ((currentWwr / 70) * 19));
-    const bandHeightFixed = Number(bandHeight.toFixed(2));
-    leftBands.forEach((poly, i) => {
-      const yTop = baseFloorsY[i];
-      const yBot = Number((yTop + bandHeightFixed).toFixed(2));
-      const yBotAngle = Number((yBot + 41).toFixed(2));
-      poly.setAttribute('points', `166,${yTop} 254,${yTop + 41} 254,${yBotAngle} 166,${yBot}`);
-      poly.setAttribute('fill', g.colorLeft);
-    });
-    rightBands.forEach((poly, i) => {
-      const yTop = baseFloorsY[i];
-      const yBot = Number((yTop + bandHeightFixed).toFixed(2));
-      const yBotAngle = Number((yBot + 41).toFixed(2));
-      poly.setAttribute('points', `354,${yTop} 266,${yTop + 41} 266,${yBotAngle} 354,${yBot}`);
-      poly.setAttribute('fill', g.colorRight);
-    });
+    // Sync live 3D building geometry, glass tint, and climate illumination
+    if (updateThreeBuilding) {
+      updateThreeBuilding(currentWwr, currentGlazing, currentClimate);
+    }
   }
 
   climateSelect?.addEventListener('change', (e) => {
@@ -441,6 +719,6 @@
     });
   });
 
-  // Initial call to paint track gradient
+  // Initial call to paint track gradient & initialize 3D building state
   updateSimulation();
 </script>
