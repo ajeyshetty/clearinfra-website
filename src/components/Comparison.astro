@@ -1,81 +1,64 @@
 ---
-const comparisons = [
+const workflows = [
   {
-    parameter: "Design Feedback Loop",
-    traditional: "2 to 4 weeks across consulting firms",
-    clearinfra: "Instantaneous (< 0.5 seconds)",
-    winner: true
+    aspect: "Design Stage Timing",
+    postDesign: "Evaluated after architectural massing and facade geometry are largely fixed",
+    integrated: "Evaluated during early concept design while massing and glazing are still fluid"
   },
   {
-    parameter: "Software Fragmentation",
-    traditional: "5+ disconnected tools (CAD, IES/eQuest, Excel, EnergyPlus)",
-    clearinfra: "Single unified direct-to-desktop operating system",
-    winner: true
+    aspect: "Iteration Cycle",
+    postDesign: "Manual model translation between CAD, thermal tools, and cost spreadsheets",
+    integrated: "Immediate parameter updates across thermal, daylight, and capital cost models"
   },
   {
-    parameter: "Optimization Scope",
-    traditional: "Manual trial-and-error testing 3-5 variations",
-    clearinfra: "Autonomous Pareto optimization testing thousands of scenarios",
-    winner: true
+    aspect: "Code Verification",
+    postDesign: "Periodic compliance checks against ECBC and NBC tables",
+    integrated: "Continuous verification of U-values, SHGC, WWR, and EPI thresholds"
   },
   {
-    parameter: "Financial Integration",
-    traditional: "Disconnected rule-of-thumb spreadsheets",
-    clearinfra: "Dynamic CAPEX, OPEX, NPV, and IRR synced to physics",
-    winner: true
-  },
-  {
-    parameter: "Regulatory Compliance",
-    traditional: "Post-design manual reporting audits",
-    clearinfra: "Real-time automated NBC & ECBC compliance checks",
-    winner: true
-  },
-  {
-    parameter: "Auditability & Parity",
-    traditional: "Opaque consultant models with variable assumptions",
-    clearinfra: "Verified EnergyPlus v25.1 parity with one-click IDF export",
-    winner: true
+    aspect: "Engineering Hand-off",
+    postDesign: "Static PDF reports requiring re-modeling for detailed simulation",
+    integrated: "Clean EnergyPlus (.idf) export and full formula-level traceability"
   }
 ];
 ---
 
-<section id="comparison" class="py-24 relative overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-      <span class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-semibold">The Competitive Edge</span>
-      <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-        Eliminate the 80-Hour Consulting Bottleneck.
+<section id="standards" class="py-24 bg-[#07090e] border-t border-white/[0.06] relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal max-w-2xl mb-14 space-y-3">
+      <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">Workflow & Standards</span>
+      <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
+        Moving analysis from post-design audit to early design exploration.
       </h2>
-      <p class="text-slate-400 text-base sm:text-lg">
-        See how Clearinfra transforms slow, fragmented manual engineering into instant sustainable intelligence.
+      <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+        Clearinfra complements detailed engineering workflows by resolving envelope, orientation, and plant sizing questions early—reducing rework downstream.
       </p>
     </div>
 
-    <!-- Comparison Table Card -->
-    <div class="max-w-4xl mx-auto rounded-2xl border border-slate-800 bg-slate-900/60 overflow-hidden shadow-2xl">
-      <div class="grid grid-cols-12 bg-slate-950/80 px-6 py-4 border-b border-slate-800 text-xs font-mono uppercase tracking-wider">
-        <div class="col-span-4 text-slate-400">Capability</div>
-        <div class="col-span-4 text-slate-400">Traditional Consulting</div>
-        <div class="col-span-4 text-emerald-400 font-bold flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-          Clearinfra OS
+    <!-- Clean Workflow Table -->
+    <div class="reveal rounded-2xl border border-white/[0.08] bg-[#0b0f17] overflow-hidden">
+      <div class="grid grid-cols-1 md:grid-cols-12 bg-[#07090e] px-6 py-4 border-b border-white/[0.06] text-xs font-mono uppercase tracking-wider text-slate-400">
+        <div class="md:col-span-3">Dimension</div>
+        <div class="hidden md:block md:col-span-4">Conventional Post-Design Audit</div>
+        <div class="hidden md:flex md:col-span-5 text-emerald-400 items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span>Early-Stage Clearinfra Workflow</span>
         </div>
       </div>
 
-      <div class="divide-y divide-slate-800/80">
-        {comparisons.map((row) => (
-          <div class="grid grid-cols-12 px-6 py-5 items-center hover:bg-slate-800/30 transition-colors">
-            <div class="col-span-4 text-sm font-semibold text-white">
-              {row.parameter}
+      <div class="divide-y divide-white/[0.06]">
+        {workflows.map((row) => (
+          <div class="grid grid-cols-1 md:grid-cols-12 px-6 py-5 gap-3 md:gap-6 items-start">
+            <div class="md:col-span-3 text-sm font-medium text-white">
+              {row.aspect}
             </div>
-            <div class="col-span-4 text-xs sm:text-sm text-slate-400 pr-4">
-              {row.traditional}
+            <div class="md:col-span-4 text-xs sm:text-sm text-slate-400 leading-relaxed">
+              <span class="md:hidden text-[10px] font-mono uppercase text-slate-500 block mb-1">Conventional:</span>
+              {row.postDesign}
             </div>
-            <div class="col-span-4 text-xs sm:text-sm text-emerald-300 font-medium flex items-center gap-2">
-              <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>{row.clearinfra}</span>
+            <div class="md:col-span-5 text-xs sm:text-sm text-slate-200 leading-relaxed">
+              <span class="md:hidden text-[10px] font-mono uppercase text-emerald-400 block mb-1">With Clearinfra:</span>
+              {row.integrated}
             </div>
           </div>
         ))}

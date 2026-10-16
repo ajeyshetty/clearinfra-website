@@ -1,40 +1,40 @@
 ---
-const stats = [
+const specs = [
   {
-    value: "1,000x",
-    label: "Decision Velocity",
-    desc: "Compressing 80+ hours of multi-software consulting into sub-second physics iteration."
+    value: "8,760 hrs",
+    label: "Annual Climate Resolution",
+    desc: "Hourly dry-bulb, wet-bulb, and solar irradiance modeling across the full calendar year."
   },
   {
-    value: "< 1%",
-    label: "Simulation Discrepancy",
-    desc: "First-principles thermal and HVAC calculations calibrated against EnergyPlus & IESVE."
+    value: "5 Zones",
+    label: "Indian Climate Coverage",
+    desc: "Calibrated for Hot-Dry, Warm-Humid, Composite, Temperate, and Cold climate classifications."
   },
   {
-    value: "100%",
-    label: "Automated Compliance",
-    desc: "Instant checking against India NBC 2016 Part 8, ECBC, ASHRAE 90.1, and ISO 13790."
+    value: "ISO 13790",
+    label: "Thermal Balance Method",
+    desc: "Dynamic multi-node RC thermal network paired with psychrometric sensible and latent HVAC loads."
   },
   {
-    value: "Up to 35%",
-    label: "CAPEX & Carbon Abated",
-    desc: "Simultaneous Pareto optimization of chiller sizing, envelope U-values, and PV integration."
+    value: "IDF Export",
+    label: "EnergyPlus Interoperability",
+    desc: "Generates structured EnergyPlus input files for downstream audit and detailed compliance submittals."
   }
 ];
 ---
 
-<section class="border-y border-slate-800 bg-slate-950/70 py-16 relative">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="border-y border-white/[0.06] bg-[#090c14] py-14">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      {stats.map((item) => (
-        <div class="flex flex-col space-y-2 border-l-2 border-emerald-500/50 pl-4 sm:pl-6">
-          <span class="text-3xl sm:text-4xl font-extrabold text-white font-mono tracking-tight">
+      {specs.map((item, idx) => (
+        <div class={`reveal reveal-delay-${Math.min(idx, 3)} flex flex-col space-y-1.5 border-l border-white/10 pl-5`}>
+          <span class="text-2xl font-semibold text-white font-mono tracking-tight">
             {item.value}
           </span>
-          <span class="text-sm font-bold text-emerald-400 uppercase tracking-wide font-mono">
+          <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">
             {item.label}
           </span>
-          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+          <p class="text-xs text-slate-400 leading-relaxed pt-1">
             {item.desc}
           </p>
         </div>

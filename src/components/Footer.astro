@@ -2,72 +2,59 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-slate-950 border-t border-slate-900 py-16 text-slate-400 text-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
-      <!-- Col 1: Brand -->
-      <div class="lg:col-span-2 space-y-4">
-        <a href="/" class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-lg bg-emerald-400 flex items-center justify-center text-slate-950 font-black">
-            CI
+<footer class="bg-[#07090e] border-t border-white/[0.06] py-14 text-slate-400 text-sm">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/[0.05]">
+      <!-- Brand -->
+      <div class="md:col-span-5 space-y-3">
+        <a href="/" class="inline-flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-md bg-slate-900 border border-white/10 flex items-center justify-center">
+            <svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
           </div>
-          <span class="text-xl font-bold tracking-tight text-white">
-            Clearinfra<span class="text-emerald-400">.</span>
+          <span class="text-base font-semibold tracking-tight text-white">
+            Clearinfra
           </span>
         </a>
-        <p class="text-sm text-slate-400 max-w-sm leading-relaxed">
-          The first CI-driven operating system for sustainable building design. Bank-grade real-time physics, automated compliance, and Pareto-optimal carbon and capital abatement.
+        <p class="text-xs sm:text-sm text-slate-400 max-w-sm leading-relaxed">
+          Building physics, hourly thermal simulation, and code compliance intelligence for sustainable architecture and engineering.
         </p>
-        <div class="text-xs font-mono text-slate-400">
-          Domain: <span class="text-slate-300">clearinfra.in</span> | Platform: <a href="https://app.clearinfra.in" class="text-emerald-400 hover:underline">app.clearinfra.in</a>
-        </div>
       </div>
 
-      <!-- Col 2: Platform -->
-      <div class="space-y-3">
-        <span class="text-xs font-mono uppercase tracking-wider text-slate-200 font-bold">Platform</span>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          <li><a href="#features" class="hover:text-emerald-400 transition-colors">3D Digital Twin</a></li>
-          <li><a href="#physics" class="hover:text-emerald-400 transition-colors">Real-Time Physics Engine</a></li>
-          <li><a href="#features" class="hover:text-emerald-400 transition-colors">Proactive AI Optimizer</a></li>
-          <li><a href="#features" class="hover:text-emerald-400 transition-colors">EnergyPlus Parity</a></li>
-          <li><a href="#comparison" class="hover:text-emerald-400 transition-colors">Consulting vs Clearinfra</a></li>
+      <!-- Navigation -->
+      <div class="md:col-span-3 space-y-2.5">
+        <span class="text-xs font-mono uppercase tracking-wider text-slate-300 block">Navigation</span>
+        <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
+          <li><a href="#interactive-demo" class="hover:text-white transition-colors">Interactive Envelope Model</a></li>
+          <li><a href="#capabilities" class="hover:text-white transition-colors">Core Capabilities</a></li>
+          <li><a href="#methodology" class="hover:text-white transition-colors">Physics Architecture</a></li>
+          <li><a href="#standards" class="hover:text-white transition-colors">Workflow &amp; Standards</a></li>
+          <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
         </ul>
       </div>
 
-      <!-- Col 3: Compliance & Standards -->
-      <div class="space-y-3">
-        <span class="text-xs font-mono uppercase tracking-wider text-slate-200 font-bold">Compliance</span>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          <li><span class="text-slate-400">India NBC 2016 Part 8</span></li>
-          <li><span class="text-slate-400">ECBC / ECBC+ / SuperECBC</span></li>
-          <li><span class="text-slate-400">ASHRAE 90.1 & Standard 55</span></li>
-          <li><span class="text-slate-400">ISO 13790 Calculation Standard</span></li>
-          <li><span class="text-slate-400">LEED & IGBC Green Rating</span></li>
-        </ul>
-      </div>
-
-      <!-- Col 4: Company -->
-      <div class="space-y-3">
-        <span class="text-xs font-mono uppercase tracking-wider text-slate-200 font-bold">Company</span>
-        <ul class="space-y-2 text-xs sm:text-sm">
-          <li><a href="#contact" class="hover:text-emerald-400 transition-colors">Contact & Demo</a></li>
-          <li><a href="https://app.clearinfra.in" class="hover:text-emerald-400 transition-colors">Client Portal</a></li>
-          <li><a href="#" class="hover:text-emerald-400 transition-colors">Research & Papers</a></li>
-          <li><a href="#" class="hover:text-emerald-400 transition-colors">Privacy Policy</a></li>
-          <li><a href="#" class="hover:text-emerald-400 transition-colors">Terms of Service</a></li>
+      <!-- Standards Reference -->
+      <div class="md:col-span-4 space-y-2.5">
+        <span class="text-xs font-mono uppercase tracking-wider text-slate-300 block">Standards Alignment</span>
+        <ul class="space-y-2 text-xs font-mono text-slate-400">
+          <li>National Building Code of India (NBC 2016 Part 8)</li>
+          <li>Energy Conservation Building Code (ECBC 2017)</li>
+          <li>ISO 13790 Thermal Balance Method</li>
+          <li>ASHRAE Fundamental Psychrometrics</li>
+          <li>EnergyPlus v25.1 IDF Schema</li>
         </ul>
       </div>
     </div>
 
-    <!-- Bottom line -->
-    <div class="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
       <div>
-        &copy; {currentYear} Clearinfra Technologies Pvt. Ltd. All rights reserved.
+        &copy; {currentYear} Clearinfra. All rights reserved.
       </div>
-      <div class="flex items-center gap-6">
-        <span>Hosted globally on Cloudflare Edge</span>
-        <span>Made with Precision for Indian & Global Cities</span>
+      <div class="font-mono">
+        <a href="mailto:contact@clearinfra.in" class="hover:text-slate-300 transition-colors">contact@clearinfra.in</a>
       </div>
     </div>
   </div>

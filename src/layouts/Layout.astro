@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = "Clearinfra | High-Performance Building Intelligence & Net-Zero OS",
-  description = "The direct-to-desktop engineering platform for sustainable design intelligence. Instant physics simulation, ECBC/NBC compliance, and automated carbon-ROI optimization."
+  title = "Clearinfra — Building Physics & Sustainable Design Intelligence",
+  description = "Early-stage building physics, hourly thermal simulation, daylight analysis, and automated NBC & ECBC compliance for high-performance buildings."
 } = Astro.props;
 ---
 
@@ -24,7 +24,7 @@ const {
     <!-- SEO & Metadata -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="building physics, energy simulation, EnergyPlus, net zero building, ECBC compliance, NBC India, carbon abatement, high performance buildings, building energy modeling" />
+    <meta name="keywords" content="building physics, energy modeling, EnergyPlus, ECBC compliance, NBC 2016, sustainable architecture, thermal simulation, daylight analysis, India green building" />
     <meta name="author" content="Clearinfra" />
 
     <!-- Open Graph / Social -->
@@ -32,30 +32,39 @@ const {
     <meta property="og:url" content="https://clearinfra.in/" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://clearinfra.in/og-image.png" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://clearinfra.in/" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="https://clearinfra.in/og-image.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <style>
-      body {
-        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      }
-      .font-mono {
-        font-family: 'JetBrains Mono', monospace;
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-emerald-500 selection:text-slate-950 min-h-screen flex flex-col">
+  <body class="bg-[#07090e] text-slate-100 antialiased selection:bg-emerald-500/30 selection:text-emerald-200 min-h-screen flex flex-col">
     <slot />
+
+    <script>
+      // Subtle intersection observer for scroll-reveal animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -60px 0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
   </body>
 </html>

@@ -1,106 +1,140 @@
 ---
 ---
 
-<section id="contact" class="py-24 relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-t border-slate-800">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="rounded-3xl border border-slate-800 bg-slate-950/90 p-8 sm:p-12 lg:p-16 shadow-2xl relative overflow-hidden backdrop-blur-xl">
-      <!-- Glow -->
-      <div class="absolute -top-24 -right-24 w-72 h-72 bg-emerald-500/10 rounded-full blur-[80px] pointer-events-none"></div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <!-- Text details -->
-        <div class="lg:col-span-5 space-y-6">
-          <span class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-semibold">Join the Future</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
-            Deploy Real-Time Building Intelligence.
+<section id="contact" class="py-24 bg-[#090d14] border-t border-white/[0.06] relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal rounded-2xl border border-white/[0.08] bg-[#07090e] p-8 sm:p-12 lg:p-14">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <!-- Left Copy -->
+        <div class="lg:col-span-5 space-y-5">
+          <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">Get in Touch</span>
+          <h2 class="text-3xl font-semibold text-white tracking-tight leading-tight">
+            Evaluate Clearinfra on an upcoming project.
           </h2>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Schedule a private walkthrough with our engineering team to see how Clearinfra optimizes your building portfolio for capital efficiency and net-zero targets.
+          <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+            We partner with architectural practices, MEP engineering teams, and real estate developers across India to model building performance during concept and schematic design.
           </p>
 
-          <div class="pt-4 space-y-3 text-sm text-slate-400">
+          <div class="pt-4 space-y-3 text-sm text-slate-300 font-mono">
             <div class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              <span>contact@clearinfra.in</span>
+              <span class="text-slate-500">Email</span>
+              <a href="mailto:contact@clearinfra.in" class="text-emerald-400 hover:underline">contact@clearinfra.in</a>
             </div>
             <div class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span>Bengaluru & Hyderabad, India</span>
+              <span class="text-slate-500">Base</span>
+              <span>Bengaluru, India</span>
             </div>
           </div>
         </div>
 
-        <!-- Form -->
+        <!-- Right Form -->
         <div class="lg:col-span-7">
-          <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you for contacting Clearinfra. Our team will connect with you shortly!');">
+          <form id="contact-form" class="space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Your Name</label>
+                <label for="f-name" class="block text-xs font-mono text-slate-400 mb-1.5">Name</label>
                 <input
+                  id="f-name"
+                  name="name"
                   type="text"
                   required
-                  placeholder="e.g. Rahul Sharma"
-                  class="w-full rounded-xl bg-slate-900 border border-slate-700/80 px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors"
+                  placeholder="Your name"
+                  class="w-full rounded-lg bg-[#0d131f] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
                 />
               </div>
               <div>
-                <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Work Email</label>
+                <label for="f-email" class="block text-xs font-mono text-slate-400 mb-1.5">Work Email</label>
                 <input
+                  id="f-email"
+                  name="email"
                   type="email"
                   required
-                  placeholder="name@company.com"
-                  class="w-full rounded-xl bg-slate-900 border border-slate-700/80 px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors"
+                  placeholder="you@organization.com"
+                  class="w-full rounded-lg bg-[#0d131f] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
                 />
               </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Company / Firm</label>
+                <label for="f-org" class="block text-xs font-mono text-slate-400 mb-1.5">Organization</label>
                 <input
+                  id="f-org"
+                  name="org"
                   type="text"
-                  placeholder="Firm or Project name"
-                  class="w-full rounded-xl bg-slate-900 border border-slate-700/80 px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors"
+                  placeholder="Firm or company name"
+                  class="w-full rounded-lg bg-[#0d131f] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
                 />
               </div>
               <div>
-                <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Primary Role</label>
-                <select class="w-full rounded-xl bg-slate-900 border border-slate-700/80 px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
-                  <option value="developer">Real Estate Developer</option>
-                  <option value="architect">Architect / Master Planner</option>
-                  <option value="mep">MEP / HVAC Engineer</option>
-                  <option value="sustainability">Sustainability Consultant</option>
-                  <option value="investor">ESG / Institutional Investor</option>
+                <label for="f-discipline" class="block text-xs font-mono text-slate-400 mb-1.5">Discipline</label>
+                <select
+                  id="f-discipline"
+                  name="discipline"
+                  class="w-full rounded-lg bg-[#0d131f] border border-white/10 px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors"
+                >
+                  <option value="Architecture & Urban Design">Architecture &amp; Urban Design</option>
+                  <option value="MEP & Building Physics">MEP &amp; Building Physics</option>
+                  <option value="Real Estate Development">Real Estate Development</option>
+                  <option value="Sustainability & ESG">Sustainability &amp; ESG</option>
+                  <option value="Research & Academia">Research &amp; Academia</option>
                 </select>
               </div>
             </div>
 
             <div>
-              <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Project Scope / Requirements</label>
+              <label for="f-notes" class="block text-xs font-mono text-slate-400 mb-1.5">Project Context (Optional)</label>
               <textarea
+                id="f-notes"
+                name="notes"
                 rows="3"
-                placeholder="Tell us about your upcoming project (commercial, residential, campus), location, and goals..."
-                class="w-full rounded-xl bg-slate-900 border border-slate-700/80 px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors"
+                placeholder="Briefly describe your building typology, location, or simulation needs..."
+                class="w-full rounded-lg bg-[#0d131f] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
               ></textarea>
             </div>
 
-            <button
-              type="submit"
-              class="w-full py-4 rounded-xl text-base font-bold bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 shadow-lg shadow-emerald-500/25 transition-all duration-200"
-            >
-              Request Enterprise Consultation &rarr;
-            </button>
-            <p class="text-center text-xs text-slate-400">
-              No spam. Direct technical briefing with our core building science engineers.
-            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+              <button
+                type="submit"
+                class="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg text-sm font-medium bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-colors duration-200 cursor-pointer"
+              >
+                <span>Send Inquiry</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
+              <span id="form-feedback" class="text-xs font-mono text-emerald-400 hidden">
+                Opening your email client to send inquiry...
+              </span>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const feedback = document.getElementById('form-feedback');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const name = data.get('name') || '';
+    const email = data.get('email') || '';
+    const org = data.get('org') || '';
+    const discipline = data.get('discipline') || '';
+    const notes = data.get('notes') || '';
+
+    const subject = encodeURIComponent(`Clearinfra Walkthrough Inquiry — ${org || name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nOrganization: ${org}\nDiscipline: ${discipline}\n\nContext:\n${notes}`
+    );
+
+    if (feedback) {
+      feedback.classList.remove('hidden');
+    }
+    window.location.href = `mailto:contact@clearinfra.in?subject=${subject}&body=${body}`;
+  });
+</script>

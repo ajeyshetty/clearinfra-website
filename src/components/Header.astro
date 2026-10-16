@@ -1,52 +1,38 @@
 ---
 ---
 
-<header class="sticky top-0 z-50 w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-    <!-- Brand / Logo -->
+<header class="sticky top-0 z-50 w-full border-b border-white/[0.06] bg-[#07090e]/80 backdrop-blur-xl">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+    <!-- Brand -->
     <a href="/" class="flex items-center gap-3 group">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 p-[1px] shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/30 transition-all duration-300">
-        <div class="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
-          <svg class="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-            <path d="M2 17l10 5 10-5"></path>
-            <path d="M2 12l10 5 10-5"></path>
-          </svg>
-        </div>
+      <div class="w-8 h-8 rounded-lg bg-slate-900 border border-white/10 group-hover:border-emerald-500/40 flex items-center justify-center transition-colors duration-300">
+        <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+          <path d="M2 17l10 5 10-5"></path>
+          <path d="M2 12l10 5 10-5"></path>
+        </svg>
       </div>
-      <div class="flex flex-col">
-        <span class="text-xl font-bold tracking-tight text-white flex items-center gap-1">
-          Clearinfra<span class="text-emerald-400">.</span>
-        </span>
-        <span class="text-[10px] uppercase font-mono tracking-widest text-slate-400 font-semibold">Building Intelligence</span>
-      </div>
+      <span class="text-base font-semibold tracking-tight text-white">
+        Clearinfra
+      </span>
     </a>
 
-    <!-- Desktop Navigation -->
-    <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-      <a href="#platform" class="hover:text-emerald-400 transition-colors">Platform</a>
-      <a href="#physics" class="hover:text-emerald-400 transition-colors">Physics Engine</a>
-      <a href="#compliance" class="hover:text-emerald-400 transition-colors">NBC & ECBC</a>
-      <a href="#roi" class="hover:text-emerald-400 transition-colors">Carbon & ROI</a>
-      <a href="#comparison" class="hover:text-emerald-400 transition-colors">Why Clearinfra</a>
+    <!-- Navigation -->
+    <nav class="hidden md:flex items-center gap-8 text-sm text-slate-400">
+      <a href="#interactive-demo" class="hover:text-white transition-colors">Interactive Model</a>
+      <a href="#capabilities" class="hover:text-white transition-colors">Capabilities</a>
+      <a href="#methodology" class="hover:text-white transition-colors">Physics Engine</a>
+      <a href="#standards" class="hover:text-white transition-colors">Codes & Standards</a>
     </nav>
 
-    <!-- CTAs -->
-    <div class="flex items-center gap-4">
-      <a
-        href="https://app.clearinfra.in"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hidden sm:inline-flex items-center text-sm font-medium text-slate-300 hover:text-white px-3 py-2 rounded-lg hover:bg-slate-800/60 transition-colors"
-      >
-        Sign In
-      </a>
+    <!-- Single Refined CTA -->
+    <div class="flex items-center">
       <a
         href="#contact"
-        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all duration-200"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-medium bg-white/[0.06] hover:bg-white/[0.1] text-white border border-white/10 hover:border-emerald-500/40 transition-all duration-200"
       >
-        <span>Request Demo</span>
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <span>Get in Touch</span>
+        <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
       </a>
