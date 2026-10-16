@@ -1,34 +1,46 @@
 ---
 const services = [
   {
-    tag: "01 / CONCEPT & SCHEMATIC ADVISORY",
+    num: "01",
+    phase: "CONCEPT & SCHEMATIC",
     title: "Passive Design & Envelope Optimization",
-    description: "We work alongside design architects during early massing to evaluate orientation, window-to-wall ratios, glazing specifications, and shading geometry before drawings are locked."
+    description: "We collaborate with design architects during early massing to evaluate orientation, window-to-wall ratios, glazing specifications, and shading geometry before architectural drawings are frozen.",
+    deliverable: "3D Thermal Charrette & Glazing Trade-Off Report"
   },
   {
-    tag: "02 / MECHANICAL & PLANT VALUE ENGINEERING",
+    num: "02",
+    phase: "PLANT VALUE ENGINEERING",
     title: "Thermal Loads & HVAC Right-Sizing",
-    description: "By coupling envelope upgrades directly to psychrometric coil loads, we help MEP teams and developers avoid chiller plant oversizing and reduce upfront mechanical CAPEX."
+    description: "By coupling envelope upgrades directly to psychrometric coil loads, we help MEP teams avoid chiller plant oversizing and eliminate redundant upfront mechanical CAPEX.",
+    deliverable: "Coil Psychrometric & Chiller TR Sizing Matrix"
   },
   {
-    tag: "03 / VISUAL & THERMAL COMFORT",
+    num: "03",
+    phase: "VISUAL & THERMAL COMFORT",
     title: "Daylight & Glare Engineering",
-    description: "We run Spatial Daylight Autonomy (sDA) and Annual Sunlight Exposure (ASE) studies across floorplates to maximize natural daylight without introducing solar heat penalties."
+    description: "We execute Spatial Daylight Autonomy (sDA) and Annual Sunlight Exposure (ASE) studies across floor plates to maximize daylight quality without solar thermal penalties.",
+    deliverable: "sDA Daylight Autonomy & Glare Contour Maps"
   },
   {
-    tag: "04 / REGULATORY & RATING COMPLIANCE",
-    title: "NBC 2016, ECBC & Green Certifications",
-    description: "End-to-end compliance engineering and documentation for National Building Code (NBC Part 3, 4 & 8), ECBC / SuperECBC, IGBC, GRIHA, and LEED certification pathways."
+    num: "04",
+    phase: "STATUTORY COMPLIANCE",
+    title: "NBC 2016 & ECBC Verification",
+    description: "Comprehensive statutory engineering across National Building Code (Parts 3, 4 & 8), ECBC / SuperECBC, and Green Building rating pathways (IGBC, GRIHA, LEED).",
+    deliverable: "Form-8 & NBC/ECBC Statutory Compliance Dossier"
   },
   {
-    tag: "05 / CAPITAL & LIFECYCLE ECONOMICS",
+    num: "05",
+    phase: "LIFECYCLE ECONOMICS",
     title: "CAPEX vs. OPEX Trade-Off Studies",
-    description: "Every glass, insulation, or chiller recommendation we make is paired with Indian market cost data, operational kWh savings, and transparent payback periods."
+    description: "Every facade, insulation, or chiller specification is paired with current Indian market cost data, operational kWh curves, and verified ROI payback periods.",
+    deliverable: "Indian Market CAPEX Payback & Lifecycle Schedule"
   },
   {
-    tag: "06 / AUDITABLE SIMULATION MODELS",
+    num: "06",
+    phase: "AUDITABLE BEM MODELS",
     title: "EnergyPlus Submittals & Verification",
-    description: "Beyond rapid charrette studies, we deliver complete, audit-ready EnergyPlus (.idf) models and calculation reports for institutional investors and statutory authorities."
+    description: "Beyond charrette studies, we deliver complete, audit-ready EnergyPlus (.idf) simulation models and technical calculation volumes for institutional investor due diligence.",
+    deliverable: "Verified EnergyPlus v25.1 (.idf) Simulation Model"
   }
 ];
 ---
@@ -37,7 +49,10 @@ const services = [
   <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24">
     <div class="reveal flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6">
       <div class="max-w-2xl space-y-3">
-        <span class="text-xs font-mono uppercase tracking-widest text-teal-700 font-semibold">Advisory &amp; Engineering Services</span>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-xs font-mono tracking-wider">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+          <span>ADVISORY &amp; ENGINEERING SERVICES</span>
+        </div>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-900 tracking-tight text-balance">
           Specialist consulting across the building lifecycle.
         </h2>
@@ -49,17 +64,38 @@ const services = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
       {services.map((item, idx) => (
-        <div class={`reveal reveal-delay-${idx % 3} group rounded-xl bg-white border border-slate-900/10 hover:border-teal-700/40 p-6 sm:p-8 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between`}>
+        <div class={`reveal reveal-delay-${idx % 3} group rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/50 p-6 sm:p-7 shadow-xs hover:shadow-xl hover:shadow-emerald-950/5 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between`}>
           <div>
-            <span class="text-[11px] font-mono text-teal-700 font-medium tracking-wider block mb-4">
-              {item.tag}
-            </span>
-            <h3 class="text-xl font-semibold text-slate-900 mb-3">
+            <!-- Top index row: vibrant emerald badge and phase tag -->
+            <div class="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-900/[0.06]">
+              <span class="text-xs font-mono font-medium text-slate-400">
+                {item.num}
+              </span>
+              <span class="text-[11px] font-mono text-emerald-700 font-semibold tracking-wider uppercase">
+                {item.phase}
+              </span>
+            </div>
+
+            <!-- Service Title -->
+            <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2.5 group-hover:text-emerald-950 transition-colors">
               {item.title}
             </h3>
-            <p class="text-sm text-slate-600 leading-relaxed">
+
+            <!-- Description -->
+            <p class="text-sm text-slate-600 leading-relaxed font-normal">
               {item.description}
             </p>
+          </div>
+
+          <!-- Bottom Tangible Deliverable Strip with Emerald Tint (Untruncated) -->
+          <div class="mt-6 pt-3.5 border-t border-slate-900/[0.07] flex flex-col gap-1 text-[11px] font-mono">
+            <div class="flex items-center gap-1.5 text-emerald-700 font-semibold uppercase tracking-wider text-[10px]">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+              <span>Target Deliverable</span>
+            </div>
+            <div class="text-slate-800 font-medium text-xs leading-snug">
+              {item.deliverable}
+            </div>
           </div>
         </div>
       ))}

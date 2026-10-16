@@ -1,34 +1,37 @@
 ---
 const complianceModules = [
   {
-    code: "ECBC 2017 // ENVELOPE & HVAC",
+    tag: "ENVELOPE & HVAC",
     title: "Prescriptive & Whole-Building EPI Verification",
-    clauses: "Clauses 4.2, 4.3, 5.2 & Appendix D",
+    clauses: "ECBC Clauses 4.2, 4.3, 5.2 & Appendix D (EPI Ratio)",
     detail: "Automated checking of Window-to-Wall Ratio (WWR), roof and wall U-factor caps, solar heat gain coefficients (SHGC) across climate zones, and whole-building EPI ratio calculation for ECBC, ECBC+, and SuperECBC tiers."
   },
   {
-    code: "NBC 2016 PART 8 // BUILDING SERVICES",
+    tag: "BUILDING SERVICES",
     title: "Daylighting, Ventilation & Thermal Comfort",
-    clauses: "Sec. 1 (Lighting & Ventilation), Sec. 3 (HVAC)",
+    clauses: "NBC 2016 Part 8: Sec. 1 (Lighting), Sec. 3 (HVAC)",
     detail: "Verifies minimum daylight factors, Spatial Daylight Autonomy (sDA), fresh air ach/cfm rates per occupancy category, and indoor thermal comfort conditions."
   },
   {
-    code: "NBC 2016 PART 3 & PART 4 // STATUTORY RULES",
+    tag: "STATUTORY CLAUSES",
     title: "Graph-RAG Statutory Clause Retrieval",
-    clauses: "Development Control, Egress & Life Safety Cross-Checks",
+    clauses: "NBC Part 3 & 4: Height, FAR, Setbacks & Life Safety",
     detail: "Backed by our structured Graph-RAG knowledge base of the National Building Code, enabling our engineers to verify height, FAR, setback, and building systems clauses with exact section citations during design reviews."
   }
 ];
 ---
 
-<section id="engine" class="py-24 lg:py-28 bg-[#EFECE6] border-t border-slate-900/10 relative">
+<section id="engine" class="py-24 lg:py-28 bg-[#F7F6F2] border-t border-slate-900/10 relative">
   <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 space-y-24">
     
     <!-- Part 1: Proprietary Engine + Native AI Integration -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
       <!-- Left Narrative -->
       <div class="reveal lg:col-span-5 space-y-6">
-        <span class="text-xs font-mono uppercase tracking-widest text-teal-700 font-semibold">Proprietary Technology</span>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-xs font-mono tracking-wider">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+          <span>PROPRIETARY TECHNOLOGY</span>
+        </div>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-900 tracking-tight leading-tight text-balance">
           First-principles physics meets native agentic AI.
         </h2>
@@ -39,20 +42,22 @@ const complianceModules = [
           To change this, we built <strong class="text-slate-900 font-semibold">Clearinfra Studio</strong> in-house. It combines an hourly ISO 13790 thermal &amp; psychrometric physics engine with a <strong class="text-slate-900 font-semibold">native function-calling AI agent</strong> and proactive Pareto optimizer.
         </p>
 
-        <!-- 3 Pillar Cards on Stone -->
+        <!-- 2 Pillar Cards on Stone -->
         <div class="space-y-3 pt-2">
-          <div class="p-4 rounded-xl bg-white border border-slate-900/10 shadow-2xs">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-mono font-semibold text-teal-700">01 // NATIVE AI COPILOT &amp; PARETO OPTIMIZER</span>
+          <div class="p-4 rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/40 transition-colors shadow-2xs">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="text-xs font-mono font-medium text-slate-400">01</span>
+              <span class="text-[11px] font-mono font-semibold text-emerald-700 uppercase tracking-wider">Native AI Copilot &amp; Pareto Optimizer</span>
             </div>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Wired directly into the 3D geometry and physics kernel via 12 engineering tools—allowing our consultants to sweep glazing, shading, orientation, and HVAC combinations live to isolate lowest-CAPEX and lowest-EPI designs.
             </p>
           </div>
 
-          <div class="p-4 rounded-xl bg-white border border-slate-900/10 shadow-2xs">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-mono font-semibold text-teal-700">02 // TRACEABLE DEPENDENCY GRAPH</span>
+          <div class="p-4 rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/40 transition-colors shadow-2xs">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="text-xs font-mono font-medium text-slate-400">02</span>
+              <span class="text-[11px] font-mono font-semibold text-emerald-700 uppercase tracking-wider">Traceable Dependency Graph</span>
             </div>
             <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Every parameter change is tracked through a live dependency map—showing exactly how a change in facade SHGC propagates to sensible coil load, chiller tonnage, and project payback.
@@ -61,9 +66,9 @@ const complianceModules = [
         </div>
       </div>
 
-      <!-- Right: High-Contrast Dark CAD Window with Animated Architecture Schematic -->
+      <!-- Right: Matte CAD Window with Animated Architecture Schematic -->
       <div class="reveal reveal-delay-1 lg:col-span-7">
-        <div class="rounded-2xl border border-slate-900/80 bg-[#0B0F17] p-5 sm:p-9 shadow-2xl shadow-slate-950/20 bg-blueprint-sub">
+        <div class="rounded-2xl border border-slate-700/60 ring-1 ring-white/10 bg-[#131924] p-5 sm:p-9 shadow-2xl shadow-slate-950/30 bg-blueprint-sub">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 text-[11px] sm:text-xs font-mono text-slate-400 mb-5 sm:mb-6 pb-3.5 sm:pb-4 border-b border-white/[0.08]">
             <span class="text-slate-200 font-medium">
               <span class="sm:hidden">CLEARINFRA // SYSTEM TOPOLOGY</span>
@@ -158,24 +163,24 @@ const complianceModules = [
           <div class="hidden sm:block">
             <svg viewBox="0 0 620 340" class="w-full h-auto">
               <!-- Animated Connecting Paths (Left Inputs to Central Trio) -->
-              <path d="M 165 65 C 205 65, 205 110, 235 110" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-              <path d="M 165 65 C 205 65, 205 110, 235 110" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
+              <path d="M 165 66 C 200 66, 200 100, 235 100" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+              <path d="M 165 66 C 200 66, 200 100, 235 100" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
 
-              <path d="M 165 170 L 235 170" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-              <path d="M 165 170 L 235 170" fill="none" stroke="#38bdf8" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
+              <path d="M 165 170 C 200 170, 200 180, 235 180" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+              <path d="M 165 170 C 200 170, 200 180, 235 180" fill="none" stroke="#38bdf8" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
 
-              <path d="M 165 275 C 205 275, 205 235, 235 235" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-              <path d="M 165 275 C 205 275, 205 235, 235 235" fill="none" stroke="#f59e0b" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
+              <path d="M 165 274 C 200 274, 200 260, 235 260" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+              <path d="M 165 274 C 200 274, 200 260, 235 260" fill="none" stroke="#f59e0b" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
 
               <!-- Animated Connecting Paths (Central Trio to Right Outputs) -->
-              <path d="M 405 110 C 430 110, 430 65, 455 65" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-              <path d="M 405 110 C 430 110, 430 65, 455 65" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
+              <path d="M 405 100 C 430 100, 430 66, 455 66" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+              <path d="M 405 100 C 430 100, 430 66, 455 66" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
 
-              <path d="M 405 170 L 455 170" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-              <path d="M 405 170 L 455 170" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
+              <path d="M 405 180 C 430 180, 430 170, 455 170" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+              <path d="M 405 180 C 430 180, 430 170, 455 170" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
 
-              <path d="M 405 235 C 430 235, 430 275, 455 275" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-              <path d="M 405 235 C 430 235, 430 275, 455 275" fill="none" stroke="#38bdf8" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
+              <path d="M 405 260 C 430 260, 430 274, 455 274" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+              <path d="M 405 260 C 430 260, 430 274, 455 274" fill="none" stroke="#38bdf8" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
 
               <!-- Left Input Nodes -->
               <g transform="translate(10, 40)">
@@ -246,34 +251,57 @@ const complianceModules = [
 
     <!-- Part 2: Dedicated NBC 2016 & ECBC Compliance Module Breakdown -->
     <div id="compliance" class="pt-16 border-t border-slate-900/10">
-      <div class="reveal flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
-        <div class="max-w-2xl space-y-3">
-          <span class="text-xs font-mono uppercase tracking-widest text-teal-700 font-semibold">Statutory &amp; Code Intelligence</span>
-          <h3 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-900 tracking-tight text-balance">
+      <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-14">
+        <div class="lg:col-span-7 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-xs font-mono tracking-wider">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+            <span>STATUTORY &amp; CODE INTELLIGENCE</span>
+          </div>
+          <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-900 tracking-tight text-balance">
             Built-in NBC 2016 &amp; ECBC compliance module.
           </h3>
         </div>
-        <p class="text-slate-600 text-sm sm:text-base max-w-xl leading-relaxed">
-          Our proprietary engine embeds a deterministic rule evaluator alongside a Graph-RAG knowledge base of Indian building codes—verifying compliance continuously as your design evolves.
-        </p>
+        <div class="lg:col-span-5">
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            Our proprietary engine embeds a deterministic rule evaluator alongside a Graph-RAG knowledge base of Indian building codes—verifying compliance continuously as your design evolves.
+          </p>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
         {complianceModules.map((mod, idx) => (
-          <div class={`reveal reveal-delay-${idx % 3} rounded-xl bg-white border border-slate-900/10 p-6 sm:p-8 shadow-xs flex flex-col justify-between space-y-4`}>
-            <div class="space-y-3">
-              <span class="inline-block text-[10px] sm:text-[11px] font-mono font-semibold text-teal-800 bg-teal-500/10 px-2.5 py-1 rounded border border-teal-600/20">
-                {mod.code}
-              </span>
-              <h4 class="text-xl font-semibold text-slate-900 text-balance lg:min-h-[3.5rem]">
+          <div class={`reveal reveal-delay-${idx % 3} group rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/50 p-6 sm:p-7 shadow-xs hover:shadow-xl hover:shadow-emerald-950/5 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between`}>
+            <div>
+              <!-- Top index row: numeral and category tag matching Features.astro -->
+              <div class="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-900/[0.06]">
+                <span class="text-xs font-mono font-medium text-slate-400">
+                  0{idx + 1}
+                </span>
+                <span class="text-[10px] font-mono text-emerald-700 font-semibold tracking-wider uppercase">
+                  {mod.tag}
+                </span>
+              </div>
+
+              <!-- Title -->
+              <h4 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2.5 group-hover:text-emerald-950 transition-colors">
                 {mod.title}
               </h4>
-              <p class="text-sm text-slate-600 leading-relaxed">
+
+              <!-- Narrative -->
+              <p class="text-sm text-slate-600 leading-relaxed font-normal">
                 {mod.detail}
               </p>
             </div>
-            <div class="pt-4 border-t border-slate-900/[0.06] text-xs font-mono text-slate-500 lg:min-h-[3rem]">
-              Scope: <span class="text-slate-700">{mod.clauses}</span>
+
+            <!-- Bottom Statutory Scope Strip: matching Features.astro deliverable anatomy -->
+            <div class="mt-6 pt-3.5 border-t border-slate-900/[0.07] flex flex-col gap-1 text-[11px] font-mono">
+              <div class="flex items-center gap-1.5 text-emerald-700 font-semibold uppercase tracking-wider text-[10px]">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+                <span>Statutory Scope</span>
+              </div>
+              <div class="text-slate-800 font-medium text-xs leading-snug">
+                {mod.clauses}
+              </div>
             </div>
           </div>
         ))}
