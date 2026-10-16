@@ -68,13 +68,19 @@ const complianceModules = [
 
       <!-- Right: Matte CAD Window with Animated Architecture Schematic -->
       <div class="reveal reveal-delay-1 lg:col-span-7">
-        <div class="rounded-2xl border border-slate-700/60 ring-1 ring-white/10 bg-[#131924] p-5 sm:p-9 shadow-2xl shadow-slate-950/30 bg-blueprint-sub">
+        <div class="rounded-2xl border border-slate-700/60 ring-1 ring-white/10 bg-[#131924] p-5 sm:p-9 shadow-2xl shadow-slate-950/30 bg-blueprint-sub relative overflow-hidden">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 text-[11px] sm:text-xs font-mono text-slate-400 mb-5 sm:mb-6 pb-3.5 sm:pb-4 border-b border-white/[0.08]">
-            <span class="text-slate-200 font-medium">
-              <span class="sm:hidden">CLEARINFRA // SYSTEM TOPOLOGY</span>
-              <span class="hidden sm:inline">CLEARINFRA STUDIO // INTERNAL SYSTEM TOPOLOGY</span>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-200 font-medium">
+                <span class="sm:hidden">CLEARINFRA // SYSTEM TOPOLOGY</span>
+                <span class="hidden sm:inline">CLEARINFRA STUDIO // INTERNAL SYSTEM TOPOLOGY</span>
+              </span>
+              <span class="text-[10px] text-slate-500 font-mono hidden md:inline tracking-normal">(Hover nodes to trace)</span>
+            </div>
+            <span id="topology-status" class="text-emerald-400 text-[10px] sm:text-xs transition-all flex items-center gap-1.5">
+              <span id="topology-status-dot" class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+              <span id="topology-status-text">Physics + Agentic AI + Graph-RAG</span>
             </span>
-            <span class="text-emerald-400 text-[10px] sm:text-xs">Physics + Agentic AI + Graph-RAG</span>
           </div>
 
           <!-- MOBILE VERTICAL TOPOLOGY SCHEMATIC (< 640px) -->
@@ -114,7 +120,7 @@ const complianceModules = [
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               </div>
 
-              <div class="rounded-lg bg-[#111c2d] border border-sky-400/35 px-3.5 py-2.5">
+              <div class="rounded-lg bg-[#111c2d] border border-sky-500/35 px-3.5 py-2.5">
                 <span class="text-[9px] font-mono text-sky-400 uppercase tracking-wider block">Native AI Agent</span>
                 <span class="text-xs font-semibold text-white block mt-0.5">12-Tool Copilot &amp; Pareto Optimizer</span>
               </div>
@@ -161,85 +167,102 @@ const complianceModules = [
 
           <!-- DESKTOP / TABLET HORIZONTAL SVG TOPOLOGY SCHEMATIC (>= 640px) -->
           <div class="hidden sm:block">
-            <svg viewBox="0 0 620 340" class="w-full h-auto">
-              <!-- Animated Connecting Paths (Left Inputs to Central Trio) -->
-              <path d="M 165 66 C 200 66, 200 100, 235 100" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-              <path d="M 165 66 C 200 66, 200 100, 235 100" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
+            <svg id="system-topology-svg" viewBox="0 0 620 340" class="w-full h-auto select-none">
+              <!-- Background Connecting Paths (Static Dim Track) -->
+              <g class="path-track" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none">
+                <path d="M 165 66 C 200 66, 200 100, 235 100" />
+                <path d="M 165 66 C 200 66, 200 180, 235 180" />
+                <path d="M 165 170 C 200 170, 200 180, 235 180" />
+                <path d="M 165 274 C 200 274, 200 260, 235 260" />
+                <path d="M 165 274 C 200 274, 200 100, 235 100" />
+                <path d="M 405 100 C 430 100, 430 66, 455 66" />
+                <path d="M 405 180 C 430 180, 430 66, 455 66" />
+                <path d="M 405 180 C 430 180, 430 274, 455 274" />
+                <path d="M 405 260 C 430 260, 430 170, 455 170" />
+              </g>
 
-              <path d="M 165 170 C 200 170, 200 180, 235 180" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-              <path d="M 165 170 C 200 170, 200 180, 235 180" fill="none" stroke="#38bdf8" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
+              <!-- Animated Active Connecting Paths (Grouped by Data Flow) -->
+              <!-- Massing Paths -->
+              <path id="path-massing-agent" d="M 165 66 C 200 66, 200 100, 235 100" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
+              <path id="path-massing-physics" d="M 165 66 C 200 66, 200 180, 235 180" fill="none" stroke="#00c4df" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
 
-              <path d="M 165 274 C 200 274, 200 260, 235 260" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-              <path d="M 165 274 C 200 274, 200 260, 235 260" fill="none" stroke="#f59e0b" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
+              <!-- Weather Path -->
+              <path id="path-weather-physics" d="M 165 170 C 200 170, 200 180, 235 180" fill="none" stroke="#38bdf8" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
 
-              <!-- Animated Connecting Paths (Central Trio to Right Outputs) -->
-              <path d="M 405 100 C 430 100, 430 66, 455 66" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-              <path d="M 405 100 C 430 100, 430 66, 455 66" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
+              <!-- Cost DB Paths -->
+              <path id="path-cost-compliance" d="M 165 274 C 200 274, 200 260, 235 260" fill="none" stroke="#f59e0b" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
+              <path id="path-cost-agent" d="M 165 274 C 200 274, 200 100, 235 100" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
 
-              <path d="M 405 180 C 430 180, 430 170, 455 170" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-              <path d="M 405 180 C 430 180, 430 170, 455 170" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
+              <!-- Core to Output Paths -->
+              <path id="path-agent-capex" d="M 405 100 C 430 100, 430 66, 455 66" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
+              <path id="path-physics-capex" d="M 405 180 C 430 180, 430 66, 455 66" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
+              <path id="path-physics-eplus" d="M 405 180 C 430 180, 430 274, 455 274" fill="none" stroke="#38bdf8" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
+              <path id="path-compliance-statutory" d="M 405 260 C 430 260, 430 170, 455 170" fill="none" stroke="#f59e0b" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
 
-              <path d="M 405 260 C 430 260, 430 274, 455 274" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-              <path d="M 405 260 C 430 260, 430 274, 455 274" fill="none" stroke="#38bdf8" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
-
-              <!-- Left Input Nodes -->
-              <g transform="translate(10, 40)">
-                <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.14)" />
+              <!-- Left Input Nodes (Hover Interactive) -->
+              <g id="node-massing" class="topo-node cursor-pointer transition-all duration-200" transform="translate(10, 40)">
+                <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.18)" class="node-box transition-all duration-200" />
                 <text x="14" y="23" fill="#f8fafc" font-size="11" font-weight="600">3D Massing &amp; WWR</text>
                 <text x="14" y="39" fill="#94a3b8" font-size="9.5" font-family="JetBrains Mono">Geometry · Orientation</text>
               </g>
 
-              <g transform="translate(10, 144)">
-                <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.14)" />
+              <g id="node-weather" class="topo-node cursor-pointer transition-all duration-200" transform="translate(10, 144)">
+                <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.18)" class="node-box transition-all duration-200" />
                 <text x="14" y="23" fill="#f8fafc" font-size="11" font-weight="600">8,760 Weather File</text>
                 <text x="14" y="39" fill="#94a3b8" font-size="9.5" font-family="JetBrains Mono">DBT · WBT · Solar DNI</text>
               </g>
 
-              <g transform="translate(10, 248)">
-                <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.14)" />
+              <g id="node-cost" class="topo-node cursor-pointer transition-all duration-200" transform="translate(10, 248)">
+                <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.18)" class="node-box transition-all duration-200" />
                 <text x="14" y="23" fill="#f8fafc" font-size="11" font-weight="600">India Cost &amp; Spec DB</text>
                 <text x="14" y="39" fill="#94a3b8" font-size="9.5" font-family="JetBrains Mono">U-Value · SHGC · INR</text>
               </g>
 
               <!-- Central Proprietary Core Container -->
-              <g transform="translate(235, 28)">
+              <g id="node-core-container" transform="translate(235, 28)">
                 <rect width="170" height="284" rx="12" fill="#0d1520" stroke="rgba(16, 185, 129, 0.45)" stroke-width="1.5" />
                 <text x="85" y="24" text-anchor="middle" fill="#10b981" font-size="9" font-family="JetBrains Mono">CLEARINFRA CORE</text>
 
                 <!-- Sub-box 1: Native AI Copilot -->
-                <rect x="14" y="38" width="142" height="68" rx="8" fill="#111c2d" stroke="rgba(56, 189, 248, 0.35)" />
-                <text x="85" y="60" text-anchor="middle" fill="#38bdf8" font-size="9" font-family="JetBrains Mono">NATIVE AI AGENT</text>
-                <text x="85" y="78" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">12-Tool Copilot &amp;</text>
-                <text x="85" y="93" text-anchor="middle" fill="#cbd5e1" font-size="10">Pareto Optimizer</text>
+                <g id="node-agent" class="topo-node cursor-pointer transition-all duration-200" transform="translate(14, 38)">
+                  <rect width="142" height="68" rx="8" fill="#111c2d" stroke="rgba(56, 189, 248, 0.45)" class="node-box transition-all duration-200" />
+                  <text x="71" y="22" text-anchor="middle" fill="#38bdf8" font-size="9" font-family="JetBrains Mono">NATIVE AI AGENT</text>
+                  <text x="71" y="40" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">12-Tool Copilot &amp;</text>
+                  <text x="71" y="55" text-anchor="middle" fill="#cbd5e1" font-size="10">Pareto Optimizer</text>
+                </g>
 
                 <!-- Sub-box 2: Physics Kernel -->
-                <rect x="14" y="118" width="142" height="68" rx="8" fill="#0d1f1d" stroke="rgba(16, 185, 129, 0.4)" />
-                <text x="85" y="140" text-anchor="middle" fill="#10b981" font-size="9" font-family="JetBrains Mono">PHYSICS SOLVER</text>
-                <text x="85" y="158" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">Multi-Node RC +</text>
-                <text x="85" y="173" text-anchor="middle" fill="#cbd5e1" font-size="10">Psychrometric HVAC</text>
+                <g id="node-physics" class="topo-node cursor-pointer transition-all duration-200" transform="translate(14, 118)">
+                  <rect width="142" height="68" rx="8" fill="#0d1f1d" stroke="rgba(16, 185, 129, 0.5)" class="node-box transition-all duration-200" />
+                  <text x="71" y="22" text-anchor="middle" fill="#10b981" font-size="9" font-family="JetBrains Mono">PHYSICS SOLVER</text>
+                  <text x="71" y="40" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">Multi-Node RC +</text>
+                  <text x="71" y="55" text-anchor="middle" fill="#cbd5e1" font-size="10">Psychrometric HVAC</text>
+                </g>
 
                 <!-- Sub-box 3: NBC & ECBC Compliance Engine -->
-                <rect x="14" y="198" width="142" height="68" rx="8" fill="#1a1814" stroke="rgba(245, 158, 11, 0.35)" />
-                <text x="85" y="220" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="JetBrains Mono">COMPLIANCE ENGINE</text>
-                <text x="85" y="238" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">NBC 2016 Graph-RAG</text>
-                <text x="85" y="253" text-anchor="middle" fill="#cbd5e1" font-size="10">&amp; ECBC Rule Checker</text>
+                <g id="node-compliance" class="topo-node cursor-pointer transition-all duration-200" transform="translate(14, 198)">
+                  <rect width="142" height="68" rx="8" fill="#1a1814" stroke="rgba(245, 158, 11, 0.45)" class="node-box transition-all duration-200" />
+                  <text x="71" y="22" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="JetBrains Mono">COMPLIANCE ENGINE</text>
+                  <text x="71" y="40" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">NBC 2016 Graph-RAG</text>
+                  <text x="71" y="55" text-anchor="middle" fill="#cbd5e1" font-size="10">&amp; ECBC Rule Checker</text>
+                </g>
               </g>
 
-              <!-- Right Output Nodes -->
-              <g transform="translate(455, 40)">
-                <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.14)" />
+              <!-- Right Output Nodes (Hover Interactive) -->
+              <g id="node-capex" class="topo-node cursor-pointer transition-all duration-200" transform="translate(455, 40)">
+                <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.18)" class="node-box transition-all duration-200" />
                 <text x="14" y="23" fill="#f8fafc" font-size="11" font-weight="600">CAPEX &amp; Load Study</text>
                 <text x="14" y="39" fill="#10b981" font-size="9.5" font-family="JetBrains Mono">Peak TR · ROI Payback</text>
               </g>
 
-              <g transform="translate(455, 144)">
-                <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.14)" />
+              <g id="node-statutory" class="topo-node cursor-pointer transition-all duration-200" transform="translate(455, 144)">
+                <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.18)" class="node-box transition-all duration-200" />
                 <text x="14" y="23" fill="#f8fafc" font-size="11" font-weight="600">Statutory Submittals</text>
                 <text x="14" y="39" fill="#fbbf24" font-size="9.5" font-family="JetBrains Mono">Clause-Cited NBC/ECBC</text>
               </g>
 
-              <g transform="translate(455, 248)">
-                <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.14)" />
+              <g id="node-eplus" class="topo-node cursor-pointer transition-all duration-200" transform="translate(455, 248)">
+                <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.18)" class="node-box transition-all duration-200" />
                 <text x="14" y="23" fill="#f8fafc" font-size="11" font-weight="600">EnergyPlus Model</text>
                 <text x="14" y="39" fill="#38bdf8" font-size="9.5" font-family="JetBrains Mono">Auditable .idf File</text>
               </g>
@@ -294,12 +317,12 @@ const complianceModules = [
             </div>
 
             <!-- Bottom Statutory Scope Strip: matching Features.astro deliverable anatomy -->
-            <div class="mt-6 pt-3.5 border-t border-slate-900/[0.07] flex flex-col gap-1 text-[11px] font-mono">
+            <div class="mt-6 pt-4 border-t border-slate-900/[0.07] flex flex-col gap-1.5 text-[11px] font-mono">
               <div class="flex items-center gap-1.5 text-emerald-700 font-semibold uppercase tracking-wider text-[10px]">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
                 <span>Statutory Scope</span>
               </div>
-              <div class="text-slate-800 font-medium text-xs leading-snug">
+              <div class="text-slate-900 font-medium text-xs leading-snug">
                 {mod.clauses}
               </div>
             </div>
@@ -310,3 +333,132 @@ const complianceModules = [
 
   </div>
 </section>
+
+<script>
+  // Interactive Topology Dependency Graph
+  const topoNodes = document.querySelectorAll('.topo-node');
+  const allPaths = document.querySelectorAll('.topo-flow-path');
+  const statusText = document.getElementById('topology-status-text');
+  const statusDot = document.getElementById('topology-status-dot');
+
+  const traceMap: Record<string, { label: string; dotColor: string; nodes: string[]; paths: string[] }> = {
+    'node-massing': {
+      label: 'TRACING: 3D Massing & WWR → Native AI + Physics → CAPEX & EnergyPlus',
+      dotColor: '#00e5ff',
+      nodes: ['node-massing', 'node-agent', 'node-physics', 'node-capex', 'node-eplus'],
+      paths: ['path-massing-agent', 'path-massing-physics', 'path-agent-capex', 'path-physics-capex', 'path-physics-eplus']
+    },
+    'node-weather': {
+      label: 'TRACING: 8,760 Climate File → Hourly Multi-Node RC Thermal Solver → Chiller TR Sizing',
+      dotColor: '#38bdf8',
+      nodes: ['node-weather', 'node-physics', 'node-capex', 'node-eplus'],
+      paths: ['path-weather-physics', 'path-physics-capex', 'path-physics-eplus']
+    },
+    'node-cost': {
+      label: 'TRACING: India Cost Database → NBC/ECBC Rule Evaluator → Clause-Cited Submittal',
+      dotColor: '#fbbf24',
+      nodes: ['node-cost', 'node-compliance', 'node-statutory', 'node-agent', 'node-capex'],
+      paths: ['path-cost-compliance', 'path-cost-agent', 'path-compliance-statutory', 'path-agent-capex']
+    },
+    'node-agent': {
+      label: 'TRACING: Native AI Copilot → 12-Tool Pareto Sweeps → Least-Cost ROI Solutions',
+      dotColor: '#38bdf8',
+      nodes: ['node-massing', 'node-cost', 'node-agent', 'node-capex'],
+      paths: ['path-massing-agent', 'path-cost-agent', 'path-agent-capex']
+    },
+    'node-physics': {
+      label: 'TRACING: Physics Solver → Hourly ISO 13790 RC + Psychrometrics → EnergyPlus Model',
+      dotColor: '#10b981',
+      nodes: ['node-massing', 'node-weather', 'node-physics', 'node-capex', 'node-eplus'],
+      paths: ['path-massing-physics', 'path-weather-physics', 'path-physics-capex', 'path-physics-eplus']
+    },
+    'node-compliance': {
+      label: 'TRACING: Compliance Engine → Clause-Level NBC 2016 Graph-RAG & ECBC Checker',
+      dotColor: '#fbbf24',
+      nodes: ['node-cost', 'node-compliance', 'node-statutory'],
+      paths: ['path-cost-compliance', 'path-compliance-statutory']
+    },
+    'node-capex': {
+      label: 'TRACE BACK: CAPEX & Load Study ← Hourly Thermal Solver & AI Pareto Optimizer',
+      dotColor: '#10b981',
+      nodes: ['node-capex', 'node-agent', 'node-physics', 'node-massing', 'node-weather'],
+      paths: ['path-agent-capex', 'path-physics-capex', 'path-massing-agent', 'path-massing-physics', 'path-weather-physics']
+    },
+    'node-statutory': {
+      label: 'TRACE BACK: Statutory Submittals ← NBC 2016 Graph-RAG & ECBC Prescriptive Rules',
+      dotColor: '#fbbf24',
+      nodes: ['node-statutory', 'node-compliance', 'node-cost'],
+      paths: ['path-compliance-statutory', 'path-cost-compliance']
+    },
+    'node-eplus': {
+      label: 'TRACE BACK: EnergyPlus Model ← Validated ISO 13790 Multi-Node RC Thermal Core',
+      dotColor: '#38bdf8',
+      nodes: ['node-eplus', 'node-physics', 'node-massing', 'node-weather'],
+      paths: ['path-physics-eplus', 'path-massing-physics', 'path-weather-physics']
+    }
+  };
+
+  const defaultStatus = 'Physics + Agentic AI + Graph-RAG';
+
+  topoNodes.forEach((node) => {
+    node.addEventListener('mouseenter', () => {
+      const id = node.id;
+      const config = traceMap[id];
+      if (!config) return;
+
+      if (statusText) statusText.textContent = config.label;
+      if (statusDot) statusDot.style.backgroundColor = config.dotColor;
+
+      // Dim non-matching nodes
+      topoNodes.forEach((n) => {
+        const el = n as HTMLElement;
+        if (config.nodes.includes(n.id)) {
+          el.style.opacity = '1';
+          const box = n.querySelector('.node-box');
+          if (box) {
+            box.setAttribute('stroke', config.dotColor);
+            box.setAttribute('stroke-width', '2');
+          }
+        } else {
+          el.style.opacity = '0.22';
+        }
+      });
+
+      // Highlight matching paths
+      allPaths.forEach((p) => {
+        const pathEl = p as SVGPathElement;
+        if (config.paths.includes(p.id)) {
+          pathEl.style.strokeOpacity = '1';
+          pathEl.style.strokeWidth = '2.8';
+          pathEl.style.filter = `drop-shadow(0 0 6px ${config.dotColor})`;
+        } else {
+          pathEl.style.strokeOpacity = '0.08';
+          pathEl.style.strokeWidth = '1';
+          pathEl.style.filter = 'none';
+        }
+      });
+    });
+
+    node.addEventListener('mouseleave', () => {
+      if (statusText) statusText.textContent = defaultStatus;
+      if (statusDot) statusDot.style.backgroundColor = '#10b981';
+
+      topoNodes.forEach((n) => {
+        const el = n as HTMLElement;
+        el.style.opacity = '1';
+        const box = n.querySelector('.node-box');
+        if (box) {
+          box.setAttribute('stroke', 'rgba(255,255,255,0.18)');
+          box.setAttribute('stroke-width', '1');
+        }
+      });
+
+      allPaths.forEach((p) => {
+        const pathEl = p as SVGPathElement;
+        pathEl.style.strokeOpacity = '0.75';
+        pathEl.style.strokeWidth = '1.5';
+        pathEl.style.filter = 'none';
+      });
+    });
+  });
+</script>
