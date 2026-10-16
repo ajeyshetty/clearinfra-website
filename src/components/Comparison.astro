@@ -23,21 +23,23 @@ const workflows = [
 ];
 ---
 
-<section id="workflow" class="py-24 bg-[#07090e] border-t border-white/[0.06] relative">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="reveal max-w-2xl mb-14 space-y-3">
-      <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">How We Work</span>
-      <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
-        Live engineering charrettes, not weeks-late reports.
-      </h2>
-      <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+<section id="workflow" class="py-24 lg:py-28 bg-[#07090e] border-t border-white/[0.06] relative">
+  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24">
+    <div class="reveal flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6">
+      <div class="max-w-2xl space-y-3">
+        <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">How We Work</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight">
+          Live engineering charrettes, not weeks-late reports.
+        </h2>
+      </div>
+      <p class="text-slate-400 text-sm sm:text-base max-w-xl leading-relaxed">
         Because we own our underlying simulation technology, our consulting engagements operate as interactive working sessions rather than slow, disconnected hand-offs.
       </p>
     </div>
 
     <!-- Clean Workflow Table -->
     <div class="reveal rounded-2xl border border-white/[0.08] bg-[#0b0f17] overflow-hidden">
-      <div class="grid grid-cols-1 md:grid-cols-12 bg-[#07090e] px-6 py-4 border-b border-white/[0.06] text-xs font-mono uppercase tracking-wider text-slate-400">
+      <div class="grid grid-cols-1 md:grid-cols-12 bg-[#07090e] px-8 py-5 border-b border-white/[0.06] text-xs font-mono uppercase tracking-wider text-slate-400">
         <div class="md:col-span-3">Engagement Dimension</div>
         <div class="hidden md:block md:col-span-4">Conventional Consulting</div>
         <div class="hidden md:flex md:col-span-5 text-emerald-400 items-center gap-2">
@@ -48,15 +50,15 @@ const workflows = [
 
       <div class="divide-y divide-white/[0.06]">
         {workflows.map((row) => (
-          <div class="grid grid-cols-1 md:grid-cols-12 px-6 py-5 gap-3 md:gap-6 items-start">
-            <div class="md:col-span-3 text-sm font-medium text-white">
+          <div class="grid grid-cols-1 md:grid-cols-12 px-8 py-6 gap-3 md:gap-8 items-start">
+            <div class="md:col-span-3 text-base font-medium text-white">
               {row.aspect}
             </div>
-            <div class="md:col-span-4 text-xs sm:text-sm text-slate-400 leading-relaxed">
+            <div class="md:col-span-4 text-sm text-slate-400 leading-relaxed">
               <span class="md:hidden text-[10px] font-mono uppercase text-slate-500 block mb-1">Conventional Consulting:</span>
               {row.conventional}
             </div>
-            <div class="md:col-span-5 text-xs sm:text-sm text-slate-200 leading-relaxed">
+            <div class="md:col-span-5 text-sm text-slate-200 leading-relaxed">
               <span class="md:hidden text-[10px] font-mono uppercase text-emerald-400 block mb-1">Clearinfra Practice:</span>
               {row.clearinfra}
             </div>

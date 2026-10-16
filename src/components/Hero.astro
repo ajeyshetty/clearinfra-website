@@ -1,278 +1,300 @@
 ---
 ---
 
-<section class="relative pt-16 pb-20 lg:pt-24 lg:pb-28 bg-blueprint overflow-hidden">
-  <!-- Subtle ambient top light -->
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[320px] bg-emerald-500/[0.07] rounded-full blur-[130px] pointer-events-none"></div>
+<section class="relative min-h-[calc(100vh-4.5rem)] flex items-center py-12 lg:py-16 bg-blueprint overflow-hidden">
+  <!-- Ambient radial glow -->
+  <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-emerald-500/[0.06] rounded-full blur-[140px] pointer-events-none"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-[600px] h-[400px] bg-sky-500/[0.04] rounded-full blur-[140px] pointer-events-none"></div>
 
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <!-- Consulting Practice + Proprietary Engine Positioning -->
-    <div class="max-w-3xl space-y-6">
-      <div class="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-slate-300 text-xs font-mono tracking-wide">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-        <span>BUILDING PHYSICS &amp; SUSTAINABILITY CONSULTING</span>
-      </div>
-
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.12]">
-        High-performance building advisory, <span class="text-emerald-400 font-normal italic">powered by proprietary physics.</span>
-      </h1>
-
-      <p class="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed font-normal">
-        Clearinfra is a specialist building science and sustainability practice. Equipped with our in-house hourly thermal, daylight, and code-compliance engine, we work alongside architects and developers to resolve envelope, HVAC, and capital cost trade-offs during live design sessions.
-      </p>
-
-      <div class="flex flex-wrap items-center gap-4 pt-2">
-        <a
-          href="#contact"
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-colors duration-200"
-        >
-          <span>Discuss a Project</span>
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </a>
-        <a
-          href="#interactive-demo"
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 border border-white/[0.08] transition-colors duration-200"
-        >
-          <span>Explore Our In-House Engine</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Interactive Preview of the Proprietary Clearinfra Editor -->
-    <div id="interactive-demo" class="mt-14 lg:mt-16 rounded-2xl border border-white/[0.08] bg-[#0b0f17]/90 shadow-2xl overflow-hidden backdrop-blur-md">
-      <!-- Top Bar -->
-      <div class="flex flex-wrap items-center justify-between gap-4 px-5 py-3.5 bg-[#07090e]/90 border-b border-white/[0.06] text-xs font-mono">
-        <div class="flex items-center gap-3">
-          <div class="flex items-center gap-1.5">
-            <span class="w-2.5 h-2.5 rounded-full bg-slate-700"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-slate-700"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-slate-700"></span>
-          </div>
-          <span class="text-slate-200 font-medium">PROPRIETARY TOOL // CLEARINFRA EDITOR</span>
-          <span class="hidden sm:inline-block text-slate-600">|</span>
-          <span class="hidden sm:inline-block text-slate-400">Used Live in Client Design Charrettes</span>
+  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 relative z-10">
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-12 xl:gap-10 2xl:gap-16 items-center">
+      
+      <!-- Left 5 Cols: Consulting Practice + Proprietary Engine Positioning -->
+      <div class="xl:col-span-5 space-y-6">
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-slate-300 text-xs font-mono tracking-wide">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span>BUILDING PHYSICS &amp; SUSTAINABILITY CONSULTING</span>
         </div>
-        <div class="flex items-center gap-2 text-emerald-400">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>Interactive Envelope Study</span>
-        </div>
-      </div>
 
-      <!-- Main Interactive Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-12">
-        <!-- Left 7 Cols: Animated Isometric Building + Solar Path Canvas -->
-        <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between bg-blueprint-sub border-b lg:border-b-0 lg:border-r border-white/[0.06] relative min-h-[390px]">
-          <!-- Top Overlay Info -->
-          <div class="flex items-center justify-between text-xs font-mono text-slate-400 z-10">
-            <div>
-              <span class="text-slate-500">LOCATION:</span>
-              <span id="viz-climate-label" class="text-slate-200 ml-1">Bengaluru (Temperate)</span>
-            </div>
-            <div class="flex items-center gap-4">
-              <span class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-                <span>Solar Gain</span>
-              </span>
-              <span class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-sky-400"></span>
-                <span>Glazing (WWR)</span>
-              </span>
-            </div>
-          </div>
+        <h1 class="text-4xl sm:text-5xl 2xl:text-6xl font-semibold tracking-tight text-white leading-[1.1]">
+          High-performance building advisory, <span class="text-emerald-400 font-normal italic">powered by proprietary physics.</span>
+        </h1>
 
-          <!-- Central Isometric SVG Building Visualization -->
-          <div class="my-auto py-4 flex items-center justify-center">
-            <svg viewBox="0 0 520 300" class="w-full max-w-[480px] h-auto overflow-visible">
-              <defs>
-                <linearGradient id="solarArcGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.05" />
-                  <stop offset="50%" stop-color="#f59e0b" stop-opacity="0.45" />
-                  <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.05" />
-                </linearGradient>
-                <linearGradient id="roofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9" />
-                  <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9" />
-                </linearGradient>
-                <linearGradient id="leftWallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#1e293b" stop-opacity="0.75" />
-                  <stop offset="100%" stop-color="#0f172a" stop-opacity="0.85" />
-                </linearGradient>
-                <linearGradient id="rightWallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#0f172a" stop-opacity="0.9" />
-                  <stop offset="100%" stop-color="#090d16" stop-opacity="0.95" />
-                </linearGradient>
-              </defs>
+        <p class="text-base sm:text-lg text-slate-400 leading-relaxed font-normal">
+          Clearinfra is a specialist building science and sustainability practice. Equipped with our in-house hourly thermal, daylight, and code-compliance engine, we work alongside architects and developers to resolve envelope, HVAC, and capital cost trade-offs during live design sessions.
+        </p>
 
-              <!-- Ground Isometric Compass Ring -->
-              <ellipse cx="260" cy="235" rx="175" ry="52" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="3 3" />
-              <text x="260" y="176" text-anchor="middle" fill="#64748b" font-size="9" font-family="JetBrains Mono">N</text>
-              <text x="448" y="238" text-anchor="middle" fill="#64748b" font-size="9" font-family="JetBrains Mono">E</text>
-              <text x="260" y="298" text-anchor="middle" fill="#64748b" font-size="9" font-family="JetBrains Mono">S</text>
-              <text x="72" y="238" text-anchor="middle" fill="#64748b" font-size="9" font-family="JetBrains Mono">W</text>
-
-              <!-- Solar Path Arc -->
-              <path d="M 85 235 C 120 45, 400 45, 435 235" fill="none" stroke="url(#solarArcGrad)" stroke-width="1.75" stroke-dasharray="4 4" />
-
-              <!-- Animated Sun Group -->
-              <g class="animate-float">
-                <line id="solar-ray-1" x1="152" y1="78" x2="215" y2="128" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.45" class="animate-dash" />
-                <line id="solar-ray-2" x1="152" y1="78" x2="205" y2="168" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.35" class="animate-dash" />
-                <line id="solar-ray-3" x1="152" y1="78" x2="260" y2="105" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.4" class="animate-dash" />
-
-                <circle cx="152" cy="78" r="14" fill="#f59e0b" fill-opacity="0.14" />
-                <circle cx="152" cy="78" r="6" fill="#fbbf24" />
-                <text x="152" y="56" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="JetBrains Mono" id="viz-dni-label">760 W/m²</text>
-              </g>
-
-              <!-- Isometric Building Base Shadow -->
-              <polygon points="260,268 150,218 260,168 370,218" fill="rgba(16, 185, 129, 0.04)" stroke="rgba(16, 185, 129, 0.2)" stroke-width="1" />
-
-              <!-- Left Facade -->
-              <polygon points="160,212 260,258 260,126 160,80" fill="url(#leftWallGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" />
-
-              <!-- Right Facade -->
-              <polygon points="360,212 260,258 260,126 360,80" fill="url(#rightWallGrad)" stroke="rgba(255,255,255,0.16)" stroke-width="1.2" />
-
-              <!-- Roof Plate -->
-              <polygon points="260,34 160,80 260,126 360,80" fill="url(#roofGrad)" stroke="rgba(16, 185, 129, 0.45)" stroke-width="1.4" />
-              <line x1="210" y1="57" x2="310" y2="103" stroke="rgba(255,255,255,0.08)" stroke-width="0.75" />
-              <line x1="310" y1="57" x2="210" y2="103" stroke="rgba(255,255,255,0.08)" stroke-width="0.75" />
-
-              <!-- 5 Floors of Dynamic Glazing Bands -->
-              <polygon class="wwr-band-left" points="166,89 254,130 254,142 166,101" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
-              <polygon class="wwr-band-right" points="354,89 266,130 266,142 354,101" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
-
-              <polygon class="wwr-band-left" points="166,114 254,155 254,167 166,126" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
-              <polygon class="wwr-band-right" points="354,114 266,155 266,167 354,126" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
-
-              <polygon class="wwr-band-left" points="166,139 254,180 254,192 166,151" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
-              <polygon class="wwr-band-right" points="354,139 266,180 266,192 354,151" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
-
-              <polygon class="wwr-band-left" points="166,164 254,205 254,217 166,176" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
-              <polygon class="wwr-band-right" points="354,164 266,205 266,217 354,176" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
-
-              <polygon class="wwr-band-left" points="166,189 254,230 254,242 166,201" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
-              <polygon class="wwr-band-right" points="354,189 266,230 266,242 354,201" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
-
-              <!-- Dimension Callout Lines -->
-              <line x1="375" y1="80" x2="375" y2="212" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1" />
-              <text x="384" y="150" fill="#10b981" font-size="9.5" font-family="JetBrains Mono" id="viz-wwr-callout">WWR: 40%</text>
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-colors duration-200"
+          >
+            <span>Discuss a Project</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
-          </div>
-
-          <!-- Bottom Status Strip inside Canvas -->
-          <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-white/[0.05] text-[11px] font-mono text-slate-400">
-            <div>Solver: <span class="text-slate-300">Clearinfra ISO 13790 RC Kernel</span></div>
-            <div id="viz-shgc-readout">Envelope: <span class="text-emerald-400">SHGC 0.28 · U-Value 1.6 W/m²K</span></div>
-          </div>
+          </a>
+          <a
+            href="#services"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 border border-white/[0.08] transition-colors duration-200"
+          >
+            <span>Our Advisory Scope</span>
+          </a>
         </div>
 
-        <!-- Right 5 Cols: Interactive Controls & Live Simulation Readout -->
-        <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-[#090d14]">
-          <div class="space-y-5">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Charrette Parameters</span>
-              <span class="text-[11px] font-mono text-slate-500">Test live trade-offs</span>
-            </div>
+        <!-- Subtle Practice Highlights -->
+        <div class="pt-6 border-t border-white/[0.06] grid grid-cols-3 gap-4 text-xs font-mono">
+          <div>
+            <span class="text-emerald-400 block font-medium">Live Charrettes</span>
+            <span class="text-slate-500 text-[11px]">Real-time design studies</span>
+          </div>
+          <div>
+            <span class="text-emerald-400 block font-medium">NBC &amp; ECBC</span>
+            <span class="text-slate-500 text-[11px]">Statutory compliance</span>
+          </div>
+          <div>
+            <span class="text-emerald-400 block font-medium">EnergyPlus</span>
+            <span class="text-slate-500 text-[11px]">Auditable .idf models</span>
+          </div>
+        </div>
+      </div>
 
-            <!-- Climate Selector -->
-            <div>
-              <label for="ctrl-climate" class="block text-xs text-slate-300 mb-1.5 font-medium">Project Climate Zone (ECBC)</label>
-              <select
-                id="ctrl-climate"
-                class="w-full rounded-lg bg-[#0d131f] border border-white/10 px-3.5 py-2 text-xs sm:text-sm text-white font-mono focus:outline-none focus:border-emerald-500 transition-colors"
-              >
-                <option value="bengaluru" selected>Bengaluru — Temperate</option>
-                <option value="mumbai">Mumbai — Warm-Humid</option>
-                <option value="delhi">New Delhi — Composite</option>
-                <option value="ahmedabad">Ahmedabad — Hot-Dry</option>
-              </select>
+      <!-- Right 7 Cols: Interactive Preview of the Proprietary Clearinfra Editor -->
+      <div id="interactive-demo" class="xl:col-span-7">
+        <div class="rounded-2xl border border-white/[0.09] bg-[#0b0f17]/95 shadow-2xl overflow-hidden backdrop-blur-md">
+          <!-- Top Bar -->
+          <div class="flex flex-wrap items-center justify-between gap-4 px-5 py-3.5 bg-[#07090e]/90 border-b border-white/[0.06] text-xs font-mono">
+            <div class="flex items-center gap-3">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-700"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-700"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-700"></span>
+              </div>
+              <span class="text-slate-200 font-medium">PROPRIETARY TOOL // CLEARINFRA EDITOR</span>
+              <span class="hidden sm:inline-block text-slate-600">|</span>
+              <span class="hidden sm:inline-block text-slate-400">Used Live in Client Design Reviews</span>
             </div>
-
-            <!-- WWR Slider -->
-            <div>
-              <div class="flex justify-between text-xs mb-1.5">
-                <label for="ctrl-wwr" class="text-slate-300 font-medium">Window-to-Wall Ratio (WWR)</label>
-                <span id="val-wwr" class="font-mono text-emerald-400">40%</span>
-              </div>
-              <input
-                id="ctrl-wwr"
-                type="range"
-                min="20"
-                max="70"
-                step="5"
-                value="40"
-                class="ci-slider"
-              />
-              <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
-                <span>20% (Opaque-heavy)</span>
-                <span>40% (ECBC Limit)</span>
-                <span>70% (All-Glass)</span>
-              </div>
-            </div>
-
-            <!-- Glazing Spec Selector -->
-            <div>
-              <label for="ctrl-glazing" class="block text-xs text-slate-300 mb-1.5 font-medium">Glazing Specification</label>
-              <div class="grid grid-cols-3 gap-2" id="ctrl-glazing-group">
-                <button
-                  type="button"
-                  data-glazing="single"
-                  class="glazing-btn px-2.5 py-2 rounded-lg text-[11px] font-mono border border-white/10 bg-white/[0.02] text-slate-400 hover:text-white transition-all text-center cursor-pointer"
-                >
-                  Clear DGU<br/><span class="text-[10px] opacity-70">SHGC 0.58</span>
-                </button>
-                <button
-                  type="button"
-                  data-glazing="lowe"
-                  class="glazing-btn px-2.5 py-2 rounded-lg text-[11px] font-mono border border-emerald-500/50 bg-emerald-500/10 text-emerald-300 transition-all text-center cursor-pointer"
-                >
-                  Low-E DGU<br/><span class="text-[10px] opacity-80">SHGC 0.28</span>
-                </button>
-                <button
-                  type="button"
-                  data-glazing="triple"
-                  class="glazing-btn px-2.5 py-2 rounded-lg text-[11px] font-mono border border-white/10 bg-white/[0.02] text-slate-400 hover:text-white transition-all text-center cursor-pointer"
-                >
-                  Selective<br/><span class="text-[10px] opacity-70">SHGC 0.22</span>
-                </button>
-              </div>
+            <div class="flex items-center gap-2 text-emerald-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Interactive Envelope Study</span>
             </div>
           </div>
 
-          <!-- Simulated Physics Output Readout -->
-          <div class="pt-5 border-t border-white/[0.07] space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Engine Readout</span>
-              <span id="out-badge" class="px-2.5 py-0.5 rounded text-[11px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
-                ECBC+ Compliant
-              </span>
+          <!-- Main Interactive Grid inside Simulator -->
+          <div class="grid grid-cols-1 lg:grid-cols-12">
+            <!-- Left 7 Cols of Card: Animated Isometric Building + Solar Path Canvas -->
+            <div class="lg:col-span-7 p-6 sm:p-7 flex flex-col justify-between bg-blueprint-sub border-b lg:border-b-0 lg:border-r border-white/[0.06] relative min-h-[380px]">
+              <div class="flex items-center justify-between text-xs font-mono text-slate-400 z-10">
+                <div>
+                  <span class="text-slate-500">LOCATION:</span>
+                  <span id="viz-climate-label" class="text-slate-200 ml-1">Bengaluru (Temperate)</span>
+                </div>
+                <div class="flex items-center gap-3.5">
+                  <span class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                    <span>Solar</span>
+                  </span>
+                  <span class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+                    <span>Glazing</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Central Isometric SVG Building Visualization -->
+              <div class="my-auto py-3 flex items-center justify-center">
+                <svg viewBox="0 0 520 300" class="w-full max-w-[460px] h-auto overflow-visible">
+                  <defs>
+                    <linearGradient id="solarArcGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.05" />
+                      <stop offset="50%" stop-color="#f59e0b" stop-opacity="0.45" />
+                      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.05" />
+                    </linearGradient>
+                    <linearGradient id="roofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9" />
+                      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9" />
+                    </linearGradient>
+                    <linearGradient id="leftWallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.75" />
+                      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.85" />
+                    </linearGradient>
+                    <linearGradient id="rightWallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.9" />
+                      <stop offset="100%" stop-color="#090d16" stop-opacity="0.95" />
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Ground Isometric Compass Ring -->
+                  <ellipse cx="260" cy="235" rx="175" ry="52" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="3 3" />
+                  <text x="260" y="176" text-anchor="middle" fill="#64748b" font-size="9" font-family="JetBrains Mono">N</text>
+                  <text x="448" y="238" text-anchor="middle" fill="#64748b" font-size="9" font-family="JetBrains Mono">E</text>
+                  <text x="260" y="298" text-anchor="middle" fill="#64748b" font-size="9" font-family="JetBrains Mono">S</text>
+                  <text x="72" y="238" text-anchor="middle" fill="#64748b" font-size="9" font-family="JetBrains Mono">W</text>
+
+                  <!-- Solar Path Arc -->
+                  <path d="M 85 235 C 120 45, 400 45, 435 235" fill="none" stroke="url(#solarArcGrad)" stroke-width="1.75" stroke-dasharray="4 4" />
+
+                  <!-- Animated Sun Group -->
+                  <g class="animate-float">
+                    <line id="solar-ray-1" x1="152" y1="78" x2="215" y2="128" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.45" class="animate-dash" />
+                    <line id="solar-ray-2" x1="152" y1="78" x2="205" y2="168" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.35" class="animate-dash" />
+                    <line id="solar-ray-3" x1="152" y1="78" x2="260" y2="105" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.4" class="animate-dash" />
+
+                    <circle cx="152" cy="78" r="14" fill="#f59e0b" fill-opacity="0.14" />
+                    <circle cx="152" cy="78" r="6" fill="#fbbf24" />
+                    <text x="152" y="56" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="JetBrains Mono" id="viz-dni-label">760 W/m²</text>
+                  </g>
+
+                  <!-- Isometric Building Base Shadow -->
+                  <polygon points="260,268 150,218 260,168 370,218" fill="rgba(16, 185, 129, 0.04)" stroke="rgba(16, 185, 129, 0.2)" stroke-width="1" />
+
+                  <!-- Left Facade -->
+                  <polygon points="160,212 260,258 260,126 160,80" fill="url(#leftWallGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" />
+
+                  <!-- Right Facade -->
+                  <polygon points="360,212 260,258 260,126 360,80" fill="url(#rightWallGrad)" stroke="rgba(255,255,255,0.16)" stroke-width="1.2" />
+
+                  <!-- Roof Plate -->
+                  <polygon points="260,34 160,80 260,126 360,80" fill="url(#roofGrad)" stroke="rgba(16, 185, 129, 0.45)" stroke-width="1.4" />
+                  <line x1="210" y1="57" x2="310" y2="103" stroke="rgba(255,255,255,0.08)" stroke-width="0.75" />
+                  <line x1="310" y1="57" x2="210" y2="103" stroke="rgba(255,255,255,0.08)" stroke-width="0.75" />
+
+                  <!-- 5 Floors of Dynamic Glazing Bands -->
+                  <polygon class="wwr-band-left" points="166,89 254,130 254,142 166,101" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
+                  <polygon class="wwr-band-right" points="354,89 266,130 266,142 354,101" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
+
+                  <polygon class="wwr-band-left" points="166,114 254,155 254,167 166,126" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
+                  <polygon class="wwr-band-right" points="354,114 266,155 266,167 354,126" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
+
+                  <polygon class="wwr-band-left" points="166,139 254,180 254,192 166,151" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
+                  <polygon class="wwr-band-right" points="354,139 266,180 266,192 354,151" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
+
+                  <polygon class="wwr-band-left" points="166,164 254,205 254,217 166,176" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
+                  <polygon class="wwr-band-right" points="354,164 266,205 266,217 354,176" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
+
+                  <polygon class="wwr-band-left" points="166,189 254,230 254,242 166,201" fill="rgba(56, 189, 248, 0.32)" stroke="rgba(56, 189, 248, 0.55)" stroke-width="0.75" />
+                  <polygon class="wwr-band-right" points="354,189 266,230 266,242 354,201" fill="rgba(56, 189, 248, 0.20)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.75" />
+
+                  <!-- Dimension Callout Lines -->
+                  <line x1="375" y1="80" x2="375" y2="212" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1" />
+                  <text x="384" y="150" fill="#10b981" font-size="9.5" font-family="JetBrains Mono" id="viz-wwr-callout">WWR: 40%</text>
+                </svg>
+              </div>
+
+              <!-- Bottom Status Strip inside Canvas -->
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-white/[0.05] text-[11px] font-mono text-slate-400">
+                <div>Solver: <span class="text-slate-300">ISO 13790 RC Kernel</span></div>
+                <div id="viz-shgc-readout"><span class="text-emerald-400">SHGC 0.28 · U 1.6 W/m²K</span></div>
+              </div>
             </div>
 
-            <div class="grid grid-cols-3 gap-3">
-              <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <span class="text-[10px] font-mono uppercase text-slate-400 block">Annual EPI</span>
-                <span id="out-epi" class="text-xl font-semibold text-white font-mono mt-1 block">76.4</span>
-                <span class="text-[10px] font-mono text-slate-500">kWh/m²·yr</span>
+            <!-- Right 5 Cols of Card: Interactive Controls & Live Simulation Readout -->
+            <div class="lg:col-span-5 p-6 sm:p-7 flex flex-col justify-between space-y-5 bg-[#090d14]">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Charrette Parameters</span>
+                  <span class="text-[10px] font-mono text-emerald-400/80">Interactive</span>
+                </div>
+
+                <!-- Climate Selector -->
+                <div>
+                  <label for="ctrl-climate" class="block text-xs text-slate-300 mb-1.5 font-medium">Project Climate Zone (ECBC)</label>
+                  <select
+                    id="ctrl-climate"
+                    class="w-full rounded-lg bg-[#0d131f] border border-white/10 px-3 py-2 text-xs text-white font-mono focus:outline-none focus:border-emerald-500 transition-colors"
+                  >
+                    <option value="bengaluru" selected>Bengaluru — Temperate</option>
+                    <option value="mumbai">Mumbai — Warm-Humid</option>
+                    <option value="delhi">New Delhi — Composite</option>
+                    <option value="ahmedabad">Ahmedabad — Hot-Dry</option>
+                  </select>
+                </div>
+
+                <!-- WWR Slider -->
+                <div>
+                  <div class="flex justify-between text-xs mb-1.5">
+                    <label for="ctrl-wwr" class="text-slate-300 font-medium">Window-to-Wall Ratio (WWR)</label>
+                    <span id="val-wwr" class="font-mono text-emerald-400">40%</span>
+                  </div>
+                  <input
+                    id="ctrl-wwr"
+                    type="range"
+                    min="20"
+                    max="70"
+                    step="5"
+                    value="40"
+                    class="ci-slider"
+                  />
+                  <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+                    <span>20%</span>
+                    <span>40% (ECBC)</span>
+                    <span>70%</span>
+                  </div>
+                </div>
+
+                <!-- Glazing Spec Selector -->
+                <div>
+                  <label for="ctrl-glazing" class="block text-xs text-slate-300 mb-1.5 font-medium">Glazing Specification</label>
+                  <div class="grid grid-cols-3 gap-1.5" id="ctrl-glazing-group">
+                    <button
+                      type="button"
+                      data-glazing="single"
+                      class="glazing-btn px-2 py-2 rounded-lg text-[10px] font-mono border border-white/10 bg-white/[0.02] text-slate-400 hover:text-white transition-all text-center cursor-pointer"
+                    >
+                      Clear DGU<br/><span class="opacity-70">0.58</span>
+                    </button>
+                    <button
+                      type="button"
+                      data-glazing="lowe"
+                      class="glazing-btn px-2 py-2 rounded-lg text-[10px] font-mono border border-emerald-500/50 bg-emerald-500/10 text-emerald-300 transition-all text-center cursor-pointer"
+                    >
+                      Low-E DGU<br/><span class="opacity-80">0.28</span>
+                    </button>
+                    <button
+                      type="button"
+                      data-glazing="triple"
+                      class="glazing-btn px-2 py-2 rounded-lg text-[10px] font-mono border border-white/10 bg-white/[0.02] text-slate-400 hover:text-white transition-all text-center cursor-pointer"
+                    >
+                      Selective<br/><span class="opacity-70">0.22</span>
+                    </button>
+                  </div>
+                </div>
               </div>
 
-              <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <span class="text-[10px] font-mono uppercase text-slate-400 block">Plant Sizing</span>
-                <span id="out-cooling" class="text-xl font-semibold text-white font-mono mt-1 block">232</span>
-                <span class="text-[10px] font-mono text-slate-500">Peak TR</span>
-              </div>
+              <!-- Simulated Physics Output Readout -->
+              <div class="pt-4 border-t border-white/[0.07] space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Engine Readout</span>
+                  <span id="out-badge" class="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                    ECBC+ Compliant
+                  </span>
+                </div>
 
-              <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <span class="text-[10px] font-mono uppercase text-slate-400 block">Daylight (sDA)</span>
-                <span id="out-sda" class="text-xl font-semibold text-emerald-400 font-mono mt-1 block">55%</span>
-                <span class="text-[10px] font-mono text-slate-500">&gt;300 lux</span>
+                <div class="grid grid-cols-3 gap-2.5">
+                  <div class="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                    <span class="text-[9px] font-mono uppercase text-slate-400 block">Annual EPI</span>
+                    <span id="out-epi" class="text-lg font-semibold text-white font-mono mt-0.5 block">76.4</span>
+                    <span class="text-[9px] font-mono text-slate-500">kWh/m²·yr</span>
+                  </div>
+
+                  <div class="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                    <span class="text-[9px] font-mono uppercase text-slate-400 block">Plant Sizing</span>
+                    <span id="out-cooling" class="text-lg font-semibold text-white font-mono mt-0.5 block">232</span>
+                    <span class="text-[9px] font-mono text-slate-500">Peak TR</span>
+                  </div>
+
+                  <div class="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                    <span class="text-[9px] font-mono uppercase text-slate-400 block">Daylight</span>
+                    <span id="out-sda" class="text-lg font-semibold text-emerald-400 font-mono mt-0.5 block">55%</span>
+                    <span class="text-[9px] font-mono text-slate-500">sDA &gt;300lx</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -333,23 +355,23 @@
     if (vizDniLabel) vizDniLabel.textContent = c.dni;
     if (vizWwrCallout) vizWwrCallout.textContent = `WWR: ${currentWwr}%`;
     if (vizShgcReadout) {
-      vizShgcReadout.innerHTML = `Envelope: <span class="text-emerald-400">SHGC ${g.shgc} · U-Value ${g.uval} W/m²K</span>`;
+      vizShgcReadout.innerHTML = `<span class="text-emerald-400">SHGC ${g.shgc} · U ${g.uval} W/m²K</span>`;
     }
 
     if (outBadge) {
       const epiNum = parseFloat(epi);
       if (currentWwr > 40 && g.shgc > 0.3) {
         outBadge.textContent = 'Exceeds Prescriptive SHGC';
-        outBadge.className = 'px-2.5 py-0.5 rounded text-[11px] font-mono font-medium bg-amber-500/15 text-amber-300 border border-amber-500/30';
+        outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-amber-500/15 text-amber-300 border border-amber-500/30';
       } else if (epiNum < c.baseEpi + 14) {
         outBadge.textContent = 'SuperECBC Aligned';
-        outBadge.className = 'px-2.5 py-0.5 rounded text-[11px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
+        outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
       } else if (epiNum < c.baseEpi + 24) {
         outBadge.textContent = 'ECBC+ Compliant';
-        outBadge.className = 'px-2.5 py-0.5 rounded text-[11px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
+        outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
       } else {
         outBadge.textContent = 'ECBC Baseline';
-        outBadge.className = 'px-2.5 py-0.5 rounded text-[11px] font-mono font-medium bg-sky-500/15 text-sky-300 border border-sky-500/30';
+        outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-sky-500/15 text-sky-300 border border-sky-500/30';
       }
     }
 
@@ -382,9 +404,9 @@
     btn.addEventListener('click', () => {
       currentGlazing = btn.getAttribute('data-glazing') || 'lowe';
       glazingBtns.forEach((b) => {
-        b.className = 'glazing-btn px-2.5 py-2 rounded-lg text-[11px] font-mono border border-white/10 bg-white/[0.02] text-slate-400 hover:text-white transition-all text-center cursor-pointer';
+        b.className = 'glazing-btn px-2 py-2 rounded-lg text-[10px] font-mono border border-white/10 bg-white/[0.02] text-slate-400 hover:text-white transition-all text-center cursor-pointer';
       });
-      btn.className = 'glazing-btn px-2.5 py-2 rounded-lg text-[11px] font-mono border border-emerald-500/50 bg-emerald-500/10 text-emerald-300 transition-all text-center cursor-pointer';
+      btn.className = 'glazing-btn px-2 py-2 rounded-lg text-[10px] font-mono border border-emerald-500/50 bg-emerald-500/10 text-emerald-300 transition-all text-center cursor-pointer';
       updateSimulation();
     });
   });

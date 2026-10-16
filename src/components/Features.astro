@@ -33,26 +33,28 @@ const services = [
 ];
 ---
 
-<section id="services" class="py-24 bg-[#07090e] relative">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="reveal max-w-2xl mb-16 space-y-3">
-      <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">Advisory &amp; Engineering Services</span>
-      <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
-        Specialist consulting across the building lifecycle.
-      </h2>
-      <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+<section id="services" class="py-24 lg:py-28 bg-[#07090e] relative">
+  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24">
+    <div class="reveal flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6">
+      <div class="max-w-2xl space-y-3">
+        <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">Advisory &amp; Engineering Services</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight">
+          Specialist consulting across the building lifecycle.
+        </h2>
+      </div>
+      <p class="text-slate-400 text-sm sm:text-base max-w-xl leading-relaxed">
         We embed with your project team from early architectural concept through statutory compliance—combining deep building science expertise with the speed of our in-house simulation technology.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
       {services.map((item, idx) => (
-        <div class={`reveal reveal-delay-${idx % 3} group rounded-xl bg-[#0b0f17] border border-white/[0.06] hover:border-white/[0.14] p-7 transition-all duration-300 flex flex-col justify-between`}>
+        <div class={`reveal reveal-delay-${idx % 3} group rounded-xl bg-[#0b0f17] border border-white/[0.06] hover:border-white/[0.14] p-8 transition-all duration-300 flex flex-col justify-between`}>
           <div>
             <span class="text-[11px] font-mono text-slate-500 group-hover:text-emerald-400 transition-colors tracking-wider block mb-4">
               {item.tag}
             </span>
-            <h3 class="text-lg font-semibold text-white mb-2.5">
+            <h3 class="text-xl font-semibold text-white mb-3">
               {item.title}
             </h3>
             <p class="text-sm text-slate-400 leading-relaxed">
