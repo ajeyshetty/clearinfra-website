@@ -47,9 +47,9 @@ const services = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
       {services.map((item, idx) => (
-        <div class={`reveal reveal-delay-${idx % 3} group rounded-xl bg-white border border-slate-900/10 hover:border-teal-700/40 p-8 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between`}>
+        <div class={`reveal reveal-delay-${idx % 3} group rounded-xl bg-white border border-slate-900/10 hover:border-teal-700/40 p-6 sm:p-8 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between`}>
           <div>
             <span class="text-[11px] font-mono text-teal-700 font-medium tracking-wider block mb-4">
               {item.tag}
