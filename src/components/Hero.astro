@@ -59,20 +59,21 @@
       <div id="interactive-demo" class="xl:col-span-7">
         <div class="rounded-2xl border border-slate-900/80 bg-[#0B0F17] text-slate-100 shadow-2xl shadow-slate-950/25 overflow-hidden">
           <!-- Top CAD Window Bar -->
-          <div class="flex items-center justify-between gap-3 px-5 py-3 bg-[#07090e] border-b border-white/[0.08] text-xs font-mono">
-            <div class="flex items-center gap-2.5 min-w-0">
+          <div class="flex items-center justify-between gap-3 px-4 sm:px-5 py-3 bg-[#07090e] border-b border-white/[0.08] text-xs font-mono">
+            <div class="flex items-center gap-2 min-w-0">
               <div class="flex items-center gap-1.5 shrink-0">
                 <span class="w-2.5 h-2.5 rounded-full bg-slate-700"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-slate-700"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-slate-700"></span>
               </div>
-              <span class="text-slate-200 font-medium truncate">CLEARINFRA EDITOR</span>
+              <span class="text-slate-200 font-medium whitespace-nowrap">CLEARINFRA EDITOR</span>
               <span class="hidden sm:inline-block text-slate-600">|</span>
               <span class="hidden sm:inline-block text-slate-400 truncate">Physics · Native AI · NBC/ECBC</span>
             </div>
             <div class="flex items-center gap-2 text-emerald-400 shrink-0">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>Live Charrette View</span>
+              <span class="hidden sm:inline">Live Charrette View</span>
+              <span class="sm:hidden">Live View</span>
             </div>
           </div>
 
@@ -230,7 +231,7 @@
 
                 <!-- Glazing Spec Selector -->
                 <div>
-                  <label for="ctrl-glazing" class="block text-xs text-slate-300 mb-1.5 font-medium">Glazing Specification</label>
+                  <span class="block text-xs text-slate-300 mb-1.5 font-medium">Glazing Specification</span>
                   <div class="grid grid-cols-3 gap-1.5" id="ctrl-glazing-group">
                     <button
                       type="button"
