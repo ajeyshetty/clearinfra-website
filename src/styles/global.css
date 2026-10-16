@@ -2,15 +2,17 @@
 
 @layer base {
   :root {
-    --bg-primary: #07090e;
-    --bg-elevated: #0d111a;
-    --border-subtle: rgba(255, 255, 255, 0.07);
-    --border-highlight: rgba(16, 185, 129, 0.35);
+    --bg-stone: #F7F6F2;
+    --bg-stone-alt: #EFECE6;
+    --ink-primary: #0F172A;
+    --ink-secondary: #475569;
+    --accent-teal: #0F766E;
+    --cad-bg: #0B0F17;
   }
 
   html {
-    background-color: var(--bg-primary);
-    color: #f1f5f9;
+    background-color: var(--bg-stone);
+    color: var(--ink-primary);
     scroll-behavior: smooth;
   }
 
@@ -24,26 +26,27 @@
   }
 }
 
-/* Architectural Blueprint Grid Background */
-.bg-blueprint {
+/* Architectural Drafting Paper Grid (Light Surface) */
+.bg-architectural-grid {
   background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+}
+
+/* Dark CAD Viewport Grid */
+.bg-blueprint-sub {
+  background-size: 16px 16px;
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
 }
 
-.bg-blueprint-sub {
-  background-size: 12px 12px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
-}
-
 /* Scroll reveal animation classes */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(18px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.is-visible {
@@ -80,13 +83,13 @@
   animation: solar-orbit 5s ease-in-out infinite;
 }
 
-/* Custom Range Input for Parametric Controls */
+/* Custom Range Input for Dark CAD Viewport */
 input[type="range"].ci-slider {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
   height: 5px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 999px;
   outline: none;
 }
@@ -98,7 +101,7 @@ input[type="range"].ci-slider::-webkit-slider-thumb {
   height: 16px;
   border-radius: 50%;
   background: #10b981;
-  border: 2px solid #07090e;
+  border: 2px solid #0b0f17;
   box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.5), 0 0 12px rgba(16, 185, 129, 0.4);
   cursor: pointer;
   transition: transform 0.15s ease, background-color 0.15s ease;

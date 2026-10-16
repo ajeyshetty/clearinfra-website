@@ -1,116 +1,196 @@
 ---
+const complianceModules = [
+  {
+    code: "ECBC 2017 // ENVELOPE & HVAC",
+    title: "Prescriptive & Whole-Building EPI Verification",
+    clauses: "Clauses 4.2, 4.3, 5.2 & Appendix D",
+    detail: "Automated checking of Window-to-Wall Ratio (WWR), roof and wall U-factor caps, solar heat gain coefficients (SHGC) across climate zones, and whole-building EPI ratio calculation for ECBC, ECBC+, and SuperECBC tiers."
+  },
+  {
+    code: "NBC 2016 PART 8 // BUILDING SERVICES",
+    title: "Daylighting, Ventilation & Thermal Comfort",
+    clauses: "Section 1 (Lighting & Natural Ventilation) & Section 3 (HVAC)",
+    detail: "Verifies minimum daylight factors, Spatial Daylight Autonomy (sDA), fresh air ach/cfm rates per occupancy category, and indoor thermal comfort conditions."
+  },
+  {
+    code: "NBC 2016 PART 3 & PART 4 // STATUTORY RULES",
+    title: "Graph-RAG Statutory Clause Retrieval",
+    clauses: "Development Control, Egress & Life Safety Cross-Checks",
+    detail: "Backed by our structured Graph-RAG knowledge base of the National Building Code, enabling our engineers to verify height, FAR, setback, and building systems clauses with exact section citations during design reviews."
+  }
+];
 ---
 
-<section id="engine" class="py-24 lg:py-28 bg-[#090d14] border-t border-white/[0.06] relative">
-  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24">
+<section id="engine" class="py-24 lg:py-28 bg-[#EFECE6] border-t border-slate-900/10 relative">
+  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 space-y-24">
+    
+    <!-- Part 1: Proprietary Engine + Native AI Integration -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
       <!-- Left Narrative -->
       <div class="reveal lg:col-span-5 space-y-6">
-        <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">Our Proprietary Advantage</span>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight leading-tight">
-          Why we built our own simulation engine.
+        <span class="text-xs font-mono uppercase tracking-widest text-teal-700 font-semibold">Proprietary Technology</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-900 tracking-tight leading-tight">
+          First-principles physics meets native agentic AI.
         </h2>
-        <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
           In conventional consulting, energy and daylight models take weeks to assemble across disconnected third-party tools—meaning engineering feedback often arrives after architectural decisions have already moved on.
         </p>
-        <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
-          To solve this, we engineered the <strong class="text-slate-200 font-medium">Clearinfra Editor</strong>: our proprietary, first-principles building physics engine. During live design meetings with your team, our engineers test dozens of facade, glazing, and plant options on the spot—backed by hourly heat-balance equations and full EnergyPlus parity.
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+          To change this, we built the <strong class="text-slate-900 font-semibold">Clearinfra Editor</strong> in-house. It combines an hourly ISO 13790 thermal &amp; psychrometric physics engine with a <strong class="text-slate-900 font-semibold">native function-calling AI agent</strong> and proactive Pareto optimizer.
         </p>
 
-        <div class="pt-3 space-y-3 text-xs sm:text-sm font-mono text-slate-300">
-          <div class="flex items-center gap-3">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            <span>In-House ISO 13790 Multi-Node RC Thermal Solver</span>
+        <!-- 3 Pillar Cards on Stone -->
+        <div class="space-y-3 pt-2">
+          <div class="p-4 rounded-xl bg-white border border-slate-900/10 shadow-2xs">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-mono font-semibold text-teal-700">01 // NATIVE AI COPILOT &amp; PARETO OPTIMIZER</span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Wired directly into the 3D geometry and physics kernel via 12 engineering tools—allowing our consultants to sweep glazing, shading, orientation, and HVAC combinations live to isolate lowest-CAPEX and lowest-EPI designs.
+            </p>
           </div>
-          <div class="flex items-center gap-3">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            <span>ASHRAE Psychrometric Coil &amp; Plant Sizing</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            <span>Direct EnergyPlus v25.1 (.idf) Model Generation</span>
+
+          <div class="p-4 rounded-xl bg-white border border-slate-900/10 shadow-2xs">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-mono font-semibold text-teal-700">02 // TRACEABLE DEPENDENCY GRAPH</span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Every parameter change is tracked through a live dependency map—showing exactly how a change in facade SHGC propagates to sensible coil load, chiller tonnage, and project payback.
+            </p>
           </div>
         </div>
       </div>
 
-      <!-- Right Animated Schematic Pipeline Diagram -->
+      <!-- Right: High-Contrast Dark CAD Window with Animated Architecture Schematic -->
       <div class="reveal reveal-delay-1 lg:col-span-7">
-        <div class="rounded-2xl border border-white/[0.08] bg-[#07090e] p-6 sm:p-10 bg-blueprint-sub">
-          <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-6">
-            <span>CLEARINFRA EDITOR // IN-HOUSE ENGINE ARCHITECTURE</span>
-            <span class="text-emerald-400">Live Charrette Workflow</span>
+        <div class="rounded-2xl border border-slate-900/80 bg-[#0B0F17] p-6 sm:p-9 shadow-2xl shadow-slate-950/20 bg-blueprint-sub">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-slate-400 mb-6 pb-4 border-b border-white/[0.08]">
+            <span class="text-slate-200 font-medium">CLEARINFRA EDITOR // INTERNAL SYSTEM TOPOLOGY</span>
+            <span class="text-emerald-400">Physics + Agentic AI + Graph-RAG</span>
           </div>
 
-          <svg viewBox="0 0 600 310" class="w-full h-auto">
-            <!-- Animated Connecting Paths (Left Inputs to Central Engine) -->
-            <path d="M 165 55 C 210 55, 210 155, 245 155" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-            <path d="M 165 55 C 210 55, 210 155, 245 155" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.6" />
+          <svg viewBox="0 0 620 340" class="w-full h-auto">
+            <!-- Animated Connecting Paths (Left Inputs to Central Trio) -->
+            <path d="M 165 65 C 205 65, 205 110, 235 110" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+            <path d="M 165 65 C 205 65, 205 110, 235 110" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
 
-            <path d="M 165 155 L 245 155" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-            <path d="M 165 155 L 245 155" fill="none" stroke="#38bdf8" stroke-width="1.5" class="animate-dash" stroke-opacity="0.6" />
+            <path d="M 165 170 L 235 170" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+            <path d="M 165 170 L 235 170" fill="none" stroke="#38bdf8" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
 
-            <path d="M 165 255 C 210 255, 210 155, 245 155" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-            <path d="M 165 255 C 210 255, 210 155, 245 155" fill="none" stroke="#f59e0b" stroke-width="1.5" class="animate-dash" stroke-opacity="0.6" />
+            <path d="M 165 275 C 205 275, 205 235, 235 235" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+            <path d="M 165 275 C 205 275, 205 235, 235 235" fill="none" stroke="#f59e0b" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
 
-            <!-- Animated Connecting Paths (Central Engine to Right Outputs) -->
-            <path d="M 385 155 C 415 155, 415 55, 445 55" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-            <path d="M 385 155 C 415 155, 415 55, 445 55" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.6" />
+            <!-- Animated Connecting Paths (Central Trio to Right Outputs) -->
+            <path d="M 405 110 C 430 110, 430 65, 455 65" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+            <path d="M 405 110 C 430 110, 430 65, 455 65" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
 
-            <path d="M 385 155 L 445 155" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-            <path d="M 385 155 L 445 155" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.6" />
+            <path d="M 405 170 L 455 170" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+            <path d="M 405 170 L 455 170" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
 
-            <path d="M 385 155 C 415 155, 415 255, 445 255" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-            <path d="M 385 155 C 415 155, 415 255, 445 255" fill="none" stroke="#38bdf8" stroke-width="1.5" class="animate-dash" stroke-opacity="0.6" />
+            <path d="M 405 235 C 430 235, 430 275, 455 275" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+            <path d="M 405 235 C 430 235, 430 275, 455 275" fill="none" stroke="#38bdf8" stroke-width="1.5" class="animate-dash" stroke-opacity="0.7" />
 
             <!-- Left Input Nodes -->
-            <g transform="translate(10, 30)">
-              <rect width="155" height="50" rx="8" fill="#0d131f" stroke="rgba(255,255,255,0.12)" />
-              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">Architect's Massing</text>
-              <text x="14" y="38" fill="#64748b" font-size="9.5" font-family="JetBrains Mono">Orientation · WWR</text>
+            <g transform="translate(10, 40)">
+              <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.14)" />
+              <text x="14" y="23" fill="#f8fafc" font-size="11" font-weight="600">3D Massing &amp; WWR</text>
+              <text x="14" y="39" fill="#94a3b8" font-size="9.5" font-family="JetBrains Mono">Geometry · Orientation</text>
             </g>
 
-            <g transform="translate(10, 130)">
-              <rect width="155" height="50" rx="8" fill="#0d131f" stroke="rgba(255,255,255,0.12)" />
-              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">8,760 Weather File</text>
-              <text x="14" y="38" fill="#64748b" font-size="9.5" font-family="JetBrains Mono">DBT · WBT · Solar DNI</text>
+            <g transform="translate(10, 144)">
+              <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.14)" />
+              <text x="14" y="23" fill="#f8fafc" font-size="11" font-weight="600">8,760 Weather File</text>
+              <text x="14" y="39" fill="#94a3b8" font-size="9.5" font-family="JetBrains Mono">DBT · WBT · Solar DNI</text>
             </g>
 
-            <g transform="translate(10, 230)">
-              <rect width="155" height="50" rx="8" fill="#0d131f" stroke="rgba(255,255,255,0.12)" />
-              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">Material &amp; Cost DB</text>
-              <text x="14" y="38" fill="#64748b" font-size="9.5" font-family="JetBrains Mono">U-Value · SHGC · INR</text>
+            <g transform="translate(10, 248)">
+              <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.14)" />
+              <text x="14" y="23" fill="#f8fafc" font-size="11" font-weight="600">India Cost &amp; Spec DB</text>
+              <text x="14" y="39" fill="#94a3b8" font-size="9.5" font-family="JetBrains Mono">U-Value · SHGC · INR</text>
             </g>
 
-            <!-- Central Solver Kernel Node -->
-            <g transform="translate(245, 95)">
-              <rect width="140" height="120" rx="12" fill="#0d1817" stroke="rgba(16, 185, 129, 0.45)" stroke-width="1.5" />
-              <text x="70" y="38" text-anchor="middle" fill="#10b981" font-size="9" font-family="JetBrains Mono">PROPRIETARY ENGINE</text>
-              <text x="70" y="60" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">Clearinfra</text>
-              <text x="70" y="77" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">Physics Kernel</text>
-              <text x="70" y="100" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="JetBrains Mono">RC + Psychrometrics</text>
+            <!-- Central Proprietary Core Container -->
+            <g transform="translate(235, 28)">
+              <rect width="170" height="284" rx="12" fill="#0d1520" stroke="rgba(16, 185, 129, 0.45)" stroke-width="1.5" />
+              <text x="85" y="24" text-anchor="middle" fill="#10b981" font-size="9" font-family="JetBrains Mono">CLEARINFRA CORE</text>
+
+              <!-- Sub-box 1: Native AI Copilot -->
+              <rect x="14" y="38" width="142" height="68" rx="8" fill="#111c2d" stroke="rgba(56, 189, 248, 0.35)" />
+              <text x="85" y="60" text-anchor="middle" fill="#38bdf8" font-size="9" font-family="JetBrains Mono">NATIVE AI AGENT</text>
+              <text x="85" y="78" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">12-Tool Copilot &amp;</text>
+              <text x="85" y="93" text-anchor="middle" fill="#cbd5e1" font-size="10">Pareto Optimizer</text>
+
+              <!-- Sub-box 2: Physics Kernel -->
+              <rect x="14" y="118" width="142" height="68" rx="8" fill="#0d1f1d" stroke="rgba(16, 185, 129, 0.4)" />
+              <text x="85" y="140" text-anchor="middle" fill="#10b981" font-size="9" font-family="JetBrains Mono">PHYSICS SOLVER</text>
+              <text x="85" y="158" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">Multi-Node RC +</text>
+              <text x="85" y="173" text-anchor="middle" fill="#cbd5e1" font-size="10">Psychrometric HVAC</text>
+
+              <!-- Sub-box 3: NBC & ECBC Compliance Engine -->
+              <rect x="14" y="198" width="142" height="68" rx="8" fill="#1a1814" stroke="rgba(245, 158, 11, 0.35)" />
+              <text x="85" y="220" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="JetBrains Mono">COMPLIANCE ENGINE</text>
+              <text x="85" y="238" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">NBC 2016 Graph-RAG</text>
+              <text x="85" y="253" text-anchor="middle" fill="#cbd5e1" font-size="10">&amp; ECBC Rule Checker</text>
             </g>
 
             <!-- Right Output Nodes -->
-            <g transform="translate(445, 30)">
-              <rect width="145" height="50" rx="8" fill="#0d131f" stroke="rgba(255,255,255,0.12)" />
-              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">CAPEX &amp; Load Study</text>
-              <text x="14" y="38" fill="#10b981" font-size="9.5" font-family="JetBrains Mono">Peak TR · Payback</text>
+            <g transform="translate(455, 40)">
+              <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.14)" />
+              <text x="14" y="23" fill="#f8fafc" font-size="11" font-weight="600">CAPEX &amp; Load Study</text>
+              <text x="14" y="39" fill="#10b981" font-size="9.5" font-family="JetBrains Mono">Peak TR · ROI Payback</text>
             </g>
 
-            <g transform="translate(445, 130)">
-              <rect width="145" height="50" rx="8" fill="#0d131f" stroke="rgba(255,255,255,0.12)" />
-              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">Code Submittals</text>
-              <text x="14" y="38" fill="#10b981" font-size="9.5" font-family="JetBrains Mono">NBC 2016 · ECBC</text>
+            <g transform="translate(455, 144)">
+              <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.14)" />
+              <text x="14" y="23" fill="#f8fafc" font-size="11" font-weight="600">Statutory Submittals</text>
+              <text x="14" y="39" fill="#fbbf24" font-size="9.5" font-family="JetBrains Mono">Clause-Cited NBC/ECBC</text>
             </g>
 
-            <g transform="translate(445, 230)">
-              <rect width="145" height="50" rx="8" fill="#0d131f" stroke="rgba(255,255,255,0.12)" />
-              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">EnergyPlus Model</text>
-              <text x="14" y="38" fill="#38bdf8" font-size="9.5" font-family="JetBrains Mono">Auditable .idf File</text>
+            <g transform="translate(455, 248)">
+              <rect width="155" height="52" rx="8" fill="#111827" stroke="rgba(255,255,255,0.14)" />
+              <text x="14" y="23" fill="#f8fafc" font-size="11" font-weight="600">EnergyPlus Model</text>
+              <text x="14" y="39" fill="#38bdf8" font-size="9.5" font-family="JetBrains Mono">Auditable .idf File</text>
             </g>
           </svg>
         </div>
       </div>
     </div>
+
+    <!-- Part 2: Dedicated NBC 2016 & ECBC Compliance Module Breakdown -->
+    <div id="compliance" class="pt-16 border-t border-slate-900/10">
+      <div class="reveal flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+        <div class="max-w-2xl space-y-3">
+          <span class="text-xs font-mono uppercase tracking-widest text-teal-700 font-semibold">Statutory &amp; Code Intelligence</span>
+          <h3 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-900 tracking-tight">
+            Built-in NBC 2016 &amp; ECBC compliance module.
+          </h3>
+        </div>
+        <p class="text-slate-600 text-sm sm:text-base max-w-xl leading-relaxed">
+          Our proprietary engine embeds a deterministic rule evaluator alongside a Graph-RAG knowledge base of Indian building codes—verifying compliance continuously as your design evolves.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+        {complianceModules.map((mod, idx) => (
+          <div class={`reveal reveal-delay-${idx % 3} rounded-xl bg-white border border-slate-900/10 p-8 shadow-xs flex flex-col justify-between space-y-4`}>
+            <div class="space-y-3">
+              <span class="inline-block text-[11px] font-mono font-semibold text-teal-800 bg-teal-500/10 px-2.5 py-1 rounded border border-teal-600/20">
+                {mod.code}
+              </span>
+              <h4 class="text-xl font-semibold text-slate-900">
+                {mod.title}
+              </h4>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                {mod.detail}
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-900/[0.06] text-xs font-mono text-slate-500">
+              Scope: <span class="text-slate-700">{mod.clauses}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
   </div>
 </section>

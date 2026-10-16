@@ -2,39 +2,39 @@
 const specs = [
   {
     value: "8,760 hrs",
-    label: "Annual Climate Resolution",
-    desc: "Hourly dry-bulb, wet-bulb, and solar irradiance modeling across the full calendar year."
+    label: "Hourly Thermal Resolution",
+    desc: "Full-year dry-bulb, wet-bulb, and solar radiation simulation across all 5 Indian climate zones."
   },
   {
-    value: "5 Zones",
-    label: "Indian Climate Coverage",
-    desc: "Calibrated for Hot-Dry, Warm-Humid, Composite, Temperate, and Cold climate classifications."
+    value: "Native AI",
+    label: "Agentic Design Optimizer",
+    desc: "Built-in engineering agent wired directly to the 3D geometry and physics engine for live Pareto search."
   },
   {
-    value: "ISO 13790",
-    label: "Thermal Balance Method",
-    desc: "Dynamic multi-node RC thermal network paired with psychrometric sensible and latent HVAC loads."
+    value: "NBC + ECBC",
+    label: "Graph-RAG Code Engine",
+    desc: "Automated clause-level verification against NBC 2016 (Part 3, 4 & 8) and ECBC 2017 standards."
   },
   {
     value: "IDF Export",
     label: "EnergyPlus Interoperability",
-    desc: "Generates structured EnergyPlus input files for downstream audit and detailed compliance submittals."
+    desc: "Generates validated EnergyPlus v25.1 input files for downstream audit and green rating submittals."
   }
 ];
 ---
 
-<section class="border-y border-white/[0.06] bg-[#090c14] py-14">
+<section class="border-y border-slate-900/10 bg-[#EFECE6] py-14">
   <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
       {specs.map((item, idx) => (
-        <div class={`reveal reveal-delay-${Math.min(idx, 3)} flex flex-col space-y-1.5 border-l border-white/10 pl-6`}>
-          <span class="text-2xl sm:text-3xl font-semibold text-white font-mono tracking-tight">
+        <div class={`reveal reveal-delay-${Math.min(idx, 3)} flex flex-col space-y-1.5 border-l-2 border-teal-700/40 pl-6`}>
+          <span class="text-2xl sm:text-3xl font-semibold text-slate-900 font-mono tracking-tight">
             {item.value}
           </span>
-          <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">
+          <span class="text-xs font-mono text-teal-800 font-semibold uppercase tracking-wider">
             {item.label}
           </span>
-          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pt-1">
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pt-1">
             {item.desc}
           </p>
         </div>
