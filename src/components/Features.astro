@@ -1,52 +1,52 @@
 ---
-const capabilities = [
+const services = [
   {
-    tag: "01 / MASSING & ENVELOPE",
-    title: "Parametric 3D Geometry",
-    description: "Evaluate floorplate depth, tower orientation, window-to-wall ratios, and external shading devices interactively while observing immediate thermal and daylight feedback."
+    tag: "01 / CONCEPT & SCHEMATIC ADVISORY",
+    title: "Passive Design & Envelope Optimization",
+    description: "We work alongside design architects during early massing to evaluate orientation, window-to-wall ratios, glazing specifications, and shading geometry before drawings are locked."
   },
   {
-    tag: "02 / THERMAL & HVAC",
-    title: "First-Principles Load Modeling",
-    description: "Compute conductive, convective, solar, and internal heat gains alongside psychrometric coil loads to size chillers, air handling units, and plant equipment accurately."
+    tag: "02 / MECHANICAL & PLANT VALUE ENGINEERING",
+    title: "Thermal Loads & HVAC Right-Sizing",
+    description: "By coupling envelope upgrades directly to psychrometric coil loads, we help MEP teams and developers avoid chiller plant oversizing and reduce upfront mechanical CAPEX."
   },
   {
-    tag: "03 / DAYLIGHTING",
-    title: "Spatial Daylight & Glare",
-    description: "Quantify Useful Daylight Illuminance, Spatial Daylight Autonomy (sDA), and Annual Sunlight Exposure (ASE) to balance natural light against cooling penalties."
+    tag: "03 / VISUAL & THERMAL COMFORT",
+    title: "Daylight & Glare Engineering",
+    description: "We run Spatial Daylight Autonomy (sDA) and Annual Sunlight Exposure (ASE) studies across floorplates to maximize natural daylight without introducing solar heat penalties."
   },
   {
-    tag: "04 / REGULATORY CODES",
-    title: "NBC 2016 & ECBC Verification",
-    description: "Check envelope U-values, SHGC limits, lighting power density, and whole-building EPI targets against National Building Code Part 8 and ECBC tiers."
+    tag: "04 / REGULATORY & RATING COMPLIANCE",
+    title: "NBC 2016, ECBC & Green Certifications",
+    description: "End-to-end compliance engineering and documentation for National Building Code (NBC Part 8), ECBC / SuperECBC, IGBC, GRIHA, and LEED certification pathways."
   },
   {
-    tag: "05 / COST & CARBON",
-    title: "Embodied & Operational Lifecycle",
-    description: "Pair physical specification choices with regional material cost schedules and grid emission factors to evaluate capital expenditure and payback periods."
+    tag: "05 / CAPITAL & LIFECYCLE ECONOMICS",
+    title: "CAPEX vs. OPEX Trade-Off Studies",
+    description: "Every glass, insulation, or chiller recommendation we make is paired with Indian market cost data, operational kWh savings, and transparent payback periods."
   },
   {
-    tag: "06 / INTEROPERABILITY",
-    title: "Traceable Calculation & Export",
-    description: "Inspect every intermediate variable in the dependency graph or export a structured EnergyPlus (.idf) model for formal verification."
+    tag: "06 / AUDITABLE SIMULATION MODELS",
+    title: "EnergyPlus Submittals & Verification",
+    description: "Beyond rapid charrette studies, we deliver complete, audit-ready EnergyPlus (.idf) models and calculation reports for institutional investors and statutory authorities."
   }
 ];
 ---
 
-<section id="capabilities" class="py-24 bg-[#07090e] relative">
+<section id="services" class="py-24 bg-[#07090e] relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="reveal max-w-2xl mb-16 space-y-3">
-      <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">Core Capabilities</span>
+      <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">Advisory &amp; Engineering Services</span>
       <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
-        One environment for architecture, engineering, and cost.
+        Specialist consulting across the building lifecycle.
       </h2>
       <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
-        Early design decisions determine the majority of a building's lifecycle energy and capital cost. Clearinfra brings these disciplines into a single continuous feedback loop.
+        We embed with your project team from early architectural concept through statutory compliance—combining deep building science expertise with the speed of our in-house simulation technology.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {capabilities.map((item, idx) => (
+      {services.map((item, idx) => (
         <div class={`reveal reveal-delay-${idx % 3} group rounded-xl bg-[#0b0f17] border border-white/[0.06] hover:border-white/[0.14] p-7 transition-all duration-300 flex flex-col justify-between`}>
           <div>
             <span class="text-[11px] font-mono text-slate-500 group-hover:text-emerald-400 transition-colors tracking-wider block mb-4">

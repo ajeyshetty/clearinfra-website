@@ -1,34 +1,34 @@
 ---
 ---
 
-<section id="methodology" class="py-24 bg-[#090d14] border-t border-white/[0.06] relative">
+<section id="engine" class="py-24 bg-[#090d14] border-t border-white/[0.06] relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       <!-- Left Narrative -->
       <div class="reveal lg:col-span-5 space-y-5">
-        <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">Physics Architecture</span>
+        <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">Our Proprietary Advantage</span>
         <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-tight leading-tight">
-          Transparent calculations, grounded in physical laws.
+          Why we built our own simulation engine.
         </h2>
         <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
-          Rather than relying on static rules of thumb or pre-computed lookup tables, Clearinfra solves hourly heat balance equations across walls, glazing, and internal thermal mass.
+          In conventional consulting, energy and daylight models take weeks to assemble across disconnected third-party tools—meaning engineering feedback often arrives after architectural decisions have already moved on.
         </p>
         <p class="text-slate-400 text-sm leading-relaxed">
-          Every output metric—from peak cooling tonnage to annual Energy Performance Index—is linked through a live dependency graph, allowing engineers to trace how a change in facade glazing ripples through coil loads, fan power, and plant sizing.
+          To solve this, we engineered the <strong class="text-slate-200 font-medium">Clearinfra Editor</strong>: our proprietary, first-principles building physics engine. During live design meetings with your team, our engineers test dozens of facade, glazing, and plant options on the spot—backed by hourly heat-balance equations and full EnergyPlus parity.
         </p>
 
         <div class="pt-3 space-y-2.5 text-xs font-mono text-slate-300">
           <div class="flex items-center gap-3">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            <span>ASHRAE Fundamental Psychrometrics & Solar Models</span>
+            <span>In-House ISO 13790 Multi-Node RC Thermal Solver</span>
           </div>
           <div class="flex items-center gap-3">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            <span>ISO 13790 Dynamic Multi-Node Capacitance</span>
+            <span>ASHRAE Psychrometric Coil &amp; Plant Sizing</span>
           </div>
           <div class="flex items-center gap-3">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            <span>Verified against EnergyPlus v25.1 Reference Runs</span>
+            <span>Direct EnergyPlus v25.1 (.idf) Model Generation</span>
           </div>
         </div>
       </div>
@@ -37,8 +37,8 @@
       <div class="reveal reveal-delay-1 lg:col-span-7">
         <div class="rounded-2xl border border-white/[0.08] bg-[#07090e] p-6 sm:p-8 bg-blueprint-sub">
           <div class="flex items-center justify-between text-[11px] font-mono text-slate-500 mb-6">
-            <span>SYSTEM TOPOLOGY // CALCULATION PIPELINE</span>
-            <span class="text-emerald-400">Continuous Evaluation</span>
+            <span>CLEARINFRA EDITOR // IN-HOUSE ENGINE ARCHITECTURE</span>
+            <span class="text-emerald-400">Live Charrette Workflow</span>
           </div>
 
           <svg viewBox="0 0 600 310" class="w-full h-auto">
@@ -65,48 +65,48 @@
             <!-- Left Input Nodes -->
             <g transform="translate(10, 30)">
               <rect width="155" height="50" rx="8" fill="#0d131f" stroke="rgba(255,255,255,0.12)" />
-              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">3D Massing &amp; WWR</text>
-              <text x="14" y="38" fill="#64748b" font-size="9.5" font-family="JetBrains Mono">Orientation · Shading</text>
+              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">Architect's Massing</text>
+              <text x="14" y="38" fill="#64748b" font-size="9.5" font-family="JetBrains Mono">Orientation · WWR</text>
             </g>
 
             <g transform="translate(10, 130)">
               <rect width="155" height="50" rx="8" fill="#0d131f" stroke="rgba(255,255,255,0.12)" />
-              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">8,760 Weather Data</text>
+              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">8,760 Weather File</text>
               <text x="14" y="38" fill="#64748b" font-size="9.5" font-family="JetBrains Mono">DBT · WBT · Solar DNI</text>
             </g>
 
             <g transform="translate(10, 230)">
               <rect width="155" height="50" rx="8" fill="#0d131f" stroke="rgba(255,255,255,0.12)" />
-              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">Envelope &amp; Plant</text>
-              <text x="14" y="38" fill="#64748b" font-size="9.5" font-family="JetBrains Mono">U-Value · SHGC · COP</text>
+              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">Material &amp; Cost DB</text>
+              <text x="14" y="38" fill="#64748b" font-size="9.5" font-family="JetBrains Mono">U-Value · SHGC · INR</text>
             </g>
 
             <!-- Central Solver Kernel Node -->
             <g transform="translate(245, 95)">
               <rect width="140" height="120" rx="12" fill="#0d1817" stroke="rgba(16, 185, 129, 0.45)" stroke-width="1.5" />
-              <text x="70" y="38" text-anchor="middle" fill="#10b981" font-size="9.5" font-family="JetBrains Mono">SOLVER KERNEL</text>
-              <text x="70" y="60" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">Multi-Node RC</text>
-              <text x="70" y="77" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">+ Psychrometrics</text>
-              <text x="70" y="100" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="JetBrains Mono">Hourly Heat Balance</text>
+              <text x="70" y="38" text-anchor="middle" fill="#10b981" font-size="9" font-family="JetBrains Mono">PROPRIETARY ENGINE</text>
+              <text x="70" y="60" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">Clearinfra</text>
+              <text x="70" y="77" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">Physics Kernel</text>
+              <text x="70" y="100" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="JetBrains Mono">RC + Psychrometrics</text>
             </g>
 
             <!-- Right Output Nodes -->
             <g transform="translate(445, 30)">
               <rect width="145" height="50" rx="8" fill="#0d131f" stroke="rgba(255,255,255,0.12)" />
-              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">EPI &amp; HVAC Loads</text>
-              <text x="14" y="38" fill="#10b981" font-size="9.5" font-family="JetBrains Mono">kWh/m² · Peak TR</text>
+              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">CAPEX &amp; Load Study</text>
+              <text x="14" y="38" fill="#10b981" font-size="9.5" font-family="JetBrains Mono">Peak TR · Payback</text>
             </g>
 
             <g transform="translate(445, 130)">
               <rect width="145" height="50" rx="8" fill="#0d131f" stroke="rgba(255,255,255,0.12)" />
-              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">Code Verification</text>
+              <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">Code Submittals</text>
               <text x="14" y="38" fill="#10b981" font-size="9.5" font-family="JetBrains Mono">NBC 2016 · ECBC</text>
             </g>
 
             <g transform="translate(445, 230)">
               <rect width="145" height="50" rx="8" fill="#0d131f" stroke="rgba(255,255,255,0.12)" />
               <text x="14" y="22" fill="#e2e8f0" font-size="11" font-weight="600">EnergyPlus Model</text>
-              <text x="14" y="38" fill="#38bdf8" font-size="9.5" font-family="JetBrains Mono">Verified .idf Export</text>
+              <text x="14" y="38" fill="#38bdf8" font-size="9.5" font-family="JetBrains Mono">Auditable .idf File</text>
             </g>
           </svg>
         </div>

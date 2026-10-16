@@ -1,48 +1,48 @@
 ---
 const workflows = [
   {
-    aspect: "Design Stage Timing",
-    postDesign: "Evaluated after architectural massing and facade geometry are largely fixed",
-    integrated: "Evaluated during early concept design while massing and glazing are still fluid"
+    aspect: "Design Review Cadence",
+    conventional: "Consultants take 2–3 weeks offline to build thermal models and return static PDF reports",
+    clearinfra: "Our engineers join your design meetings with our proprietary engine—testing massing and glazing options live"
   },
   {
-    aspect: "Iteration Cycle",
-    postDesign: "Manual model translation between CAD, thermal tools, and cost spreadsheets",
-    integrated: "Immediate parameter updates across thermal, daylight, and capital cost models"
+    aspect: "Capital & Cost Alignment",
+    conventional: "Sustainability recommendations often conflict with project budgets during late-stage value engineering",
+    clearinfra: "Every envelope and HVAC recommendation is paired immediately with Indian market CAPEX and payback calculations"
   },
   {
-    aspect: "Code Verification",
-    postDesign: "Periodic compliance checks against ECBC and NBC tables",
-    integrated: "Continuous verification of U-values, SHGC, WWR, and EPI thresholds"
+    aspect: "Code & Rating Compliance",
+    conventional: "NBC 2016 and ECBC checks treated as a post-design documentation exercise",
+    clearinfra: "Continuous verification of U-values, SHGC, WWR, and EPI thresholds from concept design onward"
   },
   {
-    aspect: "Engineering Hand-off",
-    postDesign: "Static PDF reports requiring re-modeling for detailed simulation",
-    integrated: "Clean EnergyPlus (.idf) export and full formula-level traceability"
+    aspect: "Deliverables & Auditability",
+    conventional: "Disconnected spreadsheets and opaque simulation assumptions",
+    clearinfra: "Full formula-level engineering reports alongside validated EnergyPlus (.idf) simulation models"
   }
 ];
 ---
 
-<section id="standards" class="py-24 bg-[#07090e] border-t border-white/[0.06] relative">
+<section id="workflow" class="py-24 bg-[#07090e] border-t border-white/[0.06] relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="reveal max-w-2xl mb-14 space-y-3">
-      <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">Workflow & Standards</span>
+      <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">How We Work</span>
       <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
-        Moving analysis from post-design audit to early design exploration.
+        Live engineering charrettes, not weeks-late reports.
       </h2>
       <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
-        Clearinfra complements detailed engineering workflows by resolving envelope, orientation, and plant sizing questions early—reducing rework downstream.
+        Because we own our underlying simulation technology, our consulting engagements operate as interactive working sessions rather than slow, disconnected hand-offs.
       </p>
     </div>
 
     <!-- Clean Workflow Table -->
     <div class="reveal rounded-2xl border border-white/[0.08] bg-[#0b0f17] overflow-hidden">
       <div class="grid grid-cols-1 md:grid-cols-12 bg-[#07090e] px-6 py-4 border-b border-white/[0.06] text-xs font-mono uppercase tracking-wider text-slate-400">
-        <div class="md:col-span-3">Dimension</div>
-        <div class="hidden md:block md:col-span-4">Conventional Post-Design Audit</div>
+        <div class="md:col-span-3">Engagement Dimension</div>
+        <div class="hidden md:block md:col-span-4">Conventional Consulting</div>
         <div class="hidden md:flex md:col-span-5 text-emerald-400 items-center gap-2">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-          <span>Early-Stage Clearinfra Workflow</span>
+          <span>Clearinfra Practice (With Proprietary Engine)</span>
         </div>
       </div>
 
@@ -53,12 +53,12 @@ const workflows = [
               {row.aspect}
             </div>
             <div class="md:col-span-4 text-xs sm:text-sm text-slate-400 leading-relaxed">
-              <span class="md:hidden text-[10px] font-mono uppercase text-slate-500 block mb-1">Conventional:</span>
-              {row.postDesign}
+              <span class="md:hidden text-[10px] font-mono uppercase text-slate-500 block mb-1">Conventional Consulting:</span>
+              {row.conventional}
             </div>
             <div class="md:col-span-5 text-xs sm:text-sm text-slate-200 leading-relaxed">
-              <span class="md:hidden text-[10px] font-mono uppercase text-emerald-400 block mb-1">With Clearinfra:</span>
-              {row.integrated}
+              <span class="md:hidden text-[10px] font-mono uppercase text-emerald-400 block mb-1">Clearinfra Practice:</span>
+              {row.clearinfra}
             </div>
           </div>
         ))}

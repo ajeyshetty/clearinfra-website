@@ -7,12 +7,12 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         <!-- Left Copy -->
         <div class="lg:col-span-5 space-y-5">
-          <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">Get in Touch</span>
+          <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">Engage Our Practice</span>
           <h2 class="text-3xl font-semibold text-white tracking-tight leading-tight">
-            Evaluate Clearinfra on an upcoming project.
+            Partner with Clearinfra on your next building project.
           </h2>
           <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
-            We partner with architectural practices, MEP engineering teams, and real estate developers across India to model building performance during concept and schematic design.
+            Whether you are designing a commercial office tower, institutional campus, or high-density residential development, our engineering team can join at concept stage or lead full NBC/ECBC compliance and HVAC value engineering.
           </p>
 
           <div class="pt-4 space-y-3 text-sm text-slate-300 font-mono">
@@ -21,7 +21,7 @@
               <a href="mailto:contact@clearinfra.in" class="text-emerald-400 hover:underline">contact@clearinfra.in</a>
             </div>
             <div class="flex items-center gap-3">
-              <span class="text-slate-500">Base</span>
+              <span class="text-slate-500">Practice</span>
               <span>Bengaluru, India</span>
             </div>
           </div>
@@ -57,38 +57,38 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label for="f-org" class="block text-xs font-mono text-slate-400 mb-1.5">Organization</label>
+                <label for="f-org" class="block text-xs font-mono text-slate-400 mb-1.5">Firm / Developer</label>
                 <input
                   id="f-org"
                   name="org"
                   type="text"
-                  placeholder="Firm or company name"
+                  placeholder="Organization name"
                   class="w-full rounded-lg bg-[#0d131f] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
                 />
               </div>
               <div>
-                <label for="f-discipline" class="block text-xs font-mono text-slate-400 mb-1.5">Discipline</label>
+                <label for="f-typology" class="block text-xs font-mono text-slate-400 mb-1.5">Project Typology</label>
                 <select
-                  id="f-discipline"
-                  name="discipline"
+                  id="f-typology"
+                  name="typology"
                   class="w-full rounded-lg bg-[#0d131f] border border-white/10 px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors"
                 >
-                  <option value="Architecture & Urban Design">Architecture &amp; Urban Design</option>
-                  <option value="MEP & Building Physics">MEP &amp; Building Physics</option>
-                  <option value="Real Estate Development">Real Estate Development</option>
-                  <option value="Sustainability & ESG">Sustainability &amp; ESG</option>
-                  <option value="Research & Academia">Research &amp; Academia</option>
+                  <option value="Commercial Office / IT Park">Commercial Office / IT Park</option>
+                  <option value="Institutional / University Campus">Institutional / Campus</option>
+                  <option value="High-Density Residential / Mixed-Use">Residential / Mixed-Use</option>
+                  <option value="Hospitality / Healthcare">Hospitality / Healthcare</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
             </div>
 
             <div>
-              <label for="f-notes" class="block text-xs font-mono text-slate-400 mb-1.5">Project Context (Optional)</label>
+              <label for="f-notes" class="block text-xs font-mono text-slate-400 mb-1.5">Project Location, Stage &amp; Scope</label>
               <textarea
                 id="f-notes"
                 name="notes"
                 rows="3"
-                placeholder="Briefly describe your building typology, location, or simulation needs..."
+                placeholder="Tell us about your project city, approximate built-up area, design stage, or compliance goals..."
                 class="w-full rounded-lg bg-[#0d131f] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
               ></textarea>
             </div>
@@ -98,13 +98,13 @@
                 type="submit"
                 class="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg text-sm font-medium bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-colors duration-200 cursor-pointer"
               >
-                <span>Send Inquiry</span>
+                <span>Discuss Project Scope</span>
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </button>
               <span id="form-feedback" class="text-xs font-mono text-emerald-400 hidden">
-                Opening your email client to send inquiry...
+                Opening your email client to send project inquiry...
               </span>
             </div>
           </form>
@@ -124,12 +124,12 @@
     const name = data.get('name') || '';
     const email = data.get('email') || '';
     const org = data.get('org') || '';
-    const discipline = data.get('discipline') || '';
+    const typology = data.get('typology') || '';
     const notes = data.get('notes') || '';
 
-    const subject = encodeURIComponent(`Clearinfra Walkthrough Inquiry — ${org || name}`);
+    const subject = encodeURIComponent(`Clearinfra Consulting Inquiry — ${org || name}`);
     const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nOrganization: ${org}\nDiscipline: ${discipline}\n\nContext:\n${notes}`
+      `Name: ${name}\nEmail: ${email}\nFirm / Developer: ${org}\nProject Typology: ${typology}\n\nProject Scope & Location:\n${notes}`
     );
 
     if (feedback) {
