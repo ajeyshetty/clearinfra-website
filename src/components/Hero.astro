@@ -217,7 +217,7 @@
                     type="range"
                     min="20"
                     max="70"
-                    step="5"
+                    step="1"
                     value="40"
                     class="ci-slider"
                   />
@@ -386,17 +386,29 @@
       }
     }
 
-    const bandHeight = Math.max(4, Math.round((currentWwr / 70) * 19));
+    function updateSliderTrack(val: number) {
+      if (!wwrSlider) return;
+      const pct = Math.max(0, Math.min(100, ((val - 20) / (70 - 20)) * 100));
+      wwrSlider.style.background = `linear-gradient(to right, #10b981 0%, #10b981 ${pct}%, rgba(255, 255, 255, 0.12) ${pct}%, rgba(255, 255, 255, 0.12) 100%)`;
+    }
+
+    updateSliderTrack(currentWwr);
+
+    // Continuous sub-pixel scaling for fluid 3D SVG building facade animation
+    const bandHeight = Math.max(3.5, ((currentWwr / 70) * 19));
+    const bandHeightFixed = Number(bandHeight.toFixed(2));
     leftBands.forEach((poly, i) => {
       const yTop = baseFloorsY[i];
-      const yBot = yTop + bandHeight;
-      poly.setAttribute('points', `166,${yTop} 254,${yTop + 41} 254,${yBot + 41} 166,${yBot}`);
+      const yBot = Number((yTop + bandHeightFixed).toFixed(2));
+      const yBotAngle = Number((yBot + 41).toFixed(2));
+      poly.setAttribute('points', `166,${yTop} 254,${yTop + 41} 254,${yBotAngle} 166,${yBot}`);
       poly.setAttribute('fill', g.colorLeft);
     });
     rightBands.forEach((poly, i) => {
       const yTop = baseFloorsY[i];
-      const yBot = yTop + bandHeight;
-      poly.setAttribute('points', `354,${yTop} 266,${yTop + 41} 266,${yBot + 41} 354,${yBot}`);
+      const yBot = Number((yTop + bandHeightFixed).toFixed(2));
+      const yBotAngle = Number((yBot + 41).toFixed(2));
+      poly.setAttribute('points', `354,${yTop} 266,${yTop + 41} 266,${yBotAngle} 354,${yBot}`);
       poly.setAttribute('fill', g.colorRight);
     });
   }
@@ -406,9 +418,14 @@
     updateSimulation();
   });
 
+  let animFrame: number | null = null;
   wwrSlider?.addEventListener('input', (e) => {
-    currentWwr = parseInt((e.target as HTMLInputElement).value, 10);
-    updateSimulation();
+    const rawVal = parseFloat((e.target as HTMLInputElement).value);
+    currentWwr = Math.round(rawVal);
+    if (animFrame) cancelAnimationFrame(animFrame);
+    animFrame = requestAnimationFrame(() => {
+      updateSimulation();
+    });
   });
 
   glazingBtns.forEach((btn) => {
@@ -421,4 +438,7 @@
       updateSimulation();
     });
   });
+
+  // Initial call to paint track gradient
+  updateSimulation();
 </script>

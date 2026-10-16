@@ -112,6 +112,10 @@ input[type="range"].ci-slider::-webkit-slider-thumb:hover {
   background: #34d399;
 }
 
+.wwr-band-left, .wwr-band-right {
+  transition: fill 0.25s ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
