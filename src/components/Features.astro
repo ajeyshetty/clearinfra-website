@@ -62,7 +62,102 @@ const services = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+    <!-- MOBILE SNAP-SCROLL TOUCH DECK (< 768px) -->
+    <div class="md:hidden">
+      <!-- Status & Swipe Hint -->
+      <div class="flex items-center justify-between mb-3 px-1 text-slate-500 font-mono text-[10px]">
+        <div class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span id="service-deck-counter" class="font-semibold text-slate-700">01 / 06 PRACTICES</span>
+        </div>
+        <div class="flex items-center gap-1 text-[11px] text-slate-400">
+          <span class="text-[9px] uppercase tracking-wider">Swipe deck</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <!-- Snap Track with peek on right -->
+      <div 
+        id="service-carousel"
+        class="flex gap-3.5 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scrollbar-none -mx-6 px-6"
+        style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch;"
+      >
+        {services.map((item, idx) => (
+          <div 
+            data-service-card={idx}
+            class="snap-center shrink-0 w-[84vw] max-w-[320px] rounded-xl bg-white border border-slate-900/10 p-5 shadow-xs flex flex-col justify-between text-left"
+          >
+            <div>
+              <!-- Top index row -->
+              <div class="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-900/[0.06]">
+                <span class="text-xs font-mono font-medium text-slate-400 shrink-0">
+                  {item.num}
+                </span>
+                <span class="text-[10px] font-mono text-emerald-700 font-semibold tracking-wider uppercase text-right">
+                  {item.phase}
+                </span>
+              </div>
+
+              <!-- Title -->
+              <h3 class="text-base font-semibold text-slate-900 mb-2 leading-snug">
+                {item.title}
+              </h3>
+
+              <!-- Description -->
+              <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                {item.description}
+              </p>
+            </div>
+
+            <!-- Deliverable -->
+            <div class="mt-4 pt-3.5 border-t border-slate-900/[0.07] flex flex-col gap-1 text-[10px] font-mono">
+              <div class="flex items-center gap-1.5 text-emerald-700 font-semibold uppercase tracking-wider text-[9px]">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+                <span>Target Deliverable</span>
+              </div>
+              <div class="text-slate-900 font-medium text-xs leading-snug">
+                {item.deliverable}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Controls: Dynamic Dot Pills + Prev/Next Buttons -->
+      <div class="flex items-center justify-between pt-2 px-1">
+        <div class="flex items-center gap-1.5" id="service-dots">
+          {services.map((_, idx) => (
+            <button
+              type="button"
+              data-dot-index={idx}
+              class={`service-dot h-1.5 rounded-full transition-all duration-200 ${idx === 0 ? 'w-5 bg-emerald-600' : 'w-1.5 bg-slate-300'}`}
+              aria-label={`Jump to service ${idx + 1}`}
+            ></button>
+          ))}
+        </div>
+        <div class="flex items-center gap-1.5">
+          <button
+            type="button"
+            id="service-prev-btn"
+            class="w-8 h-8 rounded-lg border border-slate-900/10 bg-white text-slate-600 hover:text-slate-900 flex items-center justify-center text-xs shadow-xs transition-colors"
+            aria-label="Previous service"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            id="service-next-btn"
+            class="w-8 h-8 rounded-lg border border-slate-900/10 bg-white text-slate-600 hover:text-slate-900 flex items-center justify-center text-xs shadow-xs transition-colors"
+            aria-label="Next service"
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESKTOP / TABLET GRID (>= 768px) -->
+    <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
       {services.map((item, idx) => (
         <div class={`reveal reveal-delay-${idx % 3} group rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/50 p-5 sm:p-7 shadow-xs hover:shadow-xl hover:shadow-emerald-950/5 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between text-left`}>
           <div>
@@ -102,3 +197,90 @@ const services = [
     </div>
   </div>
 </section>
+
+<script>
+  const carousel = document.getElementById('service-carousel');
+  const counter = document.getElementById('service-deck-counter');
+  const dots = document.querySelectorAll('.service-dot');
+  const prevBtn = document.getElementById('service-prev-btn') as HTMLButtonElement | null;
+  const nextBtn = document.getElementById('service-next-btn') as HTMLButtonElement | null;
+  const cards = document.querySelectorAll<HTMLElement>('[data-service-card]');
+
+  let currentIndex = 0;
+  const total = cards.length;
+
+  function updateActiveCard(index: number) {
+    if (index < 0 || index >= total) return;
+    currentIndex = index;
+
+    if (counter) {
+      counter.textContent = `0${currentIndex + 1} / 0${total} PRACTICES`;
+    }
+
+    dots.forEach((dot, idx) => {
+      if (idx === currentIndex) {
+        dot.className = 'service-dot h-1.5 rounded-full transition-all duration-200 w-5 bg-emerald-600';
+      } else {
+        dot.className = 'service-dot h-1.5 rounded-full transition-all duration-200 w-1.5 bg-slate-300';
+      }
+    });
+  }
+
+  function scrollToCard(index: number) {
+    if (index < 0 || index >= total || !carousel) return;
+    const targetCard = cards[index];
+    if (targetCard) {
+      targetCard.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      updateActiveCard(index);
+    }
+  }
+
+  // Handle native scroll
+  if (carousel) {
+    let scrollTimeout: number;
+    carousel.addEventListener('scroll', () => {
+      window.clearTimeout(scrollTimeout);
+      scrollTimeout = window.setTimeout(() => {
+        const scrollLeft = carousel.scrollLeft;
+        let closestIndex = 0;
+        let minDiff = Infinity;
+        cards.forEach((card, idx) => {
+          const cardLeft = card.offsetLeft - carousel.offsetLeft;
+          const diff = Math.abs(cardLeft - scrollLeft);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestIndex = idx;
+          }
+        });
+        updateActiveCard(closestIndex);
+      }, 50);
+    }, { passive: true });
+  }
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const idx = Number(dot.getAttribute('data-dot-index'));
+      scrollToCard(idx);
+    });
+  });
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        scrollToCard(currentIndex - 1);
+      } else {
+        scrollToCard(total - 1);
+      }
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < total - 1) {
+        scrollToCard(currentIndex + 1);
+      } else {
+        scrollToCard(0);
+      }
+    });
+  }
+</script>

@@ -42,8 +42,81 @@ const workflows = [
       </div>
     </div>
 
-    <!-- Option A: Refined Architectural Monograph Matrix -->
-    <div class="reveal rounded-2xl border border-slate-900/12 bg-white shadow-sm overflow-hidden">
+    <!-- MOBILE COMPARISON EXPERIENCE (< 768px) -->
+    <div class="md:hidden space-y-4">
+      <!-- Segmented View Mode Switcher -->
+      <div class="flex items-center p-1 bg-slate-900/[0.05] border border-slate-900/10 rounded-xl">
+        <button
+          type="button"
+          id="wf-mode-clearinfra"
+          class="wf-mode-btn flex-1 py-2 px-2 rounded-lg text-[11px] font-mono font-semibold transition-all duration-200 bg-white text-emerald-950 shadow-xs border border-emerald-600/30 flex items-center justify-center gap-1.5"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+          <span>Clearinfra Practice</span>
+        </button>
+        <button
+          type="button"
+          id="wf-mode-conventional"
+          class="wf-mode-btn flex-1 py-2 px-2 rounded-lg text-[11px] font-mono font-medium text-slate-500 hover:text-slate-800 transition-all duration-200 flex items-center justify-center gap-1.5"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0 opacity-60"></span>
+          <span>Conventional</span>
+        </button>
+      </div>
+
+      <!-- Clearinfra Practice View (Default Active) -->
+      <div id="wf-panel-clearinfra" class="space-y-3 transition-opacity duration-200">
+        {workflows.map((row, idx) => (
+          <div class="rounded-xl bg-white border border-emerald-600/30 p-4.5 shadow-xs text-left relative overflow-hidden pl-5">
+            <div class="absolute top-0 left-0 bottom-0 w-1.5 bg-emerald-500"></div>
+            <div class="flex items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-slate-900/[0.06]">
+              <span class="text-xs font-mono font-semibold text-slate-400">0{idx + 1}</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-800 border border-emerald-600/20 font-semibold">
+                Augmented Speed
+              </span>
+            </div>
+            <h3 class="text-sm font-semibold text-slate-900 mb-1.5 leading-snug">
+              {row.aspect}
+            </h3>
+            <p class="text-xs text-slate-800 font-medium leading-relaxed mb-2.5">
+              {row.clearinfra}
+            </p>
+            <div class="pt-2.5 border-t border-slate-900/[0.06] text-[10px] font-mono text-slate-500 flex items-center gap-1.5">
+              <span class="text-slate-400 shrink-0">Legacy:</span>
+              <span class="text-slate-600 truncate">{row.conventional}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Conventional Consulting View -->
+      <div id="wf-panel-conventional" class="hidden space-y-3 transition-opacity duration-200">
+        {workflows.map((row, idx) => (
+          <div class="rounded-xl bg-slate-50 border border-slate-300/80 p-4.5 shadow-xs text-left relative overflow-hidden pl-5">
+            <div class="absolute top-0 left-0 bottom-0 w-1.5 bg-slate-400"></div>
+            <div class="flex items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-slate-900/[0.06]">
+              <span class="text-xs font-mono font-semibold text-slate-400">0{idx + 1}</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 font-semibold">
+                Legacy Bottleneck
+              </span>
+            </div>
+            <h3 class="text-sm font-semibold text-slate-900 mb-1.5 leading-snug">
+              {row.aspect}
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-2.5">
+              {row.conventional}
+            </p>
+            <div class="pt-2.5 border-t border-slate-900/[0.06] text-[10px] font-mono text-emerald-700 flex items-center gap-1.5 font-semibold">
+              <span class="shrink-0">CI Advantage:</span>
+              <span class="truncate">{row.clearinfra}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- DESKTOP / TABLET ARCHITECTURAL MONOGRAPH MATRIX (>= 768px) -->
+    <div class="hidden md:block reveal rounded-2xl border border-slate-900/12 bg-white shadow-sm overflow-hidden">
       <!-- Matrix Header on Refined Architectural Tone -->
       <div class="grid grid-cols-1 md:grid-cols-12 bg-[#EFECE6]/70 border-b border-slate-900/10 text-xs font-mono uppercase tracking-wider">
         <div class="md:col-span-3 px-5 sm:px-8 py-4 sm:py-4.5 text-slate-700 font-semibold">
@@ -90,3 +163,24 @@ const workflows = [
     </div>
   </div>
 </section>
+
+<script>
+  const btnClearinfra = document.getElementById('wf-mode-clearinfra');
+  const btnConventional = document.getElementById('wf-mode-conventional');
+  const panelClearinfra = document.getElementById('wf-panel-clearinfra');
+  const panelConventional = document.getElementById('wf-panel-conventional');
+
+  btnClearinfra?.addEventListener('click', () => {
+    btnClearinfra.className = 'wf-mode-btn flex-1 py-2 px-2 rounded-lg text-[11px] font-mono font-semibold transition-all duration-200 bg-white text-emerald-950 shadow-xs border border-emerald-600/30 flex items-center justify-center gap-1.5';
+    btnConventional!.className = 'wf-mode-btn flex-1 py-2 px-2 rounded-lg text-[11px] font-mono font-medium text-slate-500 hover:text-slate-800 transition-all duration-200 flex items-center justify-center gap-1.5';
+    panelClearinfra?.classList.remove('hidden');
+    panelConventional?.classList.add('hidden');
+  });
+
+  btnConventional?.addEventListener('click', () => {
+    btnConventional.className = 'wf-mode-btn flex-1 py-2 px-2 rounded-lg text-[11px] font-mono font-semibold transition-all duration-200 bg-white text-slate-900 shadow-xs border border-slate-300 flex items-center justify-center gap-1.5';
+    btnClearinfra!.className = 'wf-mode-btn flex-1 py-2 px-2 rounded-lg text-[11px] font-mono font-medium text-slate-500 hover:text-slate-800 transition-all duration-200 flex items-center justify-center gap-1.5';
+    panelConventional?.classList.remove('hidden');
+    panelClearinfra?.classList.add('hidden');
+  });
+</script>

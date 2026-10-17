@@ -29,17 +29,138 @@
       <a href="#workflow" class="hover:text-white transition-colors whitespace-nowrap">Methodology</a>
     </nav>
 
-    <!-- Single Refined CTA -->
-    <div class="flex items-center shrink-0">
+    <!-- Right Actions: CTA + Mobile Hamburger -->
+    <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
       <a
         href="#contact"
-        class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-[#1C2536] hover:bg-[#232F44] text-white border border-white/15 hover:border-emerald-500/40 shadow-sm transition-all duration-200 whitespace-nowrap shrink-0"
+        class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-[#1C2536] hover:bg-[#232F44] text-white border border-white/15 hover:border-emerald-500/40 shadow-sm transition-all duration-200 whitespace-nowrap shrink-0"
       >
         <span>Discuss a Project</span>
         <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
       </a>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button
+        type="button"
+        id="mobile-nav-toggle"
+        class="lg:hidden p-1.5 sm:p-2 rounded-lg text-slate-300 hover:text-white border border-white/12 bg-[#1C2536] hover:bg-[#232F44] transition-colors flex items-center justify-center shrink-0"
+        aria-label="Toggle Navigation Menu"
+        aria-expanded="false"
+      >
+        <svg id="hamburger-icon" class="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="close-icon" class="w-4.5 h-4.5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Architectural Mobile Navigation Drawer (< lg) -->
+  <div
+    id="mobile-nav-drawer"
+    class="hidden lg:hidden border-t border-white/10 bg-[#0F141E]/98 backdrop-blur-2xl px-5 sm:px-8 py-4 transition-all duration-200 shadow-2xl"
+  >
+    <div class="space-y-1">
+      <span class="text-[9px] font-mono uppercase tracking-widest text-slate-500 block mb-2 px-3">
+        Navigation Index // 01 — 05
+      </span>
+      
+      <a
+        href="#services"
+        class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-xs sm:text-sm font-medium text-slate-200 hover:text-white hover:bg-white/[0.05] transition-colors"
+      >
+        <div class="flex items-center gap-2.5">
+          <span class="text-xs font-mono text-emerald-400 font-semibold">01</span>
+          <span>Advisory Services</span>
+        </div>
+        <span class="text-[10px] font-mono text-slate-500 uppercase">Consulting</span>
+      </a>
+
+      <a
+        href="#engine"
+        class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-xs sm:text-sm font-medium text-slate-200 hover:text-white hover:bg-white/[0.05] transition-colors"
+      >
+        <div class="flex items-center gap-2.5">
+          <span class="text-xs font-mono text-emerald-400 font-semibold">02</span>
+          <span>Core Technology</span>
+        </div>
+        <span class="text-[10px] font-mono text-slate-500 uppercase">Topology</span>
+      </a>
+
+      <a
+        href="#compliance"
+        class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-xs sm:text-sm font-medium text-slate-200 hover:text-white hover:bg-white/[0.05] transition-colors"
+      >
+        <div class="flex items-center gap-2.5">
+          <span class="text-xs font-mono text-emerald-400 font-semibold">03</span>
+          <span>NBC &amp; ECBC Compliance</span>
+        </div>
+        <span class="text-[10px] font-mono text-slate-500 uppercase">Graph-RAG</span>
+      </a>
+
+      <a
+        href="#workflow"
+        class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-xs sm:text-sm font-medium text-slate-200 hover:text-white hover:bg-white/[0.05] transition-colors"
+      >
+        <div class="flex items-center gap-2.5">
+          <span class="text-xs font-mono text-emerald-400 font-semibold">04</span>
+          <span>Practice Methodology</span>
+        </div>
+        <span class="text-[10px] font-mono text-slate-500 uppercase">Workflow</span>
+      </a>
+
+      <a
+        href="#contact"
+        class="mobile-nav-link flex items-center justify-between px-3 py-2.5 rounded-lg text-xs sm:text-sm font-medium text-emerald-300 hover:bg-emerald-500/10 transition-colors"
+      >
+        <div class="flex items-center gap-2.5">
+          <span class="text-xs font-mono text-emerald-400 font-semibold">05</span>
+          <span>Engage Practice / Contact</span>
+        </div>
+        <span class="text-[10px] font-mono text-emerald-400">Inquiry →</span>
+      </a>
+    </div>
+
+    <div class="mt-3.5 pt-3 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-slate-400 px-3">
+      <span>Clearinfra Studio v2.4</span>
+      <span class="text-emerald-400">Bengaluru, IN</span>
     </div>
   </div>
 </header>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-nav-toggle');
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const navLinks = document.querySelectorAll('.mobile-nav-link');
+
+  let isOpen = false;
+
+  function toggleMenu() {
+    isOpen = !isOpen;
+    if (isOpen) {
+      drawer?.classList.remove('hidden');
+      hamburgerIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      toggleBtn?.setAttribute('aria-expanded', 'true');
+    } else {
+      drawer?.classList.add('hidden');
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      toggleBtn?.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  toggleBtn?.addEventListener('click', toggleMenu);
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      if (isOpen) toggleMenu();
+    });
+  });
+</script>
