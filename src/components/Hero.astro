@@ -322,24 +322,22 @@
             </div>
           </div>
 
-          <!-- CI Agent Diagnostic Bar (Illustrative Envelope Sensitivity) -->
-          <div class="px-4 sm:px-5 py-2.5 sm:py-2 bg-[#10151F] border-t border-white/[0.08] min-h-[64px] sm:min-h-[54px] sm:h-[54px] flex items-center text-xs font-mono">
-            <div class="flex items-start gap-2.5 text-slate-300 w-full">
-              <span class="px-1.5 py-0.5 rounded bg-sky-500/15 text-sky-400 border border-sky-500/30 text-[10px] font-mono font-medium shrink-0 whitespace-nowrap mt-0.5">ILLUSTRATIVE DEMO</span>
-              <span id="ai-copilot-msg" class="text-slate-300 text-[11px] leading-[17px]">
+          <!-- CI Agent Diagnostic Bar & Studio Bottom Dock -->
+          <div id="studio-bottom-dock" class="px-3 sm:px-5 py-2 sm:py-2 bg-[#10151F] border-t border-white/[0.08] min-h-[50px] sm:min-h-[54px] sm:h-[54px] flex items-center justify-between gap-2.5 text-xs font-mono shrink-0">
+            <div class="flex items-center gap-2 text-slate-300 min-w-0 flex-1">
+              <span class="px-1.5 py-0.5 rounded bg-sky-500/15 text-sky-400 border border-sky-500/30 text-[9.5px] sm:text-[10px] font-mono font-medium shrink-0 whitespace-nowrap">ILLUSTRATIVE DEMO</span>
+              <span id="ai-copilot-msg" class="text-slate-300 text-[10.5px] sm:text-[11px] leading-snug sm:leading-[17px] truncate sm:whitespace-normal">
                 Indicative envelope sensitivity: 40% WWR with Low-E DGU balances indicative thermal load and daylight estimate. Detailed compliance requires a full engine run and engineer review.
               </span>
             </div>
-          </div>
-
-          <!-- Floating Sticky Done Bar (Visible only in Full-Screen Studio Mode) -->
-          <div id="full-studio-done-bar" class="hidden sticky bottom-0 z-30 p-3 bg-[#0E1420]/95 backdrop-blur-md border-t border-white/10 mt-auto">
+            <!-- Done button visible ONLY in full-screen studio mode on mobile -->
             <button
               type="button"
               id="btn-done-mobile-studio"
-              class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-semibold flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40 transition-colors cursor-pointer"
+              class="hidden px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-semibold shrink-0 items-center gap-1.5 shadow-md shadow-emerald-950/40 transition-colors cursor-pointer"
+              aria-label="Done and return to page"
             >
-              <span>Apply &amp; Return to Page</span>
+              <span>Done</span>
               <span>✓</span>
             </button>
           </div>
@@ -1042,7 +1040,7 @@
 </script>
 
 <style>
-  /* Full-Screen Mobile CAD Studio Experience */
+  /* Full-Screen Mobile CAD Studio Experience - Strictly 100dvh, ZERO SCROLLING */
   #studio-cad-card.studio-fullscreen {
     position: fixed !important;
     inset: 0 !important;
@@ -1050,25 +1048,87 @@
     width: 100vw !important;
     height: 100vh !important;
     height: 100dvh !important;
+    max-height: 100dvh !important;
     border-radius: 0 !important;
     border: 0 !important;
     display: flex !important;
     flex-direction: column !important;
     background-color: #0c121e !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
+    overflow: hidden !important; /* STRICTLY ZERO SCROLLING */
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
+  /* Top CAD Window Header */
+  #studio-cad-card.studio-fullscreen > div:first-child {
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    padding: 0 12px !important;
+    flex-shrink: 0 !important;
+    background-color: #171E2B !important;
+  }
+
+  /* Main Grid becomes a flexible column occupying remaining screen space */
+  #studio-cad-card.studio-fullscreen > .grid {
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+  }
+
+  /* 3D Viewport Column: flex-1 to fill all upper screen area */
+  #studio-cad-card.studio-fullscreen .lg\:col-span-7 {
+    flex: 1 1 0% !important;
+    min-height: 140px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 4px 8px 2px 8px !important;
+    border: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Hide redundant outer strips in 3D column (HUD overlays already display info) */
+  #studio-cad-card.studio-fullscreen .lg\:col-span-7 > div:first-child,
+  #studio-cad-card.studio-fullscreen .lg\:col-span-7 > div:last-child {
+    display: none !important;
+  }
+
+  /* Three.js Canvas Container takes full flex space */
   #studio-cad-card.studio-fullscreen #three-container {
-    height: 40vh !important;
-    min-height: 260px !important;
-    border-radius: 0 !important;
-    border-left: 0 !important;
-    border-right: 0 !important;
+    flex: 1 1 0% !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 120px !important;
+    margin: 0 !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
   }
 
-  #studio-cad-card.studio-fullscreen #charrette-params-container {
-    display: block !important;
+  /* Controls & Readout Column: compact fixed dock at the lower section */
+  #studio-cad-card.studio-fullscreen .lg\:col-span-5 {
+    flex-shrink: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 5px 10px 4px 10px !important;
+    background-color: #121824 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    gap: 4px !important;
+    margin: 0 !important;
+  }
+
+  /* Hide redundant sub-headers to conserve vertical height */
+  #studio-cad-card.studio-fullscreen .lg\:col-span-5 > div:first-child {
+    padding: 0 !important;
+    border: 0 !important;
+    margin: 0 !important;
+    gap: 3px !important;
+  }
+
+  #studio-cad-card.studio-fullscreen .lg\:col-span-5 > div:first-child > div:first-child {
+    display: none !important; /* Hide "Indicative Envelope Tier" row */
   }
 
   #studio-cad-card.studio-fullscreen #mobile-studio-trigger-wrap {
@@ -1079,7 +1139,116 @@
     display: flex !important;
   }
 
-  #studio-cad-card.studio-fullscreen #full-studio-done-bar {
-    display: block !important;
+  /* Compact KPI Readout Cards */
+  #studio-cad-card.studio-fullscreen .lg\:col-span-5 .grid-cols-3 {
+    gap: 4px !important;
+  }
+
+  #studio-cad-card.studio-fullscreen .lg\:col-span-5 .grid-cols-3 > div {
+    padding: 2.5px 4px !important;
+    border-radius: 6px !important;
+  }
+
+  #studio-cad-card.studio-fullscreen .lg\:col-span-5 .grid-cols-3 span:nth-child(1) {
+    font-size: 8px !important;
+    line-height: 10px !important;
+  }
+
+  #studio-cad-card.studio-fullscreen .lg\:col-span-5 .grid-cols-3 span:nth-child(2) {
+    font-size: 13px !important;
+    line-height: 15px !important;
+    margin: 0 !important;
+  }
+
+  #studio-cad-card.studio-fullscreen .lg\:col-span-5 .grid-cols-3 span:nth-child(3) {
+    font-size: 7.5px !important;
+    line-height: 9px !important;
+  }
+
+  /* Charrette Parameters Container */
+  #studio-cad-card.studio-fullscreen #charrette-params-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 3px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #studio-cad-card.studio-fullscreen #charrette-params-container > div:first-child {
+    display: none !important; /* Hide "Charrette Parameters" title row */
+  }
+
+  /* Climate Chips */
+  #studio-cad-card.studio-fullscreen #charrette-params-container > div:nth-child(2) > div:first-child {
+    margin-bottom: 1px !important;
+  }
+
+  #studio-cad-card.studio-fullscreen #charrette-params-container > div:nth-child(2) span {
+    font-size: 9px !important;
+    line-height: 11px !important;
+  }
+
+  #studio-cad-card.studio-fullscreen #ctrl-climate-chips {
+    gap: 3px !important;
+  }
+
+  #studio-cad-card.studio-fullscreen .climate-chip {
+    padding: 2px 1px !important;
+    font-size: 8.5px !important;
+    border-radius: 5px !important;
+  }
+
+  /* WWR Slider */
+  #studio-cad-card.studio-fullscreen #charrette-params-container > div:nth-child(3) > div:first-child {
+    margin-bottom: 1px !important;
+  }
+
+  #studio-cad-card.studio-fullscreen #charrette-params-container > div:nth-child(3) label,
+  #studio-cad-card.studio-fullscreen #charrette-params-container > div:nth-child(3) span {
+    font-size: 9px !important;
+    line-height: 11px !important;
+  }
+
+  #studio-cad-card.studio-fullscreen #ctrl-wwr {
+    height: 3px !important;
+    margin: 1px 0 !important;
+  }
+
+  #studio-cad-card.studio-fullscreen #ctrl-wwr + div {
+    font-size: 7.5px !important;
+    margin-top: 0px !important;
+    line-height: 9px !important;
+  }
+
+  /* Glazing Buttons */
+  #studio-cad-card.studio-fullscreen #charrette-params-container > div:nth-child(4) > span {
+    font-size: 9px !important;
+    margin-bottom: 1px !important;
+    line-height: 11px !important;
+  }
+
+  #studio-cad-card.studio-fullscreen #ctrl-glazing-group {
+    gap: 3px !important;
+  }
+
+  #studio-cad-card.studio-fullscreen .glazing-btn {
+    padding: 2px 2px !important;
+    font-size: 8px !important;
+    line-height: 10px !important;
+    border-radius: 5px !important;
+  }
+
+  /* Bottom Dock & Done Button */
+  #studio-cad-card.studio-fullscreen #studio-bottom-dock {
+    height: 36px !important;
+    min-height: 36px !important;
+    max-height: 36px !important;
+    padding: 0 10px !important;
+    flex-shrink: 0 !important;
+    background-color: #0d121c !important;
+  }
+
+  #studio-cad-card.studio-fullscreen #btn-done-mobile-studio {
+    display: inline-flex !important;
   }
 </style>
