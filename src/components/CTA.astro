@@ -1,37 +1,40 @@
 ---
 ---
 
-<section id="contact" class="py-24 lg:py-28 bg-[#F7F6F2] border-t border-slate-900/10 relative">
-  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24">
+<section id="contact" class="py-8 sm:py-20 lg:py-28 bg-[#F7F6F2] border-t border-slate-900/10 relative overflow-hidden">
+  <!-- Option 2: Architectural Drafting Grid with Radial Vignette Fade -->
+  <div class="absolute inset-0 bg-architectural-grid-vignette pointer-events-none z-0" aria-hidden="true"></div>
+
+  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 relative z-10">
     <div class="reveal rounded-2xl border border-slate-900/12 bg-white p-5 sm:p-12 lg:p-16 shadow-sm">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-        <!-- Left Copy -->
-        <div class="lg:col-span-5 space-y-5">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-xs font-mono tracking-wider">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
+        <!-- Left Copy (Centered on mobile, Left-aligned on sm+) -->
+        <div class="lg:col-span-5 space-y-3.5 sm:space-y-5 text-center sm:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-[10px] sm:text-xs font-mono tracking-wider mx-auto sm:mx-0">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
             <span>ENGAGE OUR PRACTICE</span>
           </div>
-          <h2 class="text-3xl sm:text-4xl font-semibold text-slate-900 tracking-tight leading-tight text-balance">
+          <h2 class="text-[clamp(1.375rem,4.5vw,2.25rem)] sm:text-4xl font-semibold text-slate-900 tracking-tight leading-[1.15] text-balance">
             Partner with Clearinfra on your next building project.
           </h2>
-          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl mx-auto sm:mx-0">
             Whether you are designing a commercial office tower, institutional campus, or high-density residential development, our engineering team can join at concept stage or lead full NBC/ECBC compliance and HVAC value engineering.
           </p>
 
-          <div class="pt-4 space-y-3 text-sm text-slate-700 font-mono">
-            <div class="flex items-center gap-3">
-              <span class="text-slate-400 w-20 shrink-0">Email</span>
+          <div class="pt-2 sm:pt-4 space-y-2.5 sm:space-y-3 text-sm text-slate-700 font-mono">
+            <div class="flex items-center justify-center sm:justify-start gap-3">
+              <span class="text-slate-400 sm:w-20 shrink-0">Email:</span>
               <a href="mailto:contact@clearinfra.in" class="text-emerald-700 font-medium hover:underline">contact@clearinfra.in</a>
             </div>
-            <div class="flex items-center gap-3">
-              <span class="text-slate-400 w-20 shrink-0">Practice</span>
+            <div class="flex items-center justify-center sm:justify-start gap-3">
+              <span class="text-slate-400 sm:w-20 shrink-0">Practice:</span>
               <span>Bengaluru, India</span>
             </div>
           </div>
         </div>
 
-        <!-- Right Form -->
-        <div class="lg:col-span-7">
+        <!-- Right Form (Kept crisp left-aligned) -->
+        <div class="lg:col-span-7 text-left">
           <div id="form-container">
             <form id="contact-form" class="space-y-5">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -141,7 +144,7 @@
                 <button
                   id="btn-submit"
                   type="submit"
-                  class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg text-sm font-medium bg-[#131924] hover:bg-[#1A2230] text-white border border-slate-700/60 shadow-lg shadow-slate-950/15 transition-all duration-200 cursor-pointer disabled:opacity-75"
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg text-sm font-medium bg-[#131924] hover:bg-[#1A2230] text-white border border-slate-700/60 shadow-lg shadow-slate-950/15 transition-all duration-200 cursor-pointer disabled:opacity-75"
                 >
                   <span id="btn-submit-label">Discuss a Project</span>
                   <svg id="btn-submit-icon" class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -152,7 +155,7 @@
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
                 </button>
-                <span class="text-[11px] font-mono text-slate-500">
+                <span class="text-[11px] font-mono text-slate-500 text-center sm:text-left">
                   Direct inquiries: <a href="mailto:contact@clearinfra.in" class="text-slate-800 font-medium hover:text-slate-950 underline underline-offset-2">contact@clearinfra.in</a>
                 </span>
               </div>

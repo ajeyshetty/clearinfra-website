@@ -30,8 +30,18 @@
 .bg-architectural-grid {
   background-size: 48px 48px;
   background-image: 
-    linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+    linear-gradient(to right, rgba(15, 23, 42, 0.048) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.048) 1px, transparent 1px);
+}
+
+/* Option 2: Architectural Drafting Grid with Radial Vignette Mask */
+.bg-architectural-grid-vignette {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 35%, transparent 100%);
 }
 
 /* Dark CAD Viewport Grid */

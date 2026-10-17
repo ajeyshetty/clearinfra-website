@@ -1,24 +1,27 @@
 ---
 ---
 
-<section class="relative min-h-[calc(100vh-4.5rem)] flex items-center py-12 lg:py-16 bg-[#F7F6F2] overflow-hidden">
+<section class="relative min-h-[calc(100vh-4.5rem)] flex items-center py-8 sm:py-12 lg:py-16 bg-[#F7F6F2] overflow-hidden">
+  <!-- Option 2: Architectural Drafting Grid with Radial Vignette Fade -->
+  <div class="absolute inset-0 bg-architectural-grid-vignette pointer-events-none z-0" aria-hidden="true"></div>
+
   <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 relative z-10">
-    <div class="grid grid-cols-1 xl:grid-cols-12 gap-12 xl:gap-10 2xl:gap-16 items-center">
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 sm:gap-12 xl:gap-10 2xl:gap-16 items-center">
       
       <!-- Left 5 Cols: Architectural Editorial Consulting Copy on Warm Stone -->
-      <div class="xl:col-span-5 space-y-7 text-center sm:text-left max-w-3xl xl:max-w-none">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-[10px] sm:text-xs font-mono tracking-wider">
+      <div class="xl:col-span-5 space-y-4 sm:space-y-7 text-center sm:text-left max-w-3xl xl:max-w-none">
+        <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-[10px] sm:text-xs font-mono tracking-wider">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
           <span>COMPUTATIONAL BUILDING SCIENCE PRACTICE</span>
         </div>
 
-        <h1 class="text-3xl sm:text-4xl lg:text-[44px] 2xl:text-[48px] font-semibold tracking-[-0.03em] text-slate-900 leading-[1.1]">
+        <h1 class="text-[clamp(1.65rem,5.5vw,3rem)] sm:text-4xl lg:text-[44px] 2xl:text-[48px] font-semibold tracking-[-0.03em] text-slate-900 leading-[1.12]">
           <span class="block">High-performance</span>
           <span class="block">building advisory.</span>
-          <span class="block text-2xl sm:text-3xl lg:text-[32px] 2xl:text-[34px] text-slate-500 font-normal tracking-[-0.02em] mt-2">Powered by proprietary physics.</span>
+          <span class="block text-[clamp(1.15rem,3.8vw,2.125rem)] sm:text-3xl lg:text-[32px] 2xl:text-[34px] text-slate-500 font-normal tracking-[-0.02em] mt-1.5 sm:mt-2">Powered by proprietary physics.</span>
         </h1>
 
-        <p class="text-[15px] sm:text-base lg:text-[17px] text-slate-600 leading-relaxed font-normal max-w-xl mx-auto sm:mx-0">
+        <p class="text-sm sm:text-base lg:text-[17px] text-slate-600 leading-relaxed font-normal max-w-xl mx-auto sm:mx-0">
           We partner with institutional developers and architectural practices to de-risk commercial assets—resolving envelope physics, daylight autonomy, and statutory compliance in real time.
         </p>
 
@@ -270,11 +273,11 @@
             </div>
           </div>
 
-          <!-- Native AI Copilot & NBC Compliance Live Diagnostic Bar (Matte Base) -->
-          <div class="px-4 sm:px-5 py-3 bg-[#10151F] border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
-            <div class="flex items-start sm:items-center gap-2.5 text-slate-300">
-              <span class="px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px] shrink-0 whitespace-nowrap mt-0.5 sm:mt-0">CI AI AGENT</span>
-              <span id="ai-copilot-msg" class="text-slate-300 text-[11px] leading-relaxed">
+          <!-- Native CI Pilot Agent & NBC Compliance Live Diagnostic Bar (Matte Base) -->
+          <div class="px-4 sm:px-5 py-2.5 sm:py-2 bg-[#10151F] border-t border-white/[0.08] min-h-[64px] sm:min-h-[54px] sm:h-[54px] flex items-center text-xs font-mono">
+            <div class="flex items-start gap-2.5 text-slate-300 w-full">
+              <span class="px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-medium shrink-0 whitespace-nowrap mt-0.5">CI PILOT AGENT</span>
+              <span id="ai-copilot-msg" class="text-slate-300 text-[11px] leading-[17px]">
                 Optimal balance: 40% WWR with Low-E DGU meets NBC Pt.8 daylighting and ECBC+ SHGC limits.
               </span>
             </div>
@@ -830,11 +833,11 @@
       if (currentWwr > 40 && g.shgc > 0.3) {
         outBadge.textContent = 'ECBC Cl.4.3 Alert';
         outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-amber-500/15 text-amber-300 border border-amber-500/30';
-        aiMsg.textContent = `NBC/ECBC Alert: WWR ${currentWwr}% with SHGC ${g.shgc} exceeds prescriptive limit. Switch to Low-E or Selective DGU to cut ~${Math.round(coolingTr * 0.18)} TR.`;
+        aiMsg.textContent = `NBC/ECBC Alert: WWR ${currentWwr}% with SHGC ${g.shgc} exceeds code limit. Switch to Low-E/Selective DGU to cut ~${Math.round(coolingTr * 0.18)} TR.`;
       } else if (epiNum < c.baseEpi + 14) {
         outBadge.textContent = 'SuperECBC Aligned';
         outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
-        aiMsg.textContent = `SuperECBC achieved (${epi} kWh/m²·yr). Envelope minimizes chiller tonnage (${coolingTr} TR) while preserving ${sda}% daylight autonomy.`;
+        aiMsg.textContent = `SuperECBC achieved (${epi} kWh/m²·yr). Envelope minimizes chiller load (${coolingTr} TR) while preserving ${sda}% daylight autonomy.`;
       } else if (epiNum < c.baseEpi + 24) {
         outBadge.textContent = 'ECBC+ Compliant';
         outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
@@ -842,7 +845,7 @@
       } else {
         outBadge.textContent = 'ECBC Baseline';
         outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-sky-500/15 text-sky-300 border border-sky-500/30';
-        aiMsg.textContent = `Meets baseline ECBC. AI Optimizer suggests reducing WWR to 40% or upgrading glazing to lower peak cooling (${coolingTr} TR).`;
+        aiMsg.textContent = `Meets baseline ECBC. CI Pilot suggests reducing WWR to 40% or upgrading glazing to lower peak cooling (${coolingTr} TR).`;
       }
     }
 

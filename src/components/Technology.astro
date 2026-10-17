@@ -21,18 +21,21 @@ const complianceModules = [
 ];
 ---
 
-<section id="engine" class="py-24 lg:py-28 bg-[#F7F6F2] border-t border-slate-900/10 relative">
-  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 space-y-24">
+<section id="engine" class="py-8 sm:py-20 lg:py-28 bg-[#F7F6F2] border-t border-slate-900/10 relative overflow-hidden">
+  <!-- Option 2: Architectural Drafting Grid with Radial Vignette Fade -->
+  <div class="absolute inset-0 bg-architectural-grid-vignette pointer-events-none z-0" aria-hidden="true"></div>
+
+  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 space-y-8 sm:space-y-16 lg:space-y-24 relative z-10">
     
     <!-- Part 1: Proprietary Engine + Native AI Integration -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
       <!-- Left Narrative -->
-      <div class="reveal lg:col-span-5 space-y-6">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-xs font-mono tracking-wider">
+      <div class="reveal lg:col-span-5 space-y-4 sm:space-y-6 text-center sm:text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-[10px] sm:text-xs font-mono tracking-wider">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
           <span>PROPRIETARY TECHNOLOGY</span>
         </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-900 tracking-tight leading-tight text-balance">
+        <h2 class="text-[clamp(1.4rem,4.5vw,3rem)] sm:text-4xl lg:text-5xl font-semibold text-slate-900 tracking-tight leading-[1.15] text-balance">
           First-principles physics meets native agentic AI.
         </h2>
         <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
@@ -42,8 +45,8 @@ const complianceModules = [
           To change this, we built <strong class="text-slate-900 font-semibold">Clearinfra Studio</strong> in-house. It combines an hourly ISO 13790 thermal &amp; psychrometric physics engine with a <strong class="text-slate-900 font-semibold">native function-calling AI agent</strong> and proactive Pareto optimizer.
         </p>
 
-        <!-- 2 Pillar Cards on Stone -->
-        <div class="space-y-3 pt-2">
+        <!-- 2 Pillar Cards on Stone (Left-Aligned Inside Cards) -->
+        <div class="space-y-3 pt-2 text-left">
           <div class="p-4 rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/40 transition-colors shadow-2xs">
             <div class="flex items-center gap-2 mb-1.5">
               <span class="text-xs font-mono font-medium text-slate-400">01</span>
@@ -273,40 +276,40 @@ const complianceModules = [
     </div>
 
     <!-- Part 2: Dedicated NBC 2016 & ECBC Compliance Module Breakdown -->
-    <div id="compliance" class="pt-16 border-t border-slate-900/10">
-      <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-14">
-        <div class="lg:col-span-7 space-y-3">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-xs font-mono tracking-wider">
+    <div id="compliance" class="pt-8 sm:pt-16 border-t border-slate-900/10">
+      <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-3.5 sm:gap-6 lg:gap-12 items-end text-center sm:text-left mb-8 sm:mb-12 lg:mb-14">
+        <div class="lg:col-span-7 space-y-2.5 sm:space-y-3 mx-auto sm:mx-0">
+          <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-[10px] sm:text-xs font-mono tracking-wider">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
             <span>STATUTORY &amp; CODE INTELLIGENCE</span>
           </div>
-          <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-900 tracking-tight text-balance">
+          <h3 class="text-[clamp(1.4rem,4.5vw,3rem)] sm:text-4xl lg:text-5xl font-semibold text-slate-900 tracking-tight leading-[1.15] text-balance">
             Built-in NBC 2016 &amp; ECBC compliance module.
           </h3>
         </div>
-        <div class="lg:col-span-5">
+        <div class="lg:col-span-5 mx-auto sm:mx-0">
           <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
             Our proprietary engine embeds a deterministic rule evaluator alongside a Graph-RAG knowledge base of Indian building codes—verifying compliance continuously as your design evolves.
           </p>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
         {complianceModules.map((mod, idx) => (
-          <div class={`reveal reveal-delay-${idx % 3} group rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/50 p-6 sm:p-7 shadow-xs hover:shadow-xl hover:shadow-emerald-950/5 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between`}>
+          <div class={`reveal reveal-delay-${idx % 3} group rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/50 p-5 sm:p-7 shadow-xs hover:shadow-xl hover:shadow-emerald-950/5 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between text-left`}>
             <div>
               <!-- Top index row: numeral and category tag matching Features.astro -->
-              <div class="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-900/[0.06]">
-                <span class="text-xs font-mono font-medium text-slate-400">
+              <div class="flex items-center justify-between gap-2 pb-3 sm:pb-3.5 mb-3.5 sm:mb-4 border-b border-slate-900/[0.06]">
+                <span class="text-xs font-mono font-medium text-slate-400 shrink-0">
                   0{idx + 1}
                 </span>
-                <span class="text-[10px] font-mono text-emerald-700 font-semibold tracking-wider uppercase">
+                <span class="text-[10px] font-mono text-emerald-700 font-semibold tracking-wider uppercase text-right">
                   {mod.tag}
                 </span>
               </div>
 
               <!-- Title -->
-              <h4 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2.5 group-hover:text-emerald-950 transition-colors">
+              <h4 class="text-base sm:text-xl font-semibold text-slate-900 mb-2 sm:mb-2.5 group-hover:text-emerald-950 transition-colors">
                 {mod.title}
               </h4>
 
@@ -317,7 +320,7 @@ const complianceModules = [
             </div>
 
             <!-- Bottom Statutory Scope Strip: matching Features.astro deliverable anatomy -->
-            <div class="mt-6 pt-4 border-t border-slate-900/[0.07] flex flex-col gap-1.5 text-[11px] font-mono">
+            <div class="mt-4 sm:mt-6 pt-3.5 sm:pt-4 border-t border-slate-900/[0.07] flex flex-col gap-1.5 text-[11px] font-mono">
               <div class="flex items-center gap-1.5 text-emerald-700 font-semibold uppercase tracking-wider text-[10px]">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
                 <span>Statutory Scope</span>
