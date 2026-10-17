@@ -86,159 +86,171 @@ const complianceModules = [
             </div>
           </div>
 
-          <!-- MOBILE INTERACTIVE 3-STAGE PIPELINE STEPPER (< 640px) -->
-          <div class="sm:hidden space-y-3" id="mobile-topology-stepper">
-            <!-- Stage Selector Tabs -->
-            <div class="flex items-center justify-between gap-1 p-1 bg-black/40 border border-white/10 rounded-xl">
-              <button
-                type="button"
-                data-stage="1"
-                class="mobile-stage-btn flex-1 py-2 px-1 text-center rounded-lg text-[10px] font-mono tracking-wider transition-all duration-200 border text-slate-400 border-transparent hover:text-slate-200"
-              >
-                <span class="block text-[8px] opacity-70">STAGE 01</span>
-                <span class="font-semibold text-slate-300">INPUTS</span>
-              </button>
-              
-              <svg class="w-3.5 h-3.5 text-slate-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
+          <!-- MOBILE UNIFIED VERTICAL TOPOLOGY PIPELINE (< 640px) -->
+          <div class="sm:hidden space-y-2 select-none" id="mobile-topology-pipeline">
+            
+            <!-- Tier 1: Practice & BIM Inputs -->
+            <div>
+              <div class="flex items-center justify-between px-1 mb-1.5">
+                <span class="text-[9px] font-mono uppercase tracking-widest text-sky-400 font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                  01 // Practice &amp; BIM Inputs
+                </span>
+                <span class="text-[8.5px] font-mono text-slate-500">Tap node to trace</span>
+              </div>
+              <div class="grid grid-cols-3 gap-1.5">
+                <button
+                  type="button"
+                  data-mobile-node="node-massing"
+                  class="mobile-topo-node p-2 rounded-lg bg-[#111827] border border-white/10 text-left transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-400 mb-1 block"></span>
+                  <span class="text-[10px] font-semibold text-slate-100 block leading-tight">3D Massing</span>
+                  <span class="text-[8px] font-mono text-slate-400 block mt-0.5 truncate">WWR &amp; Geom</span>
+                </button>
 
-              <button
-                type="button"
-                data-stage="2"
-                class="mobile-stage-btn flex-1 py-2 px-1 text-center rounded-lg text-[10px] font-mono tracking-wider transition-all duration-200 border bg-emerald-500/15 border-emerald-500/50 text-emerald-300 shadow-sm shadow-emerald-950/40"
-              >
-                <span class="block text-[8px] text-emerald-400 font-bold">STAGE 02</span>
-                <span class="font-bold text-white">CI CORE</span>
-              </button>
+                <button
+                  type="button"
+                  data-mobile-node="node-weather"
+                  class="mobile-topo-node p-2 rounded-lg bg-[#111827] border border-white/10 text-left transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-400 mb-1 block"></span>
+                  <span class="text-[10px] font-semibold text-slate-100 block leading-tight">8,760 Climate</span>
+                  <span class="text-[8px] font-mono text-slate-400 block mt-0.5 truncate">DBT · WBT · DNI</span>
+                </button>
 
-              <svg class="w-3.5 h-3.5 text-slate-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-
-              <button
-                type="button"
-                data-stage="3"
-                class="mobile-stage-btn flex-1 py-2 px-1 text-center rounded-lg text-[10px] font-mono tracking-wider transition-all duration-200 border text-slate-400 border-transparent hover:text-slate-200"
-              >
-                <span class="block text-[8px] opacity-70">STAGE 03</span>
-                <span class="font-semibold text-slate-300">DELIVER</span>
-              </button>
+                <button
+                  type="button"
+                  data-mobile-node="node-cost"
+                  class="mobile-topo-node p-2 rounded-lg bg-[#111827] border border-white/10 text-left transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mb-1 block"></span>
+                  <span class="text-[10px] font-semibold text-slate-100 block leading-tight">Cost DB</span>
+                  <span class="text-[8px] font-mono text-slate-400 block mt-0.5 truncate">India Specs</span>
+                </button>
+              </div>
             </div>
 
-            <!-- Stage 1 Content: Project Inputs -->
-            <div id="mobile-stage-panel-1" class="mobile-stage-panel hidden space-y-2 transition-opacity duration-200">
-              <div class="flex items-center justify-between px-1">
-                <span class="text-[9px] font-mono uppercase tracking-widest text-sky-400 font-semibold">01 // Practice &amp; BIM Inputs</span>
-                <span class="text-[9px] font-mono text-slate-500">3 Ingestion Feeds</span>
+            <!-- Connector 1: Animated Dataflow Pulse Lines -->
+            <div class="flex items-center justify-around px-8 py-0.5">
+              <div class="mobile-flow-line h-3.5 w-0.5 rounded-full bg-sky-400/30 relative overflow-hidden">
+                <div class="absolute inset-x-0 top-0 h-1.5 bg-sky-400 animate-pulse"></div>
               </div>
-              <div class="grid grid-cols-1 gap-1.5">
-                <div class="px-3.5 py-2.5 rounded-lg bg-[#111827] border border-sky-500/30 flex items-center justify-between gap-2 shadow-sm">
-                  <div class="flex items-center gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-                    <span class="text-xs font-semibold text-slate-100">3D Massing &amp; WWR</span>
-                  </div>
-                  <span class="text-[10px] font-mono text-slate-400">Geometry · Orientation</span>
-                </div>
-                <div class="px-3.5 py-2.5 rounded-lg bg-[#111827] border border-sky-500/30 flex items-center justify-between gap-2 shadow-sm">
-                  <div class="flex items-center gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-                    <span class="text-xs font-semibold text-slate-100">8,760 Weather File</span>
-                  </div>
-                  <span class="text-[10px] font-mono text-slate-400">DBT · WBT · Solar DNI</span>
-                </div>
-                <div class="px-3.5 py-2.5 rounded-lg bg-[#111827] border border-sky-500/30 flex items-center justify-between gap-2 shadow-sm">
-                  <div class="flex items-center gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-                    <span class="text-xs font-semibold text-slate-100">India Cost &amp; Spec DB</span>
-                  </div>
-                  <span class="text-[10px] font-mono text-slate-400">U-Value · SHGC · INR</span>
-                </div>
+              <div class="mobile-flow-line h-3.5 w-0.5 rounded-full bg-sky-400/30 relative overflow-hidden">
+                <div class="absolute inset-x-0 top-0 h-1.5 bg-sky-400 animate-pulse"></div>
               </div>
-              <button type="button" data-goto-stage="2" class="w-full mt-1 py-1.5 px-3 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-[10px] font-mono text-slate-300 flex items-center justify-center gap-1.5 transition-colors">
-                <span>Feed Into Clearinfra Core</span>
-                <span class="text-emerald-400 font-bold">→</span>
-              </button>
+              <div class="mobile-flow-line h-3.5 w-0.5 rounded-full bg-amber-400/30 relative overflow-hidden">
+                <div class="absolute inset-x-0 top-0 h-1.5 bg-amber-400 animate-pulse"></div>
+              </div>
             </div>
 
-            <!-- Stage 2 Content: Clearinfra Core (Default Active) -->
-            <div id="mobile-stage-panel-2" class="mobile-stage-panel space-y-2 transition-opacity duration-200">
+            <!-- Tier 2: Clearinfra Core Engine Container -->
+            <div class="rounded-xl bg-[#0c1420] border border-emerald-500/40 p-2.5 space-y-1.5 shadow-lg shadow-emerald-950/20 relative">
               <div class="flex items-center justify-between px-1">
-                <span class="text-[9px] font-mono uppercase tracking-widest text-emerald-400 font-semibold">02 // Clearinfra Core Engine</span>
-                <span class="flex items-center gap-1 text-[9px] font-mono text-emerald-400">
+                <span class="text-[9px] font-mono uppercase tracking-widest text-emerald-400 font-bold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  02 // Clearinfra Core Engine
+                </span>
+                <span class="flex items-center gap-1 text-[8.5px] font-mono text-emerald-400/90">
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  Active Engine
+                  Active Kernel
                 </span>
               </div>
+
               <div class="space-y-1.5">
-                <div class="rounded-lg bg-[#111c2d] border border-sky-500/40 px-3.5 py-2.5 flex items-center justify-between gap-2 shadow-sm">
-                  <div>
-                    <span class="text-[9px] font-mono text-sky-400 uppercase tracking-wider block">Built-in AI Agent</span>
-                    <span class="text-xs font-semibold text-white block mt-0.5">27-Tool Copilot &amp; Pareto Optimizer</span>
+                <button
+                  type="button"
+                  data-mobile-node="node-agent"
+                  class="mobile-topo-node w-full rounded-lg bg-[#111c2d] border border-sky-500/40 px-3 py-2 flex items-center justify-between text-left transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                >
+                  <div class="min-w-0 pr-2">
+                    <span class="text-[8.5px] font-mono text-sky-400 uppercase tracking-wider block">Built-in AI Agent</span>
+                    <span class="text-xs font-semibold text-white block mt-0.5 truncate">27-Tool Copilot &amp; Pareto Optimizer</span>
                   </div>
-                  <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0">AI</span>
-                </div>
-
-                <div class="rounded-lg bg-[#0d1f1d] border border-emerald-500/45 px-3.5 py-2.5 flex items-center justify-between gap-2 shadow-sm">
-                  <div>
-                    <span class="text-[9px] font-mono text-emerald-400 uppercase tracking-wider block">Physics Solver</span>
-                    <span class="text-xs font-semibold text-white block mt-0.5">Multi-Node ISO 52016-1 + Psychrometric HVAC</span>
-                  </div>
-                  <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0">ISO 52016</span>
-                </div>
-
-                <div class="rounded-lg bg-[#1a1814] border border-amber-500/40 px-3.5 py-2.5 flex items-center justify-between gap-2 shadow-sm">
-                  <div>
-                    <span class="text-[9px] font-mono text-amber-400 uppercase tracking-wider block">Compliance Engine</span>
-                    <span class="text-xs font-semibold text-white block mt-0.5">NBC 2026 Graph-RAG &amp; ECBC Guidance</span>
-                  </div>
-                  <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0">RAG</span>
-                </div>
-              </div>
-              <div class="flex items-center gap-2 mt-1">
-                <button type="button" data-goto-stage="1" class="flex-1 py-1.5 px-2 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-[10px] font-mono text-slate-400 flex items-center justify-center gap-1 transition-colors">
-                  <span>← Inputs</span>
+                  <span class="text-[8.5px] font-mono px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0 font-medium">AI</span>
                 </button>
-                <button type="button" data-goto-stage="3" class="flex-1 py-1.5 px-2 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-[10px] font-mono text-emerald-300 flex items-center justify-center gap-1 transition-colors">
-                  <span>Deliverables →</span>
+
+                <button
+                  type="button"
+                  data-mobile-node="node-physics"
+                  class="mobile-topo-node w-full rounded-lg bg-[#0d1f1d] border border-emerald-500/45 px-3 py-2 flex items-center justify-between text-left transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                >
+                  <div class="min-w-0 pr-2">
+                    <span class="text-[8.5px] font-mono text-emerald-400 uppercase tracking-wider block">Physics Solver</span>
+                    <span class="text-xs font-semibold text-white block mt-0.5 truncate">Multi-Node ISO 52016-1 + Psychrometric HVAC</span>
+                  </div>
+                  <span class="text-[8.5px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0 font-medium">ISO 52016</span>
+                </button>
+
+                <button
+                  type="button"
+                  data-mobile-node="node-compliance"
+                  class="mobile-topo-node w-full rounded-lg bg-[#1a1814] border border-amber-500/40 px-3 py-2 flex items-center justify-between text-left transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                >
+                  <div class="min-w-0 pr-2">
+                    <span class="text-[8.5px] font-mono text-amber-400 uppercase tracking-wider block">Compliance Engine</span>
+                    <span class="text-xs font-semibold text-white block mt-0.5 truncate">NBC 2026 Graph-RAG &amp; ECBC Guidance</span>
+                  </div>
+                  <span class="text-[8.5px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 shrink-0 font-medium">RAG</span>
                 </button>
               </div>
             </div>
 
-            <!-- Stage 3 Content: Deliverables -->
-            <div id="mobile-stage-panel-3" class="mobile-stage-panel hidden space-y-2 transition-opacity duration-200">
-              <div class="flex items-center justify-between px-1">
-                <span class="text-[9px] font-mono uppercase tracking-widest text-emerald-400 font-semibold">03 // Engineering Deliverables</span>
-                <span class="text-[9px] font-mono text-slate-500">Statutory &amp; Financial</span>
+            <!-- Connector 2: Animated Dataflow Pulse Lines -->
+            <div class="flex items-center justify-around px-8 py-0.5">
+              <div class="mobile-flow-line h-3.5 w-0.5 rounded-full bg-emerald-400/30 relative overflow-hidden">
+                <div class="absolute inset-x-0 top-0 h-1.5 bg-emerald-400 animate-pulse"></div>
               </div>
-              <div class="grid grid-cols-1 gap-1.5">
-                <div class="px-3.5 py-2.5 rounded-lg bg-[#111827] border border-emerald-500/30 flex items-center justify-between gap-2 shadow-sm">
-                  <div class="flex items-center gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                    <span class="text-xs font-semibold text-slate-100">CAPEX &amp; Load Study</span>
-                  </div>
-                  <span class="text-[10px] font-mono text-emerald-400">Peak TR · Payback Estimate</span>
-                </div>
-                <div class="px-3.5 py-2.5 rounded-lg bg-[#111827] border border-amber-500/30 flex items-center justify-between gap-2 shadow-sm">
-                  <div class="flex items-center gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                    <span class="text-xs font-semibold text-slate-100">Statutory Submittals</span>
-                  </div>
-                  <span class="text-[10px] font-mono text-amber-400">Clause-Cited NBC 2026</span>
-                </div>
-                <div class="px-3.5 py-2.5 rounded-lg bg-[#111827] border border-sky-500/30 flex items-center justify-between gap-2 shadow-sm">
-                  <div class="flex items-center gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-                    <span class="text-xs font-semibold text-slate-100">EnergyPlus Model</span>
-                  </div>
-                  <span class="text-[10px] font-mono text-sky-400">Run-Checked .idf</span>
-                </div>
+              <div class="mobile-flow-line h-3.5 w-0.5 rounded-full bg-amber-400/30 relative overflow-hidden">
+                <div class="absolute inset-x-0 top-0 h-1.5 bg-amber-400 animate-pulse"></div>
               </div>
-              <button type="button" data-goto-stage="2" class="w-full mt-1 py-1.5 px-3 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-[10px] font-mono text-slate-300 flex items-center justify-center gap-1.5 transition-colors">
-                <span class="text-emerald-400 font-bold">←</span>
-                <span>Back to Clearinfra Core</span>
-              </button>
+              <div class="mobile-flow-line h-3.5 w-0.5 rounded-full bg-sky-400/30 relative overflow-hidden">
+                <div class="absolute inset-x-0 top-0 h-1.5 bg-sky-400 animate-pulse"></div>
+              </div>
             </div>
+
+            <!-- Tier 3: Engineering Deliverables -->
+            <div>
+              <div class="flex items-center justify-between px-1 mb-1.5">
+                <span class="text-[9px] font-mono uppercase tracking-widest text-emerald-400 font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  03 // Engineering Deliverables
+                </span>
+                <span class="text-[8.5px] font-mono text-slate-500">Statutory &amp; Financial</span>
+              </div>
+              <div class="grid grid-cols-3 gap-1.5">
+                <button
+                  type="button"
+                  data-mobile-node="node-capex"
+                  class="mobile-topo-node p-2 rounded-lg bg-[#111827] border border-white/10 text-left transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mb-1 block"></span>
+                  <span class="text-[10px] font-semibold text-slate-100 block leading-tight">CAPEX &amp; Load</span>
+                  <span class="text-[8px] font-mono text-emerald-400 block mt-0.5 truncate">Peak TR · Payback</span>
+                </button>
+
+                <button
+                  type="button"
+                  data-mobile-node="node-statutory"
+                  class="mobile-topo-node p-2 rounded-lg bg-[#111827] border border-white/10 text-left transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mb-1 block"></span>
+                  <span class="text-[10px] font-semibold text-slate-100 block leading-tight">Submittals</span>
+                  <span class="text-[8px] font-mono text-amber-400 block mt-0.5 truncate">NBC 2026 Dossier</span>
+                </button>
+
+                <button
+                  type="button"
+                  data-mobile-node="node-eplus"
+                  class="mobile-topo-node p-2 rounded-lg bg-[#111827] border border-white/10 text-left transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-400 mb-1 block"></span>
+                  <span class="text-[10px] font-semibold text-slate-100 block leading-tight">EnergyPlus</span>
+                  <span class="text-[8px] font-mono text-sky-400 block mt-0.5 truncate">Run-Checked .idf</span>
+                </button>
+              </div>
+            </div>
+
           </div>
 
           <!-- DESKTOP / TABLET HORIZONTAL SVG TOPOLOGY SCHEMATIC (>= 640px) -->
@@ -551,81 +563,59 @@ const complianceModules = [
     });
   });
 
-  // Mobile Pipeline Stepper Logic (< 640px)
-  const stageButtons = document.querySelectorAll<HTMLButtonElement>('.mobile-stage-btn');
-  const stagePanels = document.querySelectorAll<HTMLElement>('.mobile-stage-panel');
-  const gotoButtons = document.querySelectorAll<HTMLButtonElement>('[data-goto-stage]');
+  // Mobile Tap-to-Trace Pipeline Logic (< 640px)
+  const mobileNodes = document.querySelectorAll<HTMLButtonElement>('.mobile-topo-node');
+  let activeMobileNode: string | null = null;
 
-  const stageMeta: Record<string, { label: string; dotColor: string }> = {
-    '1': {
-      label: '01 // Ingestion: Massing, TMYx & Specs',
-      dotColor: '#38bdf8'
-    },
-    '2': {
-      label: '02 // Core: Physics + Agentic AI + NBC RAG',
-      dotColor: '#10b981'
-    },
-    '3': {
-      label: '03 // Deliverables: CAPEX, NBC & .idf',
-      dotColor: '#fbbf24'
+  function setMobileNodeHighlight(nodeId: string | null) {
+    if (!nodeId || activeMobileNode === nodeId) {
+      activeMobileNode = null;
+      if (statusText) statusText.textContent = defaultStatus;
+      if (statusDot) statusDot.style.backgroundColor = '#10b981';
+      mobileNodes.forEach((btn) => {
+        btn.style.opacity = '1';
+        btn.style.borderColor = '';
+        btn.style.boxShadow = '';
+      });
+      return;
     }
-  };
 
-  function setMobileStage(stageId: string) {
-    // Update Stage Buttons
-    stageButtons.forEach((btn) => {
-      const isTarget = btn.getAttribute('data-stage') === stageId;
-      if (isTarget) {
-        btn.className = 'mobile-stage-btn flex-1 py-2 px-1 text-center rounded-lg text-[10px] font-mono tracking-wider transition-all duration-200 border bg-emerald-500/15 border-emerald-500/50 text-emerald-300 shadow-sm shadow-emerald-950/40';
-        const label1 = btn.children[0] as HTMLElement;
-        const label2 = btn.children[1] as HTMLElement;
-        if (label1) {
-          label1.className = 'block text-[8px] text-emerald-400 font-bold';
-        }
-        if (label2) {
-          label2.className = 'font-bold text-white';
+    const config = traceMap[nodeId];
+    if (!config) return;
+
+    activeMobileNode = nodeId;
+    if (statusText) statusText.textContent = config.label;
+    if (statusDot) statusDot.style.backgroundColor = config.dotColor;
+
+    mobileNodes.forEach((btn) => {
+      const id = btn.getAttribute('data-mobile-node');
+      if (id && config.nodes.includes(id)) {
+        btn.style.opacity = '1';
+        if (id === nodeId) {
+          btn.style.borderColor = config.dotColor;
+          btn.style.boxShadow = `0 0 12px ${config.dotColor}50`;
+        } else {
+          btn.style.borderColor = `${config.dotColor}80`;
+          btn.style.boxShadow = `0 0 6px ${config.dotColor}25`;
         }
       } else {
-        btn.className = 'mobile-stage-btn flex-1 py-2 px-1 text-center rounded-lg text-[10px] font-mono tracking-wider transition-all duration-200 border text-slate-400 border-transparent hover:text-slate-200';
-        const label1 = btn.children[0] as HTMLElement;
-        const label2 = btn.children[1] as HTMLElement;
-        if (label1) {
-          label1.className = 'block text-[8px] opacity-70';
-        }
-        if (label2) {
-          label2.className = 'font-semibold text-slate-300';
-        }
+        btn.style.opacity = '0.28';
+        btn.style.borderColor = '';
+        btn.style.boxShadow = '';
       }
     });
-
-    // Update Stage Panels
-    stagePanels.forEach((panel) => {
-      if (panel.id === `mobile-stage-panel-${stageId}`) {
-        panel.classList.remove('hidden');
-      } else {
-        panel.classList.add('hidden');
-      }
-    });
-
-    // Update Status Header if on mobile
-    if (window.innerWidth < 640 && stageMeta[stageId]) {
-      if (statusText) statusText.textContent = stageMeta[stageId].label;
-      if (statusDot) statusDot.style.backgroundColor = stageMeta[stageId].dotColor;
-    }
   }
 
-  stageButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const stage = btn.getAttribute('data-stage');
-      if (stage) setMobileStage(stage);
+  mobileNodes.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = btn.getAttribute('data-mobile-node');
+      setMobileNodeHighlight(id);
     });
   });
 
-  gotoButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const stage = btn.getAttribute('data-goto-stage');
-      if (stage) setMobileStage(stage);
-    });
+  document.getElementById('mobile-topology-pipeline')?.addEventListener('click', () => {
+    if (activeMobileNode) setMobileNodeHighlight(null);
   });
 </script>
 
