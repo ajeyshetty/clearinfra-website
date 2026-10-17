@@ -42,17 +42,26 @@ const specs = [
     </div>
 
     <!-- Software & BIM/CAD Interoperability Pipeline Strip -->
-    <div class="mt-12 pt-7 border-t border-slate-900/10 flex flex-col xl:flex-row xl:items-center justify-between gap-4 text-xs font-mono">
-      <div class="flex items-center gap-2 text-slate-800 font-semibold text-[11px] uppercase tracking-wider">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
-        <span>Supported Formats &amp; Toolchains:</span>
-      </div>
-      <div class="flex flex-wrap items-center gap-x-3 sm:gap-x-5 gap-y-2 text-slate-600 text-xs">
-        <span class="hover:text-slate-900 transition-colors whitespace-nowrap">AutoCAD .dwg / .dxf (Import)</span>
-        <span class="text-slate-300 hidden sm:inline">·</span>
-        <span class="hover:text-slate-900 transition-colors whitespace-nowrap">EnergyPlus v25.1 (.idf Export)</span>
-        <span class="text-slate-300 hidden sm:inline">·</span>
-        <span class="hover:text-slate-900 transition-colors whitespace-nowrap">Coordinate Export for Revit / Rhino</span>
+    <div class="mt-8 sm:mt-12 pt-6 sm:pt-7 border-t border-slate-900/10">
+      <div class="rounded-xl bg-white/70 border border-slate-900/10 p-3 sm:p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-3 lg:gap-4 shadow-xs">
+        <div class="flex items-center gap-2 text-slate-800 font-mono font-semibold text-[10.5px] sm:text-[11px] uppercase tracking-wider shrink-0">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+          <span>Supported Formats &amp; Toolchains:</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 lg:flex lg:flex-wrap items-center gap-2 sm:gap-2.5 text-slate-700 text-xs font-mono">
+          <div class="flex items-center justify-between sm:justify-start gap-2 px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-xs shadow-2xs">
+            <span class="font-medium text-slate-900">AutoCAD .dwg / .dxf</span>
+            <span class="text-[9px] uppercase font-mono px-1.5 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200 font-semibold shrink-0">Import</span>
+          </div>
+          <div class="flex items-center justify-between sm:justify-start gap-2 px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-xs shadow-2xs">
+            <span class="font-medium text-slate-900">EnergyPlus v25.1</span>
+            <span class="text-[9px] uppercase font-mono px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold shrink-0">.idf Export</span>
+          </div>
+          <div class="flex items-center justify-between sm:justify-start gap-2 px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-xs shadow-2xs">
+            <span class="font-medium text-slate-900">Revit · Rhino 3D</span>
+            <span class="text-[9px] uppercase font-mono px-1.5 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-semibold shrink-0">Coordinate Export</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
