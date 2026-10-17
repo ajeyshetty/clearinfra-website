@@ -72,7 +72,7 @@
 
       <!-- Right 7 Cols: Architectural Matte CAD Viewport (Clearinfra Studio) -->
       <div id="interactive-demo" class="xl:col-span-7">
-        <div class="rounded-2xl border border-slate-700/60 ring-1 ring-white/10 bg-[#131924] text-slate-100 shadow-2xl shadow-slate-950/30 overflow-hidden">
+        <div id="studio-cad-card" class="rounded-2xl border border-slate-700/60 ring-1 ring-white/10 bg-[#131924] text-slate-100 shadow-2xl shadow-slate-950/30 overflow-hidden transition-all duration-300">
           <!-- Top CAD Window Bar (Matte Slate) -->
           <div class="flex items-center justify-between gap-3 px-4 sm:px-5 py-2.5 sm:py-3 bg-[#171E2B] border-b border-white/[0.08] text-xs font-mono">
             <div class="flex items-center gap-2 min-w-0">
@@ -89,6 +89,18 @@
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               <span class="hidden sm:inline">Live Charrette View</span>
               <span class="sm:hidden font-mono text-[10px] uppercase tracking-wider font-semibold">Live 3D Twin</span>
+              
+              <!-- Close button for Full-Screen Studio Mode -->
+              <button
+                type="button"
+                id="btn-close-mobile-studio"
+                class="hidden p-1 rounded-md text-slate-300 hover:text-white border border-white/20 bg-white/10 transition-colors cursor-pointer ml-1"
+                aria-label="Close Full-Screen Studio"
+              >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
           </div>
 
@@ -199,10 +211,28 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- Mobile Launch Studio Button (Displayed on Mobile Homepage) -->
+                <div class="lg:hidden pt-2.5" id="mobile-studio-trigger-wrap">
+                  <button
+                    type="button"
+                    id="btn-open-mobile-studio"
+                    class="w-full py-2.5 px-3.5 rounded-xl bg-gradient-to-r from-emerald-600/25 via-sky-600/25 to-emerald-600/25 hover:from-emerald-600/35 hover:to-sky-600/35 border border-emerald-500/40 hover:border-emerald-400 text-white font-mono text-xs font-semibold flex items-center justify-between shadow-md shadow-emerald-950/25 transition-all duration-200 active:scale-[0.98] cursor-pointer"
+                  >
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <span class="tracking-wide">Launch Full-Screen Studio</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 text-emerald-400 text-[11px]">
+                      <span>Tune Parameters</span>
+                      <span class="text-sm font-bold">⛶</span>
+                    </div>
+                  </button>
+                </div>
               </div>
 
               <!-- Charrette Parameters & Interactive Sliders -->
-              <div class="order-2 lg:order-1 space-y-3.5 sm:space-y-4 pt-1 lg:pt-0">
+              <div id="charrette-params-container" class="order-2 lg:order-1 space-y-3.5 sm:space-y-4 pt-1 lg:pt-0 hidden lg:block">
                 <div class="flex items-center justify-between">
                   <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Charrette Parameters</span>
                   <span class="text-[10px] font-mono text-emerald-400">Interactive</span>
@@ -302,6 +332,18 @@
                 Optimal balance: 40% WWR with Low-E DGU meets NBC Pt.8 daylighting and ECBC+ SHGC limits.
               </span>
             </div>
+          </div>
+
+          <!-- Floating Sticky Done Bar (Visible only in Full-Screen Studio Mode) -->
+          <div id="full-studio-done-bar" class="hidden sticky bottom-0 z-30 p-3 bg-[#0E1420]/95 backdrop-blur-md border-t border-white/10 mt-auto">
+            <button
+              type="button"
+              id="btn-done-mobile-studio"
+              class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-semibold flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40 transition-colors cursor-pointer"
+            >
+              <span>Apply &amp; Return to Page</span>
+              <span>✓</span>
+            </button>
           </div>
         </div>
       </div>
@@ -943,4 +985,101 @@
 
   // Initial call to paint track gradient & initialize 3D building state
   updateSimulation();
+
+  // ─── FULL-SCREEN MOBILE CAD STUDIO MODAL LOGIC ───
+  const studioCard = document.getElementById('studio-cad-card');
+  const btnOpenStudio = document.getElementById('btn-open-mobile-studio');
+  const btnCloseStudio = document.getElementById('btn-close-mobile-studio');
+  const btnDoneStudio = document.getElementById('btn-done-mobile-studio');
+
+  function openFullScreenStudio() {
+    if (!studioCard) return;
+    studioCard.classList.add('studio-fullscreen');
+    document.body.style.overflow = 'hidden';
+    const globalHeader = document.querySelector('header');
+    if (globalHeader) globalHeader.style.display = 'none';
+    if (controls) controls.enableZoom = true;
+
+    setTimeout(() => {
+      if (container && renderer && camera) {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      }
+    }, 60);
+  }
+
+  function closeFullScreenStudio() {
+    if (!studioCard) return;
+    studioCard.classList.remove('studio-fullscreen');
+    document.body.style.overflow = '';
+    const globalHeader = document.querySelector('header');
+    if (globalHeader) globalHeader.style.display = '';
+    if (controls) controls.enableZoom = false;
+
+    setTimeout(() => {
+      if (container && renderer && camera) {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      }
+    }, 60);
+  }
+
+  btnOpenStudio?.addEventListener('click', openFullScreenStudio);
+  btnCloseStudio?.addEventListener('click', closeFullScreenStudio);
+  btnDoneStudio?.addEventListener('click', closeFullScreenStudio);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && studioCard?.classList.contains('studio-fullscreen')) {
+      closeFullScreenStudio();
+    }
+  });
 </script>
+
+<style>
+  /* Full-Screen Mobile CAD Studio Experience */
+  #studio-cad-card.studio-fullscreen {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 9999 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background-color: #0c121e !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  #studio-cad-card.studio-fullscreen #three-container {
+    height: 40vh !important;
+    min-height: 260px !important;
+    border-radius: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+  }
+
+  #studio-cad-card.studio-fullscreen #charrette-params-container {
+    display: block !important;
+  }
+
+  #studio-cad-card.studio-fullscreen #mobile-studio-trigger-wrap {
+    display: none !important;
+  }
+
+  #studio-cad-card.studio-fullscreen #btn-close-mobile-studio {
+    display: flex !important;
+  }
+
+  #studio-cad-card.studio-fullscreen #full-studio-done-bar {
+    display: block !important;
+  }
+</style>
