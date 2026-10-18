@@ -129,9 +129,9 @@
               <div id="three-container" class="relative w-full h-[230px] sm:h-[320px] lg:h-[360px] my-3 overflow-hidden rounded-xl border border-white/[0.08] bg-[#0E131E]/80 backdrop-blur-xs">
                 <canvas id="three-building-canvas" class="w-full h-full block cursor-grab active:cursor-grabbing"></canvas>
                 
-                <!-- Overlay Top-Left: 3-Stage Simulation Pipeline Switcher (01 Twin · 02 Daylight sDA · 03 NBC 2026 + Auto-Tour Toggle) -->
-                <div class="absolute top-2.5 left-2.5 flex items-center gap-1 bg-[#161D2B]/95 p-1 rounded-md border border-white/12 text-[9px] sm:text-[9.5px] font-mono shadow-sm z-10 select-none">
-                  <button id="btn-mode-twin" type="button" title="01 Architectural Twin" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-emerald-500/40 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
+                <!-- Overlay Top-Left: 4-Stage Simulation Pipeline Switcher (01 Twin · 02 Daylight · 03 Shading · 04 NBC + Auto-Tour Toggle) -->
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-0.5 sm:gap-1 bg-[#161D2B]/95 p-1 rounded-md border border-white/12 text-[8.5px] sm:text-[9.5px] font-mono shadow-sm z-10 select-none">
+                  <button id="btn-mode-twin" type="button" title="01 Architectural 3D Twin" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-emerald-500/40 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
                     <span class="opacity-65 text-[8px]">01</span>
                     <span>Twin</span>
@@ -140,16 +140,22 @@
                   <button id="btn-mode-daylight" type="button" title="02 Daylight sDA Lux Heatmap (LM-83)" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
                     <span class="opacity-65 text-[8px]">02</span>
-                    <span>Daylight<span class="hidden sm:inline"> sDA</span></span>
+                    <span>Daylight</span>
                     <span id="prog-mode-daylight" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-amber-400/90" style="width: 0%;"></span>
                   </button>
-                  <button id="btn-mode-nbc" type="button" title="03 NBC 2026 Statutory 3D Setbacks & Refuge Area" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
+                  <button id="btn-mode-shading" type="button" title="03 Facade Shading Lab (Overhangs, Vertical Fins & Sun Ingress)" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-orange-400 shrink-0"></span>
                     <span class="opacity-65 text-[8px]">03</span>
-                    <span>NBC<span class="hidden sm:inline"> 2026</span></span>
+                    <span>Shading</span>
+                    <span id="prog-mode-shading" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-orange-400/90" style="width: 0%;"></span>
+                  </button>
+                  <button id="btn-mode-nbc" type="button" title="04 NBC 2026 Statutory 3D Setbacks & Refuge Area" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
+                    <span class="opacity-65 text-[8px]">04</span>
+                    <span>NBC</span>
                     <span id="prog-mode-nbc" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-sky-400/90" style="width: 0%;"></span>
                   </button>
-                  <button id="btn-mode-autoplay" type="button" title="Pause / Resume 3-Stage Auto-Tour" aria-label="Pause or resume layer auto-tour" class="ml-0.5 pl-1.5 pr-1 py-0.5 rounded-r border-l border-white/10 text-emerald-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer flex items-center justify-center">
+                  <button id="btn-mode-autoplay" type="button" title="Pause / Resume 4-Stage Auto-Tour" aria-label="Pause or resume layer auto-tour" class="ml-0.5 pl-1.5 pr-1 py-0.5 rounded-r border-l border-white/10 text-emerald-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer flex items-center justify-center">
                     <span id="autoplay-icon" class="text-[8.5px] leading-none">⏸</span>
                   </button>
                 </div>
@@ -160,6 +166,14 @@
                   <div class="w-20 sm:w-28 h-2 rounded-xs border border-white/20" style="background: linear-gradient(90deg, #060914 0%, #1e3a8a 18%, #16a34a 38%, #84cc16 56%, #eab308 74%, #ea580c 88%, #dc2626 100%);"></div>
                   <span class="text-red-400 font-semibold">2000+ lx</span>
                   <span class="hidden sm:inline text-emerald-400 border-l border-white/15 pl-1.5">― 300 lx</span>
+                </div>
+
+                <!-- Overlay Shading Lab Legend Bar (Smoothly Fades in Shading Mode) -->
+                <div id="shading-lab-legend" class="opacity-0 pointer-events-none transition-opacity duration-300 absolute bottom-10 left-2.5 flex items-center gap-2 px-2 py-1 rounded-md bg-[#0E131E]/95 border border-white/15 text-[8.5px] font-mono text-slate-300 backdrop-blur-xs shadow-lg z-10">
+                  <span class="flex items-center gap-1 text-orange-300"><span class="w-2 h-2 rounded-xs bg-amber-600 border border-amber-400/60 inline-block"></span>S: Overhangs</span>
+                  <span class="text-slate-600">·</span>
+                  <span class="flex items-center gap-1 text-orange-300">E/W: Fins</span>
+                  <span class="hidden sm:inline text-amber-300 border-l border-white/15 pl-1.5">☀ Sunlit Floor: <span id="shading-sunlit-pct">3%</span></span>
                 </div>
 
                 <!-- Overlay Bottom-Left: Real-time Dynamic WWR & Solar DNI callout badge -->
@@ -497,8 +511,9 @@
         }
       }
 
-      function getIsoPresetForMode(mode: 'twin' | 'daylight' | 'nbc'): [number, number, number, number, number, number] {
+      function getIsoPresetForMode(mode: 'twin' | 'daylight' | 'shading' | 'nbc'): [number, number, number, number, number, number] {
         if (mode === 'daylight') return [16.5, 18.5, 16.5, 0, 1.5, 0];
+        if (mode === 'shading') return [15.2, 13.8, 16.2, 0, 1.1, 0];
         if (mode === 'nbc') return [29.8, 20.6, 29.8, 0, 8.1, 0];
         return [27.2, 18.8, 27.2, 0, 8.3, 0];
       }
@@ -511,7 +526,7 @@
       });
       btnCamTop?.addEventListener('click', () => {
         pauseAutoTourExternal?.();
-        if (currentViewMode === 'daylight') {
+        if (currentViewMode === 'daylight' || currentViewMode === 'shading') {
           flyCameraTo(0.01, 20.5, 0, 0, 0.3, 0);
         } else {
           flyCameraTo(0.01, 35.0, 0, 0, 0, 0);
@@ -851,12 +866,15 @@
       chiller.castShadow = true;
       buildingGroup.add(chiller);
 
-      // ─── VIEW LAYERS: DAYLIGHT sDA LUX GRID (STUDIO CUTAWAY) & NBC 2026 STATUTORY ENVELOPE ───
+      // ─── VIEW LAYERS: DAYLIGHT sDA LUX GRID, SHADING LAB (BRISE-SOLEIL) & NBC 2026 STATUTORY ENVELOPE ───
       const btnModeTwin = document.getElementById('btn-mode-twin');
       const btnModeDaylight = document.getElementById('btn-mode-daylight');
+      const btnModeShading = document.getElementById('btn-mode-shading');
       const btnModeNbc = document.getElementById('btn-mode-nbc');
       const daylightLegendEl = document.getElementById('daylight-lux-legend');
-      const modeBtns = [btnModeTwin, btnModeDaylight, btnModeNbc];
+      const shadingLegendEl = document.getElementById('shading-lab-legend');
+      const shadingSunlitPctEl = document.getElementById('shading-sunlit-pct');
+      const modeBtns = [btnModeTwin, btnModeDaylight, btnModeShading, btnModeNbc];
 
       // Helper to create crisp 3D floating text sprites (for Compass N/S/E/W & Statutory Callouts)
       function makeBadgeSprite(text: string, bgHex: string, borderHex: string, textHex: string, widthWorld = 1.6, heightWorld = 0.65) {
@@ -1108,6 +1126,318 @@
         contourRingGeo.setFromPoints(cPts);
       }
 
+      // 1B. Clearinfra Studio Shading Lab Group (Audited Floor Volume, South Overhangs, E/W Vertical Fins & Solar Ingress)
+      const shadingGroup = new THREE.Group();
+      shadingGroup.visible = false;
+      scene.add(shadingGroup);
+
+      // Dark Audited Floor Slab Base & Cyan Wireframe Single-Story Volume (Matches Studio twin_shading_lab.png)
+      const shFloorY = slabH + 0.02;
+      const shFloorMat = new THREE.MeshStandardMaterial({
+        color: 0x070b14,
+        roughness: 0.92,
+        metalness: 0.1,
+      });
+      const shFloorBase = new THREE.Mesh(new THREE.BoxGeometry(towerW - 0.1, 0.06, towerD - 0.1), shFloorMat);
+      shFloorBase.position.set(0, shFloorY, 0);
+      shadingGroup.add(shFloorBase);
+
+      // Central Core Footprint inside Audited Floor
+      const shCoreBox = new THREE.Mesh(
+        new THREE.BoxGeometry(2.5, floorHeight - 0.08, 1.7),
+        new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.85, transparent: true, opacity: 0.65 })
+      );
+      shCoreBox.position.set(0, floorHeight / 2 + 0.04, 0);
+      shadingGroup.add(shCoreBox);
+      shCoreBox.add(new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(2.5, floorHeight - 0.08, 1.7)),
+        new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.45 })
+      ));
+
+      // Cyan Wireframe Single-Story Audited Volume Box
+      const shVolGeo = new THREE.BoxGeometry(towerW + 0.06, floorHeight, towerD + 0.06);
+      const shVolEdges = new THREE.LineSegments(
+        new THREE.EdgesGeometry(shVolGeo),
+        new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.82 })
+      );
+      shVolEdges.position.set(0, floorHeight / 2 + 0.02, 0);
+      shadingGroup.add(shVolEdges);
+
+      // Subtle Ghost Tower Corner Plumb Lines to 12-Story Roof (keeps spatial context)
+      const shGhostMat = new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.14 });
+      cornerCoords.forEach(([cx, cz]) => {
+        shadingGroup.add(new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints([
+            new THREE.Vector3(cx, floorHeight, cz),
+            new THREE.Vector3(cx, totalTowerH, cz),
+          ]),
+          shGhostMat
+        ));
+      });
+
+      // Terracotta / Copper Brise-Soleil Materials (Matches Studio Shading Lab warm bronze/orange fins & overhangs)
+      const shadeFinMat = new THREE.MeshStandardMaterial({
+        color: 0xd97706,
+        emissive: 0xb45309,
+        emissiveIntensity: 0.42,
+        roughness: 0.3,
+        metalness: 0.35,
+      });
+      const shadeFinEdgeMat = new THREE.LineBasicMaterial({ color: 0xfbbf24, transparent: true, opacity: 0.95 });
+      const windowBayMat = new THREE.MeshBasicMaterial({
+        color: 0x0f172a,
+        transparent: true,
+        opacity: 0.82,
+      });
+      const windowBayEdgeMat = new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.45 });
+
+      // South (+Z) & North (-Z) Window Bays + South Horizontal Overhangs
+      const southOverhangMeshes: THREE.Mesh[] = [];
+      const southSunPatches: THREE.Mesh[] = [];
+      const southSunWedges: THREE.Mesh[] = [];
+      const eastWestFinMeshes: THREE.Mesh[] = [];
+      const eastSunPatches: THREE.Mesh[] = [];
+      const eastSunWedges: THREE.Mesh[] = [];
+
+      const sunPatchMat = new THREE.MeshBasicMaterial({
+        color: 0xfbbf24,
+        transparent: true,
+        opacity: 0.46,
+        depthWrite: false,
+        side: THREE.DoubleSide,
+      });
+      const sunPatchEdgeMat = new THREE.LineBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.92 });
+      const sunWedgeMat = new THREE.MeshBasicMaterial({
+        color: 0xf59e0b,
+        transparent: true,
+        opacity: 0.22,
+        depthWrite: false,
+        side: THREE.DoubleSide,
+      });
+
+      const numSouthBays = 8;
+      const southSpanW = towerW - 1.0;
+      const southBayStep = southSpanW / numSouthBays;
+      const southBayW = southBayStep * 0.78;
+      const bayWinH = clearHeight * 0.72;
+      const bayCenterY = slabH + clearHeight * 0.52;
+      const lintelY = slabH + clearHeight * 0.88;
+
+      for (let i = 0; i < numSouthBays; i++) {
+        const bx = -southSpanW / 2 + (i + 0.5) * southBayStep;
+
+        // South (+Z) dark window bay
+        const sBayGeo = new THREE.BoxGeometry(southBayW, bayWinH, 0.05);
+        const sBay = new THREE.Mesh(sBayGeo, windowBayMat);
+        sBay.position.set(bx, bayCenterY, towerD / 2 + 0.01);
+        shadingGroup.add(sBay);
+        sBay.add(new THREE.LineSegments(new THREE.EdgesGeometry(sBayGeo), windowBayEdgeMat));
+
+        // North (-Z) dark window bay
+        const nBay = new THREE.Mesh(sBayGeo, windowBayMat);
+        nBay.position.set(bx, bayCenterY, -towerD / 2 - 0.01);
+        shadingGroup.add(nBay);
+        nBay.add(new THREE.LineSegments(new THREE.EdgesGeometry(sBayGeo), windowBayEdgeMat));
+
+        // South (+Z) Terracotta Horizontal Overhang Canopy (projects outward along +Z)
+        const ovhGeo = new THREE.BoxGeometry(southBayW + 0.08, 0.07, 0.65);
+        const ovhMesh = new THREE.Mesh(ovhGeo, shadeFinMat);
+        ovhMesh.position.set(bx, lintelY, towerD / 2 + 0.34);
+        ovhMesh.rotation.x = 0.08; // slight downward solar tilt
+        shadingGroup.add(ovhMesh);
+        ovhMesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(ovhGeo), shadeFinEdgeMat));
+        southOverhangMeshes.push(ovhMesh);
+
+        // Secondary Mid-Transom Horizontal Louver on South Bay
+        const midOvhGeo = new THREE.BoxGeometry(southBayW + 0.04, 0.045, 0.38);
+        const midOvh = new THREE.Mesh(midOvhGeo, shadeFinMat);
+        midOvh.position.set(bx, slabH + clearHeight * 0.58, towerD / 2 + 0.20);
+        shadingGroup.add(midOvh);
+        midOvh.add(new THREE.LineSegments(new THREE.EdgesGeometry(midOvhGeo), shadeFinEdgeMat));
+
+        // South Floor Sunlit Patch (inside perimeter along +Z wall)
+        const sPatchGeo = new THREE.PlaneGeometry(southBayW * 0.92, 1.0);
+        const sPatch = new THREE.Mesh(sPatchGeo, sunPatchMat);
+        sPatch.rotation.x = -Math.PI / 2;
+        sPatch.position.set(bx, shFloorY + 0.04, towerD / 2 - 0.55);
+        shadingGroup.add(sPatch);
+        sPatch.add(new THREE.LineSegments(new THREE.EdgesGeometry(sPatchGeo), sunPatchEdgeMat));
+        southSunPatches.push(sPatch);
+
+        // South 3D Translucent Solar Ray Wedge (slanting from window sill/lintel onto floor patch)
+        const sWedgeGeo = new THREE.BoxGeometry(southBayW * 0.88, bayWinH * 0.65, 1.0);
+        const sWedge = new THREE.Mesh(sWedgeGeo, sunWedgeMat);
+        sWedge.position.set(bx, shFloorY + 0.38, towerD / 2 - 0.52);
+        sWedge.rotation.x = -0.42;
+        shadingGroup.add(sWedge);
+        southSunWedges.push(sWedge);
+      }
+
+      // East (+X) & West (-X) Window Bays + Full-Height Angled Vertical Brise-Soleil Fins
+      const numSideBays = 6;
+      const sideSpanD = towerD - 1.0;
+      const sideBayStep = sideSpanD / numSideBays;
+      const sideBayD = sideBayStep * 0.76;
+      const finH = clearHeight * 0.86;
+
+      for (let j = 0; j < numSideBays; j++) {
+        const bz = -sideSpanD / 2 + (j + 0.5) * sideBayStep;
+
+        // East (+X) & West (-X) dark window bays
+        const eBayGeo = new THREE.BoxGeometry(0.05, bayWinH, sideBayD);
+        const eBay = new THREE.Mesh(eBayGeo, windowBayMat);
+        eBay.position.set(towerW / 2 + 0.01, bayCenterY, bz);
+        shadingGroup.add(eBay);
+        eBay.add(new THREE.LineSegments(new THREE.EdgesGeometry(eBayGeo), windowBayEdgeMat));
+
+        const wBay = new THREE.Mesh(eBayGeo, windowBayMat);
+        wBay.position.set(-towerW / 2 - 0.01, bayCenterY, bz);
+        shadingGroup.add(wBay);
+        wBay.add(new THREE.LineSegments(new THREE.EdgesGeometry(eBayGeo), windowBayEdgeMat));
+
+        // 2 Vertical Fins per Side Bay on East (+X) and West (-X)
+        [-sideBayD * 0.32, sideBayD * 0.32].forEach((zOff) => {
+          const finGeo = new THREE.BoxGeometry(0.58, finH, 0.065);
+
+          // East (+X) Vertical Fin (angled to block morning/low-angle sun)
+          const eFin = new THREE.Mesh(finGeo, shadeFinMat);
+          eFin.position.set(towerW / 2 + 0.30, bayCenterY, bz + zOff);
+          eFin.rotation.y = 0.28;
+          shadingGroup.add(eFin);
+          eFin.add(new THREE.LineSegments(new THREE.EdgesGeometry(finGeo), shadeFinEdgeMat));
+          eastWestFinMeshes.push(eFin);
+
+          // West (-X) Vertical Fin (angled to block harsh afternoon West sun)
+          const wFin = new THREE.Mesh(finGeo, shadeFinMat);
+          wFin.position.set(-towerW / 2 - 0.30, bayCenterY, bz + zOff);
+          wFin.rotation.y = -0.28;
+          shadingGroup.add(wFin);
+          wFin.add(new THREE.LineSegments(new THREE.EdgesGeometry(finGeo), shadeFinEdgeMat));
+          eastWestFinMeshes.push(wFin);
+        });
+
+        // East (+X) Floor Sunlit Ingress Patch & 3D Solar Ray Wedge (Matches Studio 1.9m East Ingress)
+        const ePatchGeo = new THREE.PlaneGeometry(1.0, sideBayD * 0.88);
+        const ePatch = new THREE.Mesh(ePatchGeo, sunPatchMat);
+        ePatch.rotation.x = -Math.PI / 2;
+        ePatch.position.set(towerW / 2 - 0.85, shFloorY + 0.045, bz);
+        shadingGroup.add(ePatch);
+        ePatch.add(new THREE.LineSegments(new THREE.EdgesGeometry(ePatchGeo), sunPatchEdgeMat));
+        eastSunPatches.push(ePatch);
+
+        const eWedgeGeo = new THREE.BoxGeometry(1.0, bayWinH * 0.68, sideBayD * 0.84);
+        const eWedge = new THREE.Mesh(eWedgeGeo, sunWedgeMat);
+        eWedge.position.set(towerW / 2 - 0.80, shFloorY + 0.40, bz);
+        eWedge.rotation.z = 0.46;
+        shadingGroup.add(eWedge);
+        eastSunWedges.push(eWedge);
+      }
+
+      // Golden Solar Path Trajectory Arc Overhead (Matches Studio solar path arc in twin_shading_lab.png)
+      const solarArcPts: THREE.Vector3[] = [];
+      for (let s = 0; s <= 32; s++) {
+        const t = s / 32;
+        const ang = (t - 0.5) * Math.PI * 0.88; // East (+X) through South (+Z) to West (-X)
+        const sx = Math.sin(-ang) * (towerW * 0.68);
+        const sz = Math.cos(ang) * (towerD * 0.48) + 1.8;
+        const sy = 1.6 + Math.cos(ang * 0.95) * 4.2;
+        solarArcPts.push(new THREE.Vector3(sx, sy, sz));
+      }
+      const solarArcLine = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(solarArcPts),
+        new THREE.LineBasicMaterial({ color: 0xfbbf24, transparent: true, opacity: 0.78 })
+      );
+      shadingGroup.add(solarArcLine);
+
+      // Glowing Sun Position Marker on the Solar Path Arc (10:30 AM Design Sun)
+      const arcSunIdx = 11;
+      const arcSunPos = solarArcPts[arcSunIdx];
+      const shSunMarker = new THREE.Mesh(
+        new THREE.SphereGeometry(0.28, 16, 16),
+        new THREE.MeshBasicMaterial({ color: 0xfde047 })
+      );
+      shSunMarker.position.copy(arcSunPos);
+      shadingGroup.add(shSunMarker);
+
+      // Dashed Solar Ray Vector from Sun Marker to South-East Facade Corner
+      const solarRayLine = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          arcSunPos.clone(),
+          new THREE.Vector3(towerW / 2 - 0.6, shFloorY + 0.1, towerD / 2 - 0.6),
+        ]),
+        new THREE.LineDashedMaterial({ color: 0xfbbf24, dashSize: 0.4, gapSize: 0.25, transparent: true, opacity: 0.75 })
+      );
+      solarRayLine.computeLineDistances();
+      shadingGroup.add(solarRayLine);
+
+      // Cardinal N / S / E / W Badges & Studio Shading Callout Sprites
+      const shCompassN = makeBadgeSprite('N', 'rgba(15,23,42,0.92)', '#475569', '#94a3b8', 0.82, 0.64);
+      shCompassN.position.set(0, shFloorY + 0.35, -towerD / 2 - 1.15);
+      shadingGroup.add(shCompassN);
+
+      const shCompassS = makeBadgeSprite('S', 'rgba(120,53,15,0.95)', '#f59e0b', '#fde68a', 0.82, 0.64);
+      shCompassS.position.set(0, shFloorY + 0.35, towerD / 2 + 1.25);
+      shadingGroup.add(shCompassS);
+
+      const shCompassE = makeBadgeSprite('E', 'rgba(120,53,15,0.95)', '#f59e0b', '#fde68a', 0.82, 0.64);
+      shCompassE.position.set(towerW / 2 + 1.25, shFloorY + 0.35, 0);
+      shadingGroup.add(shCompassE);
+
+      const shCompassW = makeBadgeSprite('W', 'rgba(15,23,42,0.92)', '#f59e0b', '#fcd34d', 0.82, 0.64);
+      shCompassW.position.set(-towerW / 2 - 1.25, shFloorY + 0.35, 0);
+      shadingGroup.add(shCompassW);
+
+      const shIngressBadge = makeBadgeSprite('☀ 1.9m Ingress', 'rgba(120,53,15,0.95)', '#f59e0b', '#fef08a', 2.8, 0.68);
+      shIngressBadge.position.set(towerW / 2 + 0.3, floorHeight + 0.55, 2.1);
+      shadingGroup.add(shIngressBadge);
+
+      const shOverhangBadge = makeBadgeSprite('Overhangs + Fins', 'rgba(15,23,42,0.95)', '#f59e0b', '#fed7aa', 3.0, 0.68);
+      shOverhangBadge.position.set(-1.8, floorHeight + 0.55, towerD / 2 + 0.4);
+      shadingGroup.add(shOverhangBadge);
+
+      function updateShadingLab(wwrPct: number, glazingKey: string, climateKey: string) {
+        const g = glazingData[glazingKey] || glazingData.lowe;
+        const c = climateData[climateKey] || climateData.bengaluru;
+
+        // Overhang & Fin Depth scales slightly with solar intensity & WWR
+        const finScale = 0.85 + (wwrPct / 60) * 0.45 * c.solarFactor;
+        southOverhangMeshes.forEach((m) => {
+          m.scale.z = finScale;
+        });
+        eastWestFinMeshes.forEach((m) => {
+          m.scale.x = finScale;
+        });
+
+        // Direct Sunlight Ingress Depth (m) scales with WWR, SHGC, and Climate solar factor (1.9m at 40% WWR + Low-E + Bengaluru)
+        const ingressDepthM = Math.max(0.9, Math.min(3.1, 1.32 + (wwrPct / 40) * g.shgc * c.solarFactor * 2.30));
+        const southPatchDepth = Math.max(0.65, ingressDepthM * 0.52);
+        const eastPatchDepth = Math.max(0.85, ingressDepthM * 0.72);
+
+        southSunPatches.forEach((p) => {
+          p.scale.y = southPatchDepth;
+          p.position.z = towerD / 2 - 0.14 - southPatchDepth / 2;
+        });
+        southSunWedges.forEach((w) => {
+          w.scale.z = southPatchDepth;
+          w.position.z = towerD / 2 - 0.14 - southPatchDepth / 2;
+        });
+
+        eastSunPatches.forEach((p) => {
+          p.scale.x = eastPatchDepth;
+          p.position.x = towerW / 2 - 0.14 - eastPatchDepth / 2;
+        });
+        eastSunWedges.forEach((w) => {
+          w.scale.x = eastPatchDepth;
+          w.position.x = towerW / 2 - 0.14 - eastPatchDepth / 2;
+        });
+
+        const sunlitPct = Math.max(2, Math.min(14, Math.round((wwrPct / 40) * g.shgc * c.solarFactor * 12.0)));
+        if (shadingSunlitPctEl) {
+          shadingSunlitPctEl.textContent = `${sunlitPct}% (${ingressDepthM.toFixed(1)}m)`;
+        }
+        return { ingressDepthM: ingressDepthM.toFixed(1), sunlitPct };
+      }
+
       // 2. NBC 2026 Statutory Layer Group (Zero Z-Fighting, Full Studio Setback Apron & 3D Zoning Envelope)
       const nbcGroup = new THREE.Group();
       nbcGroup.visible = false;
@@ -1299,8 +1629,8 @@
       nbcGroup.add(maxHtChip);
 
       // Helper to toggle solid tower geometry vs. Studio Cutaway Ghost mode or NBC Refuge Floor replacement
-      function setBuildingCutaway(mode: 'twin' | 'daylight' | 'nbc') {
-        const isCutaway = mode === 'daylight';
+      function setBuildingCutaway(mode: 'twin' | 'daylight' | 'shading' | 'nbc') {
+        const isCutaway = mode === 'daylight' || mode === 'shading';
         const isNbc = mode === 'nbc';
 
         coreMesh.visible = !isCutaway;
@@ -1333,16 +1663,18 @@
         });
       }
 
-      // View Mode Toggle Handler & 3-Stage Idle Auto-Tour (01 Twin -> 02 Daylight sDA -> 03 NBC 2026)
-      let currentViewMode: 'twin' | 'daylight' | 'nbc' = 'twin';
+      // View Mode Toggle Handler & 4-Stage Idle Auto-Tour (01 Twin -> 02 Daylight -> 03 Shading -> 04 NBC)
+      let currentViewMode: 'twin' | 'daylight' | 'shading' | 'nbc' = 'twin';
       const btnModeAutoplay = document.getElementById('btn-mode-autoplay');
       const autoplayIcon = document.getElementById('autoplay-icon');
       const progModeTwin = document.getElementById('prog-mode-twin');
       const progModeDaylight = document.getElementById('prog-mode-daylight');
+      const progModeShading = document.getElementById('prog-mode-shading');
       const progModeNbc = document.getElementById('prog-mode-nbc');
-      const progBars: Record<'twin' | 'daylight' | 'nbc', HTMLElement | null> = {
+      const progBars: Record<'twin' | 'daylight' | 'shading' | 'nbc', HTMLElement | null> = {
         twin: progModeTwin,
         daylight: progModeDaylight,
+        shading: progModeShading,
         nbc: progModeNbc,
       };
 
@@ -1350,11 +1682,12 @@
       let autoTourHoverPaused = false;
       let autoTourElapsed = 0;
       const AUTO_TOUR_DURATION = 5200; // 5.2s per stage
-      const TOUR_SEQUENCE: ('twin' | 'daylight' | 'nbc')[] = ['twin', 'daylight', 'nbc'];
+      const TOUR_SEQUENCE: ('twin' | 'daylight' | 'shading' | 'nbc')[] = ['twin', 'daylight', 'shading', 'nbc'];
 
       function clearAllProgressBars() {
         if (progModeTwin) progModeTwin.style.width = '0%';
         if (progModeDaylight) progModeDaylight.style.width = '0%';
+        if (progModeShading) progModeShading.style.width = '0%';
         if (progModeNbc) progModeNbc.style.width = '0%';
       }
 
@@ -1400,7 +1733,7 @@
         }
       });
 
-      function setViewMode(mode: 'twin' | 'daylight' | 'nbc', isManual = true) {
+      function setViewMode(mode: 'twin' | 'daylight' | 'shading' | 'nbc', isManual = true) {
         if (isManual) {
           stopAutoTour();
         } else {
@@ -1422,9 +1755,12 @@
           }
           setBuildingCutaway('daylight');
           daylightGroup.visible = true;
+          shadingGroup.visible = false;
           nbcGroup.visible = false;
           daylightLegendEl?.classList.remove('opacity-0');
           daylightLegendEl?.classList.add('opacity-100');
+          shadingLegendEl?.classList.add('opacity-0');
+          shadingLegendEl?.classList.remove('opacity-100');
 
           // Smoothly glide camera to frame the glowing 3D workplane & translucent floating roof cap
           const [px, py, pz, tx, ty, tz] = getIsoPresetForMode('daylight');
@@ -1438,15 +1774,38 @@
           if (vizWwrCallout) vizWwrCallout.innerHTML = `<span class="text-amber-300 font-semibold">sDA: ${sda}%</span>`;
           if (vizDniLabel) vizDniLabel.textContent = '300 lx';
           if (vizShgcReadout) vizShgcReadout.innerHTML = `<span class="text-amber-300 font-medium">LM-83 Grid · ${sda}% ≥ 300 lx</span>`;
+        } else if (mode === 'shading') {
+          if (btnModeShading) {
+            btnModeShading.className = 'mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-orange-500/40 bg-orange-500/20 text-orange-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1';
+          }
+          setBuildingCutaway('shading');
+          daylightGroup.visible = false;
+          shadingGroup.visible = true;
+          nbcGroup.visible = false;
+          daylightLegendEl?.classList.add('opacity-0');
+          daylightLegendEl?.classList.remove('opacity-100');
+          shadingLegendEl?.classList.remove('opacity-0');
+          shadingLegendEl?.classList.add('opacity-100');
+
+          const [px, py, pz, tx, ty, tz] = getIsoPresetForMode('shading');
+          flyCameraTo(px, py, pz, tx, ty, tz);
+
+          const shMetrics = updateShadingLab(currentWwr, currentGlazing, currentClimate);
+          if (vizWwrCallout) vizWwrCallout.innerHTML = `<span class="text-orange-300 font-semibold">☀ ${shMetrics.ingressDepthM}m Ingress</span>`;
+          if (vizDniLabel) vizDniLabel.textContent = `${shMetrics.sunlitPct}% Floor`;
+          if (vizShgcReadout) vizShgcReadout.innerHTML = `<span class="text-orange-300 font-medium">S: Overhang · E/W: Fins</span>`;
         } else if (mode === 'nbc') {
           if (btnModeNbc) {
             btnModeNbc.className = 'mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-sky-500/40 bg-sky-500/20 text-sky-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1';
           }
           setBuildingCutaway('nbc');
           daylightGroup.visible = false;
+          shadingGroup.visible = false;
           nbcGroup.visible = true;
           daylightLegendEl?.classList.add('opacity-0');
           daylightLegendEl?.classList.remove('opacity-100');
+          shadingLegendEl?.classList.add('opacity-0');
+          shadingLegendEl?.classList.remove('opacity-100');
           glassMat.opacity = 0.68;
 
           // Smoothly glide camera to frame the 12-story tower, emerald setback apron, and +49.2m zoning ceiling
@@ -1462,9 +1821,12 @@
           }
           setBuildingCutaway('twin');
           daylightGroup.visible = false;
+          shadingGroup.visible = false;
           nbcGroup.visible = false;
           daylightLegendEl?.classList.add('opacity-0');
           daylightLegendEl?.classList.remove('opacity-100');
+          shadingLegendEl?.classList.add('opacity-0');
+          shadingLegendEl?.classList.remove('opacity-100');
           glassMat.opacity = currentGlazing === 'single' ? 0.55 : currentGlazing === 'triple' ? 0.82 : 0.78;
 
           const [px, py, pz, tx, ty, tz] = getIsoPresetForMode('twin');
@@ -1480,10 +1842,12 @@
 
       btnModeTwin?.addEventListener('click', () => setViewMode('twin', true));
       btnModeDaylight?.addEventListener('click', () => setViewMode('daylight', true));
+      btnModeShading?.addEventListener('click', () => setViewMode('shading', true));
       btnModeNbc?.addEventListener('click', () => setViewMode('nbc', true));
 
-      // Initialize the daylight grid once at startup
+      // Initialize the daylight grid and shading lab once at startup
       updateDaylightGrid(currentWwr, currentGlazing, currentClimate);
+      updateShadingLab(currentWwr, currentGlazing, currentClimate);
 
       // Function to dynamically update 3D building from simulator controls
       updateThreeBuilding = (wwrPct: number, glazingKey: string, climateKey: string) => {
@@ -1499,8 +1863,9 @@
           }
         });
 
-        // 2. Recompute 3D Daylight Lux Grid whenever WWR, Glazing, or Climate changes
+        // 2. Recompute 3D Daylight Lux Grid & Shading Lab whenever WWR, Glazing, or Climate changes
         updateDaylightGrid(wwrPct, glazingKey, climateKey);
+        const shMetrics = updateShadingLab(wwrPct, glazingKey, climateKey);
 
         // 3. Update Glass Material Color & Opacity
         if (currentViewMode === 'daylight') {
@@ -1510,6 +1875,10 @@
           if (vizWwrCallout) vizWwrCallout.innerHTML = `<span class="text-amber-300 font-semibold">sDA: ${sda}%</span>`;
           if (vizDniLabel) vizDniLabel.textContent = '300 lx';
           if (vizShgcReadout) vizShgcReadout.innerHTML = `<span class="text-amber-300 font-medium">LM-83 Grid · ${sda}% ≥ 300 lx</span>`;
+        } else if (currentViewMode === 'shading') {
+          if (vizWwrCallout) vizWwrCallout.innerHTML = `<span class="text-orange-300 font-semibold">☀ ${shMetrics.ingressDepthM}m Ingress</span>`;
+          if (vizDniLabel) vizDniLabel.textContent = `${shMetrics.sunlitPct}% Floor`;
+          if (vizShgcReadout) vizShgcReadout.innerHTML = `<span class="text-orange-300 font-medium">S: Overhang · E/W: Fins</span>`;
         } else if (currentViewMode === 'nbc') {
           glassMat.opacity = 0.68;
         } else {
