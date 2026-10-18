@@ -360,12 +360,40 @@
           </div>
 
           <!-- CI Agent Diagnostic Bar & Studio Bottom Dock -->
-          <div id="studio-bottom-dock" class="px-3 sm:px-5 py-2 sm:py-2 bg-[#10151F] border-t border-white/[0.08] min-h-[50px] sm:min-h-[54px] sm:h-[54px] flex items-center justify-between gap-2.5 text-xs font-mono shrink-0">
-            <div class="flex items-center gap-2 text-slate-300 min-w-0 flex-1">
+          <div id="studio-bottom-dock" class="px-3 sm:px-5 py-2 sm:py-2 bg-[#10151F] border-t border-white/[0.08] min-h-[50px] sm:min-h-[54px] flex items-center justify-between gap-2.5 text-xs font-mono shrink-0">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 text-slate-300 min-w-0 flex-1">
               <span class="px-1.5 py-0.5 rounded bg-sky-500/15 text-sky-400 border border-sky-500/30 text-[9.5px] sm:text-[10px] font-mono font-medium shrink-0 whitespace-nowrap">ILLUSTRATIVE DEMO</span>
-              <span id="ai-copilot-msg" class="text-slate-300 text-[10.5px] sm:text-[11px] leading-snug sm:leading-[17px] truncate sm:whitespace-normal">
-                Balanced charrette point: 40% WWR with 0.28 SHGC balances peak cooling load (246 TR) and 55% spatial daylight autonomy.
-              </span>
+              <div id="charrette-chain" class="grid grid-cols-3 gap-x-2 gap-y-1.5 sm:flex sm:flex-wrap sm:items-center sm:gap-x-2 sm:gap-y-1 min-w-0">
+                <div class="flex flex-col min-w-0">
+                  <span class="text-[7.5px] sm:text-[8px] tracking-[0.1em] uppercase text-slate-500 leading-tight">Glazing</span>
+                  <span class="text-[10.5px] sm:text-[11.5px] text-slate-100 leading-tight" data-chain="glass">0.28</span>
+                  <span class="text-[8px] sm:text-[8.5px] text-slate-500 leading-tight" data-chain-sub="glass">SHGC</span>
+                </div>
+                <span class="hidden sm:inline text-emerald-500/50 text-[11px] pb-2.5" aria-hidden="true">&rsaquo;</span>
+                <div class="flex flex-col min-w-0">
+                  <span class="text-[7.5px] sm:text-[8px] tracking-[0.1em] uppercase text-slate-500 leading-tight">Envelope gain</span>
+                  <span class="text-[10.5px] sm:text-[11.5px] text-slate-100 leading-tight" data-chain="gain">18.2</span>
+                  <span class="text-[8px] sm:text-[8.5px] text-slate-500 leading-tight" data-chain-sub="gain">kWh/m²·yr</span>
+                </div>
+                <span class="hidden sm:inline text-emerald-500/50 text-[11px] pb-2.5" aria-hidden="true">&rsaquo;</span>
+                <div class="flex flex-col min-w-0">
+                  <span class="text-[7.5px] sm:text-[8px] tracking-[0.1em] uppercase text-slate-500 leading-tight">Annual EPI</span>
+                  <span class="text-[10.5px] sm:text-[11.5px] text-slate-100 leading-tight" data-chain="epi">80.2</span>
+                  <span class="text-[8px] sm:text-[8.5px] text-slate-500 leading-tight" data-chain-sub="epi">kWh/m²·yr</span>
+                </div>
+                <span class="hidden sm:inline text-emerald-500/50 text-[11px] pb-2.5" aria-hidden="true">&rsaquo;</span>
+                <div class="flex flex-col min-w-0">
+                  <span class="text-[7.5px] sm:text-[8px] tracking-[0.1em] uppercase text-slate-500 leading-tight">Plant load</span>
+                  <span class="text-[10.5px] sm:text-[11.5px] text-slate-100 leading-tight" data-chain="tr">246</span>
+                  <span class="text-[8px] sm:text-[8.5px] text-slate-500 leading-tight" data-chain-sub="tr">TR</span>
+                </div>
+                <span class="hidden sm:inline text-emerald-500/50 text-[11px] pb-2.5" aria-hidden="true">&rsaquo;</span>
+                <div class="flex flex-col min-w-0">
+                  <span class="text-[7.5px] sm:text-[8px] tracking-[0.1em] uppercase text-slate-500 leading-tight">Daylight</span>
+                  <span class="text-[10.5px] sm:text-[11.5px] text-slate-100 leading-tight" data-chain="sda">55%</span>
+                  <span class="text-[8px] sm:text-[8.5px] text-slate-500 leading-tight" data-chain-sub="sda">sDA &gt;300 lx</span>
+                </div>
+              </div>
             </div>
             <!-- Done button visible ONLY in full-screen studio mode on mobile -->
             <button
@@ -418,7 +446,39 @@
   const outCooling = document.getElementById('out-cooling');
   const outSda = document.getElementById('out-sda');
   const outBadge = document.getElementById('out-badge');
-  const aiMsg = document.getElementById('ai-copilot-msg');
+
+  // ─── CHARRETTE CHAIN: glazing → envelope gain → EPI → plant → daylight ───
+  // Each step shows its value, and the value it held before the last change.
+  type ChainValues = { glass: number; gain: number; epi: number; tr: number; sda: number };
+  const chainValues: Record<keyof ChainValues, Element | null> = {
+    glass: document.querySelector('[data-chain="glass"]'),
+    gain: document.querySelector('[data-chain="gain"]'),
+    epi: document.querySelector('[data-chain="epi"]'),
+    tr: document.querySelector('[data-chain="tr"]'),
+    sda: document.querySelector('[data-chain="sda"]'),
+  };
+  const chainSubs: Record<keyof ChainValues, Element | null> = {
+    glass: document.querySelector('[data-chain-sub="glass"]'),
+    gain: document.querySelector('[data-chain-sub="gain"]'),
+    epi: document.querySelector('[data-chain-sub="epi"]'),
+    tr: document.querySelector('[data-chain-sub="tr"]'),
+    sda: document.querySelector('[data-chain-sub="sda"]'),
+  };
+  let chainPrev: ChainValues | null = null;
+
+  function paintChain(cur: ChainValues, prev: ChainValues | null) {
+    const paint = (key: keyof ChainValues, text: string, unit: string, was: (p: ChainValues) => string) => {
+      const valueEl = chainValues[key];
+      if (valueEl) valueEl.textContent = text;
+      const subEl = chainSubs[key];
+      if (subEl) subEl.textContent = prev ? was(prev) : unit;
+    };
+    paint('glass', cur.glass.toFixed(2), 'SHGC', (p) => `was ${p.glass.toFixed(2)}`);
+    paint('gain', cur.gain.toFixed(1), 'kWh/m²·yr', (p) => `was ${p.gain.toFixed(1)}`);
+    paint('epi', cur.epi.toFixed(1), 'kWh/m²·yr', (p) => `was ${p.epi.toFixed(1)}`);
+    paint('tr', `${cur.tr}`, 'TR', (p) => `was ${p.tr} TR`);
+    paint('sda', `${cur.sda}%`, 'sDA >300 lx', (p) => `was ${p.sda}%`);
+  }
 
   const vizClimateLabel = document.getElementById('viz-climate-label');
   const vizDniLabel = document.getElementById('viz-dni-label');
@@ -2007,6 +2067,10 @@
     if (outCooling) outCooling.textContent = `${coolingTr}`;
     if (outSda) outSda.textContent = `${sda}%`;
 
+    const chainCur: ChainValues = { glass: g.shgc, gain: envelopeGain, epi: parseFloat(epi), tr: coolingTr, sda };
+    paintChain(chainCur, chainPrev);
+    chainPrev = chainCur;
+
     if (vizClimateLabel) vizClimateLabel.textContent = c.label;
     if (vizDniLabel) vizDniLabel.textContent = c.dni;
     if (vizWwrCallout) vizWwrCallout.textContent = `WWR: ${currentWwr}%`;
@@ -2014,24 +2078,20 @@
       vizShgcReadout.innerHTML = `<span class="text-emerald-400">SHGC ${g.shgc} · U ${g.uval} W/m²K</span>`;
     }
 
-    if (outBadge && aiMsg) {
+    if (outBadge) {
       const epiNum = parseFloat(epi);
       if (currentWwr > 40 && g.shgc > 0.3) {
         outBadge.textContent = 'Elevated Solar Gain';
         outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-amber-500/15 text-amber-300 border border-amber-500/30';
-        aiMsg.textContent = `WWR ${currentWwr}% with SHGC ${g.shgc} elevates envelope heat gain. Switching to Low-E or Selective DGU cuts ~${Math.round(coolingTr * 0.18)} TR peak chiller load.`;
       } else if (epiNum < c.baseEpi + 14) {
         outBadge.textContent = 'ECBC Super-Compliant';
         outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
-        aiMsg.textContent = `High-efficiency envelope (${epi} kWh/m²·yr): Minimizes peak chiller plant sizing (${coolingTr} TR) while maintaining ${sda}% workplane daylight.`;
       } else if (epiNum < c.baseEpi + 24) {
         outBadge.textContent = 'Optimized Balance';
         outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
-        aiMsg.textContent = `Balanced charrette point: ${currentWwr}% WWR with ${g.shgc} SHGC balances peak cooling load (${coolingTr} TR) and ${sda}% spatial daylight autonomy.`;
       } else {
         outBadge.textContent = 'Baseline Envelope';
         outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-sky-500/15 text-sky-300 border border-sky-500/30';
-        aiMsg.textContent = `Higher solar heat gain observed. Upgrading glazing SHGC or moderating WWR to 40% reduces peak cooling demand (${coolingTr} TR).`;
       }
     }
 
