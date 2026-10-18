@@ -137,19 +137,19 @@
                     <span>Twin</span>
                     <span id="prog-mode-twin" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-emerald-400/90" style="width: 0%;"></span>
                   </button>
-                  <button id="btn-mode-daylight" type="button" title="02 Daylight sDA Lux Heatmap (LM-83)" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
+                  <button id="btn-mode-daylight" type="button" title="02 Daylight sDA Lux Heatmap (LM-83)" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
                     <span class="opacity-65 text-[8px]">02</span>
                     <span>Daylight<span class="hidden sm:inline"> sDA</span></span>
                     <span id="prog-mode-daylight" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-amber-400/90" style="width: 0%;"></span>
                   </button>
-                  <button id="btn-mode-nbc" type="button" title="03 NBC 2026 Statutory 3D Setbacks & Refuge Area" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
+                  <button id="btn-mode-nbc" type="button" title="03 NBC 2026 Statutory 3D Setbacks & Refuge Area" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
                     <span class="opacity-65 text-[8px]">03</span>
                     <span>NBC<span class="hidden sm:inline"> 2026</span></span>
                     <span id="prog-mode-nbc" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-sky-400/90" style="width: 0%;"></span>
                   </button>
-                  <button id="btn-mode-autoplay" type="button" title="Pause / Resume 3-Stage Auto-Tour" aria-label="Pause or resume layer auto-tour" class="ml-0.5 pl-1.5 pr-1 py-0.5 border-l border-white/10 text-emerald-400 hover:text-white transition-colors duration-200 cursor-pointer flex items-center justify-center">
+                  <button id="btn-mode-autoplay" type="button" title="Pause / Resume 3-Stage Auto-Tour" aria-label="Pause or resume layer auto-tour" class="ml-0.5 pl-1.5 pr-1 py-0.5 rounded-r border-l border-white/10 text-emerald-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer flex items-center justify-center">
                     <span id="autoplay-icon" class="text-[8.5px] leading-none">⏸</span>
                   </button>
                 </div>
@@ -172,10 +172,10 @@
                 <!-- Overlay Bottom-Right: Camera View Presets & Reset -->
                 <div class="absolute bottom-2.5 right-2.5 flex items-center gap-0.5 bg-[#161D2B]/90 p-1 rounded-md border border-white/12 text-[8.5px] sm:text-[9px] font-mono shadow-sm select-none">
                   <button id="btn-cam-iso" type="button" title="Isometric View" class="cam-btn px-1.5 py-0.5 rounded border border-emerald-500/35 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer">ISO</button>
-                  <button id="btn-cam-top" type="button" title="Top-down Floor Plate View" class="cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer">TOP</button>
-                  <button id="btn-cam-front" type="button" title="Front Elevation View" class="cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer">FRONT</button>
-                  <button id="btn-cam-side" type="button" title="Side Elevation View" class="cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer">SIDE</button>
-                  <button id="btn-reset-cam" type="button" title="Reset Camera Orbit" class="px-1.5 py-0.5 rounded text-slate-400 hover:text-white border-l border-white/10 transition-colors duration-200 cursor-pointer">↺</button>
+                  <button id="btn-cam-top" type="button" title="Top-down Floor Plate View" class="cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer">TOP</button>
+                  <button id="btn-cam-front" type="button" title="Front Elevation View" class="cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer">FRONT</button>
+                  <button id="btn-cam-side" type="button" title="Side Elevation View" class="cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer">SIDE</button>
+                  <button id="btn-reset-cam" type="button" title="Reset Camera Orbit" class="px-1.5 py-0.5 rounded text-slate-400 hover:text-white hover:bg-white/[0.06] border-l border-white/10 transition-colors duration-200 cursor-pointer">↺</button>
                 </div>
               </div>
 
@@ -490,7 +490,7 @@
 
       function setCamActive(activeBtn: HTMLElement | null) {
         camBtns.forEach((b) => {
-          b.className = 'cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer';
+          b.className = 'cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer';
         });
         if (activeBtn) {
           activeBtn.className = 'cam-btn px-1.5 py-0.5 rounded border border-emerald-500/35 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer';
@@ -1411,7 +1411,7 @@
 
         modeBtns.forEach((btn) => {
           if (!btn) return;
-          btn.className = 'mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1';
+          btn.className = 'mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1';
         });
 
         setCamActive(btnCamIso);
@@ -1544,9 +1544,12 @@
         }
       };
 
-      // Render Loop
+      // Render Loop with Off-Screen Intersection Pause (120fps Page Scroll Optimization)
+      let isHeroVisible = true;
       let lastFrameTime = performance.now();
+
       function animate() {
+        if (!isHeroVisible) return;
         requestAnimationFrame(animate);
         const now = performance.now();
         const dt = Math.min(100, now - lastFrameTime);
@@ -1582,6 +1585,21 @@
         renderer.render(scene, camera);
       }
       animate();
+
+      const heroVisObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!isHeroVisible) {
+              isHeroVisible = true;
+              lastFrameTime = performance.now();
+              animate();
+            }
+          } else {
+            isHeroVisible = false;
+          }
+        });
+      }, { threshold: 0.01 });
+      heroVisObserver.observe(container);
 
       // Resize Observer
       const ro = new ResizeObserver(() => {

@@ -1,7 +1,7 @@
 ---
 ---
 
-<header class="sticky top-0 z-50 w-full border-b border-white/10 bg-[#131924]/95 backdrop-blur-xl">
+<header id="site-header" class="sticky top-0 z-50 w-full border-b border-white/10 bg-[#131924]/92 backdrop-blur-xl transition-all duration-300">
   <div class="w-full max-w-[1680px] mx-auto px-5 sm:px-8 xl:px-16 2xl:px-24 h-18 flex items-center justify-between gap-4">
     <!-- Brand -->
     <a href="/" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
@@ -21,12 +21,24 @@
       </div>
     </a>
 
-    <!-- Navigation -->
+    <!-- Navigation with Live Section Scroll-Spy -->
     <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-xs xl:text-sm font-medium text-slate-300">
-      <a href="#services" class="hover:text-white transition-colors whitespace-nowrap">Services</a>
-      <a href="#engine" class="hover:text-white transition-colors whitespace-nowrap">Technology</a>
-      <a href="#compliance" class="hover:text-white transition-colors whitespace-nowrap">Compliance</a>
-      <a href="#workflow" class="hover:text-white transition-colors whitespace-nowrap">Methodology</a>
+      <a href="#services" data-spy-link="services" class="spy-nav-link flex items-center gap-1.5 hover:text-white transition-colors whitespace-nowrap">
+        <span class="spy-dot w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-0 scale-0 transition-all duration-200"></span>
+        <span>Services</span>
+      </a>
+      <a href="#engine" data-spy-link="engine" class="spy-nav-link flex items-center gap-1.5 hover:text-white transition-colors whitespace-nowrap">
+        <span class="spy-dot w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-0 scale-0 transition-all duration-200"></span>
+        <span>Technology</span>
+      </a>
+      <a href="#compliance" data-spy-link="compliance" class="spy-nav-link flex items-center gap-1.5 hover:text-white transition-colors whitespace-nowrap">
+        <span class="spy-dot w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-0 scale-0 transition-all duration-200"></span>
+        <span>Compliance</span>
+      </a>
+      <a href="#workflow" data-spy-link="workflow" class="spy-nav-link flex items-center gap-1.5 hover:text-white transition-colors whitespace-nowrap">
+        <span class="spy-dot w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-0 scale-0 transition-all duration-200"></span>
+        <span>Methodology</span>
+      </a>
     </nav>
 
     <!-- Right Actions: CTA + Mobile Hamburger -->
@@ -57,6 +69,14 @@
         </svg>
       </button>
     </div>
+  </div>
+
+  <!-- Precision 1.5px Architectural Scroll Progress Hairline -->
+  <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-[1.5px] bg-transparent overflow-hidden">
+    <div
+      id="header-scroll-progress"
+      class="h-full w-0 bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 transition-[width] duration-75 ease-out"
+    ></div>
   </div>
 
   <!-- Architectural Mobile Navigation Drawer (< lg) -->
@@ -163,4 +183,62 @@
       if (isOpen) toggleMenu();
     });
   });
+
+  // Scroll Progress Hairline, Header Elevation & Section Scroll-Spy
+  const siteHeader = document.getElementById('site-header');
+  const progressBar = document.getElementById('header-scroll-progress');
+  const spyLinks = document.querySelectorAll<HTMLAnchorElement>('.spy-nav-link');
+  const spyTargets = ['services', 'engine', 'compliance', 'workflow'];
+
+  function updateHeaderScroll() {
+    const scrollY = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollY / docHeight) * 100)) : 0;
+
+    if (progressBar) {
+      progressBar.style.width = `${pct.toFixed(1)}%`;
+    }
+
+    if (siteHeader) {
+      if (scrollY > 24) {
+        siteHeader.classList.add('shadow-xl', 'shadow-slate-950/30', 'bg-[#0F141E]/95');
+        siteHeader.classList.remove('bg-[#131924]/92');
+      } else {
+        siteHeader.classList.remove('shadow-xl', 'shadow-slate-950/30', 'bg-[#0F141E]/95');
+        siteHeader.classList.add('bg-[#131924]/92');
+      }
+    }
+
+    // Determine active section in viewport
+    let activeId = '';
+    const triggerLine = scrollY + window.innerHeight * 0.32;
+    for (const id of spyTargets) {
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.getBoundingClientRect().top + scrollY;
+        if (triggerLine >= top) {
+          activeId = id;
+        }
+      }
+    }
+
+    spyLinks.forEach((link) => {
+      const id = link.getAttribute('data-spy-link');
+      const dot = link.querySelector('.spy-dot');
+      if (id === activeId && scrollY > 180) {
+        link.classList.add('text-white');
+        link.classList.remove('text-slate-300');
+        dot?.classList.remove('opacity-0', 'scale-0');
+        dot?.classList.add('opacity-100', 'scale-100');
+      } else {
+        link.classList.remove('text-white');
+        link.classList.add('text-slate-300');
+        dot?.classList.add('opacity-0', 'scale-0');
+        dot?.classList.remove('opacity-100', 'scale-100');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateHeaderScroll, { passive: true });
+  updateHeaderScroll();
 </script>

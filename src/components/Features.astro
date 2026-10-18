@@ -159,7 +159,7 @@ const services = [
     <!-- DESKTOP / TABLET GRID (>= 768px) -->
     <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
       {services.map((item, idx) => (
-        <div class={`reveal reveal-delay-${idx % 3} group rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/50 p-5 sm:p-7 shadow-xs hover:shadow-xl hover:shadow-emerald-950/5 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between text-left`}>
+        <div class={`arch-card reveal reveal-delay-${Math.min(idx + 1, 6)} group rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/50 p-5 sm:p-7 shadow-xs hover:shadow-xl hover:shadow-emerald-950/5 hover:-translate-y-0.5 flex flex-col justify-between text-left`}>
           <div>
             <!-- Top index row: vibrant emerald badge and phase tag -->
             <div class="flex items-center justify-between gap-2 pb-3 sm:pb-3.5 mb-3.5 sm:mb-4 border-b border-slate-900/[0.06]">

@@ -134,7 +134,7 @@ const workflows = [
       <!-- Matrix Rows with Elevated Clearinfra Column -->
       <div class="divide-y divide-slate-900/10">
         {workflows.map((row, idx) => (
-          <div class="grid grid-cols-1 md:grid-cols-12 items-stretch hover:bg-slate-50/60 transition-colors">
+          <div class={`reveal reveal-delay-${idx + 1} grid grid-cols-1 md:grid-cols-12 items-stretch hover:bg-slate-50/60 transition-colors`}>
             <!-- Col 1: Dimension with Monograph Index -->
             <div class="md:col-span-3 px-5 sm:px-8 py-5 sm:py-6 flex items-start gap-3">
               <span class="text-xs font-mono font-medium text-slate-400 mt-0.5 shrink-0">0{idx + 1}</span>

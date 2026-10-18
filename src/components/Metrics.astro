@@ -23,12 +23,20 @@ const specs = [
 ];
 ---
 
-<section class="border-y border-slate-900/10 bg-[#F7F6F2] py-8 sm:py-12 lg:py-14">
+<section id="metrics-strip" class="border-y border-slate-900/10 bg-[#F7F6F2] py-8 sm:py-12 lg:py-14">
   <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24">
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6 sm:gap-8 lg:gap-12">
       {specs.map((item, idx) => (
-        <div class={`reveal reveal-delay-${Math.min(idx, 3)} flex flex-col space-y-1 sm:space-y-1.5 border-l-2 border-emerald-600/60 pl-3.5 sm:pl-6`}>
-          <span class="text-xl sm:text-2xl lg:text-3xl font-semibold text-slate-900 font-mono tracking-tight">
+        <div class={`reveal reveal-delay-${Math.min(idx + 1, 4)} relative flex flex-col space-y-1 sm:space-y-1.5 pl-3.5 sm:pl-6`}>
+          <!-- Animated Vertical Architectural Datum Rule -->
+          <span
+            class="datum-line-v absolute top-0 bottom-0 left-0 w-[2px] bg-emerald-600/65"
+            style={`transition-delay: ${idx * 90 + 80}ms;`}
+          ></span>
+          <span
+            class="text-xl sm:text-2xl lg:text-3xl font-semibold text-slate-900 font-mono tracking-tight tabular-nums"
+            data-metric-idx={idx}
+          >
             {item.value}
           </span>
           <span class="text-[10px] sm:text-xs font-mono text-emerald-800 font-semibold uppercase tracking-wider leading-snug">
@@ -42,7 +50,7 @@ const specs = [
     </div>
 
     <!-- Software & BIM/CAD Interoperability Pipeline Strip -->
-    <div class="mt-8 sm:mt-12 pt-6 sm:pt-7 border-t border-slate-900/10">
+    <div class="reveal reveal-delay-3 mt-8 sm:mt-12 pt-6 sm:pt-7 border-t border-slate-900/10">
       <div class="rounded-xl bg-white/70 border border-slate-900/10 p-3 sm:p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-3 lg:gap-4 shadow-xs">
         <div class="flex items-center gap-2 text-slate-800 font-mono font-semibold text-[10.5px] sm:text-[11px] uppercase tracking-wider shrink-0">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
@@ -66,3 +74,35 @@ const specs = [
     </div>
   </div>
 </section>
+
+<script>
+  // Precision Tabular Tick-Up for 8,760 hrs on First Viewport Entry
+  const hrsEl = document.querySelector<HTMLElement>('[data-metric-idx="0"]');
+  if (hrsEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let counted = false;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !counted) {
+          counted = true;
+          obs.disconnect();
+          const duration = 680;
+          const start = performance.now();
+          const target = 8760;
+          function tick(now: number) {
+            const t = Math.min(1, (now - start) / duration);
+            const ease = 1 - Math.pow(1 - t, 3);
+            const val = Math.round(target * ease);
+            hrsEl!.textContent = `${val.toLocaleString('en-US')} hrs`;
+            if (t < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              hrsEl!.textContent = '8,760 hrs';
+            }
+          }
+          requestAnimationFrame(tick);
+        }
+      });
+    }, { threshold: 0.25 });
+    obs.observe(hrsEl);
+  }
+</script>

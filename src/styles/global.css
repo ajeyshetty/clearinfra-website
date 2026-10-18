@@ -55,8 +55,9 @@
 /* Scroll reveal animation classes */
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .reveal.is-visible {
@@ -64,9 +65,49 @@
   transform: translateY(0);
 }
 
-.reveal-delay-1 { transition-delay: 100ms; }
-.reveal-delay-2 { transition-delay: 200ms; }
-.reveal-delay-3 { transition-delay: 300ms; }
+.reveal-delay-1 { transition-delay: 70ms; }
+.reveal-delay-2 { transition-delay: 140ms; }
+.reveal-delay-3 { transition-delay: 210ms; }
+.reveal-delay-4 { transition-delay: 280ms; }
+.reveal-delay-5 { transition-delay: 350ms; }
+.reveal-delay-6 { transition-delay: 420ms; }
+
+/* Architectural Vertical Datum Line Draw on Scroll */
+.datum-line-v {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible .datum-line-v,
+.datum-line-v.is-visible {
+  transform: scaleY(1);
+}
+
+/* Tactile Architectural Card with Top-Edge Precision Hairline Sweep */
+.arch-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.arch-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #10b981 0%, #00c4df 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.arch-card:hover::before {
+  transform: scaleX(1);
+}
 
 /* Animated SVG Flow Lines */
 @keyframes dash-flow {
@@ -130,6 +171,10 @@ input[type="range"].ci-slider::-webkit-slider-thumb:hover {
   .reveal {
     opacity: 1;
     transform: none;
+    transition: none;
+  }
+  .datum-line-v {
+    transform: scaleY(1);
     transition: none;
   }
   .animate-dash, .animate-float {
