@@ -47,8 +47,8 @@ const services = [
 
 <section id="services" class="py-8 sm:py-20 lg:py-28 bg-[#F7F6F2] relative">
   <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24">
-    <div class="reveal flex flex-col lg:flex-row items-center sm:items-start lg:items-end justify-between text-center sm:text-left mb-9 sm:mb-12 lg:mb-16 gap-3.5 sm:gap-6">
-      <div class="max-w-2xl space-y-2.5 sm:space-y-3 mx-auto sm:mx-0">
+    <div class="reveal grid grid-cols-1 lg:grid-cols-3 gap-3.5 sm:gap-6 lg:gap-8 items-end text-center sm:text-left mb-9 sm:mb-12 lg:mb-16">
+      <div class="lg:col-span-2 max-w-2xl space-y-2.5 sm:space-y-3 mx-auto sm:mx-0">
         <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-[10px] sm:text-xs font-mono tracking-wider">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
           <span>ADVISORY &amp; ENGINEERING SERVICES</span>
@@ -57,9 +57,16 @@ const services = [
           Specialist consulting across the building lifecycle.
         </h2>
       </div>
-      <p class="text-slate-600 text-sm sm:text-base max-w-xl leading-relaxed mx-auto sm:mx-0">
-        We embed with your project team from early architectural concept through statutory compliance—combining deep building science expertise with the speed of our in-house simulation technology.
-      </p>
+      <div class="lg:col-span-1 relative sm:pl-5 lg:pl-6 py-0.5 mx-auto sm:mx-0 max-w-xl lg:max-w-none">
+        <div class="hidden sm:block datum-line-v absolute left-0 top-0.5 bottom-0.5 w-[2px] rounded-full bg-gradient-to-b from-emerald-500 via-emerald-500/40 to-transparent" aria-hidden="true"></div>
+        <div class="flex items-center justify-center sm:justify-start gap-2 mb-1.5 text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider text-emerald-800">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 sm:hidden"></span>
+          <span>PRACTICE SCOPE // CONCEPT TO HANDOVER</span>
+        </div>
+        <p class="text-slate-600 text-sm sm:text-[15px] leading-relaxed">
+          We embed with your project team from early architectural concept through statutory compliance—combining deep building science expertise with the speed of our in-house simulation technology.
+        </p>
+      </div>
     </div>
 
     <!-- MOBILE SNAP-SCROLL TOUCH DECK (< 768px) -->
