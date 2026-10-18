@@ -196,3 +196,17 @@ input[type="range"].ci-slider::-webkit-slider-thumb:hover {
     animation: none;
   }
 }
+
+/* Sticky Header Navigation Anchor Offsets (Header height is 4.5rem / 72px) */
+#compliance {
+  scroll-margin-top: 4.5rem;
+}
+
+@media (max-width: 1023px) {
+  #services,
+  #engine,
+  #workflow,
+  #contact {
+    scroll-margin-top: 4.5rem;
+  }
+}
