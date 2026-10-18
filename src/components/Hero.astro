@@ -87,8 +87,8 @@
             </div>
             <div class="flex items-center gap-1.5 sm:gap-2 text-sky-400 shrink-0 text-[11px] sm:text-xs">
               <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
-              <span class="hidden sm:inline">Illustrative Envelope Demo</span>
-              <span class="sm:hidden font-mono text-[10px] uppercase tracking-wider font-semibold">Concept Demo</span>
+              <span class="hidden sm:inline">Interactive Charrette Sandbox</span>
+              <span class="sm:hidden font-mono text-[10px] uppercase tracking-wider font-semibold">Live Sandbox</span>
               
               <!-- Close button for Full-Screen Studio Mode -->
               <button
@@ -126,44 +126,63 @@
               </div>
 
               <!-- Central 3D Three.js Building Viewport (Clearinfra Studio Twin) -->
-              <div id="three-container" class="relative w-full h-[230px] sm:h-[320px] lg:h-[360px] my-auto overflow-hidden rounded-xl border border-white/[0.08] bg-[#0E131E]/80 backdrop-blur-xs">
+              <div id="three-container" class="relative w-full h-[230px] sm:h-[320px] lg:h-[360px] my-3 overflow-hidden rounded-xl border border-white/[0.08] bg-[#0E131E]/80 backdrop-blur-xs">
                 <canvas id="three-building-canvas" class="w-full h-full block cursor-grab active:cursor-grabbing"></canvas>
                 
-                <!-- Overlay Top-Left: Asset Site & Floor Parameters HUD -->
-                <div class="absolute top-2.5 left-2.5 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#161D2B]/90 border border-white/12 text-[9px] sm:text-[10px] font-mono text-slate-300 backdrop-blur-xs shadow-sm">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                  <span class="font-medium text-white">SITE 3,334m²</span>
-                  <span class="text-slate-600">·</span>
-                  <span class="text-slate-400">12 FLOORS</span>
+                <!-- Overlay Top-Left: 3-Stage Simulation Pipeline Switcher (01 Twin · 02 Daylight sDA · 03 NBC 2026 + Auto-Tour Toggle) -->
+                <div class="absolute top-2.5 left-2.5 flex items-center gap-1 bg-[#161D2B]/95 p-1 rounded-md border border-white/12 text-[9px] sm:text-[9.5px] font-mono shadow-sm z-10 select-none">
+                  <button id="btn-mode-twin" type="button" title="01 Architectural Twin" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-emerald-500/40 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
+                    <span class="opacity-65 text-[8px]">01</span>
+                    <span>Twin</span>
+                    <span id="prog-mode-twin" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-emerald-400/90" style="width: 0%;"></span>
+                  </button>
+                  <button id="btn-mode-daylight" type="button" title="02 Daylight sDA Lux Heatmap (LM-83)" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
+                    <span class="opacity-65 text-[8px]">02</span>
+                    <span>Daylight<span class="hidden sm:inline"> sDA</span></span>
+                    <span id="prog-mode-daylight" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-amber-400/90" style="width: 0%;"></span>
+                  </button>
+                  <button id="btn-mode-nbc" type="button" title="03 NBC 2026 Statutory 3D Setbacks & Refuge Area" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
+                    <span class="opacity-65 text-[8px]">03</span>
+                    <span>NBC<span class="hidden sm:inline"> 2026</span></span>
+                    <span id="prog-mode-nbc" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-sky-400/90" style="width: 0%;"></span>
+                  </button>
+                  <button id="btn-mode-autoplay" type="button" title="Pause / Resume 3-Stage Auto-Tour" aria-label="Pause or resume layer auto-tour" class="ml-0.5 pl-1.5 pr-1 py-0.5 border-l border-white/10 text-emerald-400 hover:text-white transition-colors duration-200 cursor-pointer flex items-center justify-center">
+                    <span id="autoplay-icon" class="text-[8.5px] leading-none">⏸</span>
+                  </button>
                 </div>
 
-                <!-- Overlay Top-Right: Illustrative Concept Model Badge -->
-                <div class="absolute top-2.5 right-2.5 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#161D2B]/90 border border-sky-500/30 text-[9.5px] font-mono text-sky-400 backdrop-blur-xs shadow-sm">
-                  <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-                  <span>ILLUSTRATIVE DEMO</span>
+                <!-- Overlay Daylight Lux Scale Bar (Smoothly Fades in Daylight sDA Mode) -->
+                <div id="daylight-lux-legend" class="opacity-0 pointer-events-none transition-opacity duration-300 absolute bottom-10 left-2.5 flex items-center gap-1.5 px-2 py-1 rounded-md bg-[#0E131E]/95 border border-white/15 text-[8.5px] font-mono text-slate-300 backdrop-blur-xs shadow-lg z-10">
+                  <span class="text-slate-400">0 lx</span>
+                  <div class="w-20 sm:w-28 h-2 rounded-xs border border-white/20" style="background: linear-gradient(90deg, #060914 0%, #1e3a8a 18%, #16a34a 38%, #84cc16 56%, #eab308 74%, #ea580c 88%, #dc2626 100%);"></div>
+                  <span class="text-red-400 font-semibold">2000+ lx</span>
+                  <span class="hidden sm:inline text-emerald-400 border-l border-white/15 pl-1.5">― 300 lx</span>
                 </div>
 
                 <!-- Overlay Bottom-Left: Real-time Dynamic WWR & Solar DNI callout badge -->
-                <div class="absolute bottom-2.5 left-2.5 pointer-events-none flex items-center gap-2 text-[10px] font-mono text-slate-400 bg-[#161D2B]/90 px-2.5 py-1 rounded-md border border-white/12 backdrop-blur-xs">
+                <div class="absolute bottom-2.5 left-2.5 pointer-events-none flex items-center gap-1.5 text-[9.5px] font-mono text-slate-400 bg-[#161D2B]/90 px-2 py-1 rounded-md border border-white/12 backdrop-blur-xs">
                   <span id="viz-wwr-callout" class="text-emerald-400 font-semibold">WWR: 40%</span>
-                  <span class="text-slate-600">|</span>
+                  <span class="text-slate-600">·</span>
                   <span id="viz-dni-label" class="text-amber-300">760 W/m²</span>
                 </div>
 
                 <!-- Overlay Bottom-Right: Camera View Presets & Reset -->
-                <div class="absolute bottom-2.5 right-2.5 flex items-center gap-1 bg-[#161D2B]/90 p-1 rounded-md border border-white/12 text-[9px] font-mono shadow-sm">
-                  <button id="btn-cam-iso" type="button" title="Isometric View" class="cam-btn px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition-colors cursor-pointer">ISO</button>
-                  <button id="btn-cam-top" type="button" title="Top-down Floor Plate View" class="cam-btn px-1.5 py-0.5 rounded text-slate-400 hover:text-white transition-colors cursor-pointer">TOP</button>
-                  <button id="btn-cam-front" type="button" title="Front Elevation View" class="cam-btn px-1.5 py-0.5 rounded text-slate-400 hover:text-white transition-colors cursor-pointer">FRONT</button>
-                  <button id="btn-cam-side" type="button" title="Side Elevation View" class="cam-btn px-1.5 py-0.5 rounded text-slate-400 hover:text-white transition-colors cursor-pointer">SIDE</button>
-                  <button id="btn-reset-cam" type="button" title="Reset Camera Orbit" class="px-1.5 py-0.5 rounded text-slate-400 hover:text-white border-l border-white/10 transition-colors cursor-pointer">↺</button>
+                <div class="absolute bottom-2.5 right-2.5 flex items-center gap-0.5 bg-[#161D2B]/90 p-1 rounded-md border border-white/12 text-[8.5px] sm:text-[9px] font-mono shadow-sm select-none">
+                  <button id="btn-cam-iso" type="button" title="Isometric View" class="cam-btn px-1.5 py-0.5 rounded border border-emerald-500/35 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer">ISO</button>
+                  <button id="btn-cam-top" type="button" title="Top-down Floor Plate View" class="cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer">TOP</button>
+                  <button id="btn-cam-front" type="button" title="Front Elevation View" class="cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer">FRONT</button>
+                  <button id="btn-cam-side" type="button" title="Side Elevation View" class="cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer">SIDE</button>
+                  <button id="btn-reset-cam" type="button" title="Reset Camera Orbit" class="px-1.5 py-0.5 rounded text-slate-400 hover:text-white border-l border-white/10 transition-colors duration-200 cursor-pointer">↺</button>
                 </div>
               </div>
 
               <!-- Bottom Status Strip inside Canvas -->
-              <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-white/[0.06] text-[11px] font-mono text-slate-400">
-                <div>Model: <span class="text-slate-300">Envelope Heuristic (Engine: ISO 52016-1)</span></div>
-                <div id="viz-shgc-readout"><span class="text-emerald-400">SHGC 0.28 · U 1.6 W/m²K</span></div>
+              <div class="flex items-center justify-between gap-2 pt-3 border-t border-white/[0.06] text-[10.5px] font-mono text-slate-400 whitespace-nowrap overflow-hidden">
+                <div class="shrink-0">Engine: <span class="text-slate-300">ISO 52016-1</span></div>
+                <div id="viz-shgc-readout" class="truncate text-right"><span class="text-emerald-400">SHGC 0.28 · U 1.6 W/m²K</span></div>
               </div>
             </div>
 
@@ -172,9 +191,9 @@
               <!-- Simulated Physics Output Readout (Elevated to top on mobile for instant zero-distance feedback) -->
               <div class="order-1 lg:order-2 pt-0 lg:pt-4 border-b lg:border-b-0 lg:border-t border-white/[0.07] pb-3.5 lg:pb-0 space-y-2.5 sm:space-y-3">
                 <div class="flex items-center justify-between">
-                  <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Indicative Envelope Tier</span>
+                  <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Envelope Performance</span>
                   <span id="out-badge" class="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
-                    Optimized (Indicative)
+                    Optimized Balance
                   </span>
                 </div>
 
@@ -185,7 +204,7 @@
                     <span class="text-[9px] font-mono text-slate-500">kWh/m²·yr</span>
                     <!-- Tooltip -->
                     <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 rounded-lg bg-[#1A2334] border border-white/20 text-[10px] font-sans text-slate-200 shadow-2xl opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150 z-50 text-center leading-tight">
-                      Indicative Energy Performance Index. Statutory verification requires full engine run.
+                      Energy Performance Index per conditioned floor area. Statutory submittals run full 8,760-hr engine.
                     </div>
                   </div>
 
@@ -195,7 +214,7 @@
                     <span class="text-[9px] font-mono text-slate-500">Peak TR</span>
                     <!-- Tooltip -->
                     <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-44 p-2 rounded-lg bg-[#1A2334] border border-white/20 text-[10px] font-sans text-slate-200 shadow-2xl opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150 z-50 text-center leading-tight">
-                      Indicative peak chiller capacity required to offset envelope heat gain.
+                      Peak chiller capacity required to offset envelope and internal sensible/latent heat gain.
                     </div>
                   </div>
 
@@ -205,7 +224,7 @@
                     <span class="text-[9px] font-mono text-slate-500">sDA &gt;300lx</span>
                     <!-- Tooltip -->
                     <div class="pointer-events-none absolute bottom-full right-0 mb-2 w-48 p-2 rounded-lg bg-[#1A2334] border border-white/20 text-[10px] font-sans text-slate-200 shadow-2xl opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150 z-50 text-center leading-tight">
-                      Spatial Daylight Autonomy: indicative % of space receiving adequate daylight. Reference estimate.
+                      Spatial Daylight Autonomy: percentage of floor plate achieving ≥300 lux on the workplane.
                     </div>
                   </div>
                 </div>
@@ -327,7 +346,7 @@
             <div class="flex items-center gap-2 text-slate-300 min-w-0 flex-1">
               <span class="px-1.5 py-0.5 rounded bg-sky-500/15 text-sky-400 border border-sky-500/30 text-[9.5px] sm:text-[10px] font-mono font-medium shrink-0 whitespace-nowrap">ILLUSTRATIVE DEMO</span>
               <span id="ai-copilot-msg" class="text-slate-300 text-[10.5px] sm:text-[11px] leading-snug sm:leading-[17px] truncate sm:whitespace-normal">
-                Indicative envelope sensitivity: 40% WWR with Low-E DGU balances indicative thermal load and daylight estimate. Detailed compliance requires a full engine run and engineer review.
+                Balanced charrette point: 40% WWR with 0.28 SHGC balances peak cooling load (246 TR) and 55% spatial daylight autonomy.
               </span>
             </div>
             <!-- Done button visible ONLY in full-screen studio mode on mobile -->
@@ -392,6 +411,7 @@
   const canvas = document.getElementById('three-building-canvas') as HTMLCanvasElement | null;
 
   let updateThreeBuilding: ((wwr: number, glazing: string, climate: string) => void) | null = null;
+  let pauseAutoTourExternal: (() => void) | null = null;
   let orbitControls: any = null;
 
   if (container && canvas) {
@@ -411,9 +431,9 @@
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-      const camera = new THREE.PerspectiveCamera(35, container.clientWidth / Math.max(1, container.clientHeight), 0.1, 150);
-      const defaultCamPos = new THREE.Vector3(28, 19, 28);
-      const defaultTarget = new THREE.Vector3(0, 7.8, 0);
+      const camera = new THREE.PerspectiveCamera(34, container.clientWidth / Math.max(1, container.clientHeight), 0.1, 160);
+      const defaultCamPos = new THREE.Vector3(27.2, 18.8, 27.2);
+      const defaultTarget = new THREE.Vector3(0, 8.3, 0);
       camera.position.copy(defaultCamPos);
 
       const controls = new OrbitControls(camera, canvas);
@@ -426,11 +446,31 @@
       controls.minDistance = 14;
       controls.maxDistance = 65;
       controls.autoRotate = true;
-      controls.autoRotateSpeed = 0.55;
+      controls.autoRotateSpeed = 0.45;
+
+      // Smooth Camera Flight Animator (easeOutCubic)
+      let camAnimActive = false;
+      let camAnimStart = 0;
+      const camAnimDuration = 420; // ms
+      const camFromPos = new THREE.Vector3();
+      const camToPos = new THREE.Vector3();
+      const camFromTarget = new THREE.Vector3();
+      const camToTarget = new THREE.Vector3();
+
+      function flyCameraTo(px: number, py: number, pz: number, tx: number, ty: number, tz: number) {
+        camFromPos.copy(camera.position);
+        camToPos.set(px, py, pz);
+        camFromTarget.copy(controls.target);
+        camToTarget.set(tx, ty, tz);
+        camAnimStart = performance.now();
+        camAnimActive = true;
+      }
 
       let idleTimer: any = null;
       controls.addEventListener('start', () => {
+        camAnimActive = false;
         controls.autoRotate = false;
+        pauseAutoTourExternal?.();
         clearTimeout(idleTimer);
       });
       controls.addEventListener('end', () => {
@@ -450,41 +490,48 @@
 
       function setCamActive(activeBtn: HTMLElement | null) {
         camBtns.forEach((b) => {
-          b.className = 'cam-btn px-1.5 py-0.5 rounded text-slate-400 hover:text-white transition-colors cursor-pointer';
+          b.className = 'cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer';
         });
         if (activeBtn) {
-          activeBtn.className = 'cam-btn px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition-colors cursor-pointer';
+          activeBtn.className = 'cam-btn px-1.5 py-0.5 rounded border border-emerald-500/35 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer';
         }
       }
 
+      function getIsoPresetForMode(mode: 'twin' | 'daylight' | 'nbc'): [number, number, number, number, number, number] {
+        if (mode === 'daylight') return [16.5, 18.5, 16.5, 0, 1.5, 0];
+        if (mode === 'nbc') return [29.8, 20.6, 29.8, 0, 8.1, 0];
+        return [27.2, 18.8, 27.2, 0, 8.3, 0];
+      }
+
       btnCamIso?.addEventListener('click', () => {
-        camera.position.set(28, 19, 28);
-        controls.target.set(0, 7.8, 0);
-        controls.update();
+        pauseAutoTourExternal?.();
+        const [px, py, pz, tx, ty, tz] = getIsoPresetForMode(currentViewMode);
+        flyCameraTo(px, py, pz, tx, ty, tz);
         setCamActive(btnCamIso);
       });
       btnCamTop?.addEventListener('click', () => {
-        camera.position.set(0.01, 38, 0);
-        controls.target.set(0, 7.8, 0);
-        controls.update();
+        pauseAutoTourExternal?.();
+        if (currentViewMode === 'daylight') {
+          flyCameraTo(0.01, 20.5, 0, 0, 0.3, 0);
+        } else {
+          flyCameraTo(0.01, 35.0, 0, 0, 0, 0);
+        }
         setCamActive(btnCamTop);
       });
       btnCamFront?.addEventListener('click', () => {
-        camera.position.set(0, 7.8, 34);
-        controls.target.set(0, 7.8, 0);
-        controls.update();
+        pauseAutoTourExternal?.();
+        flyCameraTo(0, 8.5, 34.0, 0, 8.3, 0);
         setCamActive(btnCamFront);
       });
       btnCamSide?.addEventListener('click', () => {
-        camera.position.set(34, 7.8, 0);
-        controls.target.set(0, 7.8, 0);
-        controls.update();
+        pauseAutoTourExternal?.();
+        flyCameraTo(34.0, 8.5, 0, 0, 8.3, 0);
         setCamActive(btnCamSide);
       });
       resetBtn?.addEventListener('click', () => {
-        camera.position.set(28, 19, 28);
-        controls.target.set(0, 7.8, 0);
-        controls.update();
+        pauseAutoTourExternal?.();
+        const [px, py, pz, tx, ty, tz] = getIsoPresetForMode(currentViewMode);
+        flyCameraTo(px, py, pz, tx, ty, tz);
         setCamActive(btnCamIso);
       });
 
@@ -632,9 +679,11 @@
       coreMesh.castShadow = true;
       buildingGroup.add(coreMesh);
 
-      // Arrays for dynamic update
+      // Arrays for dynamic update & mode cutaway
       const glassMeshes: THREE.Mesh[] = [];
       const mullionGroups: THREE.Group[] = [];
+      const slabMeshes: THREE.Mesh[] = [];
+      const floorPlates: THREE.Mesh[] = [];
 
       // Build 12 Floors with Slabs, Glazing & Vertical Mullions
       for (let i = 0; i < numFloors; i++) {
@@ -646,6 +695,7 @@
         slabMesh.receiveShadow = true;
         buildingGroup.add(slabMesh);
         slabMesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(slabGeo), slabEdgeMat));
+        slabMeshes.push(slabMesh);
 
         // Floor Interior Plate
         const floorPlate = new THREE.Mesh(
@@ -654,6 +704,7 @@
         );
         floorPlate.position.set(0, i * floorHeight + slabH + 0.02, 0);
         buildingGroup.add(floorPlate);
+        floorPlates.push(floorPlate);
 
         // Dynamic Glazing Ribbon (height scaled by updateThreeBuilding)
         const glassGeo = new THREE.BoxGeometry(towerW - 0.02, 1, towerD - 0.02);
@@ -800,6 +851,640 @@
       chiller.castShadow = true;
       buildingGroup.add(chiller);
 
+      // ─── VIEW LAYERS: DAYLIGHT sDA LUX GRID (STUDIO CUTAWAY) & NBC 2026 STATUTORY ENVELOPE ───
+      const btnModeTwin = document.getElementById('btn-mode-twin');
+      const btnModeDaylight = document.getElementById('btn-mode-daylight');
+      const btnModeNbc = document.getElementById('btn-mode-nbc');
+      const daylightLegendEl = document.getElementById('daylight-lux-legend');
+      const modeBtns = [btnModeTwin, btnModeDaylight, btnModeNbc];
+
+      // Helper to create crisp 3D floating text sprites (for Compass N/S/E/W & Statutory Callouts)
+      function makeBadgeSprite(text: string, bgHex: string, borderHex: string, textHex: string, widthWorld = 1.6, heightWorld = 0.65) {
+        const isWide = text.length > 3;
+        const can = document.createElement('canvas');
+        can.width = isWide ? 420 : 140;
+        can.height = 112;
+        const ctx = can.getContext('2d');
+        if (ctx) {
+          ctx.fillStyle = bgHex;
+          ctx.beginPath();
+          ctx.roundRect(6, 6, can.width - 12, can.height - 12, 22);
+          ctx.fill();
+          ctx.lineWidth = 4;
+          ctx.strokeStyle = borderHex;
+          ctx.stroke();
+          ctx.font = `bold ${isWide ? 36 : 46}px "JetBrains Mono", monospace, sans-serif`;
+          ctx.fillStyle = textHex;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(text, can.width / 2, can.height / 2 + 2);
+        }
+        const tex = new THREE.CanvasTexture(can);
+        const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false, depthWrite: false });
+        const sprite = new THREE.Sprite(mat);
+        sprite.renderOrder = 999;
+        sprite.scale.set(widthWorld, heightWorld, 1);
+        return sprite;
+      }
+
+      // 1. Clearinfra Studio Daylight sDA Cutaway Mode Group
+      const daylightGroup = new THREE.Group();
+      daylightGroup.visible = false;
+      scene.add(daylightGroup);
+
+      // Exact Clearinfra Studio Lux False-Color Ramp (from daylightGridCalc.ts)
+      const LUX_STOPS: [number, [number, number, number]][] = [
+        [0,    [6, 9, 20]],       // deep navy (core)
+        [50,   [12, 26, 61]],     // dark blue
+        [150,  [30, 58, 138]],    // royal blue (under-lit)
+        [300,  [22, 163, 74]],    // vibrant emerald green (ECBC 300 lx threshold!)
+        [500,  [132, 204, 22]],   // chartreuse / lime (well-lit)
+        [750,  [234, 179, 8]],    // vivid amber / yellow
+        [1150, [249, 115, 22]],   // bright solar orange
+        [1650, [220, 38, 38]],    // crimson red (perimeter direct solar)
+      ];
+
+      function getLuxColorRGB(lux: number): [number, number, number] {
+        const clamped = Math.max(0, Math.min(2000, lux));
+        for (let i = 0; i < LUX_STOPS.length - 1; i++) {
+          const [l0, c0] = LUX_STOPS[i];
+          const [l1, c1] = LUX_STOPS[i + 1];
+          if (clamped <= l1) {
+            const t = (clamped - l0) / (l1 - l0 || 1);
+            return [
+              (c0[0] + (c1[0] - c0[0]) * t) / 255,
+              (c0[1] + (c1[1] - c0[1]) * t) / 255,
+              (c0[2] + (c1[2] - c0[2]) * t) / 255,
+            ];
+          }
+        }
+        const last = LUX_STOPS[LUX_STOPS.length - 1][1];
+        return [last[0] / 255, last[1] / 255, last[2] / 255];
+      }
+
+      // Architectural Ghost Volume (Skeletal Tower Wireframe + Translucent Floating Roof Cap, matching Studio)
+      const totalTowerH = numFloors * floorHeight;
+      const ghostRoofGeo = new THREE.BoxGeometry(towerW + 0.2, 0.12, towerD + 0.2);
+      const ghostRoofMat = new THREE.MeshBasicMaterial({
+        color: 0x38bdf8,
+        transparent: true,
+        opacity: 0.11,
+        depthWrite: false,
+      });
+      const ghostRoof = new THREE.Mesh(ghostRoofGeo, ghostRoofMat);
+      ghostRoof.position.set(0, totalTowerH, 0);
+      daylightGroup.add(ghostRoof);
+      ghostRoof.add(new THREE.LineSegments(
+        new THREE.EdgesGeometry(ghostRoofGeo),
+        new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.50 })
+      ));
+
+      // Ghost Skeletal Corner Columns & Subtle Floor Ring Outlines (Unobstructed 12-story 3D volume like Studio)
+      const skeletonMat = new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.22 });
+      const cornerCoords = [
+        [-towerW / 2, -towerD / 2],
+        [towerW / 2, -towerD / 2],
+        [towerW / 2, towerD / 2],
+        [-towerW / 2, towerD / 2],
+      ];
+      cornerCoords.forEach(([cx, cz]) => {
+        const pts = [new THREE.Vector3(cx, 0, cz), new THREE.Vector3(cx, totalTowerH, cz)];
+        daylightGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), skeletonMat));
+      });
+      for (let f = 3; f < numFloors; f += 3) {
+        const ringY = f * floorHeight;
+        const ringPts = [
+          new THREE.Vector3(-towerW / 2, ringY, -towerD / 2),
+          new THREE.Vector3(towerW / 2, ringY, -towerD / 2),
+          new THREE.Vector3(towerW / 2, ringY, towerD / 2),
+          new THREE.Vector3(-towerW / 2, ringY, towerD / 2),
+          new THREE.Vector3(-towerW / 2, ringY, -towerD / 2),
+        ];
+        daylightGroup.add(new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints(ringPts),
+          new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.10 })
+        ));
+      }
+
+      // Discrete 3D Workplane Tile Grid (28 x 20 Individual Glowing Sensor Cells with Crisp Gaps)
+      const colsX = 28;
+      const rowsZ = 20;
+      const gridSpanW = towerW - 0.24;
+      const gridSpanD = towerD - 0.24;
+      const stepCellX = gridSpanW / colsX;
+      const stepCellZ = gridSpanD / rowsZ;
+      const gapRatio = 0.85; // leaves crisp dark CAD channel between every tile
+
+      // Primary Workplane Base Dark Plate
+      const workplaneY = slabH + 0.08;
+      const wpBacking = new THREE.Mesh(
+        new THREE.BoxGeometry(towerW + 0.12, 0.06, towerD + 0.12),
+        new THREE.MeshBasicMaterial({ color: 0x050811 })
+      );
+      wpBacking.position.set(0, workplaneY - 0.04, 0);
+      daylightGroup.add(wpBacking);
+      wpBacking.add(new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(towerW + 0.14, 0.06, towerD + 0.14)),
+        new THREE.LineBasicMaterial({ color: 0x00e5ff, transparent: true, opacity: 0.75 })
+      ));
+
+      const tileGeo = new THREE.BoxGeometry(stepCellX * gapRatio, 0.08, stepCellZ * gapRatio);
+      const totalTiles = colsX * rowsZ;
+      const tileInstancedMat = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        toneMapped: false,
+      });
+      const tileInstancedMesh = new THREE.InstancedMesh(tileGeo, tileInstancedMat, totalTiles);
+      tileInstancedMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      daylightGroup.add(tileInstancedMesh);
+
+      // Glowing Emerald-Green 300 lx ECBC Compliance Contour Ring (Dynamically sized by WWR/Glazing)
+      const contourY = workplaneY + 0.08;
+      const contourRingMat = new THREE.LineBasicMaterial({ color: 0x4ade80, linewidth: 2 });
+      const contourRingGeo = new THREE.BufferGeometry();
+      const contourRingLine = new THREE.LineLoop(contourRingGeo, contourRingMat);
+      daylightGroup.add(contourRingLine);
+
+      // Service Core Wireframe Cutout on Workplane
+      const coreCutoutGeo = new THREE.BoxGeometry(2.5, 0.15, 1.7);
+      const coreCutoutMesh = new THREE.Mesh(
+        coreCutoutGeo,
+        new THREE.MeshBasicMaterial({ color: 0x050811 })
+      );
+      coreCutoutMesh.position.set(0, workplaneY + 0.02, 0);
+      daylightGroup.add(coreCutoutMesh);
+      coreCutoutMesh.add(new THREE.LineSegments(
+        new THREE.EdgesGeometry(coreCutoutGeo),
+        new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.65 })
+      ));
+
+      // Cardinal Compass Markers (N, S, E, W) around the floor plate, matching Clearinfra Studio
+      const compassN = makeBadgeSprite('N', 'rgba(14,19,30,0.92)', '#ef4444', '#f87171', 0.85, 0.65);
+      compassN.position.set(0, workplaneY + 0.35, -towerD / 2 - 0.9);
+      daylightGroup.add(compassN);
+
+      const compassS = makeBadgeSprite('S', 'rgba(14,19,30,0.92)', '#f59e0b', '#fbbf24', 0.85, 0.65);
+      compassS.position.set(0, workplaneY + 0.35, towerD / 2 + 0.9);
+      daylightGroup.add(compassS);
+
+      const compassE = makeBadgeSprite('E', 'rgba(14,19,30,0.92)', '#38bdf8', '#7dd3fc', 0.85, 0.65);
+      compassE.position.set(towerW / 2 + 0.9, workplaneY + 0.35, 0);
+      daylightGroup.add(compassE);
+
+      const compassW = makeBadgeSprite('W', 'rgba(14,19,30,0.92)', '#38bdf8', '#7dd3fc', 0.85, 0.65);
+      compassW.position.set(-towerW / 2 - 0.9, workplaneY + 0.35, 0);
+      daylightGroup.add(compassW);
+
+      // 300 lx Compliance Badge Floating on Workplane
+      const sdaTargetBadge = makeBadgeSprite('300 lx sDA', 'rgba(6,78,59,0.94)', '#10b981', '#6ee7b7', 2.4, 0.64);
+      sdaTargetBadge.position.set(-towerW / 2 + 1.6, workplaneY + 0.55, -towerD / 2 + 1.0);
+      daylightGroup.add(sdaTargetBadge);
+
+      // Function to dynamically recompute all 560 3D sensor tiles when WWR, Glazing, or Climate changes
+      const dummyObj = new THREE.Object3D();
+      const tempColor = new THREE.Color();
+
+      function updateDaylightGrid(wwrPct: number, glazingKey: string, climateKey: string) {
+        const g = glazingData[glazingKey] || glazingData.lowe;
+        const c = climateData[climateKey] || climateData.bengaluru;
+        // Effective daylight transmittance factor (scales vividly with WWR slider & glazing choice)
+        const vltFactor = (wwrPct / 40) * (0.72 + g.shgc * 0.95) * c.solarFactor;
+
+        let idx = 0;
+        for (let r = 0; r < rowsZ; r++) {
+          const z = -gridSpanD / 2 + (r + 0.5) * stepCellZ;
+          const dNorth = z - (-gridSpanD / 2);
+          const dSouth = (gridSpanD / 2) - z;
+
+          for (let col = 0; col < colsX; col++) {
+            const x = -gridSpanW / 2 + (col + 0.5) * stepCellX;
+            const dWest = x - (-gridSpanW / 2);
+            const dEast = (gridSpanW / 2) - x;
+
+            // Check if inside central structural core (2.5m x 1.7m)
+            const inCore = Math.abs(x) < 1.25 && Math.abs(z) < 0.85;
+
+            let lux = 12;
+            if (!inCore) {
+              // Directional solar illumination: South (+Z) and East (+X) receive intense direct solar perimeter glow (crimson/orange -> yellow -> green -> navy)
+              const decayRate = 0.74 / Math.max(0.55, Math.pow(vltFactor, 0.52));
+              const luxSouth = 2150 * vltFactor * Math.exp(-dSouth * decayRate * 0.88);
+              const luxEast  = 1900 * vltFactor * Math.exp(-dEast  * decayRate * 0.94);
+              const luxWest  = 1500 * vltFactor * Math.exp(-dWest  * decayRate * 1.05);
+              const luxNorth = 1200 * vltFactor * Math.exp(-dNorth * decayRate * 1.12);
+
+              lux = Math.max(luxSouth, luxEast, luxWest, luxNorth) +
+                    0.26 * (luxSouth + luxEast + luxWest + luxNorth - Math.max(luxSouth, luxEast, luxWest, luxNorth));
+            }
+
+            const [cr, cg, cb] = getLuxColorRGB(lux);
+            tempColor.setRGB(cr, cg, cb);
+
+            // Slight 3D height extrusion proportional to illuminance for dramatic tactile relief
+            const tileHeightScale = inCore ? 0.2 : 0.75 + Math.min(1.5, lux / 1100);
+            dummyObj.position.set(x, workplaneY + (0.04 * tileHeightScale), z);
+            dummyObj.scale.set(1, tileHeightScale, 1);
+            dummyObj.updateMatrix();
+            tileInstancedMesh.setMatrixAt(idx, dummyObj.matrix);
+            tileInstancedMesh.setColorAt(idx, tempColor);
+
+            idx++;
+          }
+        }
+
+        tileInstancedMesh.instanceMatrix.needsUpdate = true;
+        if (tileInstancedMesh.instanceColor) tileInstancedMesh.instanceColor.needsUpdate = true;
+
+        // Update 300 lx emerald compliance contour ring inset based on daylight penetration depth
+        const penetrationInset = Math.min(2.6, Math.max(0.85, 1.55 * Math.pow(vltFactor, 0.55)));
+        const cw = Math.max(1.5, gridSpanW / 2 - penetrationInset);
+        const cd = Math.max(1.1, gridSpanD / 2 - penetrationInset * 0.85);
+        const cPts = [
+          new THREE.Vector3(-cw, contourY, -cd),
+          new THREE.Vector3(cw, contourY, -cd),
+          new THREE.Vector3(cw, contourY, cd),
+          new THREE.Vector3(-cw, contourY, cd),
+        ];
+        contourRingGeo.setFromPoints(cPts);
+      }
+
+      // 2. NBC 2026 Statutory Layer Group (Zero Z-Fighting, Full Studio Setback Apron & 3D Zoning Envelope)
+      const nbcGroup = new THREE.Group();
+      nbcGroup.visible = false;
+      scene.add(nbcGroup);
+
+      // Level 6 Statutory Refuge Floor (Floor index 5: replaces standard slab/glass when NBC mode is active -> ZERO flicker!)
+      const refugeFlIdx = 5;
+      const refugeBaseY = refugeFlIdx * floorHeight;
+
+      // Glowing Cyan Refuge Slab Deck (slightly cantilevered like Studio RefugeBands.tsx)
+      const refugeDeckGeo = new THREE.BoxGeometry(towerW + 0.55, slabH + 0.04, towerD + 0.55);
+      const refugeDeckMat = new THREE.MeshStandardMaterial({
+        color: 0x06b6d4,
+        emissive: 0x00e5ff,
+        emissiveIntensity: 0.75,
+        roughness: 0.2,
+        metalness: 0.3,
+      });
+      const refugeDeckMesh = new THREE.Mesh(refugeDeckGeo, refugeDeckMat);
+      refugeDeckMesh.position.set(0, refugeBaseY + slabH / 2, 0);
+      nbcGroup.add(refugeDeckMesh);
+      refugeDeckMesh.add(new THREE.LineSegments(
+        new THREE.EdgesGeometry(refugeDeckGeo),
+        new THREE.LineBasicMaterial({ color: 0xa5f3fc })
+      ));
+
+      // Recessed Illuminated Cyan Refuge Volume & Open Safety Perimeter Railings
+      const refugeVolH = clearHeight - 0.04;
+      const refugeVolGeo = new THREE.BoxGeometry(towerW + 0.16, refugeVolH, towerD + 0.16);
+      const refugeVolMat = new THREE.MeshBasicMaterial({
+        color: 0x22d3ee,
+        transparent: true,
+        opacity: 0.38,
+        depthWrite: false,
+      });
+      const refugeVolMesh = new THREE.Mesh(refugeVolGeo, refugeVolMat);
+      refugeVolMesh.position.set(0, refugeBaseY + slabH + refugeVolH / 2, 0);
+      nbcGroup.add(refugeVolMesh);
+      refugeVolMesh.add(new THREE.LineSegments(
+        new THREE.EdgesGeometry(refugeVolGeo),
+        new THREE.LineBasicMaterial({ color: 0x67e8f9, transparent: true, opacity: 0.95 })
+      ));
+
+      // Top Ring Outline of Refuge Floor
+      const refugeCapGeo = new THREE.BoxGeometry(towerW + 0.50, 0.06, towerD + 0.50);
+      const refugeCapMesh = new THREE.Mesh(refugeCapGeo, refugeDeckMat);
+      refugeCapMesh.position.set(0, refugeBaseY + floorHeight - 0.03, 0);
+      nbcGroup.add(refugeCapMesh);
+
+      // Full-Perimeter Emerald Setback Apron (Matches Studio twin_nbc_3d.png green compliance lawn + boundary wall)
+      const setbackApronGeo = new THREE.PlaneGeometry(setbackHalfW * 2, setbackHalfD * 2);
+      const setbackApronMat = new THREE.MeshBasicMaterial({
+        color: 0x10b981,
+        transparent: true,
+        opacity: 0.14,
+        depthWrite: false,
+        polygonOffset: true,
+        polygonOffsetFactor: -1,
+        polygonOffsetUnits: -1,
+      });
+      const setbackApron = new THREE.Mesh(setbackApronGeo, setbackApronMat);
+      setbackApron.rotation.x = -Math.PI / 2;
+      setbackApron.position.set(0, 0.025, 0);
+      nbcGroup.add(setbackApron);
+
+      // Crisp Solid Emerald Setback Compliance Perimeter Ring
+      const apronRingPts = [
+        new THREE.Vector3(-setbackHalfW, 0.05, -setbackHalfD),
+        new THREE.Vector3(setbackHalfW, 0.05, -setbackHalfD),
+        new THREE.Vector3(setbackHalfW, 0.05, setbackHalfD),
+        new THREE.Vector3(-setbackHalfW, 0.05, setbackHalfD),
+        new THREE.Vector3(-setbackHalfW, 0.05, -setbackHalfD),
+      ];
+      nbcGroup.add(new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(apronRingPts),
+        new THREE.LineBasicMaterial({ color: 0x34d399 })
+      ));
+
+      // 3D Low Perimeter Boundary Wall around Plot (Matches SiteEnvironment.tsx boundary_wall_height_m)
+      const bWallH = 0.35;
+      const bWallMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.24, depthWrite: false });
+      const bWallF = new THREE.Mesh(new THREE.BoxGeometry(setbackHalfW * 2, bWallH, 0.06), bWallMat);
+      bWallF.position.set(0, bWallH / 2, setbackHalfD);
+      nbcGroup.add(bWallF);
+      const bWallB = new THREE.Mesh(new THREE.BoxGeometry(setbackHalfW * 2, bWallH, 0.06), bWallMat);
+      bWallB.position.set(0, bWallH / 2, -setbackHalfD);
+      nbcGroup.add(bWallB);
+      const bWallL = new THREE.Mesh(new THREE.BoxGeometry(0.06, bWallH, setbackHalfD * 2), bWallMat);
+      bWallL.position.set(-setbackHalfW, bWallH / 2, 0);
+      nbcGroup.add(bWallL);
+      const bWallR = new THREE.Mesh(new THREE.BoxGeometry(0.06, bWallH, setbackHalfD * 2), bWallMat);
+      bWallR.position.set(setbackHalfW, bWallH / 2, 0);
+      nbcGroup.add(bWallR);
+
+      // Architectural Setback Dimension Leader Lines with Tick Marks (Front +Z & Right Side +X)
+      const leaderMat = new THREE.LineBasicMaterial({ color: 0x4ade80 });
+      // Front Leader (+Z)
+      const frontWallZ = towerD / 2 + 0.15;
+      const frontPlotZ = setbackHalfD;
+      nbcGroup.add(new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(-2.4, 0.08, frontWallZ),
+          new THREE.Vector3(-2.4, 0.08, frontPlotZ),
+        ]),
+        leaderMat
+      ));
+      nbcGroup.add(new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(-2.8, 0.08, frontWallZ),
+          new THREE.Vector3(-2.0, 0.08, frontWallZ),
+        ]),
+        leaderMat
+      ));
+      nbcGroup.add(new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(-2.8, 0.08, frontPlotZ),
+          new THREE.Vector3(-2.0, 0.08, frontPlotZ),
+        ]),
+        leaderMat
+      ));
+
+      // Right Side Leader (+X)
+      const rightWallX = towerW / 2 + 0.15;
+      const rightPlotX = setbackHalfW;
+      nbcGroup.add(new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(rightWallX, 0.08, 1.2),
+          new THREE.Vector3(rightPlotX, 0.08, 1.2),
+        ]),
+        leaderMat
+      ));
+      nbcGroup.add(new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(rightWallX, 0.08, 0.8),
+          new THREE.Vector3(rightWallX, 0.08, 1.6),
+        ]),
+        leaderMat
+      ));
+      nbcGroup.add(new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(rightPlotX, 0.08, 0.8),
+          new THREE.Vector3(rightPlotX, 0.08, 1.6),
+        ]),
+        leaderMat
+      ));
+
+      // 3D Permissible Height Envelope Ceiling Frame & Corner Plumb Guides (Matches SiteEnvironment.tsx §4.3)
+      const maxH = totalTowerH + 1.3;
+      const ew = towerW / 2 + 1.1;
+      const ed = towerD / 2 + 1.1;
+      const ceilingPts = [
+        new THREE.Vector3(-ew, maxH, -ed),
+        new THREE.Vector3(ew, maxH, -ed),
+        new THREE.Vector3(ew, maxH, ed),
+        new THREE.Vector3(-ew, maxH, ed),
+        new THREE.Vector3(-ew, maxH, -ed),
+      ];
+      const ceilingLine = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(ceilingPts),
+        new THREE.LineDashedMaterial({ color: 0x38bdf8, dashSize: 0.6, gapSize: 0.35, transparent: true, opacity: 0.65 })
+      );
+      ceilingLine.computeLineDistances();
+      nbcGroup.add(ceilingLine);
+
+      [[-ew, -ed], [ew, -ed], [ew, ed], [-ew, ed]].forEach(([cx, cz]) => {
+        const plumb = new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(cx, 0.05, cz), new THREE.Vector3(cx, maxH, cz)]),
+          new THREE.LineDashedMaterial({ color: 0x38bdf8, dashSize: 0.5, gapSize: 0.5, transparent: true, opacity: 0.32 })
+        );
+        plumb.computeLineDistances();
+        nbcGroup.add(plumb);
+      });
+
+      // Floating 3D Callout Chips for NBC 2026 Mode (Matching Studio twin_nbc_3d.png)
+      const refugeCallout = makeBadgeSprite('REFUGE L6: +20.5m', 'rgba(8,47,73,0.95)', '#22d3ee', '#a5f3fc', 3.4, 0.78);
+      refugeCallout.position.set(towerW / 2 + 1.8, refugeBaseY + floorHeight / 2, towerD / 2 + 0.4);
+      nbcGroup.add(refugeCallout);
+
+      const frontSetbackChip = makeBadgeSprite('Front: 15.6m', 'rgba(6,78,59,0.95)', '#10b981', '#86efac', 2.7, 0.70);
+      frontSetbackChip.position.set(-2.5, 0.55, (frontWallZ + frontPlotZ) / 2 + 0.2);
+      nbcGroup.add(frontSetbackChip);
+
+      const sideSetbackChip = makeBadgeSprite('Right Side: 15.6m', 'rgba(6,78,59,0.95)', '#10b981', '#86efac', 3.1, 0.70);
+      sideSetbackChip.position.set((rightWallX + rightPlotX) / 2 + 0.2, 0.55, -1.6);
+      nbcGroup.add(sideSetbackChip);
+
+      const maxHtChip = makeBadgeSprite('MAX HT 49.2m PASS', 'rgba(15,23,42,0.95)', '#38bdf8', '#bae6fd', 3.3, 0.72);
+      maxHtChip.position.set(ew - 0.8, maxH - 0.5, -ed + 0.8);
+      nbcGroup.add(maxHtChip);
+
+      // Helper to toggle solid tower geometry vs. Studio Cutaway Ghost mode or NBC Refuge Floor replacement
+      function setBuildingCutaway(mode: 'twin' | 'daylight' | 'nbc') {
+        const isCutaway = mode === 'daylight';
+        const isNbc = mode === 'nbc';
+
+        coreMesh.visible = !isCutaway;
+        entranceGroup.visible = !isCutaway;
+        roofSlab.visible = !isCutaway;
+        parapetMesh.visible = !isCutaway;
+        penthouse.visible = !isCutaway;
+        pvRack.visible = !isCutaway;
+        chiller.visible = !isCutaway;
+
+        slabMeshes.forEach((m, idx) => {
+          if (isCutaway) {
+            m.visible = idx === 0;
+          } else if (isNbc && idx === refugeFlIdx) {
+            // Hide standard slab on Level 6 so the NBC Refuge Deck replaces it cleanly with zero z-fighting!
+            m.visible = false;
+          } else {
+            m.visible = true;
+          }
+        });
+        floorPlates.forEach((m, idx) => {
+          m.visible = !isCutaway && !(isNbc && idx === refugeFlIdx);
+        });
+        glassMeshes.forEach((m, idx) => {
+          // Hide standard curtain wall glass on Level 6 in NBC mode so the recessed Refuge Floor doesn't flicker!
+          m.visible = !isCutaway && !(isNbc && idx === refugeFlIdx);
+        });
+        mullionGroups.forEach((g, idx) => {
+          g.visible = !isCutaway && !(isNbc && idx === refugeFlIdx);
+        });
+      }
+
+      // View Mode Toggle Handler & 3-Stage Idle Auto-Tour (01 Twin -> 02 Daylight sDA -> 03 NBC 2026)
+      let currentViewMode: 'twin' | 'daylight' | 'nbc' = 'twin';
+      const btnModeAutoplay = document.getElementById('btn-mode-autoplay');
+      const autoplayIcon = document.getElementById('autoplay-icon');
+      const progModeTwin = document.getElementById('prog-mode-twin');
+      const progModeDaylight = document.getElementById('prog-mode-daylight');
+      const progModeNbc = document.getElementById('prog-mode-nbc');
+      const progBars: Record<'twin' | 'daylight' | 'nbc', HTMLElement | null> = {
+        twin: progModeTwin,
+        daylight: progModeDaylight,
+        nbc: progModeNbc,
+      };
+
+      let autoTourActive = true;
+      let autoTourHoverPaused = false;
+      let autoTourElapsed = 0;
+      const AUTO_TOUR_DURATION = 5200; // 5.2s per stage
+      const TOUR_SEQUENCE: ('twin' | 'daylight' | 'nbc')[] = ['twin', 'daylight', 'nbc'];
+
+      function clearAllProgressBars() {
+        if (progModeTwin) progModeTwin.style.width = '0%';
+        if (progModeDaylight) progModeDaylight.style.width = '0%';
+        if (progModeNbc) progModeNbc.style.width = '0%';
+      }
+
+      function stopAutoTour() {
+        if (!autoTourActive) return;
+        autoTourActive = false;
+        autoTourElapsed = 0;
+        clearAllProgressBars();
+        if (autoplayIcon) autoplayIcon.textContent = '▶';
+        if (btnModeAutoplay) {
+          btnModeAutoplay.classList.remove('text-emerald-400');
+          btnModeAutoplay.classList.add('text-slate-400');
+        }
+      }
+
+      function startAutoTour() {
+        autoTourActive = true;
+        autoTourElapsed = 0;
+        clearAllProgressBars();
+        if (autoplayIcon) autoplayIcon.textContent = '⏸';
+        if (btnModeAutoplay) {
+          btnModeAutoplay.classList.remove('text-slate-400');
+          btnModeAutoplay.classList.add('text-emerald-400');
+        }
+      }
+
+      pauseAutoTourExternal = stopAutoTour;
+
+      // Freeze auto-tour timer while user is hovering inside the 3D viewport
+      container.addEventListener('mouseenter', () => {
+        autoTourHoverPaused = true;
+      });
+      container.addEventListener('mouseleave', () => {
+        autoTourHoverPaused = false;
+      });
+
+      btnModeAutoplay?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (autoTourActive) {
+          stopAutoTour();
+        } else {
+          startAutoTour();
+        }
+      });
+
+      function setViewMode(mode: 'twin' | 'daylight' | 'nbc', isManual = true) {
+        if (isManual) {
+          stopAutoTour();
+        } else {
+          autoTourElapsed = 0;
+          clearAllProgressBars();
+        }
+        currentViewMode = mode;
+
+        modeBtns.forEach((btn) => {
+          if (!btn) return;
+          btn.className = 'mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1';
+        });
+
+        setCamActive(btnCamIso);
+
+        if (mode === 'daylight') {
+          if (btnModeDaylight) {
+            btnModeDaylight.className = 'mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-amber-500/40 bg-amber-500/20 text-amber-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1';
+          }
+          setBuildingCutaway('daylight');
+          daylightGroup.visible = true;
+          nbcGroup.visible = false;
+          daylightLegendEl?.classList.remove('opacity-0');
+          daylightLegendEl?.classList.add('opacity-100');
+
+          // Smoothly glide camera to frame the glowing 3D workplane & translucent floating roof cap
+          const [px, py, pz, tx, ty, tz] = getIsoPresetForMode('daylight');
+          flyCameraTo(px, py, pz, tx, ty, tz);
+
+          updateDaylightGrid(currentWwr, currentGlazing, currentClimate);
+
+          const c = climateData[currentClimate] || climateData.bengaluru;
+          const g = glazingData[currentGlazing] || glazingData.lowe;
+          const sda = Math.min(92, Math.round(24 + currentWwr * (0.65 + g.shgc * 0.45)));
+          if (vizWwrCallout) vizWwrCallout.innerHTML = `<span class="text-amber-300 font-semibold">sDA: ${sda}%</span>`;
+          if (vizDniLabel) vizDniLabel.textContent = '300 lx';
+          if (vizShgcReadout) vizShgcReadout.innerHTML = `<span class="text-amber-300 font-medium">LM-83 Grid · ${sda}% ≥ 300 lx</span>`;
+        } else if (mode === 'nbc') {
+          if (btnModeNbc) {
+            btnModeNbc.className = 'mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-sky-500/40 bg-sky-500/20 text-sky-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1';
+          }
+          setBuildingCutaway('nbc');
+          daylightGroup.visible = false;
+          nbcGroup.visible = true;
+          daylightLegendEl?.classList.add('opacity-0');
+          daylightLegendEl?.classList.remove('opacity-100');
+          glassMat.opacity = 0.68;
+
+          // Smoothly glide camera to frame the 12-story tower, emerald setback apron, and +49.2m zoning ceiling
+          const [px, py, pz, tx, ty, tz] = getIsoPresetForMode('nbc');
+          flyCameraTo(px, py, pz, tx, ty, tz);
+
+          if (vizWwrCallout) vizWwrCallout.innerHTML = '<span class="text-sky-400 font-semibold">Refuge L6</span>';
+          if (vizDniLabel) vizDniLabel.textContent = '+20.5m';
+          if (vizShgcReadout) vizShgcReadout.innerHTML = '<span class="text-emerald-400 font-medium">NBC Pt.4 · L6 Refuge · PASS</span>';
+        } else {
+          if (btnModeTwin) {
+            btnModeTwin.className = 'mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-emerald-500/40 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1';
+          }
+          setBuildingCutaway('twin');
+          daylightGroup.visible = false;
+          nbcGroup.visible = false;
+          daylightLegendEl?.classList.add('opacity-0');
+          daylightLegendEl?.classList.remove('opacity-100');
+          glassMat.opacity = currentGlazing === 'single' ? 0.55 : currentGlazing === 'triple' ? 0.82 : 0.78;
+
+          const [px, py, pz, tx, ty, tz] = getIsoPresetForMode('twin');
+          flyCameraTo(px, py, pz, tx, ty, tz);
+
+          if (vizWwrCallout) vizWwrCallout.innerHTML = `<span class="text-emerald-400 font-semibold">WWR: ${currentWwr}%</span>`;
+          const c = climateData[currentClimate];
+          if (vizDniLabel && c) vizDniLabel.textContent = c.dni;
+          const g = glazingData[currentGlazing];
+          if (vizShgcReadout && g) vizShgcReadout.innerHTML = `<span class="text-emerald-400">SHGC ${g.shgc} · U ${g.uval} W/m²K</span>`;
+        }
+      }
+
+      btnModeTwin?.addEventListener('click', () => setViewMode('twin', true));
+      btnModeDaylight?.addEventListener('click', () => setViewMode('daylight', true));
+      btnModeNbc?.addEventListener('click', () => setViewMode('nbc', true));
+
+      // Initialize the daylight grid once at startup
+      updateDaylightGrid(currentWwr, currentGlazing, currentClimate);
+
       // Function to dynamically update 3D building from simulator controls
       updateThreeBuilding = (wwrPct: number, glazingKey: string, climateKey: string) => {
         // 1. Update Glass Bands & Mullions Height & Position
@@ -814,29 +1499,43 @@
           }
         });
 
-        // 2. Update Glass Material Color & Opacity
-        if (glazingKey === 'single') {
-          glassMat.color.setHex(0x94a3b8);
-          glassMat.emissive.setHex(0x334155);
-          glassMat.emissiveIntensity = 0.15;
-          glassMat.opacity = 0.55;
-          glassEdgeMat.color.setHex(0x94a3b8);
-        } else if (glazingKey === 'triple') {
-          glassMat.color.setHex(0x10b981);
-          glassMat.emissive.setHex(0x059669);
-          glassMat.emissiveIntensity = 0.38;
-          glassMat.opacity = 0.82;
-          glassEdgeMat.color.setHex(0x34d399);
+        // 2. Recompute 3D Daylight Lux Grid whenever WWR, Glazing, or Climate changes
+        updateDaylightGrid(wwrPct, glazingKey, climateKey);
+
+        // 3. Update Glass Material Color & Opacity
+        if (currentViewMode === 'daylight') {
+          const c = climateData[climateKey] || climateData.bengaluru;
+          const g = glazingData[glazingKey] || glazingData.lowe;
+          const sda = Math.min(92, Math.round(24 + wwrPct * (0.65 + g.shgc * 0.45)));
+          if (vizWwrCallout) vizWwrCallout.innerHTML = `<span class="text-amber-300 font-semibold">sDA: ${sda}%</span>`;
+          if (vizDniLabel) vizDniLabel.textContent = '300 lx';
+          if (vizShgcReadout) vizShgcReadout.innerHTML = `<span class="text-amber-300 font-medium">LM-83 Grid · ${sda}% ≥ 300 lx</span>`;
+        } else if (currentViewMode === 'nbc') {
+          glassMat.opacity = 0.68;
         } else {
-          // lowe default (signature electric cyan)
-          glassMat.color.setHex(0x00c4df);
-          glassMat.emissive.setHex(0x0891b2);
-          glassMat.emissiveIntensity = 0.32;
-          glassMat.opacity = 0.78;
-          glassEdgeMat.color.setHex(0x22d3ee);
+          if (glazingKey === 'single') {
+            glassMat.color.setHex(0x94a3b8);
+            glassMat.emissive.setHex(0x334155);
+            glassMat.emissiveIntensity = 0.15;
+            glassMat.opacity = 0.55;
+            glassEdgeMat.color.setHex(0x94a3b8);
+          } else if (glazingKey === 'triple') {
+            glassMat.color.setHex(0x10b981);
+            glassMat.emissive.setHex(0x059669);
+            glassMat.emissiveIntensity = 0.38;
+            glassMat.opacity = 0.82;
+            glassEdgeMat.color.setHex(0x34d399);
+          } else {
+            // lowe default (signature electric cyan)
+            glassMat.color.setHex(0x00c4df);
+            glassMat.emissive.setHex(0x0891b2);
+            glassMat.emissiveIntensity = 0.32;
+            glassMat.opacity = 0.78;
+            glassEdgeMat.color.setHex(0x22d3ee);
+          }
         }
 
-        // 3. Update Sun Angle & Intensity based on Climate
+        // 4. Update Sun Angle & Intensity based on Climate
         const c = climateData[climateKey];
         if (c) {
           sunLight.intensity = c.solarFactor * 2.5;
@@ -846,8 +1545,39 @@
       };
 
       // Render Loop
+      let lastFrameTime = performance.now();
       function animate() {
         requestAnimationFrame(animate);
+        const now = performance.now();
+        const dt = Math.min(100, now - lastFrameTime);
+        lastFrameTime = now;
+
+        // 1. 3-Stage Layer Auto-Tour Progress & Mode Cycling
+        if (autoTourActive && !autoTourHoverPaused) {
+          autoTourElapsed += dt;
+          const pct = Math.min(100, (autoTourElapsed / AUTO_TOUR_DURATION) * 100);
+          const activeProg = progBars[currentViewMode];
+          if (activeProg) activeProg.style.width = `${pct.toFixed(1)}%`;
+
+          if (autoTourElapsed >= AUTO_TOUR_DURATION) {
+            autoTourElapsed = 0;
+            const nextIdx = (TOUR_SEQUENCE.indexOf(currentViewMode) + 1) % TOUR_SEQUENCE.length;
+            setViewMode(TOUR_SEQUENCE[nextIdx], false);
+          }
+        }
+
+        // 2. Smooth Camera Flight Interpolation
+        if (camAnimActive) {
+          const elapsed = now - camAnimStart;
+          const t = Math.min(1, elapsed / camAnimDuration);
+          // easeOutCubic
+          const ease = 1 - Math.pow(1 - t, 3);
+          camera.position.lerpVectors(camFromPos, camToPos, ease);
+          controls.target.lerpVectors(camFromTarget, camToTarget, ease);
+          if (t >= 1) {
+            camAnimActive = false;
+          }
+        }
         controls.update();
         renderer.render(scene, camera);
       }
@@ -895,21 +1625,21 @@
     if (outBadge && aiMsg) {
       const epiNum = parseFloat(epi);
       if (currentWwr > 40 && g.shgc > 0.3) {
-        outBadge.textContent = 'Elevated Heat Gain';
+        outBadge.textContent = 'Elevated Solar Gain';
         outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-amber-500/15 text-amber-300 border border-amber-500/30';
-        aiMsg.textContent = `Sensitivity note: WWR ${currentWwr}% with SHGC ${g.shgc} elevates solar gain. Switch to Low-E/Selective DGU to cut ~${Math.round(coolingTr * 0.18)} TR indicative chiller load.`;
+        aiMsg.textContent = `WWR ${currentWwr}% with SHGC ${g.shgc} elevates envelope heat gain. Switching to Low-E or Selective DGU cuts ~${Math.round(coolingTr * 0.18)} TR peak chiller load.`;
       } else if (epiNum < c.baseEpi + 14) {
-        outBadge.textContent = 'High Efficiency (Indicative)';
+        outBadge.textContent = 'ECBC Super-Compliant';
         outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
-        aiMsg.textContent = `Indicative efficiency (${epi} kWh/m²·yr): Envelope minimizes indicative chiller load (${coolingTr} TR) with ~${sda}% spatial daylight estimate.`;
+        aiMsg.textContent = `High-efficiency envelope (${epi} kWh/m²·yr): Minimizes peak chiller plant sizing (${coolingTr} TR) while maintaining ${sda}% workplane daylight.`;
       } else if (epiNum < c.baseEpi + 24) {
-        outBadge.textContent = 'Optimized (Indicative)';
+        outBadge.textContent = 'Optimized Balance';
         outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
-        aiMsg.textContent = `Indicative balance: ${currentWwr}% WWR with ${g.shgc} SHGC balances thermal gain (${coolingTr} TR) and ~${sda}% spatial daylight estimate.`;
+        aiMsg.textContent = `Balanced charrette point: ${currentWwr}% WWR with ${g.shgc} SHGC balances peak cooling load (${coolingTr} TR) and ${sda}% spatial daylight autonomy.`;
       } else {
-        outBadge.textContent = 'Baseline (Indicative)';
+        outBadge.textContent = 'Baseline Envelope';
         outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-sky-500/15 text-sky-300 border border-sky-500/30';
-        aiMsg.textContent = `Indicative baseline: Higher solar gain observed. Upgrading glazing or lowering WWR to 40% reduces indicative peak cooling (${coolingTr} TR).`;
+        aiMsg.textContent = `Higher solar heat gain observed. Upgrading glazing SHGC or moderating WWR to 40% reduces peak cooling demand (${coolingTr} TR).`;
       }
     }
 
@@ -948,6 +1678,7 @@
 
   climateChips.forEach((chip) => {
     chip.addEventListener('click', () => {
+      pauseAutoTourExternal?.();
       currentClimate = chip.getAttribute('data-climate') || 'bengaluru';
       syncClimateUI(currentClimate);
       updateSimulation();
@@ -955,6 +1686,7 @@
   });
 
   climateSelect?.addEventListener('change', (e) => {
+    pauseAutoTourExternal?.();
     currentClimate = (e.target as HTMLSelectElement).value;
     syncClimateUI(currentClimate);
     updateSimulation();
@@ -962,6 +1694,7 @@
 
   let animFrame: number | null = null;
   wwrSlider?.addEventListener('input', (e) => {
+    pauseAutoTourExternal?.();
     const rawVal = parseFloat((e.target as HTMLInputElement).value);
     currentWwr = Math.round(rawVal);
     if (animFrame) cancelAnimationFrame(animFrame);
@@ -972,6 +1705,7 @@
 
   glazingBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
+      pauseAutoTourExternal?.();
       currentGlazing = btn.getAttribute('data-glazing') || 'lowe';
       glazingBtns.forEach((b) => {
         b.className = 'glazing-btn px-2 py-2 rounded-lg text-[10px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white hover:border-white/20 transition-all text-center cursor-pointer';
