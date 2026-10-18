@@ -276,18 +276,21 @@
                     <span id="climate-quick-desc" class="text-[10px] font-mono text-emerald-400 lg:hidden">Temperate</span>
                   </div>
                   <!-- Mobile 1-Tap Chips (Instant tactile feedback, zero popup wheel) -->
-                  <div class="grid grid-cols-4 gap-1.5 lg:hidden" id="ctrl-climate-chips">
-                    <button type="button" data-climate="bengaluru" class="climate-chip px-1.5 py-1.5 rounded-md text-[10px] font-mono border border-emerald-500/50 bg-emerald-500/20 text-emerald-300 font-medium transition-all text-center cursor-pointer">
+                  <div class="grid grid-cols-5 gap-1 lg:hidden" id="ctrl-climate-chips">
+                    <button type="button" data-climate="bengaluru" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-emerald-500/50 bg-emerald-500/20 text-emerald-300 font-medium transition-all text-center cursor-pointer truncate">
                       Bengaluru
                     </button>
-                    <button type="button" data-climate="mumbai" class="climate-chip px-1.5 py-1.5 rounded-md text-[10px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white transition-all text-center cursor-pointer">
+                    <button type="button" data-climate="mumbai" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white transition-all text-center cursor-pointer truncate">
                       Mumbai
                     </button>
-                    <button type="button" data-climate="delhi" class="climate-chip px-1.5 py-1.5 rounded-md text-[10px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white transition-all text-center cursor-pointer">
+                    <button type="button" data-climate="delhi" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white transition-all text-center cursor-pointer truncate">
                       Delhi
                     </button>
-                    <button type="button" data-climate="ahmedabad" class="climate-chip px-1.5 py-1.5 rounded-md text-[10px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white transition-all text-center cursor-pointer">
+                    <button type="button" data-climate="ahmedabad" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white transition-all text-center cursor-pointer truncate">
                       Ahmedabad
+                    </button>
+                    <button type="button" data-climate="shimla" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white transition-all text-center cursor-pointer truncate">
+                      Shimla
                     </button>
                   </div>
                   <!-- Desktop Select Dropdown (Preserved for Desktop) -->
@@ -299,6 +302,7 @@
                     <option value="mumbai">Mumbai — Warm-Humid</option>
                     <option value="delhi">New Delhi — Composite</option>
                     <option value="ahmedabad">Ahmedabad — Hot-Dry</option>
+                    <option value="shimla">Shimla — Cold</option>
                   </select>
                 </div>
 
@@ -390,6 +394,7 @@
     mumbai:    { label: 'Mumbai (Warm-Humid)',   baseEpi: 88, solarFactor: 1.05, dni: '840 W/m²', sunPos: [18, 20, 16] },
     delhi:     { label: 'New Delhi (Composite)', baseEpi: 92, solarFactor: 1.12, dni: '890 W/m²', sunPos: [20, 18, 12] },
     ahmedabad: { label: 'Ahmedabad (Hot-Dry)',   baseEpi: 98, solarFactor: 1.25, dni: '960 W/m²', sunPos: [15, 24, 10] },
+    shimla:    { label: 'Shimla (Cold)',         baseEpi: 54, solarFactor: 0.64, dni: '680 W/m²', sunPos: [14, 15, 18] },
   };
 
   const glazingData: Record<string, { shgc: number; uval: number }> = {
@@ -2049,9 +2054,9 @@
     climateChips.forEach((chip) => {
       const val = chip.getAttribute('data-climate');
       if (val === climateKey) {
-        chip.className = 'climate-chip px-1.5 py-1.5 rounded-md text-[10px] font-mono border border-emerald-500/50 bg-emerald-500/20 text-emerald-300 font-medium transition-all text-center cursor-pointer';
+        chip.className = 'climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-emerald-500/50 bg-emerald-500/20 text-emerald-300 font-medium transition-all text-center cursor-pointer truncate';
       } else {
-        chip.className = 'climate-chip px-1.5 py-1.5 rounded-md text-[10px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white transition-all text-center cursor-pointer';
+        chip.className = 'climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white transition-all text-center cursor-pointer truncate';
       }
     });
     if (climateDesc) {
