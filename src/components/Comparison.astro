@@ -72,7 +72,7 @@ const workflows = [
           <div class="rounded-xl bg-white border border-emerald-600/30 p-4.5 shadow-xs text-left relative overflow-hidden pl-5">
             <div class="absolute top-0 left-0 bottom-0 w-1.5 bg-emerald-500"></div>
             <div class="flex items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-slate-900/[0.06]">
-              <span class="text-xs font-mono font-semibold text-slate-400">0{idx + 1}</span>
+              <span class="text-xs font-mono font-semibold text-slate-500">0{idx + 1}</span>
               <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-800 border border-emerald-600/20 font-semibold">
                 Augmented Speed
               </span>
@@ -83,9 +83,9 @@ const workflows = [
             <p class="text-xs text-slate-800 font-medium leading-relaxed mb-2.5">
               {row.clearinfra}
             </p>
-            <div class="pt-2.5 border-t border-slate-900/[0.06] text-[10px] font-mono text-slate-500 flex items-center gap-1.5">
-              <span class="text-slate-400 shrink-0">Legacy:</span>
-              <span class="text-slate-600 truncate">{row.conventional}</span>
+            <div class="pt-2.5 border-t border-slate-900/[0.06] text-[10px] font-mono text-slate-600 flex items-center gap-1.5 font-medium">
+              <span class="text-slate-500 shrink-0">Legacy:</span>
+              <span class="text-slate-700 truncate">{row.conventional}</span>
             </div>
           </div>
         ))}
@@ -97,7 +97,7 @@ const workflows = [
           <div class="rounded-xl bg-slate-50 border border-slate-300/80 p-4.5 shadow-xs text-left relative overflow-hidden pl-5">
             <div class="absolute top-0 left-0 bottom-0 w-1.5 bg-slate-400"></div>
             <div class="flex items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-slate-900/[0.06]">
-              <span class="text-xs font-mono font-semibold text-slate-400">0{idx + 1}</span>
+              <span class="text-xs font-mono font-semibold text-slate-500">0{idx + 1}</span>
               <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 font-semibold">
                 Legacy Bottleneck
               </span>
@@ -124,7 +124,7 @@ const workflows = [
         <div class="md:col-span-3 px-5 sm:px-8 py-4 sm:py-4.5 text-slate-700 font-semibold">
           Engagement Dimension
         </div>
-        <div class="hidden md:block md:col-span-4 px-5 sm:px-8 py-4 sm:py-4.5 text-slate-500 font-medium border-l border-slate-900/[0.06]">
+        <div class="hidden md:block md:col-span-4 px-5 sm:px-8 py-4 sm:py-4.5 text-slate-600 font-semibold border-l border-slate-900/[0.06]">
           Conventional Consulting
         </div>
         <div class="hidden md:flex md:col-span-5 px-5 sm:px-8 py-4 sm:py-4.5 text-emerald-800 font-semibold items-center gap-2 bg-emerald-500/[0.04] border-l border-emerald-600/20">
@@ -139,15 +139,15 @@ const workflows = [
           <div class={`reveal reveal-delay-${idx + 1} grid grid-cols-1 md:grid-cols-12 items-stretch hover:bg-slate-50/60 transition-colors`}>
             <!-- Col 1: Dimension with Monograph Index -->
             <div class="md:col-span-3 px-5 sm:px-8 py-5 sm:py-6 flex items-start gap-3">
-              <span class="text-xs font-mono font-medium text-slate-400 mt-0.5 shrink-0">0{idx + 1}</span>
+              <span class="text-xs font-mono font-semibold text-slate-500 mt-0.5 shrink-0">0{idx + 1}</span>
               <span class="text-sm sm:text-base font-semibold text-slate-900 leading-snug">
                 {row.aspect}
               </span>
             </div>
 
-            <!-- Col 2: Conventional (Legible Slate-600, Not Faded) -->
-            <div class="md:col-span-4 px-5 sm:px-8 py-5 sm:py-6 text-sm text-slate-600 leading-relaxed font-normal md:border-l md:border-slate-900/[0.06]">
-              <span class="md:hidden text-[10px] font-mono uppercase text-slate-400 block mb-1.5">Conventional Consulting:</span>
+            <!-- Col 2: Conventional (Legible Slate-700, High Contrast) -->
+            <div class="md:col-span-4 px-5 sm:px-8 py-5 sm:py-6 text-sm text-slate-700 leading-relaxed font-normal md:border-l md:border-slate-900/[0.06]">
+              <span class="md:hidden text-[10px] font-mono uppercase text-slate-500 block mb-1.5">Conventional Consulting:</span>
               {row.conventional}
             </div>
 

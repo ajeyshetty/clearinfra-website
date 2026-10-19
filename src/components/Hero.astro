@@ -41,21 +41,21 @@
         <div class="pt-3 sm:pt-4 border-t border-slate-900/10 grid grid-cols-3 divide-x divide-slate-900/12 sm:divide-x-0 sm:gap-4 text-xs font-mono max-w-lg">
           <div class="group/tip relative px-1 sm:px-0 sm:border-l-2 sm:border-slate-300 sm:pl-3 text-center sm:text-left cursor-help">
             <span class="text-slate-900 block font-semibold text-[11px] sm:text-xs whitespace-nowrap">ISO 52016-1</span>
-            <span class="text-slate-500 text-[10px] sm:text-[11px] block mt-0.5 leading-tight">Hourly engine</span>
+            <span class="text-slate-600 font-medium text-[10px] sm:text-[11px] block mt-0.5 leading-tight">Hourly engine</span>
             <div class="pointer-events-none absolute bottom-full left-1/2 sm:left-0 -translate-x-1/2 sm:translate-x-0 mb-2 w-52 p-2.5 rounded-lg bg-[#131924] border border-white/12 text-[10.5px] font-sans text-slate-200 shadow-xl opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150 z-50 text-left leading-tight">
               Multi-node hourly thermal RC network; first-principles heat transfer with tracked empirical factors.
             </div>
           </div>
           <div class="group/tip relative px-1 sm:px-0 sm:border-l-2 sm:border-slate-300 sm:pl-3 text-center sm:text-left cursor-help">
             <span class="text-slate-900 block font-semibold text-[11px] sm:text-xs whitespace-nowrap">NBC 2026 &amp; ECBC</span>
-            <span class="text-slate-500 text-[10px] sm:text-[11px] block mt-0.5 leading-tight">Code review</span>
+            <span class="text-slate-600 font-medium text-[10px] sm:text-[11px] block mt-0.5 leading-tight">Code review</span>
             <div class="pointer-events-none absolute bottom-full left-1/2 sm:left-0 -translate-x-1/2 sm:translate-x-0 mb-2 w-52 p-2.5 rounded-lg bg-[#131924] border border-white/12 text-[10.5px] font-sans text-slate-200 shadow-xl opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150 z-50 text-left leading-tight">
               Clause-level checks across NBC 2026 (Parts B–F) and ECBC 2017 paired with expert engineering review.
             </div>
           </div>
           <div class="group/tip relative px-1 sm:px-0 sm:border-l-2 sm:border-slate-300 sm:pl-3 text-center sm:text-left cursor-help">
             <span class="text-slate-900 block font-semibold text-[11px] sm:text-xs whitespace-nowrap">EnergyPlus v25.1</span>
-            <span class="text-slate-500 text-[10px] sm:text-[11px] block mt-0.5 leading-tight">Run-checked .idf</span>
+            <span class="text-slate-600 font-medium text-[10px] sm:text-[11px] block mt-0.5 leading-tight">Run-checked .idf</span>
             <div class="pointer-events-none absolute bottom-full right-0 left-auto translate-x-0 mb-2 w-52 p-2.5 rounded-lg bg-[#131924] border border-white/12 text-[10.5px] font-sans text-slate-200 shadow-xl opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150 z-50 text-left leading-tight">
               Syntax-verified EnergyPlus 25.1 IDF export; run-checked engineering models for design review.
             </div>
@@ -259,7 +259,10 @@
               <div id="charrette-params-container" class="order-2 lg:order-1 space-y-3.5 sm:space-y-4 pt-1 lg:pt-0 hidden lg:block">
                 <div class="flex items-center justify-between">
                   <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Charrette Parameters</span>
-                  <span class="text-[10px] font-mono text-emerald-400">Interactive</span>
+                  <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-mono font-medium text-emerald-300">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Tune live ↺</span>
+                  </span>
                 </div>
 
                 <!-- Climate Selector: Quick-Tap Chips on Mobile, Select on Desktop -->
@@ -519,6 +522,13 @@
       controls.maxDistance = 65;
       controls.autoRotate = true;
       controls.autoRotateSpeed = 0.45;
+
+      // Prevent 3D canvas from trapping natural 1-finger vertical page scroll on touch devices in inline mode
+      const isCoarseTouch = typeof window !== 'undefined' && (window.matchMedia('(pointer: coarse)').matches || ('ontouchstart' in window));
+      if (isCoarseTouch) {
+        controls.enableRotate = false;
+        if (canvas) canvas.style.touchAction = 'pan-y';
+      }
 
       // Smooth Camera Flight Animator (easeOutCubic)
       let camAnimActive = false;
@@ -2175,7 +2185,11 @@
     document.body.style.overflow = 'hidden';
     const globalHeader = document.querySelector('header');
     if (globalHeader) globalHeader.style.display = 'none';
-    if (orbitControls) orbitControls.enableZoom = true;
+    if (orbitControls) {
+      orbitControls.enableRotate = true;
+      orbitControls.enableZoom = true;
+    }
+    if (canvas) canvas.style.touchAction = 'none';
 
     setTimeout(() => {
       if (container && renderer && camera) {
@@ -2194,7 +2208,14 @@
     document.body.style.overflow = '';
     const globalHeader = document.querySelector('header');
     if (globalHeader) globalHeader.style.display = '';
-    if (orbitControls) orbitControls.enableZoom = false;
+    const isCoarseTouch = typeof window !== 'undefined' && (window.matchMedia('(pointer: coarse)').matches || ('ontouchstart' in window));
+    if (orbitControls) {
+      orbitControls.enableRotate = !isCoarseTouch;
+      orbitControls.enableZoom = false;
+    }
+    if (canvas) {
+      canvas.style.touchAction = isCoarseTouch ? 'pan-y' : 'none';
+    }
 
     setTimeout(() => {
       if (container && renderer && camera) {
