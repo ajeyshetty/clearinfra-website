@@ -262,7 +262,6 @@ const complianceModules = [
                 <path d="M 165 66 C 200 66, 200 100, 235 100" />
                 <path d="M 165 66 C 200 66, 200 180, 235 180" />
                 <path d="M 165 170 C 200 170, 200 180, 235 180" />
-                <path d="M 165 274 C 200 274, 200 260, 235 260" />
                 <path d="M 165 274 C 200 274, 200 100, 235 100" />
                 <path d="M 405 100 C 430 100, 430 66, 455 66" />
                 <path d="M 405 180 C 430 180, 430 66, 455 66" />
@@ -279,7 +278,6 @@ const complianceModules = [
               <path id="path-weather-physics" d="M 165 170 C 200 170, 200 180, 235 180" fill="none" stroke="#38bdf8" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
 
               <!-- Cost DB Paths -->
-              <path id="path-cost-compliance" d="M 165 274 C 200 274, 200 260, 235 260" fill="none" stroke="#f59e0b" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
               <path id="path-cost-agent" d="M 165 274 C 200 274, 200 100, 235 100" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
 
               <!-- Core to Output Paths -->
@@ -336,6 +334,10 @@ const complianceModules = [
                   <text x="71" y="55" text-anchor="middle" fill="#cbd5e1" font-size="10">&amp; ECBC Rule Checker</text>
                 </g>
               </g>
+
+              <!-- Physics → Compliance: the computed EPI is graded against the code thresholds.
+                   Drawn after the core container so its fill does not paint over the link. -->
+              <path id="path-physics-compliance" d="M 320 213 L 320 227" fill="none" stroke="#f59e0b" stroke-width="2" class="animate-dash topo-flow-path" stroke-opacity="0.9" />
 
               <!-- Right Output Nodes (Hover Interactive) -->
               <g id="node-capex" class="topo-node cursor-pointer transition-all duration-200" transform="translate(455, 40)">
@@ -455,10 +457,10 @@ const complianceModules = [
       paths: ['path-weather-physics', 'path-physics-capex', 'path-physics-eplus']
     },
     'node-cost': {
-      label: 'TRACING: India Cost DB → NBC 2026 / ECBC → Submittals',
+      label: 'TRACING: India Cost DB → AI Pareto → CAPEX Payback',
       dotColor: '#fbbf24',
-      nodes: ['node-cost', 'node-compliance', 'node-statutory', 'node-agent', 'node-capex'],
-      paths: ['path-cost-compliance', 'path-cost-agent', 'path-compliance-statutory', 'path-agent-capex']
+      nodes: ['node-cost', 'node-agent', 'node-capex'],
+      paths: ['path-cost-agent', 'path-agent-capex']
     },
     'node-agent': {
       label: 'TRACING: Built-in AI → 27-Tool Sweeps → Cost Pareto',
@@ -467,16 +469,16 @@ const complianceModules = [
       paths: ['path-massing-agent', 'path-cost-agent', 'path-agent-capex']
     },
     'node-physics': {
-      label: 'TRACING: ISO 52016 Engine + Psychrometrics → .idf Model',
+      label: 'TRACING: ISO 52016 Engine → Chiller TR · Code Check · .idf',
       dotColor: '#10b981',
-      nodes: ['node-massing', 'node-weather', 'node-physics', 'node-capex', 'node-eplus'],
-      paths: ['path-massing-physics', 'path-weather-physics', 'path-physics-capex', 'path-physics-eplus']
+      nodes: ['node-massing', 'node-weather', 'node-physics', 'node-capex', 'node-eplus', 'node-compliance'],
+      paths: ['path-massing-physics', 'path-weather-physics', 'path-physics-capex', 'path-physics-eplus', 'path-physics-compliance']
     },
     'node-compliance': {
-      label: 'TRACING: NBC 2026 Graph-RAG & ECBC Rule Checker',
+      label: 'TRACING: ISO 52016 EPI → NBC 2026 / ECBC → Submittals',
       dotColor: '#fbbf24',
-      nodes: ['node-cost', 'node-compliance', 'node-statutory'],
-      paths: ['path-cost-compliance', 'path-compliance-statutory']
+      nodes: ['node-physics', 'node-compliance', 'node-statutory'],
+      paths: ['path-physics-compliance', 'path-compliance-statutory']
     },
     'node-capex': {
       label: 'TRACE: CAPEX & Load ← Thermal Solver & AI Optimizer',
@@ -487,8 +489,8 @@ const complianceModules = [
     'node-statutory': {
       label: 'TRACE: Statutory Submittals ← NBC 2026 Graph-RAG',
       dotColor: '#fbbf24',
-      nodes: ['node-statutory', 'node-compliance', 'node-cost'],
-      paths: ['path-compliance-statutory', 'path-cost-compliance']
+      nodes: ['node-statutory', 'node-compliance', 'node-physics'],
+      paths: ['path-compliance-statutory', 'path-physics-compliance']
     },
     'node-eplus': {
       label: 'TRACE: EnergyPlus .idf ← ISO 52016-1 Thermal Core',
