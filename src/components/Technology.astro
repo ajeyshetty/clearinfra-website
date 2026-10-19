@@ -445,16 +445,16 @@ const complianceModules = [
 
   const traceMap: Record<string, { label: string; dotColor: string; nodes: string[]; paths: string[] }> = {
     'node-massing': {
-      label: 'TRACING: Massing & WWR → AI + Physics → CAPEX & .idf',
+      label: 'TRACING: Massing & WWR → AI + Physics → CAPEX · .idf · Code Check',
       dotColor: '#00e5ff',
-      nodes: ['node-massing', 'node-agent', 'node-physics', 'node-capex', 'node-eplus'],
-      paths: ['path-massing-agent', 'path-massing-physics', 'path-agent-capex', 'path-physics-capex', 'path-physics-eplus']
+      nodes: ['node-massing', 'node-agent', 'node-physics', 'node-capex', 'node-eplus', 'node-compliance'],
+      paths: ['path-massing-agent', 'path-massing-physics', 'path-agent-capex', 'path-physics-capex', 'path-physics-eplus', 'path-physics-compliance']
     },
     'node-weather': {
-      label: 'TRACING: 8,760 Climate → ISO 52016 Solver → Chiller TR',
+      label: 'TRACING: 8,760 Climate → ISO 52016 Solver → Chiller TR · Code Check',
       dotColor: '#38bdf8',
-      nodes: ['node-weather', 'node-physics', 'node-capex', 'node-eplus'],
-      paths: ['path-weather-physics', 'path-physics-capex', 'path-physics-eplus']
+      nodes: ['node-weather', 'node-physics', 'node-capex', 'node-eplus', 'node-compliance'],
+      paths: ['path-weather-physics', 'path-physics-capex', 'path-physics-eplus', 'path-physics-compliance']
     },
     'node-cost': {
       label: 'TRACING: India Cost DB → AI Pareto → CAPEX Payback',
