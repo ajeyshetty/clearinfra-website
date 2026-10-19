@@ -263,6 +263,7 @@ const complianceModules = [
                 <path d="M 165 66 C 200 66, 200 180, 235 180" />
                 <path d="M 165 170 C 200 170, 200 180, 235 180" />
                 <path d="M 165 274 C 200 274, 200 100, 235 100" />
+                <path d="M 165 274 C 200 274, 200 180, 235 180" />
                 <path d="M 405 100 C 430 100, 430 66, 455 66" />
                 <path d="M 405 180 C 430 180, 430 66, 455 66" />
                 <path d="M 405 180 C 430 180, 430 274, 455 274" />
@@ -279,6 +280,7 @@ const complianceModules = [
 
               <!-- Cost DB Paths -->
               <path id="path-cost-agent" d="M 165 274 C 200 274, 200 100, 235 100" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
+              <path id="path-cost-physics" d="M 165 274 C 200 274, 200 180, 235 180" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
 
               <!-- Core to Output Paths -->
               <path id="path-agent-capex" d="M 405 100 C 430 100, 430 66, 455 66" fill="none" stroke="#10b981" stroke-width="1.5" class="animate-dash topo-flow-path" stroke-opacity="0.75" />
@@ -457,10 +459,10 @@ const complianceModules = [
       paths: ['path-weather-physics', 'path-physics-capex', 'path-physics-eplus', 'path-physics-compliance', 'path-compliance-statutory']
     },
     'node-cost': {
-      label: 'TRACING: India Cost DB → AI Pareto → CAPEX Payback',
+      label: 'TRACING: India Cost DB → AI Pareto + Finance Module → CAPEX Payback',
       dotColor: '#fbbf24',
-      nodes: ['node-cost', 'node-agent', 'node-capex'],
-      paths: ['path-cost-agent', 'path-agent-capex']
+      nodes: ['node-cost', 'node-agent', 'node-physics', 'node-capex'],
+      paths: ['path-cost-agent', 'path-cost-physics', 'path-agent-capex', 'path-physics-capex']
     },
     'node-agent': {
       label: 'TRACING: Built-in AI → 27-Tool Sweeps → Cost Pareto',
@@ -471,8 +473,8 @@ const complianceModules = [
     'node-physics': {
       label: 'TRACING: ISO 52016 Engine → Chiller TR · Code Check · .idf',
       dotColor: '#10b981',
-      nodes: ['node-massing', 'node-weather', 'node-physics', 'node-capex', 'node-eplus', 'node-compliance'],
-      paths: ['path-massing-physics', 'path-weather-physics', 'path-physics-capex', 'path-physics-eplus', 'path-physics-compliance']
+      nodes: ['node-massing', 'node-weather', 'node-cost', 'node-physics', 'node-capex', 'node-eplus', 'node-compliance'],
+      paths: ['path-massing-physics', 'path-weather-physics', 'path-cost-physics', 'path-physics-capex', 'path-physics-eplus', 'path-physics-compliance']
     },
     'node-compliance': {
       label: 'TRACING: ISO 52016 EPI → NBC 2026 / ECBC → Submittals',
@@ -483,8 +485,8 @@ const complianceModules = [
     'node-capex': {
       label: 'TRACE: CAPEX & Load ← Thermal Solver & AI Optimizer',
       dotColor: '#10b981',
-      nodes: ['node-capex', 'node-agent', 'node-physics', 'node-massing', 'node-weather'],
-      paths: ['path-agent-capex', 'path-physics-capex', 'path-massing-agent', 'path-massing-physics', 'path-weather-physics']
+      nodes: ['node-capex', 'node-agent', 'node-physics', 'node-massing', 'node-weather', 'node-cost'],
+      paths: ['path-agent-capex', 'path-physics-capex', 'path-massing-agent', 'path-massing-physics', 'path-weather-physics', 'path-cost-physics']
     },
     'node-statutory': {
       label: 'TRACE: Statutory Submittals ← NBC 2026 Graph-RAG',
