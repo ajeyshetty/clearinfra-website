@@ -103,29 +103,9 @@
           <div class="grid grid-cols-1 lg:grid-cols-12">
             <!-- Left 7 Cols of Card: Animated Isometric Building + Solar Path Canvas -->
             <div class="lg:col-span-7 p-3.5 sm:p-4 sm:pb-2.5 flex flex-col justify-between bg-blueprint-sub border-b lg:border-b-0 lg:border-r border-white/[0.07] relative min-h-[280px] sm:min-h-[320px]">
-              <div class="flex items-center justify-between gap-2 text-[11px] sm:text-xs font-mono text-slate-400 z-10">
-                <div class="truncate">
-                  <span class="text-slate-500 hidden sm:inline">LOCATION:</span>
-                  <span id="viz-climate-label" class="text-slate-200 sm:ml-1">Bengaluru (Temperate)</span>
-                </div>
-                <div class="flex items-center gap-3 shrink-0">
-                  <span class="flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-                    <span>Solar</span>
-                  </span>
-                  <span class="flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-sky-400"></span>
-                    <span>Glazing</span>
-                  </span>
-                </div>
-              </div>
-
-              <!-- Central 3D Three.js Building Viewport (Clearinfra Studio Twin) -->
-              <div id="three-container" class="relative w-full h-[230px] sm:h-[295px] lg:h-[330px] xl:h-[345px] 2xl:h-[395px] mt-1.5 mb-1.5 overflow-hidden rounded-xl border border-white/[0.08] bg-[#0E131E]/80 backdrop-blur-xs">
-                <canvas id="three-building-canvas" class="w-full h-full block cursor-grab active:cursor-grabbing"></canvas>
-                
-                <!-- Overlay Top-Left: 4-Stage Simulation Pipeline Switcher (01 Twin · 02 Daylight · 03 Shading · 04 NBC + Auto-Tour Toggle) -->
-                <div class="absolute top-2.5 left-2.5 flex items-center gap-0.5 sm:gap-1 bg-[#161D2B]/95 p-1 rounded-md border border-white/12 text-[8.5px] sm:text-[9.5px] font-mono shadow-sm z-10 select-none">
+              <!-- Viewport Mode Toolbar (CAD Standard: Placed cleanly above the 3D canvas) -->
+              <div class="flex items-center justify-between gap-2 text-xs font-mono select-none z-10 mb-1">
+                <div class="flex items-center gap-0.5 sm:gap-1 bg-[#161D2B]/95 p-1 rounded-lg border border-white/12 text-[8.5px] sm:text-[9.5px] shadow-sm">
                   <button id="btn-mode-twin" type="button" title="01 Architectural 3D Twin" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-emerald-500/40 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
                     <span class="opacity-65 text-[8px]">01</span>
@@ -155,6 +135,17 @@
                   </button>
                 </div>
 
+                <div class="hidden sm:flex items-center gap-1.5 text-[10px] font-mono shrink-0">
+                  <span id="viz-climate-label" class="hidden">Bengaluru</span>
+                  <span id="three-layer-dot" class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span id="three-layer-status" class="text-emerald-400 uppercase tracking-wider font-medium">3D Twin</span>
+                </div>
+              </div>
+
+              <!-- Central 3D Three.js Building Viewport (Clearinfra Studio Twin - 100% Unobstructed) -->
+              <div id="three-container" class="relative w-full h-[250px] sm:h-[295px] lg:h-[330px] xl:h-[345px] 2xl:h-[375px] mt-1.5 overflow-hidden rounded-xl border border-white/[0.08] bg-[#0E131E]/80 backdrop-blur-xs">
+                <canvas id="three-building-canvas" class="w-full h-full block cursor-grab active:cursor-grabbing"></canvas>
+
                 <!-- Overlay Daylight Lux Scale Bar (Smoothly Fades in Daylight sDA Mode at bottom-2.5) -->
                 <div id="daylight-lux-legend" class="opacity-0 pointer-events-none transition-opacity duration-300 absolute bottom-2.5 left-2.5 flex items-center gap-1.5 px-2 py-1 rounded-md bg-[#161D2B]/95 border border-white/15 text-[8.5px] sm:text-[9px] font-mono text-slate-300 backdrop-blur-xs shadow-lg z-10">
                   <span class="text-amber-300 font-semibold" id="daylight-sda-callout">sDA: 55%</span>
@@ -179,18 +170,12 @@
                   <button id="btn-reset-cam" type="button" title="Reset Camera Orbit" class="px-1.5 py-0.5 rounded text-slate-400 hover:text-white hover:bg-white/[0.06] border-l border-white/10 transition-colors duration-200 cursor-pointer" aria-label="Reset Camera Orbit">↺</button>
                 </div>
               </div>
-
-              <!-- Bottom Status Strip inside Canvas -->
-              <div class="flex items-center justify-between gap-2 pt-2 border-t border-white/[0.06] text-[10.5px] font-mono text-slate-400 whitespace-nowrap overflow-hidden">
-                <div class="shrink-0">Outputs: <span class="text-slate-300">screening estimate</span></div>
-                <div id="viz-shgc-readout" class="truncate text-right"><span class="text-emerald-400">SHGC 0.28 · U 1.6 W/m²K</span></div>
-              </div>
             </div>
 
             <!-- Right 5 Cols of Card: Interactive Controls & Live Simulation Readout -->
-            <div class="lg:col-span-5 p-3.5 sm:p-4.5 sm:py-3.5 flex flex-col justify-between space-y-2.5 sm:space-y-3.5 bg-[#141A25]">
+            <div class="lg:col-span-5 p-3.5 sm:p-4 sm:py-3 flex flex-col justify-between bg-[#141A25]">
               <!-- Simulated Physics Output Readout (Elevated to top on mobile for instant zero-distance feedback) -->
-              <div class="order-1 lg:order-2 pt-0 lg:pt-4 border-b lg:border-b-0 lg:border-t border-white/[0.07] pb-3.5 lg:pb-0 space-y-2.5 sm:space-y-3">
+              <div class="order-1 lg:order-2 pt-0 lg:pt-3 border-b lg:border-b-0 lg:border-t border-white/[0.07] pb-3 lg:pb-0 flex flex-col gap-2 sm:gap-2.5">
                 <div class="flex items-center justify-between">
                   <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Envelope Performance</span>
                   <span id="out-badge" class="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
@@ -230,8 +215,14 @@
                   </div>
                 </div>
 
+                <!-- Status Strip: Screening estimate + Glazing / Mode Readout -->
+                <div class="flex items-center justify-between gap-2 pt-1.5 border-t border-white/[0.06] text-[9.5px] sm:text-[10px] font-mono text-slate-400 whitespace-nowrap overflow-hidden">
+                  <div class="shrink-0 text-slate-400">Screening estimate</div>
+                  <div id="viz-shgc-readout" class="truncate text-right font-medium"><span class="text-emerald-400">SHGC 0.28 · U 1.6 W/m²K</span></div>
+                </div>
+
                 <!-- Mobile Launch Studio Button (Displayed on Mobile Homepage) -->
-                <div class="lg:hidden pt-2.5" id="mobile-studio-trigger-wrap">
+                <div class="lg:hidden pt-2" id="mobile-studio-trigger-wrap">
                   <button
                     type="button"
                     id="btn-open-mobile-studio"
@@ -250,7 +241,7 @@
               </div>
 
               <!-- Charrette Parameters & Interactive Sliders -->
-              <div id="charrette-params-container" class="order-2 lg:order-1 space-y-3.5 sm:space-y-4 pt-1 lg:pt-0 hidden lg:block">
+              <div id="charrette-params-container" class="order-2 lg:order-1 flex flex-col gap-3 sm:gap-3.5 pt-0.5 lg:pt-0 hidden lg:flex">
                 <div class="flex items-center justify-between">
                   <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Charrette Parameters</span>
                   <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-mono font-medium text-emerald-300">
@@ -491,8 +482,8 @@
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
       const camera = new THREE.PerspectiveCamera(34, container.clientWidth / Math.max(1, container.clientHeight), 0.1, 160);
-      const defaultCamPos = new THREE.Vector3(22.8, 15.6, 22.8);
-      const defaultTarget = new THREE.Vector3(0, 8.0, 0);
+      const defaultCamPos = new THREE.Vector3(23.6, 16.4, 23.6);
+      const defaultTarget = new THREE.Vector3(0, 8.1, 0);
       camera.position.copy(defaultCamPos);
 
       const controls = new OrbitControls(camera, canvas);
@@ -562,10 +553,10 @@
       }
 
       function getIsoPresetForMode(mode: 'twin' | 'daylight' | 'shading' | 'nbc'): [number, number, number, number, number, number] {
-        if (mode === 'daylight') return [13.2, 14.8, 13.2, 0, 1.2, 0];
-        if (mode === 'shading') return [12.0, 10.8, 12.8, 0, 0.9, 0];
-        if (mode === 'nbc') return [24.5, 17.2, 24.5, 0, 7.8, 0];
-        return [22.8, 15.6, 22.8, 0, 8.0, 0];
+        if (mode === 'daylight') return [12.6, 14.0, 12.6, 0, 1.2, 0];
+        if (mode === 'shading') return [11.5, 10.2, 12.0, 0, 0.9, 0];
+        if (mode === 'nbc') return [26.0, 18.0, 26.0, 0, 8.1, 0];
+        return [23.6, 16.4, 23.6, 0, 8.1, 0];
       }
 
       btnCamIso?.addEventListener('click', () => {
@@ -911,6 +902,8 @@
       const btnModeDaylight = document.getElementById('btn-mode-daylight');
       const btnModeShading = document.getElementById('btn-mode-shading');
       const btnModeNbc = document.getElementById('btn-mode-nbc');
+      const threeLayerDot = document.getElementById('three-layer-dot');
+      const threeLayerStatus = document.getElementById('three-layer-status');
       const daylightLegendEl = document.getElementById('daylight-lux-legend');
       const statusPillContainer = document.getElementById('status-pill-container');
       const daylightSdaCallout = document.getElementById('daylight-sda-callout');
@@ -1794,6 +1787,11 @@
           if (btnModeDaylight) {
             btnModeDaylight.className = 'mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-amber-500/40 bg-amber-500/20 text-amber-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1';
           }
+          if (threeLayerDot) threeLayerDot.className = 'w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse';
+          if (threeLayerStatus) {
+            threeLayerStatus.className = 'text-amber-300 uppercase tracking-wider font-medium';
+            threeLayerStatus.textContent = 'Daylight sDA';
+          }
           setBuildingCutaway('daylight');
           daylightGroup.visible = true;
           shadingGroup.visible = false;
@@ -1812,10 +1810,15 @@
           const g = glazingData[currentGlazing] || glazingData.lowe;
           const sda = Math.min(92, Math.round(24 + currentWwr * (0.65 + g.shgc * 0.45)));
           if (daylightSdaCallout) daylightSdaCallout.textContent = `sDA: ${sda}%`;
-          if (vizShgcReadout) vizShgcReadout.innerHTML = `<span class="text-amber-300 font-medium">LM-83 Grid · ${sda}% ≥ 300 lx</span>`;
+          if (vizShgcReadout) vizShgcReadout.innerHTML = `<span class="text-amber-300 font-medium">LM-83 · ${sda}% sDA</span>`;
         } else if (mode === 'shading') {
           if (btnModeShading) {
             btnModeShading.className = 'mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-orange-500/40 bg-orange-500/20 text-orange-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1';
+          }
+          if (threeLayerDot) threeLayerDot.className = 'w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse';
+          if (threeLayerStatus) {
+            threeLayerStatus.className = 'text-orange-300 uppercase tracking-wider font-medium';
+            threeLayerStatus.textContent = 'Shading Lab';
           }
           setBuildingCutaway('shading');
           daylightGroup.visible = false;
@@ -1836,6 +1839,11 @@
           if (btnModeNbc) {
             btnModeNbc.className = 'mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-sky-500/40 bg-sky-500/20 text-sky-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1';
           }
+          if (threeLayerDot) threeLayerDot.className = 'w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse';
+          if (threeLayerStatus) {
+            threeLayerStatus.className = 'text-sky-300 uppercase tracking-wider font-medium';
+            threeLayerStatus.textContent = 'NBC 2026';
+          }
           setBuildingCutaway('nbc');
           daylightGroup.visible = false;
           shadingGroup.visible = false;
@@ -1851,10 +1859,15 @@
 
           if (vizWwrCallout) vizWwrCallout.innerHTML = '<span class="text-sky-400 font-semibold">Refuge L6</span>';
           if (vizDniLabel) vizDniLabel.textContent = '+20.5m · PASS';
-          if (vizShgcReadout) vizShgcReadout.innerHTML = '<span class="text-emerald-400 font-medium">NBC Pt.4 · L6 Refuge · PASS</span>';
+          if (vizShgcReadout) vizShgcReadout.innerHTML = '<span class="text-emerald-400 font-medium">NBC Pt.4 Refuge · PASS</span>';
         } else {
           if (btnModeTwin) {
             btnModeTwin.className = 'mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-emerald-500/40 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1';
+          }
+          if (threeLayerDot) threeLayerDot.className = 'w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse';
+          if (threeLayerStatus) {
+            threeLayerStatus.className = 'text-emerald-400 uppercase tracking-wider font-medium';
+            threeLayerStatus.textContent = '3D Twin';
           }
           setBuildingCutaway('twin');
           daylightGroup.visible = false;
