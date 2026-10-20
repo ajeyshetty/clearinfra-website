@@ -48,17 +48,17 @@ const complianceModules = [
     </div>
 
     <!-- Part 1 Content: 2 Capability Cards (Left 5 Cols) + System Topology CAD Card (Right 7 Cols) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-8 xl:gap-10 items-stretch">
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 sm:gap-8 xl:gap-10 items-stretch">
       <!-- Left: 2 Architectural Feature Cards -->
-      <div class="reveal lg:col-span-5 flex flex-col justify-between gap-4 text-left">
+      <div class="reveal xl:col-span-5 grid grid-cols-1 md:grid-cols-2 xl:flex xl:flex-col justify-between gap-4 sm:gap-6 xl:gap-4 text-left">
         <div class="arch-card p-5 sm:p-6 rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/40 shadow-xs hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 flex-1 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-900/[0.06]">
               <span class="text-xs font-mono font-semibold text-slate-500">01</span>
               <span class="text-[10px] font-mono text-emerald-700 font-semibold tracking-wider uppercase">BUILT-IN AI COPILOT &amp; PARETO OPTIMIZER</span>
             </div>
-            <h3 class="text-base sm:text-lg font-semibold text-slate-900 mb-2">Automated Multi-Objective Optimization</h3>
-            <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
+            <h3 class="text-base sm:text-xl font-semibold text-slate-900 mb-2">Automated Multi-Objective Optimization</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
               Wired directly into 3D geometry and the ISO 52016-1 physics kernel via 27 engineering tools—allowing consultants to sweep glazing, shading, orientation, and HVAC combinations live to isolate lowest-CAPEX and lowest-EPI designs.
             </p>
           </div>
@@ -74,8 +74,8 @@ const complianceModules = [
               <span class="text-xs font-mono font-semibold text-slate-500">02</span>
               <span class="text-[10px] font-mono text-emerald-700 font-semibold tracking-wider uppercase">TRACEABLE DEPENDENCY GRAPH</span>
             </div>
-            <h3 class="text-base sm:text-lg font-semibold text-slate-900 mb-2">First-Principles Impact Propagation</h3>
-            <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
+            <h3 class="text-base sm:text-xl font-semibold text-slate-900 mb-2">First-Principles Impact Propagation</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
               Every parameter change is tracked through a live dependency graph—showing exactly how a change in facade SHGC propagates to sensible coil load, chiller plant tonnage, and project payback estimates with zero black-box disconnect.
             </p>
           </div>
@@ -87,7 +87,7 @@ const complianceModules = [
       </div>
 
       <!-- Right: Matte CAD Window with Animated Architecture Schematic -->
-      <div class="reveal reveal-delay-1 lg:col-span-7 flex flex-col">
+      <div class="reveal reveal-delay-1 xl:col-span-7 flex flex-col">
         <div class="rounded-2xl border border-slate-700/60 ring-1 ring-white/10 bg-[#131924] p-4 sm:p-5 lg:p-6 shadow-2xl shadow-slate-950/30 bg-blueprint-sub relative overflow-hidden flex-1 flex flex-col justify-between">
           <!-- CAD Window Header Bar: Strictly Fixed Height & Zero Layout Shift -->
           <div class="flex items-center justify-between gap-2 text-[11px] sm:text-xs font-mono text-slate-400 mb-5 sm:mb-6 pb-3.5 sm:pb-4 border-b border-white/[0.08] min-h-[2.5rem] max-h-[2.5rem] overflow-hidden select-none">
@@ -123,7 +123,7 @@ const complianceModules = [
                 >
                   <span class="w-1.5 h-1.5 rounded-full bg-sky-400 mb-1 block"></span>
                   <span class="text-[10px] font-semibold text-slate-100 block leading-tight">Building Model</span>
-                  <span class="text-[8px] font-mono text-slate-400 block mt-0.5 truncate">Massing · Envelope</span>
+                  <span class="text-[9px] font-mono text-slate-400 block mt-0.5 truncate">Massing · Envelope</span>
                 </button>
 
                 <button
@@ -133,7 +133,7 @@ const complianceModules = [
                 >
                   <span class="w-1.5 h-1.5 rounded-full bg-sky-400 mb-1 block"></span>
                   <span class="text-[10px] font-semibold text-slate-100 block leading-tight">8,760 Climate</span>
-                  <span class="text-[8px] font-mono text-slate-400 block mt-0.5 truncate">DBT · WBT · DNI</span>
+                  <span class="text-[9px] font-mono text-slate-400 block mt-0.5 truncate">DBT · WBT · DNI</span>
                 </button>
 
                 <button
@@ -143,7 +143,7 @@ const complianceModules = [
                 >
                   <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mb-1 block"></span>
                   <span class="text-[10px] font-semibold text-slate-100 block leading-tight">Cost DB</span>
-                  <span class="text-[8px] font-mono text-slate-400 block mt-0.5 truncate">India Specs</span>
+                  <span class="text-[9px] font-mono text-slate-400 block mt-0.5 truncate">India Specs</span>
                 </button>
               </div>
             </div>
@@ -243,7 +243,7 @@ const complianceModules = [
                 >
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mb-1 block"></span>
                   <span class="text-[10px] font-semibold text-slate-100 block leading-tight">CAPEX &amp; Load</span>
-                  <span class="text-[8px] font-mono text-emerald-400 block mt-0.5 truncate">Peak TR · Payback</span>
+                  <span class="text-[9px] font-mono text-emerald-400 block mt-0.5 truncate">Peak TR · Payback</span>
                 </button>
 
                 <button
@@ -253,7 +253,7 @@ const complianceModules = [
                 >
                   <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mb-1 block"></span>
                   <span class="text-[10px] font-semibold text-slate-100 block leading-tight">Submittals</span>
-                  <span class="text-[8px] font-mono text-amber-400 block mt-0.5 truncate">NBC 2026 Dossier</span>
+                  <span class="text-[9px] font-mono text-amber-400 block mt-0.5 truncate">NBC 2026 Dossier</span>
                 </button>
 
                 <button
@@ -263,7 +263,7 @@ const complianceModules = [
                 >
                   <span class="w-1.5 h-1.5 rounded-full bg-sky-400 mb-1 block"></span>
                   <span class="text-[10px] font-semibold text-slate-100 block leading-tight">EnergyPlus</span>
-                  <span class="text-[8px] font-mono text-sky-400 block mt-0.5 truncate">Run-Checked .idf</span>
+                  <span class="text-[9px] font-mono text-sky-400 block mt-0.5 truncate">Run-Checked .idf</span>
                 </button>
               </div>
             </div>
