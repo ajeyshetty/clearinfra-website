@@ -121,7 +121,7 @@
               </div>
 
               <!-- Central 3D Three.js Building Viewport (Clearinfra Studio Twin) -->
-              <div id="three-container" class="relative w-full h-[220px] sm:h-[280px] lg:h-[315px] xl:h-[325px] 2xl:h-[380px] mt-1.5 mb-1.5 overflow-hidden rounded-xl border border-white/[0.08] bg-[#0E131E]/80 backdrop-blur-xs">
+              <div id="three-container" class="relative w-full h-[230px] sm:h-[295px] lg:h-[330px] xl:h-[345px] 2xl:h-[395px] mt-1.5 mb-1.5 overflow-hidden rounded-xl border border-white/[0.08] bg-[#0E131E]/80 backdrop-blur-xs">
                 <canvas id="three-building-canvas" class="w-full h-full block cursor-grab active:cursor-grabbing"></canvas>
                 
                 <!-- Overlay Top-Left: 4-Stage Simulation Pipeline Switcher (01 Twin · 02 Daylight · 03 Shading · 04 NBC + Auto-Tour Toggle) -->
@@ -155,36 +155,28 @@
                   </button>
                 </div>
 
-                <!-- Overlay Daylight Lux Scale Bar (Smoothly Fades in Daylight sDA Mode) -->
-                <div id="daylight-lux-legend" class="opacity-0 pointer-events-none transition-opacity duration-300 absolute bottom-10 left-2.5 flex items-center gap-1.5 px-2 py-1 rounded-md bg-[#0E131E]/95 border border-white/15 text-[8.5px] font-mono text-slate-300 backdrop-blur-xs shadow-lg z-10">
+                <!-- Overlay Daylight Lux Scale Bar (Smoothly Fades in Daylight sDA Mode at bottom-2.5) -->
+                <div id="daylight-lux-legend" class="opacity-0 pointer-events-none transition-opacity duration-300 absolute bottom-2.5 left-2.5 flex items-center gap-1.5 px-2 py-1 rounded-md bg-[#161D2B]/95 border border-white/15 text-[8.5px] sm:text-[9px] font-mono text-slate-300 backdrop-blur-xs shadow-lg z-10">
+                  <span class="text-amber-300 font-semibold" id="daylight-sda-callout">sDA: 55%</span>
+                  <span class="text-slate-500">|</span>
                   <span class="text-slate-400">0 lx</span>
-                  <div class="w-20 sm:w-28 h-2 rounded-xs border border-white/20" style="background: linear-gradient(90deg, #060914 0%, #1e3a8a 18%, #16a34a 38%, #84cc16 56%, #eab308 74%, #ea580c 88%, #dc2626 100%);"></div>
-                  <span class="text-red-400 font-semibold">2000+ lx</span>
-                  <span class="hidden sm:inline text-emerald-400 border-l border-white/15 pl-1.5">― 300 lx</span>
+                  <div class="w-16 sm:w-22 h-1.5 rounded-xs border border-white/20" style="background: linear-gradient(90deg, #060914 0%, #1e3a8a 18%, #16a34a 38%, #84cc16 56%, #eab308 74%, #ea580c 88%, #dc2626 100%);"></div>
+                  <span class="text-red-400 font-semibold">2k+ lx</span>
+                  <span class="hidden sm:inline text-emerald-400 border-l border-white/15 pl-1.5">≥300 lx</span>
                 </div>
 
-                <!-- Overlay Shading Lab Legend Bar (Smoothly Fades in Shading Mode) -->
-                <div id="shading-lab-legend" class="opacity-0 pointer-events-none transition-opacity duration-300 absolute bottom-10 left-2.5 flex items-center gap-2 px-2 py-1 rounded-md bg-[#0E131E]/95 border border-white/15 text-[8.5px] font-mono text-slate-300 backdrop-blur-xs shadow-lg z-10">
-                  <span class="flex items-center gap-1 text-orange-300"><span class="w-2 h-2 rounded-xs bg-amber-600 border border-amber-400/60 inline-block"></span>S: Overhangs</span>
-                  <span class="text-slate-600">·</span>
-                  <span class="flex items-center gap-1 text-orange-300">E/W: Fins</span>
-                  <span class="hidden sm:inline text-amber-300 border-l border-white/15 pl-1.5">☀ Sunlit Floor: <span id="shading-sunlit-pct">3%</span></span>
-                </div>
-
-                <!-- Overlay Bottom-Left: Real-time Dynamic WWR & Solar DNI callout badge -->
-                <div class="absolute bottom-2.5 left-2.5 pointer-events-none flex items-center gap-1.5 text-[9.5px] font-mono text-slate-400 bg-[#161D2B]/90 px-2 py-1 rounded-md border border-white/12 backdrop-blur-xs">
+                <!-- Overlay Bottom-Left: Real-time Dynamic Status Callout Badge -->
+                <div id="status-pill-container" class="absolute bottom-2.5 left-2.5 pointer-events-none flex items-center gap-1.5 text-[9px] sm:text-[9.5px] font-mono text-slate-400 bg-[#161D2B]/90 px-2 py-1 rounded-md border border-white/12 backdrop-blur-xs transition-opacity duration-200">
                   <span id="viz-wwr-callout" class="text-emerald-400 font-semibold">WWR: 40%</span>
                   <span class="text-slate-600">·</span>
                   <span id="viz-dni-label" class="text-amber-300">760 W/m²</span>
                 </div>
 
-                <!-- Overlay Bottom-Right: Camera View Presets & Reset -->
+                <!-- Overlay Bottom-Right: Streamlined View Toggle & Reset -->
                 <div class="absolute bottom-2.5 right-2.5 flex items-center gap-0.5 bg-[#161D2B]/90 p-1 rounded-md border border-white/12 text-[8.5px] sm:text-[9px] font-mono shadow-sm select-none">
-                  <button id="btn-cam-iso" type="button" title="Isometric View" class="cam-btn px-1.5 py-0.5 rounded border border-emerald-500/35 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer">ISO</button>
-                  <button id="btn-cam-top" type="button" title="Top-down Floor Plate View" class="cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer">TOP</button>
-                  <button id="btn-cam-front" type="button" title="Front Elevation View" class="cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer">FRONT</button>
-                  <button id="btn-cam-side" type="button" title="Side Elevation View" class="cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer">SIDE</button>
-                  <button id="btn-reset-cam" type="button" title="Reset Camera Orbit" class="px-1.5 py-0.5 rounded text-slate-400 hover:text-white hover:bg-white/[0.06] border-l border-white/10 transition-colors duration-200 cursor-pointer">↺</button>
+                  <button id="btn-cam-iso" type="button" title="3D Isometric View" class="cam-btn px-2 py-0.5 rounded border border-emerald-500/35 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium">3D</button>
+                  <button id="btn-cam-top" type="button" title="Top-down Floor Plan View" class="cam-btn px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium">Plan</button>
+                  <button id="btn-reset-cam" type="button" title="Reset Camera Orbit" class="px-1.5 py-0.5 rounded text-slate-400 hover:text-white hover:bg-white/[0.06] border-l border-white/10 transition-colors duration-200 cursor-pointer" aria-label="Reset Camera Orbit">↺</button>
                 </div>
               </div>
 
@@ -499,8 +491,8 @@
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
       const camera = new THREE.PerspectiveCamera(34, container.clientWidth / Math.max(1, container.clientHeight), 0.1, 160);
-      const defaultCamPos = new THREE.Vector3(27.2, 18.8, 27.2);
-      const defaultTarget = new THREE.Vector3(0, 8.3, 0);
+      const defaultCamPos = new THREE.Vector3(22.8, 15.6, 22.8);
+      const defaultTarget = new THREE.Vector3(0, 8.0, 0);
       camera.position.copy(defaultCamPos);
 
       const controls = new OrbitControls(camera, canvas);
@@ -510,8 +502,8 @@
       controls.enableZoom = false;
       controls.dampingFactor = 0.06;
       controls.maxPolarAngle = Math.PI / 2 - 0.05;
-      controls.minDistance = 14;
-      controls.maxDistance = 65;
+      controls.minDistance = 12;
+      controls.maxDistance = 60;
       controls.autoRotate = true;
       controls.autoRotateSpeed = 0.45;
 
@@ -554,28 +546,26 @@
         }, 4000);
       });
 
-      // Camera Presets & Orbit Control HUD Handlers
+      // Streamlined Camera Presets & Orbit Control HUD Handlers
       const btnCamIso = document.getElementById('btn-cam-iso');
       const btnCamTop = document.getElementById('btn-cam-top');
-      const btnCamFront = document.getElementById('btn-cam-front');
-      const btnCamSide = document.getElementById('btn-cam-side');
       const resetBtn = document.getElementById('btn-reset-cam');
       const camBtns = document.querySelectorAll('.cam-btn');
 
       function setCamActive(activeBtn: HTMLElement | null) {
         camBtns.forEach((b) => {
-          b.className = 'cam-btn px-1.5 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer';
+          b.className = 'cam-btn px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium';
         });
         if (activeBtn) {
-          activeBtn.className = 'cam-btn px-1.5 py-0.5 rounded border border-emerald-500/35 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer';
+          activeBtn.className = 'cam-btn px-2 py-0.5 rounded border border-emerald-500/35 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium';
         }
       }
 
       function getIsoPresetForMode(mode: 'twin' | 'daylight' | 'shading' | 'nbc'): [number, number, number, number, number, number] {
-        if (mode === 'daylight') return [16.5, 18.5, 16.5, 0, 1.5, 0];
-        if (mode === 'shading') return [15.2, 13.8, 16.2, 0, 1.1, 0];
-        if (mode === 'nbc') return [29.8, 20.6, 29.8, 0, 8.1, 0];
-        return [27.2, 18.8, 27.2, 0, 8.3, 0];
+        if (mode === 'daylight') return [13.2, 14.8, 13.2, 0, 1.2, 0];
+        if (mode === 'shading') return [12.0, 10.8, 12.8, 0, 0.9, 0];
+        if (mode === 'nbc') return [24.5, 17.2, 24.5, 0, 7.8, 0];
+        return [22.8, 15.6, 22.8, 0, 8.0, 0];
       }
 
       btnCamIso?.addEventListener('click', () => {
@@ -587,21 +577,11 @@
       btnCamTop?.addEventListener('click', () => {
         pauseAutoTourExternal?.();
         if (currentViewMode === 'daylight' || currentViewMode === 'shading') {
-          flyCameraTo(0.01, 20.5, 0, 0, 0.3, 0);
+          flyCameraTo(0.01, 16.5, 0, 0, 0.3, 0);
         } else {
-          flyCameraTo(0.01, 35.0, 0, 0, 0, 0);
+          flyCameraTo(0.01, 28.5, 0, 0, 0, 0);
         }
         setCamActive(btnCamTop);
-      });
-      btnCamFront?.addEventListener('click', () => {
-        pauseAutoTourExternal?.();
-        flyCameraTo(0, 8.5, 34.0, 0, 8.3, 0);
-        setCamActive(btnCamFront);
-      });
-      btnCamSide?.addEventListener('click', () => {
-        pauseAutoTourExternal?.();
-        flyCameraTo(34.0, 8.5, 0, 0, 8.3, 0);
-        setCamActive(btnCamSide);
       });
       resetBtn?.addEventListener('click', () => {
         pauseAutoTourExternal?.();
@@ -932,7 +912,8 @@
       const btnModeShading = document.getElementById('btn-mode-shading');
       const btnModeNbc = document.getElementById('btn-mode-nbc');
       const daylightLegendEl = document.getElementById('daylight-lux-legend');
-      const shadingLegendEl = document.getElementById('shading-lab-legend');
+      const statusPillContainer = document.getElementById('status-pill-container');
+      const daylightSdaCallout = document.getElementById('daylight-sda-callout');
       const shadingSunlitPctEl = document.getElementById('shading-sunlit-pct');
       const modeBtns = [btnModeTwin, btnModeDaylight, btnModeShading, btnModeNbc];
 
@@ -1817,10 +1798,9 @@
           daylightGroup.visible = true;
           shadingGroup.visible = false;
           nbcGroup.visible = false;
+          statusPillContainer?.classList.add('opacity-0');
           daylightLegendEl?.classList.remove('opacity-0');
           daylightLegendEl?.classList.add('opacity-100');
-          shadingLegendEl?.classList.add('opacity-0');
-          shadingLegendEl?.classList.remove('opacity-100');
 
           // Smoothly glide camera to frame the glowing 3D workplane & translucent floating roof cap
           const [px, py, pz, tx, ty, tz] = getIsoPresetForMode('daylight');
@@ -1831,8 +1811,7 @@
           const c = climateData[currentClimate] || climateData.bengaluru;
           const g = glazingData[currentGlazing] || glazingData.lowe;
           const sda = Math.min(92, Math.round(24 + currentWwr * (0.65 + g.shgc * 0.45)));
-          if (vizWwrCallout) vizWwrCallout.innerHTML = `<span class="text-amber-300 font-semibold">sDA: ${sda}%</span>`;
-          if (vizDniLabel) vizDniLabel.textContent = '300 lx';
+          if (daylightSdaCallout) daylightSdaCallout.textContent = `sDA: ${sda}%`;
           if (vizShgcReadout) vizShgcReadout.innerHTML = `<span class="text-amber-300 font-medium">LM-83 Grid · ${sda}% ≥ 300 lx</span>`;
         } else if (mode === 'shading') {
           if (btnModeShading) {
@@ -1844,14 +1823,13 @@
           nbcGroup.visible = false;
           daylightLegendEl?.classList.add('opacity-0');
           daylightLegendEl?.classList.remove('opacity-100');
-          shadingLegendEl?.classList.remove('opacity-0');
-          shadingLegendEl?.classList.add('opacity-100');
+          statusPillContainer?.classList.remove('opacity-0');
 
           const [px, py, pz, tx, ty, tz] = getIsoPresetForMode('shading');
           flyCameraTo(px, py, pz, tx, ty, tz);
 
           const shMetrics = updateShadingLab(currentWwr, currentGlazing, currentClimate);
-          if (vizWwrCallout) vizWwrCallout.innerHTML = `<span class="text-orange-300 font-semibold">☀ ${shMetrics.ingressDepthM}m Ingress</span>`;
+          if (vizWwrCallout) vizWwrCallout.innerHTML = `<span class="text-orange-300 font-semibold">☀ Ingress: ${shMetrics.ingressDepthM}m</span>`;
           if (vizDniLabel) vizDniLabel.textContent = `${shMetrics.sunlitPct}% Floor`;
           if (vizShgcReadout) vizShgcReadout.innerHTML = `<span class="text-orange-300 font-medium">S: Overhang · E/W: Fins</span>`;
         } else if (mode === 'nbc') {
@@ -1864,8 +1842,7 @@
           nbcGroup.visible = true;
           daylightLegendEl?.classList.add('opacity-0');
           daylightLegendEl?.classList.remove('opacity-100');
-          shadingLegendEl?.classList.add('opacity-0');
-          shadingLegendEl?.classList.remove('opacity-100');
+          statusPillContainer?.classList.remove('opacity-0');
           glassMat.opacity = 0.68;
 
           // Smoothly glide camera to frame the 12-story tower, emerald setback apron, and +49.2m zoning ceiling
@@ -1873,7 +1850,7 @@
           flyCameraTo(px, py, pz, tx, ty, tz);
 
           if (vizWwrCallout) vizWwrCallout.innerHTML = '<span class="text-sky-400 font-semibold">Refuge L6</span>';
-          if (vizDniLabel) vizDniLabel.textContent = '+20.5m';
+          if (vizDniLabel) vizDniLabel.textContent = '+20.5m · PASS';
           if (vizShgcReadout) vizShgcReadout.innerHTML = '<span class="text-emerald-400 font-medium">NBC Pt.4 · L6 Refuge · PASS</span>';
         } else {
           if (btnModeTwin) {
@@ -1885,8 +1862,7 @@
           nbcGroup.visible = false;
           daylightLegendEl?.classList.add('opacity-0');
           daylightLegendEl?.classList.remove('opacity-100');
-          shadingLegendEl?.classList.add('opacity-0');
-          shadingLegendEl?.classList.remove('opacity-100');
+          statusPillContainer?.classList.remove('opacity-0');
           glassMat.opacity = currentGlazing === 'single' ? 0.55 : currentGlazing === 'triple' ? 0.82 : 0.78;
 
           const [px, py, pz, tx, ty, tz] = getIsoPresetForMode('twin');
