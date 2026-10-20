@@ -104,7 +104,7 @@
             <!-- Left 7 Cols of Card: Animated Isometric Building + Solar Path Canvas -->
             <div class="lg:col-span-7 p-3.5 sm:p-4 sm:pb-2.5 flex flex-col justify-between bg-blueprint-sub border-b lg:border-b-0 lg:border-r border-white/[0.07] relative min-h-[280px] sm:min-h-[320px]">
               <!-- Viewport Mode Toolbar (CAD Standard: Placed cleanly above the 3D canvas) -->
-              <div class="flex items-center justify-between gap-2 text-xs font-mono select-none z-10 mb-1">
+              <div id="cad-viewport-toolbar" class="flex items-center justify-between gap-2 text-xs font-mono select-none z-10 mb-1">
                 <div class="flex items-center gap-0.5 sm:gap-1 bg-[#161D2B]/95 p-1 rounded-lg border border-white/12 text-[8.5px] sm:text-[9.5px] shadow-sm">
                   <button id="btn-mode-twin" type="button" title="01 Architectural 3D Twin" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-emerald-500/40 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
@@ -2269,18 +2269,20 @@
     overflow: hidden !important;
   }
 
-  /* Hide redundant outer strips in 3D column (HUD overlays already display info) */
-  #studio-cad-card.studio-fullscreen .lg\:col-span-7 > div:first-child,
-  #studio-cad-card.studio-fullscreen .lg\:col-span-7 > div:last-child {
-    display: none !important;
+  /* Toolbar in 3D column */
+  #studio-cad-card.studio-fullscreen #cad-viewport-toolbar {
+    display: flex !important;
+    flex-shrink: 0 !important;
+    margin-bottom: 2px !important;
   }
 
   /* Three.js Canvas Container takes full flex space */
   #studio-cad-card.studio-fullscreen #three-container {
+    display: block !important;
     flex: 1 1 0% !important;
     width: 100% !important;
     height: 100% !important;
-    min-height: 120px !important;
+    min-height: 160px !important;
     margin: 0 !important;
     border-radius: 8px !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
