@@ -242,3 +242,16 @@
   window.addEventListener('scroll', updateHeaderScroll, { passive: true });
   updateHeaderScroll();
 </script>
+
+<style>
+  @media (max-height: 760px) {
+    #site-header > div {
+      height: 3.5rem !important;
+    }
+  }
+  @media (max-height: 640px) {
+    #site-header > div {
+      height: 3rem !important;
+    }
+  }
+</style>
