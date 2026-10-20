@@ -2,7 +2,7 @@
 ---
 
 <header id="site-header" class="sticky top-0 z-50 w-full border-b border-white/10 bg-[#131924]/92 backdrop-blur-xl transition-all duration-300">
-  <div class="w-full max-w-[1680px] mx-auto px-5 sm:px-8 xl:px-16 2xl:px-24 h-18 flex items-center justify-between gap-4">
+  <div id="header-nav-container" class="w-full max-w-[1680px] mx-auto px-5 sm:px-8 xl:px-16 2xl:px-24 h-18 flex items-center justify-between gap-4">
     <!-- Brand -->
     <a href="/" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
       <svg class="w-7 h-7 shrink-0 transition-transform duration-200 group-hover:scale-105" viewBox="0 0 40 40" fill="none">
@@ -72,10 +72,10 @@
   </div>
 
   <!-- Precision 1.5px Architectural Scroll Progress Hairline -->
-  <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-[1.5px] bg-transparent overflow-hidden">
+  <div id="header-scroll-track" class="pointer-events-none absolute bottom-0 left-0 right-0 h-[1.5px] max-h-[1.5px] bg-transparent overflow-hidden">
     <div
       id="header-scroll-progress"
-      class="h-full w-0 bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 transition-[width] duration-75 ease-out"
+      class="h-[1.5px] max-h-[1.5px] w-0 bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 transition-[width] duration-75 ease-out"
     ></div>
   </div>
 
@@ -245,13 +245,21 @@
 
 <style>
   @media (max-height: 760px) {
-    #site-header > div {
+    #site-header #header-nav-container {
       height: 3.5rem !important;
     }
   }
   @media (max-height: 640px) {
-    #site-header > div {
+    #site-header #header-nav-container {
       height: 3rem !important;
     }
+  }
+  #header-scroll-track {
+    height: 1.5px !important;
+    max-height: 1.5px !important;
+  }
+  #header-scroll-progress {
+    height: 1.5px !important;
+    max-height: 1.5px !important;
   }
 </style>
