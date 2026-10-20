@@ -203,16 +203,31 @@ input[type="range"].ci-slider::-webkit-slider-thumb:hover {
   }
 }
 
-/* Sticky Header Navigation Anchor Offsets (Header height is 4.5rem / 72px) */
-#compliance {
+/* Sticky Header Navigation Anchor Offsets — synced to exact #site-header height */
+#services,
+#engine,
+#compliance,
+#workflow,
+#contact {
   scroll-margin-top: 4.5rem;
 }
 
-@media (max-width: 1023px) {
+@media (max-height: 760px) {
   #services,
   #engine,
+  #compliance,
   #workflow,
   #contact {
-    scroll-margin-top: 4.5rem;
+    scroll-margin-top: 3.5rem;
+  }
+}
+
+@media (max-height: 640px) {
+  #services,
+  #engine,
+  #compliance,
+  #workflow,
+  #contact {
+    scroll-margin-top: 3rem;
   }
 }
