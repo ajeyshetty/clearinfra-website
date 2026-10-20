@@ -21,16 +21,15 @@ const complianceModules = [
 ];
 ---
 
-<section id="engine" class="py-8 sm:py-20 lg:py-28 bg-[#F7F6F2] border-t border-slate-900/10 relative overflow-hidden">
+<section id="engine" class="scroll-mt-20 sm:scroll-mt-24 py-8 sm:py-20 lg:py-28 bg-[#F7F6F2] border-t border-slate-900/10 relative overflow-hidden">
   <!-- Option 2: Architectural Drafting Grid with Radial Vignette Fade -->
   <div class="absolute inset-0 bg-architectural-grid-vignette pointer-events-none z-0" aria-hidden="true"></div>
 
-  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 space-y-8 sm:space-y-16 lg:space-y-24 relative z-10">
+  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 space-y-8 sm:space-y-12 lg:space-y-16 relative z-10">
     
-    <!-- Part 1: Proprietary Engine + Built-in AI Integration -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 xl:gap-12 2xl:gap-16 items-stretch">
-      <!-- Left Narrative -->
-      <div class="reveal lg:col-span-5 flex flex-col justify-between space-y-3 sm:space-y-3.5 2xl:space-y-5 text-center sm:text-left">
+    <!-- Part 1 Header: Unified Split Datum (Matching Services & Compliance) -->
+    <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 items-end text-center sm:text-left">
+      <div class="lg:col-span-6 space-y-2.5 sm:space-y-3 mx-auto sm:mx-0">
         <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-[10px] sm:text-xs font-mono tracking-wider">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
           <span>PROPRIETARY TECHNOLOGY</span>
@@ -39,40 +38,57 @@ const complianceModules = [
           <span class="block">First-principles physics{' '}</span>
           <span class="block">meets built-in agentic AI.</span>
         </h2>
+      </div>
+      <div class="lg:col-span-6 relative sm:pl-6 lg:pl-8 py-1 mx-auto sm:mx-0">
+        <div class="hidden sm:block datum-line-v absolute left-0 top-1 bottom-1 w-[2px] rounded-full bg-gradient-to-b from-emerald-500 via-emerald-500/40 to-transparent" aria-hidden="true"></div>
         <p class="ci-section-lead text-slate-600">
-          In conventional consulting, energy and daylight models take weeks to assemble across disconnected third-party tools—meaning engineering feedback often arrives after architectural decisions have already moved on.
+          In conventional consulting, energy models take weeks to assemble across disconnected third-party tools. To eliminate this bottleneck, we built <strong class="text-slate-900 font-semibold">Clearinfra Studio</strong> in-house—coupling an hourly ISO 52016-1 thermal physics engine with a built-in 27-tool engineering AI copilot and proactive Pareto optimizer.
         </p>
-        <p class="ci-section-lead text-slate-600">
-          To change this, we built <strong class="text-slate-900 font-semibold">Clearinfra Studio</strong> in-house. It combines an hourly ISO 52016-1 thermal &amp; psychrometric physics engine with a <strong class="text-slate-900 font-semibold">built-in 27-tool engineering AI copilot</strong> and proactive Pareto optimizer.
-        </p>
+      </div>
+    </div>
 
-        <!-- 2 Pillar Cards on Stone (Left-Aligned Inside Cards) -->
-        <div class="space-y-2.5 2xl:space-y-3 pt-1 text-left">
-          <div class="arch-card p-3.5 2xl:p-4 rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/40 shadow-2xs hover:shadow-md hover:-translate-y-0.5">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs font-mono font-medium text-slate-400">01</span>
-              <span class="text-[10.5px] 2xl:text-[11px] font-mono font-semibold text-emerald-700 uppercase tracking-wider">Built-in AI Copilot &amp; Pareto Optimizer</span>
+    <!-- Part 1 Content: 2 Capability Cards (Left 5 Cols) + System Topology CAD Card (Right 7 Cols) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-8 xl:gap-10 items-stretch">
+      <!-- Left: 2 Architectural Feature Cards -->
+      <div class="reveal lg:col-span-5 flex flex-col justify-between gap-4 text-left">
+        <div class="arch-card p-5 sm:p-6 rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/40 shadow-xs hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-900/[0.06]">
+              <span class="text-xs font-mono font-semibold text-slate-500">01</span>
+              <span class="text-[10px] font-mono text-emerald-700 font-semibold tracking-wider uppercase">BUILT-IN AI COPILOT &amp; PARETO OPTIMIZER</span>
             </div>
-            <p class="text-xs lg:text-[clamp(0.75rem,0.86vw,0.875rem)] text-slate-600 leading-relaxed">
-              Wired directly into the 3D geometry and ISO 52016-1 physics kernel via 27 engineering tools—allowing our consultants to sweep glazing, shading, orientation, and HVAC combinations live to isolate lowest-CAPEX and lowest-EPI designs.
+            <h3 class="text-base sm:text-lg font-semibold text-slate-900 mb-2">Automated Multi-Objective Optimization</h3>
+            <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
+              Wired directly into 3D geometry and the ISO 52016-1 physics kernel via 27 engineering tools—allowing consultants to sweep glazing, shading, orientation, and HVAC combinations live to isolate lowest-CAPEX and lowest-EPI designs.
             </p>
           </div>
+          <div class="pt-3 mt-3 border-t border-slate-100 flex items-center gap-2 text-[10px] font-mono text-slate-500">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span>27 Autonomous Tools · Instant Trade-off Sweeps</span>
+          </div>
+        </div>
 
-          <div class="arch-card p-3.5 2xl:p-4 rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/40 shadow-2xs hover:shadow-md hover:-translate-y-0.5">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs font-mono font-medium text-slate-400">02</span>
-              <span class="text-[10.5px] 2xl:text-[11px] font-mono font-semibold text-emerald-700 uppercase tracking-wider">Traceable Dependency Graph</span>
+        <div class="arch-card p-5 sm:p-6 rounded-xl bg-white border border-slate-900/10 hover:border-emerald-600/40 shadow-xs hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-900/[0.06]">
+              <span class="text-xs font-mono font-semibold text-slate-500">02</span>
+              <span class="text-[10px] font-mono text-emerald-700 font-semibold tracking-wider uppercase">TRACEABLE DEPENDENCY GRAPH</span>
             </div>
-            <p class="text-xs lg:text-[clamp(0.75rem,0.86vw,0.875rem)] text-slate-600 leading-relaxed">
-              Every parameter change is tracked through a live dependency map—showing exactly how a change in facade SHGC propagates to sensible coil load, chiller tonnage, and project payback estimates.
+            <h3 class="text-base sm:text-lg font-semibold text-slate-900 mb-2">First-Principles Impact Propagation</h3>
+            <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
+              Every parameter change is tracked through a live dependency graph—showing exactly how a change in facade SHGC propagates to sensible coil load, chiller plant tonnage, and project payback estimates with zero black-box disconnect.
             </p>
+          </div>
+          <div class="pt-3 mt-3 border-t border-slate-100 flex items-center gap-2 text-[10px] font-mono text-slate-500">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
+            <span>Complete Audit Trail · Real-time Physics Ledger</span>
           </div>
         </div>
       </div>
 
       <!-- Right: Matte CAD Window with Animated Architecture Schematic -->
       <div class="reveal reveal-delay-1 lg:col-span-7 flex flex-col">
-        <div class="rounded-2xl border border-slate-700/60 ring-1 ring-white/10 bg-[#131924] p-5 sm:p-9 shadow-2xl shadow-slate-950/30 bg-blueprint-sub relative overflow-hidden flex-1 flex flex-col justify-between">
+        <div class="rounded-2xl border border-slate-700/60 ring-1 ring-white/10 bg-[#131924] p-4 sm:p-5 lg:p-6 shadow-2xl shadow-slate-950/30 bg-blueprint-sub relative overflow-hidden flex-1 flex flex-col justify-between">
           <!-- CAD Window Header Bar: Strictly Fixed Height & Zero Layout Shift -->
           <div class="flex items-center justify-between gap-2 text-[11px] sm:text-xs font-mono text-slate-400 mb-5 sm:mb-6 pb-3.5 sm:pb-4 border-b border-white/[0.08] min-h-[2.5rem] max-h-[2.5rem] overflow-hidden select-none">
             <div class="flex items-center gap-2 shrink-0">
@@ -366,7 +382,7 @@ const complianceModules = [
     </div>
 
     <!-- Part 2: Dedicated NBC 2026 & ECBC Compliance Module Breakdown -->
-    <div id="compliance" class="scroll-mt-[4.5rem] pt-8 sm:pt-16 border-t border-slate-900/10">
+    <div id="compliance" class="scroll-mt-20 sm:scroll-mt-24 pt-8 sm:pt-16 border-t border-slate-900/10">
       <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 items-end text-center sm:text-left mb-8 sm:mb-12 lg:mb-14">
         <div class="lg:col-span-6 space-y-2.5 sm:space-y-3 mx-auto sm:mx-0">
           <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-[10px] sm:text-xs font-mono tracking-wider">
