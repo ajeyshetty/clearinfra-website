@@ -78,7 +78,7 @@
               </div>
               <span class="text-slate-200 font-medium whitespace-nowrap text-[11px] sm:text-xs tracking-wide">CLEARINFRA STUDIO</span>
               <span class="hidden sm:inline-block text-slate-600">|</span>
-              <span class="hidden sm:inline-block text-slate-400 truncate">12-Story Commercial Model</span>
+              <span class="hidden sm:inline-block text-cyan-300 font-semibold tracking-wide truncate">Clearinfra Tower · Flagship 12-Story Model</span>
             </div>
             <div class="flex items-center gap-1.5 sm:gap-2 text-sky-400 shrink-0 text-[11px] sm:text-xs">
               <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
@@ -855,6 +855,32 @@
       const colR = new THREE.Mesh(colGeoP, canopyRoofMat);
       colR.position.set(portalW / 2 + 0.12, portalH / 2, portalD / 2 + 0.2);
       entranceGroup.add(colR);
+
+      // Architectural Entrance Canopy Sign: CLEARINFRA TOWER
+      const signCanvas = document.createElement('canvas');
+      signCanvas.width = 512;
+      signCanvas.height = 96;
+      const sCtx = signCanvas.getContext('2d');
+      if (sCtx) {
+        sCtx.fillStyle = '#0B111E';
+        sCtx.fillRect(0, 0, 512, 96);
+        sCtx.strokeStyle = '#00c4df';
+        sCtx.lineWidth = 4;
+        sCtx.strokeRect(4, 4, 504, 88);
+        sCtx.fillStyle = '#ffffff';
+        sCtx.font = 'bold 36px "Plus Jakarta Sans", -apple-system, sans-serif';
+        sCtx.textAlign = 'center';
+        sCtx.textBaseline = 'middle';
+        sCtx.fillText('CLEARINFRA TOWER', 256, 48);
+      }
+      const signTex = new THREE.CanvasTexture(signCanvas);
+      const signMat = new THREE.MeshBasicMaterial({
+        map: signTex,
+        toneMapped: false,
+      });
+      const signMesh = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 0.45), signMat);
+      signMesh.position.set(0, portalH + 0.28, portalD / 2 + 0.26);
+      entranceGroup.add(signMesh);
 
       buildingGroup.add(entranceGroup);
 
