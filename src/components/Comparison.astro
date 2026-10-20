@@ -2,23 +2,31 @@
 const workflows = [
   {
     aspect: "Design Review Cadence",
-    conventional: "Consultants take 2–3 weeks offline to build thermal models and return static PDF reports",
-    clearinfra: "Our engineers join your design meetings with our proprietary engine & built-in AI copilot—testing massing and glazing options live"
+    conventionalLead: "2–3 weeks offline:",
+    conventionalBody: "Consultants build thermal models in silos and return static PDF reports.",
+    clearinfraLead: "Live during design meetings:",
+    clearinfraBody: "Our engineers join your sessions with our physics engine & AI copilot to test massing and glazing options live."
   },
   {
     aspect: "Multi-Variable Optimization",
-    conventional: "Manual trial-and-error across 2 or 3 envelope combinations due to slow runtimes",
-    clearinfra: "Built-in AI Pareto optimizer sweeps orientation, WWR, glazing SHGC, and HVAC plant options in seconds"
+    conventionalLead: "Manual trial-and-error:",
+    conventionalBody: "Limited to 2 or 3 envelope combinations due to slow legacy runtimes.",
+    clearinfraLead: "Pareto sweeps in seconds:",
+    clearinfraBody: "Built-in AI sweeps orientation, WWR, glazing SHGC, and HVAC plant options in seconds."
   },
   {
     aspect: "Code & Statutory Alignment",
-    conventional: "Code checks treated as a late-stage manual documentation exercise with costly rework",
-    clearinfra: "Clause-level NBC 2026 (Parts B–F) and ECBC guidance integrated from concept design onward with engineer review"
+    conventionalLead: "Late-stage rework:",
+    conventionalBody: "Code checks treated as a reactive, manual compliance exercise late in design.",
+    clearinfraLead: "Concept-stage integration:",
+    clearinfraBody: "Clause-level NBC 2026 (Parts B–F) and ECBC guidance integrated from day one with engineer review."
   },
   {
     aspect: "Deliverables & Auditability",
-    conventional: "Disconnected spreadsheets and opaque simulation assumptions",
-    clearinfra: "Formula-level dependency traceability, indicative Indian CAPEX payback estimates, and run-checked EnergyPlus (.idf) models"
+    conventionalLead: "Opaque spreadsheets:",
+    conventionalBody: "Disconnected calculation sheets with unverifiable simulation assumptions.",
+    clearinfraLead: "Full formula traceability:",
+    clearinfraBody: "Live dependency maps, indicative Indian CAPEX payback estimates, and run-checked EnergyPlus (.idf) models."
   }
 ];
 ---
@@ -80,12 +88,12 @@ const workflows = [
             <h3 class="text-sm font-semibold text-slate-900 mb-1.5 leading-snug">
               {row.aspect}
             </h3>
-            <p class="text-xs text-slate-800 font-medium leading-relaxed mb-2.5">
-              {row.clearinfra}
+            <p class="text-xs text-slate-800 leading-relaxed mb-2.5">
+              <strong class="font-semibold text-emerald-950">{row.clearinfraLead}</strong> {row.clearinfraBody}
             </p>
             <div class="pt-2.5 border-t border-slate-900/[0.06] text-[10px] font-mono text-slate-600 flex items-center gap-1.5 font-medium">
               <span class="text-slate-500 shrink-0">Legacy:</span>
-              <span class="text-slate-700 truncate">{row.conventional}</span>
+              <span class="text-slate-700 truncate">{row.conventionalLead} {row.conventionalBody}</span>
             </div>
           </div>
         ))}
@@ -106,11 +114,11 @@ const workflows = [
               {row.aspect}
             </h3>
             <p class="text-xs text-slate-600 leading-relaxed mb-2.5">
-              {row.conventional}
+              <strong class="font-semibold text-slate-900">{row.conventionalLead}</strong> {row.conventionalBody}
             </p>
             <div class="pt-2.5 border-t border-slate-900/[0.06] text-[10px] font-mono text-emerald-700 flex items-center gap-1.5 font-semibold">
               <span class="shrink-0">CI Advantage:</span>
-              <span class="truncate">{row.clearinfra}</span>
+              <span class="truncate">{row.clearinfraLead} {row.clearinfraBody}</span>
             </div>
           </div>
         ))}
@@ -124,8 +132,9 @@ const workflows = [
         <div class="md:col-span-3 px-5 sm:px-8 py-4 sm:py-4.5 text-slate-700 font-semibold">
           Engagement Dimension
         </div>
-        <div class="hidden md:block md:col-span-4 px-5 sm:px-8 py-4 sm:py-4.5 text-slate-600 font-semibold border-l border-slate-900/[0.06]">
-          Conventional Consulting
+        <div class="hidden md:flex md:col-span-4 px-5 sm:px-8 py-4 sm:py-4.5 text-slate-600 font-semibold border-l border-slate-900/[0.06] items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-400/60 shrink-0"></span>
+          <span>Conventional Consulting</span>
         </div>
         <div class="hidden md:flex md:col-span-5 px-5 sm:px-8 py-4 sm:py-4.5 text-emerald-800 font-semibold items-center gap-2 bg-emerald-500/[0.04] border-l border-emerald-600/20">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
@@ -136,7 +145,7 @@ const workflows = [
       <!-- Matrix Rows with Elevated Clearinfra Column -->
       <div class="divide-y divide-slate-900/10">
         {workflows.map((row, idx) => (
-          <div class={`reveal reveal-delay-${idx + 1} grid grid-cols-1 md:grid-cols-12 items-stretch hover:bg-slate-50/60 transition-colors`}>
+          <div class={`reveal reveal-delay-${idx + 1} group grid grid-cols-1 md:grid-cols-12 items-stretch hover:bg-slate-50/70 transition-colors`}>
             <!-- Col 1: Dimension with Monograph Index -->
             <div class="md:col-span-3 px-5 sm:px-8 py-5 sm:py-6 flex items-start gap-3">
               <span class="text-xs font-mono font-semibold text-slate-500 mt-0.5 shrink-0">0{idx + 1}</span>
@@ -145,18 +154,23 @@ const workflows = [
               </span>
             </div>
 
-            <!-- Col 2: Conventional (Legible Slate-700, High Contrast) -->
-            <div class="md:col-span-4 px-5 sm:px-8 py-5 sm:py-6 text-sm text-slate-700 leading-relaxed font-normal md:border-l md:border-slate-900/[0.06]">
-              <span class="md:hidden text-[10px] font-mono uppercase text-slate-500 block mb-1.5">Conventional Consulting:</span>
-              {row.conventional}
+            <!-- Col 2: Conventional (Legible Slate-700 with Bold Lead-in) -->
+            <div class="md:col-span-4 px-5 sm:px-8 py-5 sm:py-6 text-sm text-slate-700 leading-relaxed font-normal md:border-l md:border-slate-900/[0.06] flex items-start gap-2.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-slate-400/50 shrink-0 mt-2 hidden sm:inline-block"></span>
+              <div>
+                <span class="md:hidden text-[10px] font-mono uppercase text-slate-500 block mb-1.5">Conventional Consulting:</span>
+                <strong class="font-semibold text-slate-900">{row.conventionalLead}</strong>{' '}
+                <span>{row.conventionalBody}</span>
+              </div>
             </div>
 
-            <!-- Col 3: Clearinfra Practice (Elevated Column Tint + Emerald Datum Dot) -->
-            <div class="md:col-span-5 px-5 sm:px-8 py-5 sm:py-6 text-sm text-slate-900 font-medium leading-relaxed bg-emerald-500/[0.025] md:border-l md:border-emerald-600/20 flex items-start gap-2.5">
+            <!-- Col 3: Clearinfra Practice (Elevated Column Tint + Emerald Datum Dot + Bold Lead-in) -->
+            <div class="md:col-span-5 px-5 sm:px-8 py-5 sm:py-6 text-sm text-slate-800 leading-relaxed bg-emerald-500/[0.025] group-hover:bg-emerald-500/[0.05] transition-colors md:border-l md:border-emerald-600/20 flex items-start gap-2.5">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-2 hidden sm:inline-block"></span>
               <div>
                 <span class="md:hidden text-[10px] font-mono uppercase text-emerald-800 font-semibold block mb-1.5">Clearinfra Practice:</span>
-                {row.clearinfra}
+                <strong class="font-semibold text-emerald-950">{row.clearinfraLead}</strong>{' '}
+                <span>{row.clearinfraBody}</span>
               </div>
             </div>
           </div>
