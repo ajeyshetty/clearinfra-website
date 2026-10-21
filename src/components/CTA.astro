@@ -1,35 +1,38 @@
 ---
 ---
 
-<section id="contact" class="pt-4 pb-8 sm:pt-5 sm:pb-10 lg:pt-5 lg:pb-12 bg-[#F7F6F2] border-t border-slate-900/10 relative overflow-hidden">
-  <!-- Option 2: Architectural Drafting Grid with Radial Vignette Fade -->
-  <div class="absolute inset-0 bg-architectural-grid-vignette pointer-events-none z-0" aria-hidden="true"></div>
+<section id="contact" class="py-12 sm:py-16 lg:py-20 bg-[#0A0E17] border-t border-white/10 text-white relative overflow-hidden">
+  <!-- Subtle Blueprint Grid -->
+  <div class="absolute inset-0 bg-blueprint-sub pointer-events-none opacity-20" aria-hidden="true"></div>
+  
+  <!-- Subtle Ambient Depth Mesh -->
+  <div class="absolute -top-32 left-1/3 w-[600px] h-[600px] bg-cyan-500/[0.035] rounded-full blur-3xl pointer-events-none"></div>
 
   <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 relative z-10">
-    <div class="reveal rounded-2xl border border-slate-900/12 bg-white p-5 sm:p-12 lg:p-16 shadow-sm">
+    <div class="reveal rounded-2xl border border-white/10 bg-[#131924] p-5 sm:p-12 lg:p-16 shadow-2xl">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
         <!-- Left Copy (Centered on mobile, Left-aligned on sm+) -->
         <div class="lg:col-span-5 space-y-3.5 sm:space-y-5 text-center sm:text-left">
-          <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-[10px] sm:text-xs font-mono tracking-wider mx-auto sm:mx-0">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+          <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-emerald-300 text-[10px] sm:text-xs font-mono tracking-wider mx-auto sm:mx-0">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
             <span>ENGAGE OUR PRACTICE</span>
           </div>
-          <h2 class="ci-section-title text-slate-900">
+          <h2 class="ci-section-title text-white">
             <span class="block">Partner with Clearinfra on{' '}</span>
-            <span class="block">your next building project.</span>
+            <span class="block text-emerald-400">your next building project.</span>
           </h2>
-          <p class="ci-section-lead text-slate-600 max-w-xl mx-auto sm:mx-0">
-            Whether you are designing a commercial office tower, institutional campus, or high-density residential development, our engineering team can join at concept stage or lead full NBC/ECBC compliance and HVAC value engineering.
+          <p class="ci-section-lead text-slate-300 max-w-xl mx-auto sm:mx-0">
+            Whether you are designing a commercial office tower, institutional campus, or high-density residential development, our engineering team can join at concept stage or lead NBC/ECBC advisory and HVAC value engineering.
           </p>
 
-          <div class="pt-2 sm:pt-4 space-y-2.5 sm:space-y-3 text-sm text-slate-700 font-mono">
+          <div class="pt-2 sm:pt-4 space-y-2.5 sm:space-y-3 text-sm text-slate-300 font-mono">
             <div class="flex items-center justify-center sm:justify-start gap-3">
               <span class="text-slate-400 sm:w-20 shrink-0">Email:</span>
-              <a href="mailto:contact@clearinfra.in" class="text-emerald-700 font-medium hover:underline">contact@clearinfra.in</a>
+              <a href="mailto:contact@clearinfra.in" class="text-emerald-400 font-medium hover:text-emerald-300 hover:underline">contact@clearinfra.in</a>
             </div>
             <div class="flex items-center justify-center sm:justify-start gap-3">
               <span class="text-slate-400 sm:w-20 shrink-0">Practice:</span>
-              <span>Bengaluru, India</span>
+              <span class="text-slate-200">Bengaluru, India</span>
             </div>
           </div>
         </div>
@@ -40,59 +43,59 @@
             <form id="contact-form" class="space-y-5">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label for="f-name" class="block text-xs font-mono text-slate-600 mb-1.5">Name</label>
+                  <label for="f-name" class="block text-xs font-mono text-slate-400 mb-1.5">Name</label>
                   <input
                     id="f-name"
                     name="name"
                     type="text"
                     required
                     placeholder="Your name"
-                    class="w-full rounded-lg bg-[#F7F6F2] border border-slate-300 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-600/30 focus:border-emerald-600 focus:bg-white transition-all"
+                    class="w-full rounded-lg bg-[#0B0F17] border border-white/15 px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
                   />
                 </div>
                 <div>
-                  <label for="f-email" class="block text-xs font-mono text-slate-600 mb-1.5">Work Email</label>
+                  <label for="f-email" class="block text-xs font-mono text-slate-400 mb-1.5">Work Email</label>
                   <input
                     id="f-email"
                     name="email"
                     type="email"
                     required
                     placeholder="you@organization.com"
-                    class="w-full rounded-lg bg-[#F7F6F2] border border-slate-300 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-600/30 focus:border-emerald-600 focus:bg-white transition-all"
+                    class="w-full rounded-lg bg-[#0B0F17] border border-white/15 px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
                   />
                 </div>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label for="f-org" class="block text-xs font-mono text-slate-600 mb-1.5">Firm / Developer</label>
+                  <label for="f-org" class="block text-xs font-mono text-slate-400 mb-1.5">Firm / Developer</label>
                   <input
                     id="f-org"
                     name="org"
                     type="text"
                     placeholder="Organization name"
-                    class="w-full rounded-lg bg-[#F7F6F2] border border-slate-300 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-600/30 focus:border-emerald-600 focus:bg-white transition-all"
+                    class="w-full rounded-lg bg-[#0B0F17] border border-white/15 px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
                   />
                 </div>
                 <div>
-                  <label for="f-typology" class="block text-xs font-mono text-slate-600 mb-1.5">Project Typology</label>
+                  <label for="f-typology" class="block text-xs font-mono text-slate-400 mb-1.5">Project Typology</label>
                   <select
                     id="f-typology"
                     name="typology"
-                    class="w-full rounded-lg bg-[#F7F6F2] border border-slate-300 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-600/30 focus:border-emerald-600 focus:bg-white transition-all"
+                    class="w-full rounded-lg bg-[#0B0F17] border border-white/15 px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
                   >
-                    <option value="Commercial Office / IT Park">Commercial Office / IT Park</option>
-                    <option value="Institutional / University Campus">Institutional / Campus</option>
-                    <option value="High-Density Residential / Mixed-Use">Residential / Mixed-Use</option>
-                    <option value="Hospitality / Healthcare">Hospitality / Healthcare</option>
-                    <option value="Other">Other</option>
+                    <option class="bg-[#0B0F17] text-white" value="Commercial Office / IT Park">Commercial Office / IT Park</option>
+                    <option class="bg-[#0B0F17] text-white" value="Institutional / University Campus">Institutional / Campus</option>
+                    <option class="bg-[#0B0F17] text-white" value="High-Density Residential / Mixed-Use">Residential / Mixed-Use</option>
+                    <option class="bg-[#0B0F17] text-white" value="Hospitality / Healthcare">Hospitality / Healthcare</option>
+                    <option class="bg-[#0B0F17] text-white" value="Other">Other</option>
                   </select>
                 </div>
               </div>
 
               <div class="space-y-2">
                 <div class="flex items-center justify-between">
-                  <label for="f-notes" class="block text-xs font-mono text-slate-600">Project Location, Stage &amp; Scope</label>
+                  <label for="f-notes" class="block text-xs font-mono text-slate-400">Project Location, Stage &amp; Scope</label>
                   <span class="text-[11px] font-mono text-slate-400 hidden sm:inline">Tap chips to add scope:</span>
                 </div>
 
@@ -100,34 +103,34 @@
                 <div class="flex flex-wrap gap-1.5 pb-1">
                   <button
                     type="button"
-                    class="scope-chip text-[11px] font-mono px-2.5 py-1 rounded-md bg-white border border-slate-300 text-slate-700 hover:border-emerald-600 hover:text-emerald-800 transition-all cursor-pointer flex items-center gap-1 select-none"
+                    class="scope-chip text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/15 text-slate-300 hover:border-emerald-500/60 hover:text-emerald-300 transition-all cursor-pointer flex items-center gap-1 select-none"
                     data-scope="Concept Charrette &amp; WWR Optimization"
                   >
-                    <span class="chip-icon text-slate-400 font-bold">+</span>
+                    <span class="chip-icon text-slate-500 font-bold">+</span>
                     <span>Concept &amp; WWR Optimization</span>
                   </button>
                   <button
                     type="button"
-                    class="scope-chip text-[11px] font-mono px-2.5 py-1 rounded-md bg-white border border-slate-300 text-slate-700 hover:border-emerald-600 hover:text-emerald-800 transition-all cursor-pointer flex items-center gap-1 select-none"
+                    class="scope-chip text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/15 text-slate-300 hover:border-emerald-500/60 hover:text-emerald-300 transition-all cursor-pointer flex items-center gap-1 select-none"
                     data-scope="NBC 2026 &amp; ECBC Statutory Compliance Advisory"
                   >
-                    <span class="chip-icon text-slate-400 font-bold">+</span>
+                    <span class="chip-icon text-slate-500 font-bold">+</span>
                     <span>NBC 2026 / ECBC Advisory</span>
                   </button>
                   <button
                     type="button"
-                    class="scope-chip text-[11px] font-mono px-2.5 py-1 rounded-md bg-white border border-slate-300 text-slate-700 hover:border-emerald-600 hover:text-emerald-800 transition-all cursor-pointer flex items-center gap-1 select-none"
+                    class="scope-chip text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/15 text-slate-300 hover:border-emerald-500/60 hover:text-emerald-300 transition-all cursor-pointer flex items-center gap-1 select-none"
                     data-scope="Chiller Right-Sizing &amp; Coil Psychrometrics"
                   >
-                    <span class="chip-icon text-slate-400 font-bold">+</span>
+                    <span class="chip-icon text-slate-500 font-bold">+</span>
                     <span>Chiller Right-Sizing</span>
                   </button>
                   <button
                     type="button"
-                    class="scope-chip text-[11px] font-mono px-2.5 py-1 rounded-md bg-white border border-slate-300 text-slate-700 hover:border-emerald-600 hover:text-emerald-800 transition-all cursor-pointer flex items-center gap-1 select-none"
+                    class="scope-chip text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/15 text-slate-300 hover:border-emerald-500/60 hover:text-emerald-300 transition-all cursor-pointer flex items-center gap-1 select-none"
                     data-scope="EnergyPlus v25.1 Submittal Model (.idf)"
                   >
-                    <span class="chip-icon text-slate-400 font-bold">+</span>
+                    <span class="chip-icon text-slate-500 font-bold">+</span>
                     <span>EnergyPlus (.idf) Submittal</span>
                   </button>
                 </div>
@@ -137,7 +140,7 @@
                   name="notes"
                   rows="3"
                   placeholder="Tell us about your project city, approximate built-up area, design stage, or compliance goals..."
-                  class="w-full rounded-lg bg-[#F7F6F2] border border-slate-300 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-600/30 focus:border-emerald-600 focus:bg-white transition-all"
+                  class="w-full rounded-lg bg-[#0B0F17] border border-white/15 px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
                 ></textarea>
               </div>
 
@@ -145,50 +148,50 @@
                 <button
                   id="btn-submit"
                   type="submit"
-                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg text-sm font-medium bg-[#131924] hover:bg-[#1A2230] text-white border border-slate-700/60 shadow-lg shadow-slate-950/15 transition-all duration-200 cursor-pointer disabled:opacity-75"
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg text-sm font-medium bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-950/40 transition-all duration-200 cursor-pointer disabled:opacity-75"
                 >
                   <span id="btn-submit-label">Discuss a Project</span>
-                  <svg id="btn-submit-icon" class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg id="btn-submit-icon" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
-                  <svg id="btn-submit-spinner" class="w-4 h-4 text-emerald-400 animate-spin hidden" viewBox="0 0 24 24" fill="none">
+                  <svg id="btn-submit-spinner" class="w-4 h-4 text-white animate-spin hidden" viewBox="0 0 24 24" fill="none">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
                 </button>
-                <span class="text-[11px] font-mono text-slate-500 text-center sm:text-left">
-                  Direct inquiries: <a href="mailto:contact@clearinfra.in" class="text-slate-800 font-medium hover:text-slate-950 underline underline-offset-2">contact@clearinfra.in</a>
+                <span class="text-[11px] font-mono text-slate-400 text-center sm:text-left">
+                  Direct inquiries: <a href="mailto:contact@clearinfra.in" class="text-emerald-400 font-medium hover:text-emerald-300 underline underline-offset-2">contact@clearinfra.in</a>
                 </span>
               </div>
             </form>
           </div>
 
           <!-- Dynamic Success Confirmation State -->
-          <div id="form-success" class="hidden rounded-2xl bg-white border border-emerald-600/30 p-7 sm:p-9 shadow-sm space-y-5 animate-fade-in">
+          <div id="form-success" class="hidden rounded-2xl bg-[#0B0F17] border border-emerald-500/30 p-7 sm:p-9 shadow-sm space-y-5 animate-fade-in">
             <div class="flex items-center gap-3.5">
-              <div class="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-600/25 flex items-center justify-center shrink-0">
-                <svg class="w-5 h-5 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div class="w-10 h-10 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
               <div>
-                <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-700 font-semibold block">Inquiry Dispatched</span>
-                <h3 class="text-xl font-semibold text-slate-900">Project parameters received</h3>
+                <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-semibold block">Inquiry Dispatched</span>
+                <h3 class="text-xl font-semibold text-white">Project parameters received</h3>
               </div>
             </div>
 
-            <p class="text-sm text-slate-600 leading-relaxed">
-              Thank you, <strong id="success-name" class="text-slate-900 font-medium"></strong>. Our building physics &amp; statutory compliance engineers have received your inquiry for <strong id="success-typology" class="text-slate-900 font-medium"></strong>. We will evaluate your scope against NBC 2026 / ECBC pathways and respond to <strong id="success-email" class="text-slate-900 font-mono text-xs"></strong> within 24 hours.
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Thank you, <strong id="success-name" class="text-white font-medium"></strong>. Our building physics &amp; statutory compliance engineers have received your inquiry for <strong id="success-typology" class="text-white font-medium"></strong>. We will evaluate your scope against NBC 2026 / ECBC pathways and respond to <strong id="success-email" class="text-white font-mono text-xs"></strong> within 24 hours.
             </p>
 
-            <div class="p-3.5 rounded-xl bg-[#F7F6F2] border border-slate-900/10 space-y-1.5 text-xs font-mono text-slate-600">
+            <div class="p-3.5 rounded-xl bg-[#131924] border border-white/10 space-y-1.5 text-xs font-mono text-slate-300">
               <div class="flex items-center justify-between">
                 <span class="text-slate-400">PRACTICE DESK:</span>
-                <span class="text-slate-800 font-medium">Bengaluru Engineering Office</span>
+                <span class="text-white font-medium">Bengaluru Engineering Office</span>
               </div>
               <div class="flex items-center justify-between">
                 <span class="text-slate-400">DIRECT EMAIL:</span>
-                <a href="mailto:contact@clearinfra.in" class="text-emerald-700 hover:underline">contact@clearinfra.in</a>
+                <a href="mailto:contact@clearinfra.in" class="text-emerald-400 hover:underline">contact@clearinfra.in</a>
               </div>
             </div>
 
@@ -196,9 +199,9 @@
               <button
                 id="btn-copy-draft"
                 type="button"
-                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-mono font-medium bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 transition-colors cursor-pointer"
+                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-mono font-medium bg-white/[0.06] hover:bg-white/[0.1] text-white border border-white/15 transition-colors cursor-pointer"
               >
-                <svg class="w-3.5 h-3.5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
                 </svg>
                 <span id="copy-btn-text">Copy Scope Summary</span>
@@ -206,7 +209,7 @@
               <button
                 id="btn-reset-form"
                 type="button"
-                class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 transition-colors cursor-pointer text-center"
+                class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-colors cursor-pointer text-center"
               >
                 <span>Submit another project inquiry</span>
                 <span>&rarr;</span>
@@ -251,13 +254,13 @@
 
       if (selectedScopes.has(scopeVal)) {
         selectedScopes.delete(scopeVal);
-        chip.classList.remove('bg-emerald-500/12', 'border-emerald-600/60', 'text-emerald-900', 'font-medium');
-        chip.classList.add('bg-white', 'border-slate-300', 'text-slate-700');
+        chip.classList.remove('bg-emerald-500/20', 'border-emerald-500/60', 'text-emerald-300', 'font-medium');
+        chip.classList.add('bg-white/[0.05]', 'border-white/15', 'text-slate-300');
         if (icon) icon.textContent = '+';
       } else {
         selectedScopes.add(scopeVal);
-        chip.classList.remove('bg-white', 'border-slate-300', 'text-slate-700');
-        chip.classList.add('bg-emerald-500/12', 'border-emerald-600/60', 'text-emerald-900', 'font-medium');
+        chip.classList.remove('bg-white/[0.05]', 'border-white/15', 'text-slate-300');
+        chip.classList.add('bg-emerald-500/20', 'border-emerald-500/60', 'text-emerald-300', 'font-medium');
         if (icon) icon.textContent = '✓';
       }
 
@@ -272,6 +275,24 @@
       textareaNotes.value = scopeLines ? (manualLines ? `${scopeLines}\n\n${manualLines}` : scopeLines) : manualLines;
     });
   });
+
+  // Listen for cross-component scope pre-selection (e.g. from Advisory Services cards)
+  window.addEventListener('clearinfra:select-scope', ((e: CustomEvent) => {
+    const targetScope = e.detail?.scope;
+    if (!targetScope) return;
+    scopeChips.forEach((chip) => {
+      const chipScope = chip.getAttribute('data-scope');
+      if (chipScope === targetScope) {
+        if (!selectedScopes.has(targetScope)) {
+          (chip as HTMLElement).click();
+        }
+      }
+    });
+    const nameInput = document.getElementById('f-name') as HTMLInputElement | null;
+    setTimeout(() => {
+      nameInput?.focus();
+    }, 600);
+  }) as EventListener);
 
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -312,8 +333,8 @@
     form?.reset();
     selectedScopes.clear();
     scopeChips.forEach((chip) => {
-      chip.classList.remove('bg-emerald-500/12', 'border-emerald-600/60', 'text-emerald-900', 'font-medium');
-      chip.classList.add('bg-white', 'border-slate-300', 'text-slate-700');
+      chip.classList.remove('bg-emerald-500/20', 'border-emerald-500/60', 'text-emerald-300', 'font-medium');
+      chip.classList.add('bg-white/[0.05]', 'border-white/15', 'text-slate-300');
       const icon = chip.querySelector('.chip-icon');
       if (icon) icon.textContent = '+';
     });

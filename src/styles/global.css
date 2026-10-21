@@ -7,17 +7,17 @@
 
 @layer base {
   :root {
-    --bg-stone: #F7F6F2;
-    --bg-stone-alt: #EFECE6;
-    --ink-primary: #0F172A;
-    --ink-secondary: #475569;
-    --accent-teal: #0F766E;
+    --bg-obsidian: #0A0E17;
+    --bg-obsidian-card: #131924;
+    --ink-primary: #ffffff;
+    --ink-secondary: #94A3B8;
+    --accent-teal: #10B981;
     --cad-bg: #0B0F17;
   }
 
   html {
-    background-color: var(--bg-stone);
-    color: var(--ink-primary);
+    background-color: #0A0E17;
+    color: #ffffff;
     scroll-behavior: smooth;
     font-family: var(--font-sans);
   }
@@ -56,6 +56,25 @@
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+}
+
+/* Architectural Coordinate Dot Matrix (Fine CAD Grid) */
+.bg-cad-dots {
+  background-size: 32px 32px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+/* Tactile Analog Film Grain Overlay (Matte Cardstock Finish) */
+.texture-film-grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 /* Scroll reveal animation classes */
@@ -204,16 +223,35 @@ input[type="range"].ci-slider::-webkit-slider-thumb:hover {
 }
 
 /* Sticky Header Navigation Anchor Offsets — synced to exact #site-header height */
+#outcomes,
+#typologies,
 #services,
+#advantage,
 #engine,
 #compliance,
 #workflow,
 #contact {
-  scroll-margin-top: 4.5rem;
+  scroll-margin-top: 5rem;
 }
 
 @media (max-height: 760px) {
+  #outcomes,
+  #typologies,
   #services,
+  #advantage,
+  #engine,
+  #compliance,
+  #workflow,
+  #contact {
+    scroll-margin-top: 4rem;
+  }
+}
+
+@media (max-height: 640px) {
+  #outcomes,
+  #typologies,
+  #services,
+  #advantage,
   #engine,
   #compliance,
   #workflow,
@@ -222,12 +260,55 @@ input[type="range"].ci-slider::-webkit-slider-thumb:hover {
   }
 }
 
-@media (max-height: 640px) {
-  #services,
-  #engine,
-  #compliance,
-  #workflow,
-  #contact {
-    scroll-margin-top: 3rem;
+/* Cinematic Ambient Architectural Motion (Ken Burns Effect) */
+@keyframes ambientDrift {
+  0% {
+    transform: scale(1.0) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.06) translate3d(-1%, -0.6%, 0);
+  }
+  100% {
+    transform: scale(1.0) translate3d(0, 0, 0);
+  }
+}
+
+/* Subtle Solar Light Drift across glazed curtain wall */
+@keyframes solarSweep {
+  0% {
+    opacity: 0;
+    transform: translate3d(-20%, -15%, 0) rotate(-22deg);
+  }
+  25% {
+    opacity: 0.14;
+  }
+  50% {
+    opacity: 0.22;
+    transform: translate3d(15%, 10%, 0) rotate(-22deg);
+  }
+  75% {
+    opacity: 0.12;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(50%, 35%, 0) rotate(-22deg);
+  }
+}
+
+.hero-cinematic-bg {
+  transform-origin: 75% 35%;
+  animation: ambientDrift 28s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+
+.hero-solar-sweep {
+  animation: solarSweep 18s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cinematic-bg,
+  .hero-solar-sweep {
+    animation: none !important;
   }
 }

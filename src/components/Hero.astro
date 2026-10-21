@@ -1,4 +1,19 @@
 ---
+interface Props {
+  eyebrow?: string;
+  titlePrimary?: string;
+  titleSecondary?: string;
+  titleTertiary?: string;
+  description?: string;
+}
+
+const {
+  eyebrow = "COMPUTATIONAL BUILDING SCIENCE PRACTICE",
+  titlePrimary = "High-performance",
+  titleSecondary = "building advisory.",
+  titleTertiary = "Powered by proprietary physics.",
+  description = "{description}"
+} = Astro.props;
 ---
 
 <section id="hero-section" class="relative min-h-[calc(100vh-4.5rem)] flex items-center py-2.5 sm:py-3.5 lg:py-2 xl:py-4 2xl:py-8 bg-[#F7F6F2] overflow-hidden">
@@ -12,13 +27,13 @@
       <div class="hero-left-col lg:col-span-5 space-y-2.5 sm:space-y-3 lg:space-y-2.5 xl:space-y-3.5 2xl:space-y-5 lg:-mt-1 text-center sm:text-left max-w-3xl lg:max-w-none">
         <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/[0.04] border border-slate-900/10 text-slate-700 text-[10px] sm:text-xs font-mono tracking-wider">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
-          <span>COMPUTATIONAL BUILDING SCIENCE PRACTICE</span>
+          <span>{eyebrow}</span>
         </div>
 
         <h1 class="ci-section-title text-slate-900">
-          <span class="block">High-performance{' '}</span>
-          <span class="block">building advisory.</span>
-          <span class="block text-[0.8em] text-slate-600 font-medium tracking-[-0.02em] mt-1.5 sm:mt-2">Powered by proprietary physics.</span>
+          <span class="block">{titlePrimary}{' '}</span>
+          <span class="block">{titleSecondary}</span>
+          <span class="block text-[0.8em] text-slate-600 font-medium tracking-[-0.02em] mt-1.5 sm:mt-2">{titleTertiary}</span>
         </h1>
 
         <p class="ci-section-lead text-slate-700 font-normal max-w-xl mx-auto sm:mx-0">

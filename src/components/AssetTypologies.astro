@@ -1,0 +1,127 @@
+---
+const typologies = [
+  {
+    tag: "COMMERCIAL HIGH-RISE",
+    title: "High-performance envelopes for commercial towers.",
+    assetClass: "Commercial office",
+    image: "/images/hero-commercial-tower.jpg",
+    challenge: "Balance a floor-to-ceiling glass architectural vision against peak cooling loads, solar heat gain, and chiller plant sizing.",
+    solution: "Test massing orientation, high-performance spectrally selective glazing, and shading fins before facade drawings are frozen.",
+    deliverable: "Envelope trade-off study and right-sized plant brief."
+  },
+  {
+    tag: "MULTI-TOWER CAMPUS",
+    title: "Campus-scale energy and central plant strategy.",
+    assetClass: "Corporate campus",
+    image: "/images/corporate-campus.jpg",
+    challenge: "Coordinate block massing, microclimate, and central chiller plant diversity across multiple interconnected campus buildings.",
+    solution: "Model campus solar self-shading, prevailing wind corridors, and central loop diversity as one unified physical system.",
+    deliverable: "Campus energy strategy and plant-sizing review."
+  },
+  {
+    tag: "ATRIUM & MIXED-USE",
+    title: "Daylight autonomy and comfort in complex atriums.",
+    assetClass: "Mixed-use",
+    image: "/images/atrium-daylight.jpg",
+    challenge: "Manage excessive solar heat gain, radiant perimeter glare, and vertical thermal stratification in tall skylit glass atriums.",
+    solution: "Couple dynamic daylight autonomy with multi-node thermal stratification to design passive stack ventilation and micro-frit glass.",
+    deliverable: "Daylight and comfort strategy for the design team."
+  }
+];
+---
+
+<section id="typologies" class="py-12 sm:py-16 lg:py-20 bg-[#0B0F17] border-b border-white/10 text-white relative overflow-hidden">
+  <!-- Subtle Blueprint Grid -->
+  <div class="absolute inset-0 bg-blueprint-sub pointer-events-none opacity-20" aria-hidden="true"></div>
+
+  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 items-end text-center sm:text-left mb-8 sm:mb-12">
+      <div class="lg:col-span-6 space-y-2 mx-auto sm:mx-0">
+        <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-emerald-300 text-[10px] sm:text-xs font-mono tracking-wider">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span>REPRESENTATIVE ASSET CLASSES</span>
+        </div>
+        <h2 class="ci-section-title text-white">
+          <span class="block">How we approach</span>
+          <span class="block text-emerald-400">complex building types.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-6 relative sm:pl-6 lg:pl-8 py-1 mx-auto sm:mx-0">
+        <div class="hidden sm:block datum-line-v absolute left-0 top-1 bottom-1 w-[2px] rounded-full bg-gradient-to-b from-emerald-500 via-emerald-500/40 to-transparent" aria-hidden="true"></div>
+        <p class="ci-section-lead text-slate-300">
+          These are representative scenarios, not completed ClearInfra client projects. They show how we frame the decision, test options and define the deliverable.
+        </p>
+      </div>
+    </div>
+
+    <!-- 3 Landmark Asset Cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-6 xl:gap-8">
+      {typologies.map((item, idx) => (
+        <div class={`reveal reveal-delay-${idx + 1} rounded-2xl bg-[#131924] border border-white/10 overflow-hidden shadow-xl hover:shadow-2xl hover:border-emerald-500/40 transition-all duration-300 flex flex-col group`}>
+          
+          <!-- Architectural Image Frame -->
+          <div class="relative h-60 sm:h-64 lg:h-56 xl:h-64 overflow-hidden bg-slate-950">
+            <img
+              src={item.image}
+              alt={item.title}
+              class="w-full h-full object-cover object-center filter brightness-[0.88] contrast-[1.05] group-hover:scale-105 transition-transform duration-700 ease-out"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#131924] via-transparent to-transparent pointer-events-none"></div>
+            
+            <!-- Floating Tag & Asset Class -->
+            <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between text-[10px] font-mono text-white/90">
+              <span class="px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/15 uppercase tracking-wider font-semibold">
+                {item.tag}
+              </span>
+              <span class="px-2 py-0.5 rounded bg-slate-950/70 backdrop-blur-md text-slate-300">
+                {item.assetClass}
+              </span>
+            </div>
+            <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-slate-950/80 backdrop-blur-md border border-white/15 text-[9px] font-mono uppercase tracking-wider text-slate-400">
+              Illustrative image
+            </span>
+          </div>
+
+          <!-- Body Content -->
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between text-left">
+            <div class="space-y-3">
+              <h3 class="text-base sm:text-lg font-semibold text-white group-hover:text-emerald-300 transition-colors leading-snug min-h-[2.75rem] sm:min-h-[3rem] lg:min-h-[3.25rem] flex items-start">
+                {item.title}
+              </h3>
+              
+              <div class="space-y-2 text-xs sm:text-sm text-slate-300 min-h-[5.5rem] sm:min-h-[6rem] lg:min-h-[6.5rem] flex flex-col justify-start">
+                <p class="leading-relaxed">
+                  <strong class="text-slate-100 font-medium">The Challenge:</strong> {item.challenge}
+                </p>
+                <p class="leading-relaxed text-slate-400">
+                  <strong class="text-slate-200 font-medium">Advisory:</strong> {item.solution}
+                </p>
+              </div>
+            </div>
+
+            <!-- Deliverable Badge with Uniform Height and Vertical Centering -->
+            <div class="mt-auto border-t border-white/[0.08] bg-white/[0.02] -mx-5 -mb-5 sm:-mx-6 sm:-mb-6 p-4 sm:p-5 rounded-b-2xl min-h-[4.75rem] sm:min-h-[5rem] flex items-center">
+              <div class="flex items-start gap-2 w-full">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                </svg>
+                <p class="text-xs font-medium text-slate-200 leading-snug">
+                  <span class="text-emerald-400 font-semibold">Deliverable:</span> {item.deliverable}
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-6 text-center text-[11px] font-mono text-slate-500">
+      Representative scenarios based on our method. Not completed client projects. Images are illustrative.
+    </p>
+
+  </div>
+</section>

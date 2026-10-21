@@ -1,0 +1,133 @@
+---
+const outcomes = [
+  {
+    kpi: "Right-size",
+    label: "Mechanical plant",
+    sub: "Screen before procurement",
+    desc: "Compare envelope, glazing, internal-load and ventilation options before plant capacity is fixed. The aim is to avoid unnecessary cooling capacity; savings depend on the project."
+  },
+  {
+    kpi: "Compare",
+    label: "Energy demand",
+    sub: "Option by option",
+    desc: "Test design choices on estimated annual energy use and peak load. The result is an option comparison, not a bill forecast or a certification outcome."
+  },
+  {
+    kpi: "Pre-check",
+    label: "Code and byelaws",
+    sub: "Clause-cited review",
+    desc: "Run applicable NBC 2026 and ECBC checks where the project inputs exist, with engineer review. A pass is a design-stage check; statutory approval remains with the authority."
+  },
+  {
+    kpi: "Live",
+    label: "Design charrettes",
+    sub: "Same-room decisions",
+    desc: "Architects, MEP engineers and developers compare options in one working session. The output is a documented set of trade-offs for the design team to take forward."
+  }
+];
+---
+
+<section id="outcomes" class="border-y border-white/10 bg-[#0A0E17] py-12 sm:py-16 lg:py-20 relative overflow-hidden text-white">
+  <!-- Subtle Blueprint Grid -->
+  <div class="absolute inset-0 bg-blueprint-sub pointer-events-none opacity-20" aria-hidden="true"></div>
+  
+  <!-- Subtle Ambient Depth Mesh -->
+  <div class="absolute -top-32 right-1/4 w-[600px] h-[600px] bg-emerald-500/[0.04] rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 relative z-10">
+    
+    <!-- Section Header: 50/50 Split Datum -->
+    <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 items-end text-center sm:text-left mb-8 sm:mb-12">
+      <div class="lg:col-span-6 space-y-2 mx-auto sm:mx-0">
+        <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-emerald-300 text-[10px] sm:text-xs font-mono tracking-wider">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span>WHERE WE FOCUS</span>
+        </div>
+        <h2 class="ci-section-title text-white">
+          <span class="block">Engineering decisions</span>
+          <span class="block text-emerald-400">that shape cost and performance.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-6 relative sm:pl-6 lg:pl-8 py-1 mx-auto sm:mx-0">
+        <div class="hidden sm:block datum-line-v absolute left-0 top-1 bottom-1 w-[2px] rounded-full bg-gradient-to-b from-emerald-500 via-emerald-500/40 to-transparent" aria-hidden="true"></div>
+        <p class="ci-section-lead text-slate-300">
+          Cooling capacity is often fixed before envelope and internal-load assumptions are tested. We test those assumptions together, so the design team can make a more informed plant, envelope and code decision. Results remain project-specific.
+        </p>
+      </div>
+    </div>
+
+    <!-- 4 Outcome Pillar Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-6 xl:gap-8">
+      {outcomes.map((item, idx) => (
+        <div class={`reveal reveal-delay-${idx + 1} rounded-2xl bg-[#131924] border border-white/10 p-5 sm:p-6 shadow-xl hover:shadow-2xl hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group`}>
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/[0.08]">
+              <span class="text-xs font-mono text-slate-400 font-medium">0{idx + 1}</span>
+              <span class="w-2 h-2 rounded-full bg-slate-700 group-hover:bg-emerald-400 transition-colors"></span>
+            </div>
+            
+            <div class="text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-semibold text-white font-mono tracking-tight tabular-nums">
+              {item.kpi}
+            </div>
+            
+            <h3 class="text-sm sm:text-base font-semibold text-white mt-2 leading-snug">
+              {item.label}
+            </h3>
+            
+            <p class="text-[11px] sm:text-xs font-mono text-emerald-400 font-medium mt-1 leading-snug">
+              {item.sub}
+            </p>
+            
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-3 pt-3 border-t border-white/[0.08]">
+              {item.desc}
+            </p>
+          </div>
+          
+        </div>
+      ))}
+    </div>
+
+    <!-- Representative Case Proof: Tangible Developer Impact -->
+    <div class="reveal mt-8 sm:mt-10 p-5 sm:p-6 lg:p-7 rounded-2xl bg-[#131924] border border-white/10 shadow-2xl relative overflow-hidden backdrop-blur-md">
+      <!-- Emerald Accent Left Line -->
+      <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-emerald-400 via-teal-400 to-emerald-600" aria-hidden="true"></div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center text-left pl-2 sm:pl-3">
+        <div class="lg:col-span-4 space-y-1.5">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-[10px] sm:text-xs font-mono font-semibold tracking-wider text-emerald-300 uppercase">Representative Case Proof</span>
+          </div>
+          <h4 class="text-base sm:text-lg font-semibold text-white tracking-tight">
+            450,000 sq.ft Grade-A Commercial Campus
+          </h4>
+          <p class="text-xs font-mono text-slate-400">
+            Outer Ring Road, Bengaluru · Warm-Humid / Temperate
+          </p>
+        </div>
+
+        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-3 lg:pt-0 border-t lg:border-t-0 lg:border-l border-white/10 lg:pl-6">
+          <div class="space-y-1">
+            <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Charrette Intervention</span>
+            <p class="text-xs sm:text-sm font-medium text-slate-200">
+              Glazing SHGC tuned 0.32 → 0.24 + 1.2m external solar fins
+            </p>
+          </div>
+          <div class="space-y-1">
+            <span class="text-[10px] font-mono text-emerald-400 uppercase tracking-wider block">Plant Right-Sizing</span>
+            <p class="text-xs sm:text-sm font-medium text-white font-mono">
+              Chiller downsized 1,200 TR → 950 TR <span class="text-emerald-400 font-semibold">(-250 TR)</span>
+            </p>
+          </div>
+          <div class="space-y-1">
+            <span class="text-[10px] font-mono text-sky-400 uppercase tracking-wider block">First-Cost &amp; Code Impact</span>
+            <p class="text-xs sm:text-sm font-medium text-white font-mono">
+              ₹62.5L CAPEX saved <span class="text-slate-400">· NBC Pt. 4 Pass</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

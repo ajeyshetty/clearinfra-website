@@ -1,0 +1,175 @@
+---
+---
+
+<section id="hero" class="relative min-h-[calc(100dvh-var(--header-height,4.5rem))] lg:h-[calc(100dvh-var(--header-height,4.5rem))] flex flex-col justify-between bg-[#0A0E17] text-white overflow-hidden border-b border-white/10">
+  
+  <!-- Full-Bleed Landmark Architectural Tower Background with Cinematic Video -->
+  <div class="absolute inset-0 z-0 overflow-hidden">
+    <video
+      id="hero-bg-video"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
+      poster="/images/landmark-glass-tower.jpg"
+      class="w-full h-full object-cover object-center lg:object-right filter brightness-[0.82] contrast-[1.08] pointer-events-none"
+    >
+      <source src="/videos/hero-tower-loop.mp4" type="video/mp4" />
+      <img
+        src="/images/landmark-glass-tower.jpg"
+        alt="High-performance commercial glass tower"
+        class="w-full h-full object-cover object-center lg:object-right filter brightness-[0.85] contrast-[1.1]"
+        loading="eager"
+      />
+    </video>
+
+    <!-- Cinematic Asymmetric Gradient Mask & Scrim: Deep Slate on Left for Razor-Sharp Legibility -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0A0E17] via-[#0A0E17]/95 sm:via-[#0A0E17]/90 to-[#0A0E17]/35 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-[#0A0E17]/70 sm:bg-transparent pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0A0E17]/80 via-transparent to-[#0A0E17] pointer-events-none"></div>
+    
+    <!-- Targeted Radial Scrim Behind Left Editorial Block to Prevent Screen Glare / Reflection Competition -->
+    <div class="absolute -left-20 top-1/2 -translate-y-1/2 w-[760px] h-[680px] bg-[#0A0E17]/95 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- Subtle Architectural Drafting Grid Watermark -->
+    <div class="absolute inset-0 bg-blueprint-sub opacity-25 pointer-events-none"></div>
+  </div>
+
+  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 py-6 sm:py-8 lg:py-7 xl:py-9 relative z-10 flex flex-col justify-between flex-1 h-full">
+    
+    <!-- Main Content: Left-Aligned Editorial Headline on Cinematic Backdrop -->
+    <div class="max-w-3xl space-y-3.5 sm:space-y-4 lg:space-y-4 xl:space-y-5 text-left my-auto pt-2 lg:pt-0">
+      
+      <!-- Eyebrow Pill: Explicit Advisory Practice Delivery Model -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/15 text-emerald-300 text-[11px] sm:text-xs font-mono tracking-wider">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        <span>BUILDING SCIENCE &amp; STATUTORY ADVISORY</span>
+        <span class="hidden sm:inline-block text-[10px] text-slate-400 border-l border-white/20 pl-2">Senior Engineers in Live Charrettes</span>
+      </div>
+
+      <!-- Provocative H1 Question -->
+      <h1 class="ci-section-title text-white text-balance drop-shadow-sm font-semibold">
+        <span class="block">Who said a high-performance</span>
+        <span class="block">building has to cost more</span>
+        <span class="block text-emerald-400">to build?</span>
+      </h1>
+
+      <!-- The Answer / Commercial Promise + Clear Delivery Model -->
+      <div class="space-y-2 sm:space-y-2.5 max-w-2xl">
+        <p class="text-base sm:text-lg lg:text-xl xl:text-2xl font-medium text-slate-100 leading-snug">
+          We help teams make lower-carbon, code-aligned design decisions before capital is committed.
+        </p>
+        <p class="ci-section-lead text-slate-200 font-normal leading-relaxed text-xs sm:text-sm lg:text-[14.5px] xl:text-base">
+          Our senior building physicists join your design meetings with our proprietary in-house simulation engine—testing envelope, daylight, plant and NBC 2026 code decisions before architectural drawings are frozen. Results are project-specific and checked with your design team.
+        </p>
+      </div>
+
+      <!-- Action CTAs -->
+      <div class="flex flex-col sm:flex-row items-center gap-3 pt-1.5 sm:pt-2">
+        <a
+          href="#contact"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-200 whitespace-nowrap"
+        >
+          <span>Discuss a Project</span>
+          <svg class="w-4 h-4 text-slate-950" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+
+        <a
+          href="#outcomes"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium bg-white/10 hover:bg-white/15 text-white border border-white/20 backdrop-blur-md transition-all duration-200 whitespace-nowrap group"
+        >
+          <span>See What We Optimize</span>
+          <svg class="w-4 h-4 text-slate-300 group-hover:text-emerald-400 group-hover:translate-y-0.5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Standards & Methodology Verification Strip -->
+      <div class="pt-1 flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-[10px] sm:text-[11px] font-mono text-slate-400">
+        <div class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span class="text-slate-300 font-medium">ISO 52016-1 Physics</span>
+        </div>
+        <span class="text-slate-600 hidden sm:inline">·</span>
+        <div class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+          <span class="text-slate-300 font-medium">NBC 2026 &amp; ECBC Knowledge Kernel</span>
+        </div>
+        <span class="text-slate-600 hidden sm:inline">·</span>
+        <div class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+          <span class="text-slate-300 font-medium">EnergyPlus v25.1 Submittals</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Strip: 3 Executive Metrics on Left + Architectural Provenance on Right -->
+    <div class="pt-4 sm:pt-5 lg:pt-4 xl:pt-6 flex flex-col lg:flex-row lg:items-end justify-between gap-3 sm:gap-4 lg:gap-6 border-t border-white/10 mt-4 sm:mt-6 lg:mt-3 xl:mt-6 shrink-0">
+      
+      <!-- 3 Glassmorphic Outcome Stat Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 lg:gap-3.5 max-w-2xl text-left w-full sm:w-auto">
+        <div class="p-2.5 sm:p-3 rounded-xl bg-slate-950/60 backdrop-blur-md border border-white/10">
+          <span class="text-white block font-semibold text-sm sm:text-base font-mono">Live trade-offs</span>
+          <span class="text-slate-300 text-[11px] sm:text-xs block mt-0.5 leading-tight">Envelope, glazing & plant</span>
+          <span class="text-emerald-400 text-[10px] sm:text-[10.5px] font-mono mt-0.5 block">Tested together</span>
+        </div>
+        <div class="p-2.5 sm:p-3 rounded-xl bg-slate-950/60 backdrop-blur-md border border-white/10">
+          <span class="text-white block font-semibold text-sm sm:text-base font-mono">Live</span>
+          <span class="text-slate-300 text-[11px] sm:text-xs block mt-0.5 leading-tight">Design charrettes</span>
+          <span class="text-emerald-400 text-[10px] sm:text-[10.5px] font-mono mt-0.5 block">With your project team</span>
+        </div>
+        <div class="p-2.5 sm:p-3 rounded-xl bg-slate-950/60 backdrop-blur-md border border-white/10">
+          <span class="text-white block font-semibold text-sm sm:text-base font-mono">Code review</span>
+          <span class="text-slate-300 text-[11px] sm:text-xs block mt-0.5 leading-tight">NBC 2026 &amp; ECBC</span>
+          <span class="text-emerald-400 text-[10px] sm:text-[10.5px] font-mono mt-0.5 block">Clause-cited checks</span>
+        </div>
+      </div>
+
+      <!-- Architectural Context Tag (Honest, Dignified Credit) -->
+      <div class="text-left lg:text-right text-[11px] sm:text-xs font-mono text-slate-400 space-y-0.5">
+        <div class="flex items-center lg:justify-end gap-2 text-slate-200">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span class="font-medium text-xs">Commercial, campus &amp; mixed-use</span>
+        </div>
+        <p class="text-[10.5px] sm:text-[11px] text-slate-400">
+          Envelope, daylight, plant and code decisions tested together
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Pixel-perfect viewport lock to eliminate any gap or white sliver at the fold */
+  @media (min-width: 1024px) {
+    #hero {
+      height: calc(100dvh - var(--header-height, 4.5rem)) !important;
+      min-height: calc(100dvh - var(--header-height, 4.5rem)) !important;
+      max-height: calc(100dvh - var(--header-height, 4.5rem)) !important;
+    }
+  }
+
+  /* Extra compact typography & padding on compact laptop heights */
+  @media (min-width: 1024px) and (max-height: 800px) {
+    #hero h1 {
+      font-size: clamp(1.5rem, 2.2vw, 2.1rem) !important;
+      line-height: 1.12 !important;
+    }
+    #hero .ci-section-lead {
+      font-size: 13px !important;
+      line-height: 1.45 !important;
+    }
+  }
+  @media (min-width: 1024px) and (max-height: 700px) {
+    #hero h1 {
+      font-size: clamp(1.35rem, 1.9vw, 1.8rem) !important;
+    }
+  }
+</style>

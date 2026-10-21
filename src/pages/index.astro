@@ -1,23 +1,38 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Metrics from '../components/Metrics.astro';
+import ExecutiveHero from '../components/ExecutiveHero.astro';
+import ExecutiveOutcomes from '../components/ExecutiveOutcomes.astro';
+import AssetTypologies from '../components/AssetTypologies.astro';
 import Features from '../components/Features.astro';
-import Technology from '../components/Technology.astro';
+import TechAdvantage from '../components/TechAdvantage.astro';
 import Comparison from '../components/Comparison.astro';
 import CTA from '../components/CTA.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout>
+<Layout title="Clearinfra // High-Performance Building Engineering & Advisory">
   <Header />
   <main>
-    <Hero />
-    <Metrics />
+    <!-- Executive Commercial Hero: Provocative Question & Real-World Tower -->
+    <ExecutiveHero />
+
+    <!-- Commercial Value & Financial Outcomes -->
+    <ExecutiveOutcomes />
+
+    <!-- Representative Asset Classes & Engagement Scenarios -->
+    <AssetTypologies />
+
+    <!-- Core Advisory Services (Concept through Sanction) -->
     <Features />
-    <Technology />
+
+    <!-- Our In-House Advisory Advantage: Speed, Physics & First-Pass Clearance -->
+    <TechAdvantage />
+
+    <!-- Practice Methodology: Live Charrette vs Traditional 3-Week Consulting -->
     <Comparison />
+
+    <!-- Project Inquiry & Engagement -->
     <CTA />
   </main>
   <Footer />

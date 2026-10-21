@@ -1,0 +1,98 @@
+---
+import CharretteStudioCard from './CharretteStudioCard.astro';
+
+const capabilities = [
+  {
+    num: "01",
+    tag: "FIRST-PRINCIPLES PHYSICS",
+    title: "Coupled Envelope & Chiller Sizing",
+    desc: "Rules of thumb can leave plant capacity unexamined until late in design. Our in-house ISO 52016-1 engine produces hourly coil heat-transfer estimates, helping MEP teams review central-plant capacity before equipment orders are placed."
+  },
+  {
+    num: "02",
+    tag: "STATUTORY INTELLIGENCE",
+    title: "NBC 2026 & ECBC Graph-RAG Engine",
+    desc: "Our advisory practice is backed by a structured Graph-RAG knowledge engine covering the National Building Code 2026 (SP 7:2026 Parts B–F) and ECBC 2017. It checks applicable clauses with citations where the project inputs exist, and flags the rest for engineer review."
+  },
+  {
+    num: "03",
+    tag: "TRANSPARENT AUDITABILITY",
+    title: "Syntax-Verified EnergyPlus (.idf) Models",
+    desc: "We prepare auditable, syntax-checked EnergyPlus v25.1 simulation files (.idf) and engineering calculation sheets to support peer review and statutory submittals."
+  }
+];
+---
+
+<section id="advantage" class="py-12 sm:py-16 lg:py-20 bg-[#131924] border-y border-white/10 text-white relative overflow-hidden">
+  <!-- Blueprint Background Grid -->
+  <div class="absolute inset-0 bg-blueprint-sub pointer-events-none opacity-30" aria-hidden="true"></div>
+  
+  <!-- Subtle Ambient Glow -->
+  <div class="absolute -top-32 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 relative z-10">
+    
+    <!-- Section Header: 50/50 Split Datum -->
+    <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 items-end text-center sm:text-left mb-8 sm:mb-10">
+      <div class="lg:col-span-6 space-y-2 mx-auto sm:mx-0">
+        <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-emerald-300 text-[10px] sm:text-xs font-mono tracking-wider">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span>OUR IN-HOUSE ADVISORY ADVANTAGE</span>
+        </div>
+        <h2 class="ci-section-title text-white">
+          <span class="block">Why we test options live,</span>
+          <span class="block text-emerald-400">not in 3-week report cycles.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-6 relative sm:pl-6 lg:pl-8 py-1 mx-auto sm:mx-0">
+        <div class="hidden sm:block datum-line-v absolute left-0 top-1 bottom-1 w-[2px] rounded-full bg-gradient-to-b from-emerald-500 via-emerald-500/40 to-transparent" aria-hidden="true"></div>
+        <p class="ci-section-lead text-slate-300">
+          We engineered our own in-house computational physics engine so our senior advisors can test envelope, daylight and HVAC trade-offs with your team in a working session, with assumptions visible as the design changes.
+        </p>
+      </div>
+    </div>
+
+    <!-- The In-House Engine Demonstration (Live Interactive CAD Window) -->
+    <div class="reveal mb-10 sm:mb-14">
+      <div class="max-w-5xl mx-auto mb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono px-1">
+        <div class="flex items-center gap-2 text-slate-300">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="font-medium text-white">THE IN-HOUSE CHARRETTE ENGINE</span>
+          <span class="hidden sm:inline text-slate-500">|</span>
+          <span class="hidden sm:inline text-slate-400 font-mono text-[11px]">Powered by ISO 52016-1 &amp; NBC 2026 Kernel</span>
+        </div>
+        <div class="text-[11px] text-emerald-400 flex items-center gap-1.5">
+          <span>Designed for live schematic design sessions</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <!-- Live 3D Twin & Parameter Controls -->
+      <CharretteStudioCard />
+    </div>
+
+    <!-- 3 Core Engineering Pillars Supporting the Advantage -->
+    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 text-left">
+      {capabilities.map((item) => (
+        <div class="rounded-xl bg-white/[0.04] border border-white/10 hover:border-emerald-500/40 p-5 sm:p-6 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.06]">
+              <span class="text-xs font-mono text-emerald-400 font-semibold">{item.num}</span>
+              <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">{item.tag}</span>
+            </div>
+            <h3 class="text-base sm:text-lg font-semibold text-white mb-2">
+              {item.title}
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              {item.desc}
+            </p>
+          </div>
+          <div class="pt-3 mt-3 border-t border-white/[0.06] text-[11px] font-mono text-emerald-400/80">
+            <span>Traceable first-principles pipeline</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
