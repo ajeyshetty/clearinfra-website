@@ -2139,9 +2139,15 @@
   const studioCard = document.getElementById('studio-cad-card');
   const btnOpenStudio = document.getElementById('btn-open-mobile-studio');
   const btnCloseStudio = document.getElementById('btn-close-mobile-studio');
+  let studioPlaceholder: Comment | null = null;
 
   function openFullScreenStudio() {
     if (!studioCard) return;
+    if (!studioPlaceholder) {
+      studioPlaceholder = document.createComment('studio-cad-card-placeholder');
+      studioCard.parentNode?.insertBefore(studioPlaceholder, studioCard);
+    }
+    document.body.appendChild(studioCard);
     studioCard.classList.add('studio-fullscreen');
     document.body.style.overflow = 'hidden';
     const globalHeader = document.querySelector('header');
@@ -2165,6 +2171,11 @@
 
   function closeFullScreenStudio() {
     if (!studioCard) return;
+    if (studioPlaceholder && studioPlaceholder.parentNode) {
+      studioPlaceholder.parentNode.insertBefore(studioCard, studioPlaceholder);
+      studioPlaceholder.remove();
+      studioPlaceholder = null;
+    }
     studioCard.classList.remove('studio-fullscreen');
     document.body.style.overflow = '';
     const globalHeader = document.querySelector('header');
@@ -2419,7 +2430,7 @@
   #studio-cad-card.studio-fullscreen {
     position: fixed !important;
     inset: 0 !important;
-    z-index: 9999 !important;
+    z-index: 99999 !important;
     width: 100vw !important;
     height: 100vh !important;
     height: 100dvh !important;
@@ -2428,7 +2439,7 @@
     border: 0 !important;
     display: flex !important;
     flex-direction: column !important;
-    background-color: #0c121e !important;
+    background-color: #0A0E17 !important;
     overflow: hidden !important; /* STRICTLY ZERO SCROLLING */
     padding: 0 !important;
     margin: 0 !important;
