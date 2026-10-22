@@ -54,75 +54,69 @@ const workflows = [
       </div>
     </div>
 
-    <!-- MOBILE COMPARISON EXPERIENCE (< 768px) -->
-    <div class="md:hidden space-y-4">
-      <!-- Segmented View Mode Switcher -->
-      <div class="flex items-center p-1 bg-white/[0.04] border border-white/10 rounded-xl">
-        <button
-          type="button"
-          id="wf-mode-clearinfra"
-          class="wf-mode-btn flex-1 py-2 px-2 rounded-lg text-[11px] font-mono font-semibold transition-all duration-200 bg-[#131924] text-emerald-300 shadow-xs border border-emerald-500/30 flex items-center justify-center gap-1.5"
-        >
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
-          <span>Clearinfra Practice</span>
-        </button>
-        <button
-          type="button"
-          id="wf-mode-conventional"
-          class="wf-mode-btn flex-1 py-2 px-2 rounded-lg text-[11px] font-mono font-medium text-slate-400 hover:text-slate-200 transition-all duration-200 flex items-center justify-center gap-1.5"
-        >
-          <span class="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 opacity-60"></span>
-          <span>Conventional</span>
-        </button>
+    <!-- MOBILE SNAP-SCROLL TOUCH DECK (< 768px) -->
+    <div class="md:hidden">
+      <!-- Status & Swipe Hint -->
+      <div class="flex items-center justify-between mb-3 px-1 text-slate-400 font-mono text-[10px]">
+        <div class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="wf-deck-counter" class="font-semibold text-slate-200">01 / 04 ENGAGEMENT STAGES</span>
+        </div>
+        <div class="flex items-center gap-1 text-[11px] text-slate-400">
+          <span class="text-[9px] uppercase tracking-wider">Swipe deck</span>
+          <span>→</span>
+        </div>
       </div>
 
-      <!-- Clearinfra Practice View (Default Active) -->
-      <div id="wf-panel-clearinfra" class="space-y-3 transition-opacity duration-200">
+      <!-- Snap Track with peek on right -->
+      <div 
+        id="wf-carousel"
+        class="flex gap-4 overflow-x-auto pb-3 pt-1 snap-x snap-mandatory scrollbar-none -mx-6 px-6"
+        style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch;"
+      >
         {workflows.map((row, idx) => (
-          <div class="rounded-xl bg-[#131924] border border-emerald-500/30 p-4.5 shadow-xs text-left relative overflow-hidden pl-5">
+          <div 
+            data-wf-card={idx}
+            class="snap-center shrink-0 w-[85vw] max-w-[335px] rounded-2xl bg-[#131924] border border-white/10 p-5 shadow-xl flex flex-col justify-between text-left relative overflow-hidden pl-5.5"
+          >
             <div class="absolute top-0 left-0 bottom-0 w-1.5 bg-emerald-400"></div>
-            <div class="flex items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-white/[0.08]">
-              <span class="text-xs font-mono font-semibold text-slate-400">0{idx + 1}</span>
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-semibold">
-                Augmented Speed
-              </span>
+            
+            <div>
+              <div class="flex items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-white/[0.08]">
+                <span class="text-xs font-mono font-semibold text-slate-400">0{idx + 1}</span>
+                <span class="text-[9.5px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-semibold">
+                  Augmented Speed
+                </span>
+              </div>
+              
+              <h3 class="text-base font-semibold text-white mb-2 leading-snug">
+                {row.aspect}
+              </h3>
+              
+              <div class="text-xs text-slate-200 leading-relaxed mb-3">
+                <span class="text-[9px] font-mono uppercase tracking-wider text-emerald-400 block font-semibold mb-0.5">Clearinfra Working Session:</span>
+                <strong class="font-semibold text-emerald-300">{row.clearinfraLead}</strong> {row.clearinfraBody}
+              </div>
             </div>
-            <h3 class="text-base font-semibold text-white mb-1.5 leading-snug">
-              {row.aspect}
-            </h3>
-            <p class="text-xs text-slate-300 leading-relaxed mb-2.5">
-              <strong class="font-semibold text-emerald-300">{row.clearinfraLead}</strong> {row.clearinfraBody}
-            </p>
-            <div class="pt-2.5 border-t border-white/[0.08] text-[10px] font-mono text-slate-400 flex items-start gap-1.5 font-medium">
-              <span class="text-slate-500 shrink-0">Legacy:</span>
-              <span class="text-slate-300 leading-relaxed font-normal">{row.conventionalLead} {row.conventionalBody}</span>
+
+            <!-- Legacy Contrast Callout -->
+            <div class="mt-2 pt-2.5 border-t border-white/[0.08] bg-white/[0.02] -mx-5 -mb-5 p-3.5 rounded-b-2xl text-[11px] text-slate-400 leading-relaxed">
+              <span class="text-[9px] font-mono uppercase tracking-wider text-slate-500 font-semibold block mb-0.5">Conventional Consulting:</span>
+              <span class="text-slate-300 font-normal"><strong class="font-medium text-slate-300">{row.conventionalLead}</strong> {row.conventionalBody}</span>
             </div>
           </div>
         ))}
       </div>
 
-      <!-- Conventional Consulting View -->
-      <div id="wf-panel-conventional" class="hidden space-y-3 transition-opacity duration-200">
-        {workflows.map((row, idx) => (
-          <div class="rounded-xl bg-[#111722] border border-white/10 p-4.5 shadow-xs text-left relative overflow-hidden pl-5">
-            <div class="absolute top-0 left-0 bottom-0 w-1.5 bg-slate-600"></div>
-            <div class="flex items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-white/[0.08]">
-              <span class="text-xs font-mono font-semibold text-slate-500">0{idx + 1}</span>
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.06] text-slate-400 font-semibold border border-white/10">
-                Legacy Bottleneck
-              </span>
-            </div>
-            <h3 class="text-base font-semibold text-white mb-1.5 leading-snug">
-              {row.aspect}
-            </h3>
-            <p class="text-xs text-slate-400 leading-relaxed mb-2.5">
-              <strong class="font-semibold text-slate-300">{row.conventionalLead}</strong> {row.conventionalBody}
-            </p>
-            <div class="pt-2.5 border-t border-white/[0.08] text-[10px] font-mono text-emerald-400 flex items-start gap-1.5 font-semibold">
-              <span class="shrink-0">CI Advantage:</span>
-              <span class="text-emerald-300 leading-relaxed font-normal">{row.clearinfraLead} {row.clearinfraBody}</span>
-            </div>
-          </div>
+      <!-- Dot Indicators -->
+      <div class="flex items-center justify-center gap-1.5 pt-2" id="wf-dots">
+        {workflows.map((_, idx) => (
+          <button
+            type="button"
+            data-wf-dot-index={idx}
+            class={`wf-dot h-1.5 rounded-full transition-all duration-200 ${idx === 0 ? 'w-5 bg-emerald-400' : 'w-1.5 bg-slate-700'}`}
+            aria-label={`Jump to stage ${idx + 1}`}
+          ></button>
         ))}
       </div>
     </div>
@@ -183,22 +177,64 @@ const workflows = [
 </section>
 
 <script>
-  const btnClearinfra = document.getElementById('wf-mode-clearinfra');
-  const btnConventional = document.getElementById('wf-mode-conventional');
-  const panelClearinfra = document.getElementById('wf-panel-clearinfra');
-  const panelConventional = document.getElementById('wf-panel-conventional');
+  const wfCarousel = document.getElementById('wf-carousel');
+  const wfCounter = document.getElementById('wf-deck-counter');
+  const wfDots = document.querySelectorAll('.wf-dot');
+  const wfCards = document.querySelectorAll<HTMLElement>('[data-wf-card]');
 
-  btnClearinfra?.addEventListener('click', () => {
-    btnClearinfra.className = 'wf-mode-btn flex-1 py-2 px-2 rounded-lg text-[11px] font-mono font-semibold transition-all duration-200 bg-[#131924] text-emerald-300 shadow-xs border border-emerald-500/30 flex items-center justify-center gap-1.5';
-    btnConventional!.className = 'wf-mode-btn flex-1 py-2 px-2 rounded-lg text-[11px] font-mono font-medium text-slate-400 hover:text-slate-200 transition-all duration-200 flex items-center justify-center gap-1.5';
-    panelClearinfra?.classList.remove('hidden');
-    panelConventional?.classList.add('hidden');
-  });
+  let wfCurrentIndex = 0;
+  const wfTotal = wfCards.length;
 
-  btnConventional?.addEventListener('click', () => {
-    btnConventional.className = 'wf-mode-btn flex-1 py-2 px-2 rounded-lg text-[11px] font-mono font-semibold transition-all duration-200 bg-[#131924] text-white shadow-xs border border-white/20 flex items-center justify-center gap-1.5';
-    btnClearinfra!.className = 'wf-mode-btn flex-1 py-2 px-2 rounded-lg text-[11px] font-mono font-medium text-slate-400 hover:text-slate-200 transition-all duration-200 flex items-center justify-center gap-1.5';
-    panelConventional?.classList.remove('hidden');
-    panelClearinfra?.classList.add('hidden');
+  function updateActiveWfCard(index: number) {
+    if (index < 0 || index >= wfTotal) return;
+    wfCurrentIndex = index;
+    if (wfCounter) {
+      wfCounter.textContent = `0${index + 1} / 0${wfTotal} ENGAGEMENT STAGES`;
+    }
+    wfDots.forEach((dot, idx) => {
+      if (idx === index) {
+        dot.className = 'wf-dot h-1.5 rounded-full transition-all duration-200 w-5 bg-emerald-400';
+      } else {
+        dot.className = 'wf-dot h-1.5 rounded-full transition-all duration-200 w-1.5 bg-slate-700';
+      }
+    });
+  }
+
+  function scrollToWfCard(index: number) {
+    if (!wfCarousel || !wfCards[index]) return;
+    const card = wfCards[index];
+    wfCarousel.scrollTo({
+      left: card.offsetLeft - wfCarousel.offsetLeft,
+      behavior: 'smooth'
+    });
+    updateActiveWfCard(index);
+  }
+
+  if (wfCarousel) {
+    let scrollTimeout: number | undefined;
+    wfCarousel.addEventListener('scroll', () => {
+      window.clearTimeout(scrollTimeout);
+      scrollTimeout = window.setTimeout(() => {
+        const scrollLeft = wfCarousel.scrollLeft;
+        let closestIndex = 0;
+        let minDiff = Infinity;
+        wfCards.forEach((card, idx) => {
+          const cardLeft = card.offsetLeft - wfCarousel.offsetLeft;
+          const diff = Math.abs(cardLeft - scrollLeft);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestIndex = idx;
+          }
+        });
+        updateActiveWfCard(closestIndex);
+      }, 50);
+    }, { passive: true });
+  }
+
+  wfDots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const idx = Number(dot.getAttribute('data-wf-dot-index'));
+      scrollToWfCard(idx);
+    });
   });
 </script>

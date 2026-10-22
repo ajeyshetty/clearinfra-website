@@ -71,8 +71,66 @@ const capabilities = [
       <CharretteStudioCard />
     </div>
 
-    <!-- 3 Core Engineering Pillars Supporting the Advantage -->
-    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 text-left">
+    <!-- MOBILE SNAP-SCROLL TOUCH DECK (< 768px) -->
+    <div class="md:hidden">
+      <!-- Status & Swipe Hint -->
+      <div class="flex items-center justify-between mb-3 px-1 text-slate-400 font-mono text-[10px]">
+        <div class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="adv-deck-counter" class="font-semibold text-slate-200">01 / 03 CORE CAPABILITIES</span>
+        </div>
+        <div class="flex items-center gap-1 text-[11px] text-slate-400">
+          <span class="text-[9px] uppercase tracking-wider">Swipe deck</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <!-- Snap Track with peek on right -->
+      <div 
+        id="adv-carousel"
+        class="flex gap-4 overflow-x-auto pb-3 pt-1 snap-x snap-mandatory scrollbar-none -mx-6 px-6"
+        style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch;"
+      >
+        {capabilities.map((item, idx) => (
+          <div 
+            data-adv-card={idx}
+            class="snap-center shrink-0 w-[84vw] max-w-[325px] rounded-2xl bg-[#131924] border border-white/10 p-5 shadow-xl flex flex-col justify-between text-left"
+          >
+            <div>
+              <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-white/[0.08]">
+                <span class="text-xs font-mono text-emerald-400 font-semibold">{item.num}</span>
+                <span class="text-[9px] font-mono text-slate-400 uppercase tracking-wider">{item.tag}</span>
+              </div>
+              <h3 class="text-base font-semibold text-white mb-2 leading-snug">
+                {item.title}
+              </h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+            <div class="pt-3 mt-3 border-t border-white/[0.08] text-[10px] font-mono text-emerald-400/80 flex items-center gap-1.5">
+              <span class="w-1 h-1 rounded-full bg-emerald-400"></span>
+              <span>Traceable first-principles pipeline</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Dot Indicators -->
+      <div class="flex items-center justify-center gap-1.5 pt-2" id="adv-dots">
+        {capabilities.map((_, idx) => (
+          <button
+            type="button"
+            data-adv-dot-index={idx}
+            class={`adv-dot h-1.5 rounded-full transition-all duration-200 ${idx === 0 ? 'w-5 bg-emerald-400' : 'w-1.5 bg-slate-700'}`}
+            aria-label={`Jump to capability ${idx + 1}`}
+          ></button>
+        ))}
+      </div>
+    </div>
+
+    <!-- DESKTOP / TABLET GRID (>= 768px) -->
+    <div class="hidden md:grid md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 text-left">
       {capabilities.map((item) => (
         <div class="rounded-xl bg-white/[0.04] border border-white/10 hover:border-emerald-500/40 p-5 sm:p-6 transition-all duration-200 flex flex-col justify-between">
           <div>
@@ -96,3 +154,66 @@ const capabilities = [
 
   </div>
 </section>
+
+<script>
+  const advCarousel = document.getElementById('adv-carousel');
+  const advCounter = document.getElementById('adv-deck-counter');
+  const advDots = document.querySelectorAll('.adv-dot');
+  const advCards = document.querySelectorAll<HTMLElement>('[data-adv-card]');
+
+  let advCurrentIndex = 0;
+  const advTotal = advCards.length;
+
+  function updateActiveAdvCard(index: number) {
+    if (index < 0 || index >= advTotal) return;
+    advCurrentIndex = index;
+    if (advCounter) {
+      advCounter.textContent = `0${index + 1} / 0${advTotal} CORE CAPABILITIES`;
+    }
+    advDots.forEach((dot, idx) => {
+      if (idx === index) {
+        dot.className = 'adv-dot h-1.5 rounded-full transition-all duration-200 w-5 bg-emerald-400';
+      } else {
+        dot.className = 'adv-dot h-1.5 rounded-full transition-all duration-200 w-1.5 bg-slate-700';
+      }
+    });
+  }
+
+  function scrollToAdvCard(index: number) {
+    if (!advCarousel || !advCards[index]) return;
+    const card = advCards[index];
+    advCarousel.scrollTo({
+      left: card.offsetLeft - advCarousel.offsetLeft,
+      behavior: 'smooth'
+    });
+    updateActiveAdvCard(index);
+  }
+
+  if (advCarousel) {
+    let scrollTimeout: number | undefined;
+    advCarousel.addEventListener('scroll', () => {
+      window.clearTimeout(scrollTimeout);
+      scrollTimeout = window.setTimeout(() => {
+        const scrollLeft = advCarousel.scrollLeft;
+        let closestIndex = 0;
+        let minDiff = Infinity;
+        advCards.forEach((card, idx) => {
+          const cardLeft = card.offsetLeft - advCarousel.offsetLeft;
+          const diff = Math.abs(cardLeft - scrollLeft);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestIndex = idx;
+          }
+        });
+        updateActiveAdvCard(closestIndex);
+      }, 50);
+    }, { passive: true });
+  }
+
+  advDots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const idx = Number(dot.getAttribute('data-adv-dot-index'));
+      scrollToAdvCard(idx);
+    });
+  });
+</script>
