@@ -4,7 +4,13 @@
 <section id="hero" class="relative min-h-[calc(100dvh-var(--header-height,4.5rem))] lg:h-[calc(100dvh-var(--header-height,4.5rem))] flex flex-col justify-center bg-[#0A0E17] text-white overflow-hidden border-b border-white/10">
   
   <!-- Full-Bleed Landmark Architectural Tower Background with Cinematic Video -->
-  <div class="absolute inset-0 z-0 overflow-hidden">
+  <div class="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <img
+      src="/images/landmark-glass-tower.jpg"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover object-[center_20%] lg:object-right filter brightness-[0.92] contrast-[1.08]"
+      loading="eager"
+    />
     <video
       id="hero-bg-video"
       autoplay
@@ -12,17 +18,12 @@
       muted
       playsinline
       webkit-playsinline
+      disablepictureinpicture
       preload="auto"
       poster="/images/landmark-glass-tower.jpg"
-      class="w-full h-full object-cover object-[center_20%] lg:object-right filter brightness-[0.92] contrast-[1.08] pointer-events-none"
+      class="absolute inset-0 w-full h-full object-cover object-[center_20%] lg:object-right filter brightness-[0.92] contrast-[1.08] pointer-events-none"
     >
       <source src="/videos/hero-tower-loop.mp4" type="video/mp4" />
-      <img
-        src="/images/landmark-glass-tower.jpg"
-        alt="High-performance commercial glass tower"
-        class="w-full h-full object-cover object-[center_20%] lg:object-right filter brightness-[0.92] contrast-[1.08]"
-        loading="eager"
-      />
     </video>
 
     <!-- Desktop Asymmetric Gradient (Slate on Left for Typography, Clear on Right for Tower) -->
@@ -59,7 +60,7 @@
             <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
           <span class="font-medium text-emerald-200">BUILDING SCIENCE &amp; STATUTORY ADVISORY</span>
-          <span class="hidden sm:inline-block text-[10px] text-emerald-400/80 border-l border-emerald-500/30 pl-2">2026 PILOT COHORT</span>
+          <span class="hidden sm:inline-block text-[10px] text-emerald-400/80 border-l border-emerald-500/30 pl-2">EARLY-DESIGN ADVISORY</span>
         </div>
 
         <!-- Monumental H1 Question: Scaled, Muscular, Cinematic -->
@@ -100,7 +101,7 @@
 
         <!-- Institutional Engineering Credentials + Geek Fast-Track Trigger (Option A) -->
         <div class="hidden lg:flex pt-2 flex-wrap items-center justify-start gap-x-3 gap-y-2 text-xs font-mono tracking-wider text-slate-400">
-          <span class="text-slate-500 font-normal">VALIDATED:</span>
+          <span class="text-slate-500 font-normal">BUILT ON:</span>
           <span class="text-slate-200 font-medium">ISO 52016-1</span>
           <span class="text-slate-600">·</span>
           <span class="text-slate-200 font-medium">NBC 2026 &amp; ECBC</span>
@@ -126,6 +127,12 @@
 </section>
 
 <style>
+  @media (prefers-reduced-motion: reduce) {
+    #hero-bg-video {
+      display: none;
+    }
+  }
+
   /* Pixel-perfect viewport lock to eliminate any gap or white sliver at the fold */
   @media (min-width: 1024px) {
     #hero {
