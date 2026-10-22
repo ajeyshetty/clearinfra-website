@@ -56,8 +56,100 @@ const typologies = [
       </div>
     </div>
 
-    <!-- 3 Landmark Asset Cards -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-6 xl:gap-8">
+    <!-- MOBILE SNAP-SCROLL TOUCH DECK (< 768px) -->
+    <div class="md:hidden">
+      <!-- Status & Swipe Hint -->
+      <div class="flex items-center justify-between mb-3 px-1 text-slate-400 font-mono text-[10px]">
+        <div class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="typology-deck-counter" class="font-semibold text-slate-200">01 / 03 ASSET CLASSES</span>
+        </div>
+        <div class="flex items-center gap-1 text-[11px] text-slate-400">
+          <span class="text-[9px] uppercase tracking-wider">Swipe deck</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <!-- Snap Track with peek on right -->
+      <div 
+        id="typology-carousel"
+        class="flex gap-4 overflow-x-auto pb-3 pt-1 snap-x snap-mandatory scrollbar-none -mx-6 px-6"
+        style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch;"
+      >
+        {typologies.map((item, idx) => (
+          <div 
+            data-typology-card={idx}
+            class="snap-center shrink-0 w-[84vw] max-w-[325px] rounded-2xl bg-[#131924] border border-white/10 overflow-hidden shadow-xl flex flex-col justify-between text-left"
+          >
+            <!-- Image Frame -->
+            <div class="relative h-44 overflow-hidden bg-slate-950">
+              <img
+                src={item.image}
+                alt={item.title}
+                class="w-full h-full object-cover object-center filter brightness-[0.88] contrast-[1.05]"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#131924] via-transparent to-transparent pointer-events-none"></div>
+              
+              <div class="absolute top-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono text-white/90">
+                <span class="px-2 py-0.5 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/15 uppercase tracking-wider font-semibold text-[9px]">
+                  {item.tag}
+                </span>
+                <span class="px-1.5 py-0.5 rounded bg-slate-950/70 backdrop-blur-md text-slate-300 text-[9px]">
+                  {item.assetClass}
+                </span>
+              </div>
+              <span class="absolute bottom-2.5 right-3 px-2 py-0.5 rounded bg-slate-950/80 backdrop-blur-md border border-white/15 text-[8.5px] font-mono uppercase tracking-wider text-slate-400">
+                Illustrative image
+              </span>
+            </div>
+
+            <!-- Body -->
+            <div class="p-4.5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm font-semibold text-white leading-snug line-clamp-2">
+                  {item.title}
+                </h3>
+                
+                <div class="space-y-1.5 text-xs text-slate-300 mt-2.5 pt-2.5 border-t border-white/[0.08]">
+                  <p class="leading-relaxed">
+                    <strong class="text-slate-100 font-medium">The Challenge:</strong> {item.challenge}
+                  </p>
+                  <p class="leading-relaxed text-slate-400">
+                    <strong class="text-slate-200 font-medium">Advisory:</strong> {item.solution}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Deliverable Badge -->
+              <div class="border-t border-white/[0.08] bg-white/[0.02] -mx-4.5 -mb-4.5 p-3 rounded-b-2xl mt-3 flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                </svg>
+                <p class="text-[11px] font-medium text-slate-200 leading-snug">
+                  <span class="text-emerald-400 font-semibold">Deliverable:</span> {item.deliverable}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Dot Indicators -->
+      <div class="flex items-center justify-center gap-1.5 pt-2" id="typology-dots">
+        {typologies.map((_, idx) => (
+          <button
+            type="button"
+            data-typology-dot-index={idx}
+            class={`typology-dot h-1.5 rounded-full transition-all duration-200 ${idx === 0 ? 'w-5 bg-emerald-400' : 'w-1.5 bg-slate-700'}`}
+            aria-label={`Jump to asset class ${idx + 1}`}
+          ></button>
+        ))}
+      </div>
+    </div>
+
+    <!-- DESKTOP / TABLET GRID (>= 768px) -->
+    <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-6 xl:gap-8">
       {typologies.map((item, idx) => (
         <div class={`reveal reveal-delay-${idx + 1} rounded-2xl bg-[#131924] border border-white/10 overflow-hidden shadow-xl hover:shadow-2xl hover:border-emerald-500/40 transition-all duration-300 flex flex-col group`}>
           
@@ -125,3 +217,66 @@ const typologies = [
 
   </div>
 </section>
+
+<script>
+  const typoCarousel = document.getElementById('typology-carousel');
+  const typoCounter = document.getElementById('typology-deck-counter');
+  const typoDots = document.querySelectorAll('.typology-dot');
+  const typoCards = document.querySelectorAll<HTMLElement>('[data-typology-card]');
+
+  let typoCurrentIndex = 0;
+  const typoTotal = typoCards.length;
+
+  function updateActiveTypologyCard(index: number) {
+    if (index < 0 || index >= typoTotal) return;
+    typoCurrentIndex = index;
+    if (typoCounter) {
+      typoCounter.textContent = `0${index + 1} / 0${typoTotal} ASSET CLASSES`;
+    }
+    typoDots.forEach((dot, idx) => {
+      if (idx === index) {
+        dot.className = 'typology-dot h-1.5 rounded-full transition-all duration-200 w-5 bg-emerald-400';
+      } else {
+        dot.className = 'typology-dot h-1.5 rounded-full transition-all duration-200 w-1.5 bg-slate-700';
+      }
+    });
+  }
+
+  function scrollToTypologyCard(index: number) {
+    if (!typoCarousel || !typoCards[index]) return;
+    const card = typoCards[index];
+    typoCarousel.scrollTo({
+      left: card.offsetLeft - typoCarousel.offsetLeft,
+      behavior: 'smooth'
+    });
+    updateActiveTypologyCard(index);
+  }
+
+  if (typoCarousel) {
+    let scrollTimeout: number | undefined;
+    typoCarousel.addEventListener('scroll', () => {
+      window.clearTimeout(scrollTimeout);
+      scrollTimeout = window.setTimeout(() => {
+        const scrollLeft = typoCarousel.scrollLeft;
+        let closestIndex = 0;
+        let minDiff = Infinity;
+        typoCards.forEach((card, idx) => {
+          const cardLeft = card.offsetLeft - typoCarousel.offsetLeft;
+          const diff = Math.abs(cardLeft - scrollLeft);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestIndex = idx;
+          }
+        });
+        updateActiveTypologyCard(closestIndex);
+      }, 50);
+    }, { passive: true });
+  }
+
+  typoDots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const idx = Number(dot.getAttribute('data-typology-dot-index'));
+      scrollToTypologyCard(idx);
+    });
+  });
+</script>

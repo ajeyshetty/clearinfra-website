@@ -42,31 +42,31 @@
               <!-- Viewport Mode Toolbar (CAD Standard: Placed cleanly above the 3D canvas) -->
               <div id="cad-viewport-toolbar" class="flex items-center justify-between gap-2 text-xs font-mono select-none z-10 mb-1 overflow-hidden">
                 <div class="flex items-center gap-0.5 sm:gap-1 bg-[#161D2B]/95 p-1 rounded-lg border border-white/12 text-[8.5px] sm:text-[9.5px] shadow-sm shrink-0">
-                  <button id="btn-mode-twin" type="button" title="01 Architectural 3D Twin" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-emerald-500/40 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
+                  <button id="btn-mode-twin" type="button" title="01 Architectural 3D Twin" class="mode-btn relative overflow-hidden px-2 py-1.5 sm:py-0.5 rounded border border-emerald-500/40 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1 min-h-[28px] sm:min-h-0">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
                     <span class="opacity-65 text-[8px]">01</span>
                     <span>Twin</span>
                     <span id="prog-mode-twin" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-emerald-400/90" style="width: 0%;"></span>
                   </button>
-                  <button id="btn-mode-daylight" type="button" title="02 Daylight sDA Lux Heatmap (LM-83)" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
+                  <button id="btn-mode-daylight" type="button" title="02 Daylight sDA Lux Heatmap (LM-83)" class="mode-btn relative overflow-hidden px-2 py-1.5 sm:py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1 min-h-[28px] sm:min-h-0">
                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
                     <span class="opacity-65 text-[8px]">02</span>
                     <span>Daylight</span>
                     <span id="prog-mode-daylight" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-amber-400/90" style="width: 0%;"></span>
                   </button>
-                  <button id="btn-mode-shading" type="button" title="03 Facade Shading Lab (Overhangs, Vertical Fins & Sun Ingress)" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
+                  <button id="btn-mode-shading" type="button" title="03 Facade Shading Lab (Overhangs, Vertical Fins & Sun Ingress)" class="mode-btn relative overflow-hidden px-2 py-1.5 sm:py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1 min-h-[28px] sm:min-h-0">
                     <span class="w-1.5 h-1.5 rounded-full bg-orange-400 shrink-0"></span>
                     <span class="opacity-65 text-[8px]">03</span>
                     <span>Shading</span>
                     <span id="prog-mode-shading" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-orange-400/90" style="width: 0%;"></span>
                   </button>
-                  <button id="btn-mode-nbc" type="button" title="04 NBC 2026 Statutory 3D Setbacks & Refuge Area" class="mode-btn relative overflow-hidden px-1.5 sm:px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1">
+                  <button id="btn-mode-nbc" type="button" title="04 NBC 2026 Statutory 3D Setbacks & Refuge Area" class="mode-btn relative overflow-hidden px-2 py-1.5 sm:py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1 min-h-[28px] sm:min-h-0">
                     <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
                     <span class="opacity-65 text-[8px]">04</span>
                     <span>NBC</span>
                     <span id="prog-mode-nbc" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-sky-400/90" style="width: 0%;"></span>
                   </button>
-                  <button id="btn-mode-autoplay" type="button" title="Pause / Resume 4-Stage Auto-Tour" aria-label="Pause or resume layer auto-tour" class="ml-0.5 pl-1.5 pr-1 py-0.5 rounded-r border-l border-white/10 text-emerald-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer flex items-center justify-center">
+                  <button id="btn-mode-autoplay" type="button" title="Pause / Resume 4-Stage Auto-Tour" aria-label="Pause or resume layer auto-tour" class="ml-0.5 pl-1.5 pr-1.5 py-1.5 sm:py-0.5 rounded-r border-l border-white/10 text-emerald-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer flex items-center justify-center min-h-[28px] sm:min-h-0">
                     <span id="autoplay-icon" class="text-[8.5px] leading-none">⏸</span>
                   </button>
                 </div>
@@ -101,9 +101,9 @@
 
                 <!-- Overlay Bottom-Right: Streamlined View Toggle & Reset -->
                 <div class="absolute top-2.5 right-2.5 flex items-center gap-0.5 bg-[#161D2B]/90 p-1 rounded-md border border-white/12 text-[8.5px] sm:text-[9px] font-mono shadow-sm select-none z-10">
-                  <button id="btn-cam-iso" type="button" title="3D Isometric View" class="cam-btn px-2 py-0.5 rounded border border-emerald-500/35 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium">3D</button>
-                  <button id="btn-cam-top" type="button" title="Top-down Floor Plan View" class="cam-btn px-2 py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium">Plan</button>
-                  <button id="btn-reset-cam" type="button" title="Reset Camera Orbit" class="px-1.5 py-0.5 rounded text-slate-400 hover:text-white hover:bg-white/[0.06] border-l border-white/10 transition-colors duration-200 cursor-pointer" aria-label="Reset Camera Orbit">↺</button>
+                  <button id="btn-cam-iso" type="button" title="3D Isometric View" class="cam-btn px-2 py-1 sm:py-0.5 rounded border border-emerald-500/35 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium">3D</button>
+                  <button id="btn-cam-top" type="button" title="Top-down Floor Plan View" class="cam-btn px-2 py-1 sm:py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium">Plan</button>
+                  <button id="btn-reset-cam" type="button" title="Reset Camera Orbit" class="px-1.5 py-1 sm:py-0.5 rounded text-slate-400 hover:text-white hover:bg-white/[0.06] border-l border-white/10 transition-colors duration-200 cursor-pointer" aria-label="Reset Camera Orbit">↺</button>
                 </div>
               </div>
             </div>
@@ -281,7 +281,7 @@
           <div id="studio-bottom-dock" class="px-3 sm:px-6 py-1.5 sm:py-2 bg-[#0F141E] border-t border-white/10 min-h-[46px] sm:min-h-[50px] xl:min-h-[56px] flex items-center justify-between gap-2.5 sm:gap-4 text-xs font-mono shrink-0 overflow-x-auto scrollbar-none">
             <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3.5 text-slate-300 min-w-0 flex-1">
               <span class="px-2 py-0.5 rounded bg-sky-500/15 text-sky-300 border border-sky-500/35 text-[9.5px] sm:text-[10.5px] font-mono font-semibold tracking-wider shrink-0 whitespace-nowrap w-fit">ILLUSTRATIVE DEMO</span>
-              <div id="charrette-chain" class="flex items-center gap-2.5 sm:gap-4 min-w-0 shrink-0">
+              <div id="charrette-chain" class="flex items-center gap-2 sm:gap-4 pr-4 sm:pr-0 min-w-0 shrink-0">
                 <div class="flex flex-col min-w-0">
                   <span class="text-[8.5px] sm:text-[9.5px] tracking-[0.08em] uppercase text-slate-400 font-medium leading-tight whitespace-nowrap">Glazing</span>
                   <span class="text-[12px] sm:text-[14px] font-semibold text-white leading-snug whitespace-nowrap" data-chain="glass">0.28</span>

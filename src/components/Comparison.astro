@@ -93,9 +93,9 @@ const workflows = [
             <p class="text-xs text-slate-300 leading-relaxed mb-2.5">
               <strong class="font-semibold text-emerald-300">{row.clearinfraLead}</strong> {row.clearinfraBody}
             </p>
-            <div class="pt-2.5 border-t border-white/[0.08] text-[10px] font-mono text-slate-400 flex items-center gap-1.5 font-medium">
+            <div class="pt-2.5 border-t border-white/[0.08] text-[10px] font-mono text-slate-400 flex items-start gap-1.5 font-medium">
               <span class="text-slate-500 shrink-0">Legacy:</span>
-              <span class="text-slate-400 truncate">{row.conventionalLead} {row.conventionalBody}</span>
+              <span class="text-slate-300 leading-relaxed font-normal">{row.conventionalLead} {row.conventionalBody}</span>
             </div>
           </div>
         ))}
@@ -118,9 +118,9 @@ const workflows = [
             <p class="text-xs text-slate-400 leading-relaxed mb-2.5">
               <strong class="font-semibold text-slate-300">{row.conventionalLead}</strong> {row.conventionalBody}
             </p>
-            <div class="pt-2.5 border-t border-white/[0.08] text-[10px] font-mono text-emerald-400 flex items-center gap-1.5 font-semibold">
+            <div class="pt-2.5 border-t border-white/[0.08] text-[10px] font-mono text-emerald-400 flex items-start gap-1.5 font-semibold">
               <span class="shrink-0">CI Advantage:</span>
-              <span class="truncate">{row.clearinfraLead} {row.clearinfraBody}</span>
+              <span class="text-emerald-300 leading-relaxed font-normal">{row.clearinfraLead} {row.clearinfraBody}</span>
             </div>
           </div>
         ))}
