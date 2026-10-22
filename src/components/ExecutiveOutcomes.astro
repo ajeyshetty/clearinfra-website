@@ -56,8 +56,72 @@ const outcomes = [
       </div>
     </div>
 
-    <!-- 4 Outcome Pillar Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-6 xl:gap-8">
+    <!-- MOBILE SNAP-SCROLL TOUCH DECK (< 768px) -->
+    <div class="md:hidden">
+      <!-- Status & Swipe Hint -->
+      <div class="flex items-center justify-between mb-3 px-1 text-slate-400 font-mono text-[10px]">
+        <div class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="outcome-deck-counter" class="font-semibold text-slate-200">01 / 04 FOCUS AREAS</span>
+        </div>
+        <div class="flex items-center gap-1 text-[11px] text-slate-400">
+          <span class="text-[9px] uppercase tracking-wider">Swipe deck</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <!-- Snap Track with peek on right -->
+      <div 
+        id="outcome-carousel"
+        class="flex gap-3.5 overflow-x-auto pb-3 pt-1 snap-x snap-mandatory scrollbar-none -mx-6 px-6"
+        style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch;"
+      >
+        {outcomes.map((item, idx) => (
+          <div 
+            data-outcome-card={idx}
+            class="snap-center shrink-0 w-[82vw] max-w-[310px] rounded-2xl bg-[#131924] border border-white/10 p-5 shadow-xl flex flex-col justify-between text-left"
+          >
+            <div>
+              <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-white/[0.08]">
+                <span class="text-xs font-mono text-slate-400 font-medium">0{idx + 1}</span>
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              </div>
+              
+              <div class="text-2xl font-semibold text-white font-mono tracking-tight tabular-nums">
+                {item.kpi}
+              </div>
+              
+              <h3 class="text-sm font-semibold text-white mt-1.5 leading-snug">
+                {item.label}
+              </h3>
+              
+              <p class="text-[11px] font-mono text-emerald-400 font-medium mt-1 leading-snug">
+                {item.sub}
+              </p>
+              
+              <p class="text-xs text-slate-300 leading-relaxed mt-2.5 pt-2.5 border-t border-white/[0.08]">
+                {item.desc}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Dot Indicators -->
+      <div class="flex items-center justify-center gap-1.5 pt-2" id="outcome-dots">
+        {outcomes.map((_, idx) => (
+          <button
+            type="button"
+            data-outcome-dot-index={idx}
+            class={`outcome-dot h-1.5 rounded-full transition-all duration-200 ${idx === 0 ? 'w-5 bg-emerald-400' : 'w-1.5 bg-slate-700'}`}
+            aria-label={`Jump to focus area ${idx + 1}`}
+          ></button>
+        ))}
+      </div>
+    </div>
+
+    <!-- DESKTOP / TABLET GRID (>= 768px) -->
+    <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-6 xl:gap-8">
       {outcomes.map((item, idx) => (
         <div class={`reveal reveal-delay-${idx + 1} rounded-2xl bg-[#131924] border border-white/10 p-5 sm:p-6 shadow-xl hover:shadow-2xl hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group`}>
           <div>
@@ -89,3 +153,66 @@ const outcomes = [
 
   </div>
 </section>
+
+<script>
+  const outcomeCarousel = document.getElementById('outcome-carousel');
+  const outcomeCounter = document.getElementById('outcome-deck-counter');
+  const outcomeDots = document.querySelectorAll('.outcome-dot');
+  const outcomeCards = document.querySelectorAll<HTMLElement>('[data-outcome-card]');
+
+  let outcomeCurrentIndex = 0;
+  const outcomeTotal = outcomeCards.length;
+
+  function updateActiveOutcomeCard(index: number) {
+    if (index < 0 || index >= outcomeTotal) return;
+    outcomeCurrentIndex = index;
+    if (outcomeCounter) {
+      outcomeCounter.textContent = `0${index + 1} / 0${outcomeTotal} FOCUS AREAS`;
+    }
+    outcomeDots.forEach((dot, idx) => {
+      if (idx === index) {
+        dot.className = 'outcome-dot h-1.5 rounded-full transition-all duration-200 w-5 bg-emerald-400';
+      } else {
+        dot.className = 'outcome-dot h-1.5 rounded-full transition-all duration-200 w-1.5 bg-slate-700';
+      }
+    });
+  }
+
+  function scrollToOutcomeCard(index: number) {
+    if (!outcomeCarousel || !outcomeCards[index]) return;
+    const card = outcomeCards[index];
+    outcomeCarousel.scrollTo({
+      left: card.offsetLeft - outcomeCarousel.offsetLeft,
+      behavior: 'smooth'
+    });
+    updateActiveOutcomeCard(index);
+  }
+
+  if (outcomeCarousel) {
+    let scrollTimeout: number | undefined;
+    outcomeCarousel.addEventListener('scroll', () => {
+      window.clearTimeout(scrollTimeout);
+      scrollTimeout = window.setTimeout(() => {
+        const scrollLeft = outcomeCarousel.scrollLeft;
+        let closestIndex = 0;
+        let minDiff = Infinity;
+        outcomeCards.forEach((card, idx) => {
+          const cardLeft = card.offsetLeft - outcomeCarousel.offsetLeft;
+          const diff = Math.abs(cardLeft - scrollLeft);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestIndex = idx;
+          }
+        });
+        updateActiveOutcomeCard(closestIndex);
+      }, 50);
+    }, { passive: true });
+  }
+
+  outcomeDots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const idx = Number(dot.getAttribute('data-outcome-dot-index'));
+      scrollToOutcomeCard(idx);
+    });
+  });
+</script>
