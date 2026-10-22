@@ -21,14 +21,15 @@
               <span class="hidden sm:inline">Interactive Charrette Sandbox</span>
               <span class="sm:hidden font-mono text-[10px] uppercase tracking-wider font-semibold">Live Sandbox</span>
               
-              <!-- Close button for Full-Screen Studio Mode -->
+              <!-- Close button for Studio Modal / Full-Screen Mode -->
               <button
                 type="button"
                 id="btn-close-mobile-studio"
-                class="hidden p-1.5 rounded-lg text-slate-200 hover:text-white border border-white/25 bg-white/10 active:bg-white/25 transition-all cursor-pointer ml-2"
-                aria-label="Close Full-Screen Studio"
+                class="hidden items-center gap-1.5 px-2 py-1 sm:px-2.5 sm:py-1 rounded-lg text-slate-200 hover:text-white hover:bg-red-500/20 hover:border-red-500/40 border border-white/25 bg-white/10 active:bg-white/25 transition-all cursor-pointer ml-2 text-xs font-mono"
+                aria-label="Close Clearinfra Studio Preview"
               >
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <span class="hidden sm:inline text-[11px] font-mono opacity-90 tracking-tight">Close [Esc]</span>
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -2135,11 +2136,12 @@
   // Initial call to paint track gradient & initialize 3D building state
   updateSimulation();
 
-  // ─── FULL-SCREEN MOBILE CAD STUDIO MODAL LOGIC ───
+  // ─── FULL-SCREEN MOBILE / DESKTOP SUB-WINDOW PREVIEW MODAL LOGIC ───
   const studioCard = document.getElementById('studio-cad-card');
   const btnOpenStudio = document.getElementById('btn-open-mobile-studio');
   const btnCloseStudio = document.getElementById('btn-close-mobile-studio');
   let studioPlaceholder: Comment | null = null;
+  let studioModalBackdrop: HTMLElement | null = null;
 
   function openFullScreenStudio() {
     if (!studioCard) return;
@@ -2147,11 +2149,24 @@
       studioPlaceholder = document.createComment('studio-cad-card-placeholder');
       studioCard.parentNode?.insertBefore(studioPlaceholder, studioCard);
     }
-    document.body.appendChild(studioCard);
+
+    if (!studioModalBackdrop) {
+      studioModalBackdrop = document.createElement('div');
+      studioModalBackdrop.id = 'studio-modal-backdrop';
+      studioModalBackdrop.addEventListener('click', (e) => {
+        if (e.target === studioModalBackdrop) {
+          closeFullScreenStudio();
+        }
+      });
+    }
+
+    studioModalBackdrop.appendChild(studioCard);
+    document.body.appendChild(studioModalBackdrop);
+    studioModalBackdrop.classList.add('studio-backdrop-active');
     studioCard.classList.add('studio-fullscreen');
     document.body.style.overflow = 'hidden';
-    const globalHeader = document.querySelector('header');
-    if (globalHeader) globalHeader.style.display = 'none';
+
+    // On coarse mobile touch, enable rotate in full-screen mode
     if (orbitControls) {
       orbitControls.enableRotate = true;
       orbitControls.enableZoom = true;
@@ -2159,14 +2174,8 @@
     if (canvas) canvas.style.touchAction = 'none';
 
     setTimeout(() => {
-      if (container && renderer && camera) {
-        const w = container.clientWidth;
-        const h = container.clientHeight;
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-        renderer.setSize(w, h);
-      }
-    }, 60);
+      window.dispatchEvent(new Event('resize'));
+    }, 80);
   }
 
   function closeFullScreenStudio() {
@@ -2176,10 +2185,13 @@
       studioPlaceholder.remove();
       studioPlaceholder = null;
     }
+    if (studioModalBackdrop && studioModalBackdrop.parentNode) {
+      studioModalBackdrop.remove();
+      studioModalBackdrop.classList.remove('studio-backdrop-active');
+    }
     studioCard.classList.remove('studio-fullscreen');
     document.body.style.overflow = '';
-    const globalHeader = document.querySelector('header');
-    if (globalHeader) globalHeader.style.display = '';
+
     const isCoarseTouch = typeof window !== 'undefined' && (window.matchMedia('(pointer: coarse)').matches || ('ontouchstart' in window));
     if (orbitControls) {
       orbitControls.enableRotate = !isCoarseTouch;
@@ -2190,18 +2202,16 @@
     }
 
     setTimeout(() => {
-      if (container && renderer && camera) {
-        const w = container.clientWidth;
-        const h = container.clientHeight;
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-        renderer.setSize(w, h);
-      }
-    }, 60);
+      window.dispatchEvent(new Event('resize'));
+    }, 80);
   }
 
   btnOpenStudio?.addEventListener('click', openFullScreenStudio);
   btnCloseStudio?.addEventListener('click', closeFullScreenStudio);
+
+  // Global event listener for "For Geeks: Test 3D Twin" from Hero or Navbar
+  window.addEventListener('open-clearinfra-studio', openFullScreenStudio);
+  window.addEventListener('close-clearinfra-studio', closeFullScreenStudio);
 
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && studioCard?.classList.contains('studio-fullscreen')) {
@@ -2425,12 +2435,40 @@
       padding-bottom: 0.1rem !important;
     }
   }
+</style>
+
+<style is:global>
+  /* ─── MODAL BACKDROP (Shared) ─── */
+  #studio-modal-backdrop.studio-backdrop-active {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 999999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: rgba(10, 14, 23, 0.84) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    animation: studioFadeIn 0.22s ease-out forwards;
+  }
+
+  @keyframes studioFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ─── MOBILE FULL-SCREEN STUDIO (< 1024px): 100dvh Edge-to-Edge Touch Mode ─── */
+  @media (max-width: 1023px) {
+    #studio-modal-backdrop.studio-backdrop-active {
+      padding: 0 !important;
+      background-color: #0A0E17 !important;
+    }
 
   /* Full-Screen Mobile CAD Studio Experience - Strictly 100dvh, ZERO SCROLLING */
   #studio-cad-card.studio-fullscreen {
     position: fixed !important;
     inset: 0 !important;
-    z-index: 99999 !important;
+    z-index: 999999 !important;
     width: 100vw !important;
     height: 100vh !important;
     height: 100dvh !important;
@@ -2635,5 +2673,101 @@
     flex-shrink: 0 !important;
     background-color: #0d121c !important;
   }
-</style>
 
+  }
+
+  /* ─── DESKTOP ARCHITECTURAL SUB-WINDOW PREVIEW (>= 1024px): Floating CAD Modal ─── */
+  @media (min-width: 1024px) {
+    #studio-modal-backdrop.studio-backdrop-active {
+      padding: 2rem 2.5rem !important;
+    }
+
+    #studio-cad-card.studio-fullscreen {
+      position: relative !important;
+      inset: auto !important;
+      width: 100% !important;
+      max-width: 1120px !important;
+      height: auto !important;
+      max-height: 90vh !important;
+      border-radius: 1rem !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(52, 211, 153, 0.18) !important;
+      ring: 1px solid rgba(52, 211, 153, 0.25) !important;
+      background-color: #131924 !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      animation: studioSubWindowPop 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes studioSubWindowPop {
+      from {
+        opacity: 0;
+        transform: scale(0.96) translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* Top Bar in Sub-Window */
+    #studio-cad-card.studio-fullscreen .cad-card-topbar {
+      padding: 0.65rem 1.25rem !important;
+      background-color: #171E2B !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Close Button visible on Desktop Modal with Label */
+    #studio-cad-card.studio-fullscreen #btn-close-mobile-studio {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.35rem !important;
+      background-color: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      padding: 0.35rem 0.75rem !important;
+      border-radius: 0.5rem !important;
+      font-size: 0.7rem !important;
+      color: #e2e8f0 !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+    }
+    #studio-cad-card.studio-fullscreen #btn-close-mobile-studio:hover {
+      background-color: rgba(239, 68, 68, 0.2) !important;
+      border-color: rgba(239, 68, 68, 0.4) !important;
+      color: #fca5a5 !important;
+    }
+
+    /* Preserve Full 2-Column Grid on Desktop Sub-Window */
+    #studio-cad-card.studio-fullscreen > .grid {
+      display: grid !important;
+      grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+      flex: 1 1 auto !important;
+    }
+
+    /* 3D Viewport Column */
+    #studio-cad-card.studio-fullscreen .lg\:col-span-7 {
+      display: flex !important;
+      flex-direction: column !important;
+      min-height: 420px !important;
+      padding: 1rem 1.25rem !important;
+      border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-bottom: 0 !important;
+    }
+
+    #studio-cad-card.studio-fullscreen #three-container {
+      height: 380px !important;
+      min-height: 380px !important;
+      display: block !important;
+    }
+
+    /* Parameters & KPI Column */
+    #studio-cad-card.studio-fullscreen .lg\:col-span-5 {
+      display: flex !important;
+      flex-direction: column !important;
+      padding: 1rem 1.25rem !important;
+      background-color: #121824 !important;
+      border-top: 0 !important;
+    }
+  }
+</style>
