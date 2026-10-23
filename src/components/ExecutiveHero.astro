@@ -71,19 +71,15 @@
 
         <!-- The Commercial Hook & Interactive "smarter." 3D Gateway (Option 1) -->
         <div class="hero-anim-3 max-w-2xl mx-auto lg:mx-0">
-          <div class="flex items-center justify-center lg:justify-start flex-wrap gap-x-2.5 gap-y-2 text-base sm:text-lg lg:text-xl xl:text-2xl font-normal text-slate-200/90 leading-snug drop-shadow-sm">
-            <span class="text-slate-200/95 font-normal whitespace-nowrap">
-              Together, we engineer
-            </span>
-
-            <!-- Interactive "smarter." Gateway Pill (Launches 3D Twin) -->
+          <p class="text-base sm:text-lg lg:text-xl xl:text-2xl font-normal text-slate-200/90 leading-snug drop-shadow-sm text-center lg:text-left">
+            <span class="text-slate-200/95 font-normal whitespace-nowrap">Together, we engineer</span>
             <button
               type="button"
               id="hero-smarter-science-trigger"
-              class="tech-badge-container relative -top-[1.5px] sm:-top-[2px] inline-flex items-center group cursor-pointer select-none focus:outline-none align-middle"
+              class="tech-badge-container relative inline-flex items-center group cursor-pointer select-none focus:outline-none align-middle ml-2 sm:ml-2.5"
               aria-label="Launch Clearinfra Studio 3D Twin Sandbox"
             >
-              <!-- Circuit Trace Accent Line (extending delicately from the right) -->
+              <!-- Circuit Trace Accent Line (strictly position: absolute; left: 100% - out of document flow) -->
               <svg class="circuit-trace-svg absolute left-full top-1/2 -translate-y-1/2 w-8 h-4 pointer-events-none overflow-visible text-emerald-400/60 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 32 16" fill="none">
                 <path class="circuit-trace-path" d="M0 8h14l5-5h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
                 <circle cx="29" cy="3" r="1.5" fill="currentColor" />
@@ -100,7 +96,7 @@
                 <span class="text-[11px] text-emerald-400 font-mono pl-0.5 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
               </span>
             </button>
-          </div>
+          </p>
         </div>
 
         <!-- Action CTAs: High-Prestige Emerald Sheen + Frosted Glass -->
@@ -173,8 +169,12 @@
     transform: translateY(10px);
     animation: heroFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.28s forwards;
   }
-  /* "smarter science." Tech Badge with Deliberate ~300ms Micro-Pause Reveal */
+  /* "smarter." Tech Badge with Baseline Optical Alignment */
   .tech-badge-container {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    position: relative;
     opacity: 0;
     transform: scale(0.92) translateY(5px);
     animation: techBadgeReveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.85s forwards;
@@ -195,6 +195,13 @@
       transform: scale(1) translateY(0);
       filter: drop-shadow(0 0 14px rgba(52, 211, 153, 0.22));
     }
+  }
+  .circuit-trace-svg {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
   }
   .circuit-trace-path {
     stroke-dasharray: 30;
