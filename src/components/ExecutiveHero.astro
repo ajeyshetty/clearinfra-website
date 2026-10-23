@@ -69,11 +69,35 @@
           <span class="block text-slate-100">has to cost more <span class="whitespace-nowrap text-emerald-400 drop-shadow-[0_0_24px_rgba(52,211,153,0.35)] hero-accent-pulse">to build?</span></span>
         </h1>
 
-        <!-- The Answer / Commercial Promise + Clear Delivery Model -->
+        <!-- The Commercial Hook & "smarter science." Tech Badge -->
         <div class="hero-anim-3 max-w-2xl mx-auto lg:mx-0">
-          <p class="text-base sm:text-lg lg:text-xl xl:text-2xl font-normal text-slate-200/90 leading-snug drop-shadow-sm">
-            We help teams make lower-carbon, code-aligned design decisions <span class="text-white font-medium">before capital is committed.</span>
-          </p>
+          <div class="text-base sm:text-lg lg:text-xl xl:text-2xl font-normal text-slate-200/90 leading-snug drop-shadow-sm [text-wrap:balance]">
+            <span class="block text-slate-200/95 font-normal">
+              The future of high-performance buildings doesn’t cost more.
+            </span>
+            <span class="inline-flex items-center justify-center lg:justify-start flex-wrap gap-x-2 gap-y-1.5 mt-1 sm:mt-1.5 text-slate-300">
+              <span class="text-slate-300 font-normal">It’s just</span>
+              
+              <!-- "smarter science." Tech Badge with Deliberate Micro-Pause Reveal -->
+              <span class="tech-badge-container relative inline-flex items-center align-middle">
+                <!-- Circuit Trace Accent Line (extending delicately from the right) -->
+                <svg class="circuit-trace-svg absolute left-full top-1/2 -translate-y-1/2 w-7 h-4 pointer-events-none overflow-visible text-emerald-400/50" viewBox="0 0 28 16" fill="none">
+                  <path class="circuit-trace-path" d="M0 8h12l5-5h9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+                  <circle cx="27" cy="3" r="1.5" fill="currentColor" />
+                </svg>
+
+                <!-- Core Pill / Chip Container -->
+                <span class="smarter-science-pill relative inline-flex items-center gap-1.5 px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-[#0A1419]/85 backdrop-blur-md border border-emerald-400/40 text-emerald-300 font-mono text-[0.85em] sm:text-[0.82em] font-medium tracking-tight shadow-[0_0_16px_rgba(52,211,153,0.22)] select-none">
+                  <!-- Animated radar / circuit node dot -->
+                  <span class="relative flex h-2 w-2 shrink-0">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                  </span>
+                  <span class="text-emerald-200 font-semibold tracking-wide">smarter science.</span>
+                </span>
+              </span>
+            </span>
+          </div>
         </div>
 
         <!-- Action CTAs: High-Prestige Emerald Sheen + Frosted Glass -->
@@ -90,10 +114,10 @@
 
           <a
             href="#outcomes"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-xs sm:text-sm font-medium bg-slate-950/70 hover:bg-white/10 text-slate-200 hover:text-white border border-white/20 hover:border-emerald-500/40 backdrop-blur-xl transition-all duration-200 whitespace-nowrap group shadow-lg"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-xs sm:text-sm font-medium bg-slate-950/80 hover:bg-slate-900 text-slate-100 hover:text-white border border-white/25 hover:border-emerald-400/50 backdrop-blur-xl transition-all duration-200 whitespace-nowrap group shadow-lg"
           >
             <span>See What We Optimize</span>
-            <svg class="w-4 h-4 text-slate-400 group-hover:text-emerald-400 group-hover:translate-y-0.5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-4 h-4 text-emerald-400 group-hover:translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </a>
@@ -146,15 +170,48 @@
     transform: translateY(10px);
     animation: heroFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.28s forwards;
   }
+  /* "smarter science." Tech Badge with Deliberate ~300ms Micro-Pause Reveal */
+  .tech-badge-container {
+    opacity: 0;
+    transform: scale(0.92) translateY(5px);
+    animation: techBadgeReveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.85s forwards;
+  }
+  @keyframes techBadgeReveal {
+    0% {
+      opacity: 0;
+      transform: scale(0.92) translateY(5px);
+      filter: drop-shadow(0 0 0px rgba(52, 211, 153, 0));
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.02) translateY(0);
+      filter: drop-shadow(0 0 24px rgba(52, 211, 153, 0.45));
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      filter: drop-shadow(0 0 14px rgba(52, 211, 153, 0.22));
+    }
+  }
+  .circuit-trace-path {
+    stroke-dasharray: 30;
+    stroke-dashoffset: 30;
+    animation: circuitTraceDraw 0.5s ease-out 1.05s forwards;
+  }
+  @keyframes circuitTraceDraw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
   .hero-anim-4 {
     opacity: 0;
     transform: translateY(10px);
-    animation: heroFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.38s forwards;
+    animation: heroFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 1.05s forwards;
   }
   .hero-anim-5 {
     opacity: 0;
     transform: translateY(8px);
-    animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.48s forwards;
+    animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.15s forwards;
   }
 
   @keyframes heroFadeUp {
@@ -203,6 +260,8 @@
     .hero-anim-3,
     .hero-anim-4,
     .hero-anim-5,
+    .tech-badge-container,
+    .circuit-trace-path,
     .hero-accent-pulse {
       animation: none !important;
       opacity: 1 !important;
@@ -222,6 +281,7 @@
   /* Monumental fluid typography scale */
   .hero-headline {
     font-size: clamp(1.65rem, 3.6vw, 4.1rem);
+    text-wrap: balance;
   }
 
   /* Responsive tuning for compact laptop heights without crushing the text */
