@@ -122,7 +122,7 @@
           </a>
         </div>
 
-        <!-- Institutional Engineering Credentials + Geek Fast-Track Trigger (Option A) -->
+        <!-- Institutional Engineering Credentials -->
         <div class="hero-anim-5 hidden lg:flex pt-2 flex-wrap items-center justify-start gap-x-3 gap-y-2 text-xs font-mono tracking-wider text-slate-400">
           <span class="text-slate-500 font-normal">BUILT ON:</span>
           <span class="text-slate-200 font-medium">ISO 52016-1</span>
@@ -130,18 +130,6 @@
           <span class="text-slate-200 font-medium">NBC 2026 &amp; ECBC</span>
           <span class="text-slate-600">·</span>
           <span class="text-slate-200 font-medium">EnergyPlus v25.1</span>
-          <span class="text-slate-600">·</span>
-          <button
-            type="button"
-            id="hero-geek-trigger"
-            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 hover:text-emerald-300 border border-emerald-500/30 transition-all duration-200 group text-[10px] sm:text-xs font-mono tracking-normal shadow-sm cursor-pointer"
-            aria-label="Open 3D Physics Simulation Sandbox"
-          >
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-slate-400 font-normal">For Geeks:</span>
-            <span class="font-medium text-emerald-300 group-hover:underline">Test 3D Twin</span>
-            <span class="text-emerald-400 transition-transform group-hover:translate-x-0.5">→</span>
-          </button>
         </div>
 
       </div>
@@ -345,11 +333,6 @@
 </style>
 
 <script>
-  const geekBtn = document.getElementById('hero-geek-trigger');
-  geekBtn?.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.dispatchEvent(new CustomEvent('open-clearinfra-studio'));
-  });
 
   const smarterScienceBtn = document.getElementById('hero-smarter-science-trigger');
   smarterScienceBtn?.addEventListener('click', (e) => {
