@@ -86,7 +86,7 @@
               </svg>
 
               <!-- Core Pill / Chip Container -->
-              <span class="smarter-science-pill relative inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-[#0A1419]/90 hover:bg-[#0E1B22] backdrop-blur-md border border-emerald-400/40 hover:border-emerald-300 text-emerald-300 hover:text-emerald-200 font-mono text-xs sm:text-sm font-medium tracking-tight shadow-[0_0_16px_rgba(52,211,153,0.22)] hover:shadow-[0_0_24px_rgba(52,211,153,0.45)] transition-all duration-200 active:scale-[0.97]">
+              <span class="smarter-badge relative inline-flex items-center gap-1.5 px-3.5 py-1 sm:px-4 sm:py-1 rounded-full backdrop-blur-md text-emerald-300 hover:text-emerald-200 font-mono text-xs sm:text-sm font-medium tracking-tight">
                 <!-- Sparkle / Asterisk Icon ✻ -->
                 <svg class="w-3.5 h-3.5 text-emerald-400 group-hover:rotate-45 transition-transform duration-300 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
                   <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14" />
@@ -169,6 +169,48 @@
     transform: translateY(10px);
     animation: heroFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.28s forwards;
   }
+  /* Tactile "Touch Me" Badge Styling */
+  .smarter-badge {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: radial-gradient(120% 120% at 50% 0%, rgba(18, 38, 32, 0.85) 0%, rgba(6, 14, 12, 0.95) 100%);
+    border: 1px solid rgba(52, 211, 153, 0.45);
+    box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.6), 0 0 12px rgba(16, 185, 129, 0.2);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .smarter-badge:hover,
+  .group:hover .smarter-badge {
+    border-color: rgba(110, 231, 183, 0.7);
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.6), 0 0 18px rgba(52, 211, 153, 0.4);
+  }
+
+  /* Light sheen sweep every 4.5 seconds */
+  .smarter-badge::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transform: skewX(-20deg);
+    animation: glint 4.5s infinite ease-in-out;
+    pointer-events: none;
+  }
+
+  @keyframes glint {
+    0%, 75% { left: -100%; }
+    85%, 100% { left: 200%; }
+  }
+
+  /* Responsive Physical Press */
+  .smarter-badge:active,
+  .group:active .smarter-badge {
+    transform: scale(0.96) translateY(1px);
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.6);
+  }
+
   /* "smarter." Tech Badge with Baseline Optical Alignment */
   .tech-badge-container {
     display: inline-flex;
