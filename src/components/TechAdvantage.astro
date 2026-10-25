@@ -1,41 +1,60 @@
 ---
 import CharretteStudioCard from './CharretteStudioCard.astro';
 
-const capabilities = [
+const pipelineStages = [
   {
     num: "01",
-    tag: "FIRST-PRINCIPLES PHYSICS",
-    title: "Coupled Envelope & Chiller Sizing",
-    desc: "Rules of thumb can leave plant capacity unexamined until late in design. Our in-house ISO 52016-1 engine produces hourly coil heat-transfer estimates, helping MEP teams review central-plant capacity before equipment orders are placed."
+    stage: "PROJECT INPUTS",
+    badge: "BIM & COST DB",
+    accent: "sky",
+    title: "Massing, 8,760 Climate & Cost DB",
+    desc: "Architectural drawings, hourly TMY weather files, and Indian equipment pricing feed directly into the live model.",
+    nodes: [
+      { id: "node-massing", name: "3D Massing & Envelope", meta: "WWR · Orientation · U-Value", tag: "BIM" },
+      { id: "node-weather", name: "8,760 Hourly Weather", meta: "DBT · WBT · Solar DNI", tag: "TMY" },
+      { id: "node-cost", name: "India Cost & Spec DB", meta: "2025–26 INR · Glazing · HVAC", tag: "INR" }
+    ]
   },
   {
     num: "02",
-    tag: "STATUTORY INTELLIGENCE",
-    title: "NBC 2026 & ECBC Graph-RAG Engine",
-    desc: "Our advisory practice is backed by a structured Graph-RAG knowledge engine covering the National Building Code 2026 (SP 7:2026 Parts B–F) and ECBC 2017. It checks applicable clauses with citations where the project inputs exist, and flags the rest for engineer review."
+    stage: "CLEARINFRA CORE",
+    badge: "ACTIVE KERNEL",
+    accent: "emerald",
+    isCore: true,
+    title: "ISO 52016-1 + AI Copilot + Graph-RAG",
+    desc: "Couples first-principles thermal physics with multi-objective AI optimization and statutory code rulesets.",
+    nodes: [
+      { id: "node-physics", name: "Multi-Node ISO 52016-1 Solver", meta: "Hourly Coil & Psychrometric HVAC", tag: "PHYSICS" },
+      { id: "node-agent", name: "27-Tool AI & Pareto Optimizer", meta: "Automated CAPEX vs. EPI Sweeps", tag: "AI AGENT" },
+      { id: "node-compliance", name: "NBC 2026 & ECBC Graph-RAG", meta: "SP 7:2026 Parts B–F Clause Check", tag: "CODE RAG" }
+    ]
   },
   {
     num: "03",
-    tag: "TRANSPARENT AUDITABILITY",
-    title: "Syntax-Verified EnergyPlus (.idf) Models",
-    desc: "We prepare auditable, syntax-checked EnergyPlus v25.1 simulation files (.idf) and engineering calculation sheets to support peer review and statutory submittals."
+    stage: "PROJECT OUTPUTS",
+    badge: "DELIVERABLES",
+    accent: "teal",
+    title: "CAPEX Delta, Plant BoQ & .idf Models",
+    desc: "Delivers immediate commercial and sizing clarity in the session, backed by audit-ready engineering submittals.",
+    nodes: [
+      { id: "node-capex", name: "Net CAPEX & Chiller TR Sizing", meta: "Upfront Cost Delta · Day-1 ROI", tag: "FINANCE" },
+      { id: "node-statutory", name: "Clause-Cited Statutory Dossier", meta: "NBC 2026 & ECBC Verification", tag: "SUBMITTAL" },
+      { id: "node-eplus", name: "Verified EnergyPlus v25.1 (.idf)", meta: "Run-Checked BEM Calculation Sheet", tag: "IDF" }
+    ]
   }
 ];
 ---
 
-<section id="advantage" class="py-12 sm:py-16 lg:py-20 bg-[#131924] border-y border-white/10 text-white relative overflow-hidden">
-  <!-- Blueprint Background Grid -->
-  <div class="absolute inset-0 bg-blueprint-sub pointer-events-none opacity-30" aria-hidden="true"></div>
-  
+<section id="advantage" class="pt-5 pb-12 sm:pt-6 sm:pb-16 lg:pt-6 lg:pb-20 scroll-mt-16 bg-[#0B0F17] border-y border-white/[0.08] text-white relative overflow-hidden">
   <!-- Subtle Ambient Glow -->
-  <div class="absolute -top-32 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -top-40 left-1/3 w-[540px] h-[540px] bg-emerald-500/[0.06] rounded-full blur-3xl pointer-events-none"></div>
 
-  <div class="w-full max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 relative z-10">
+  <div class="w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
     
-    <!-- Section Header: 50/50 Split Datum -->
-    <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 items-end text-center sm:text-left mb-8 sm:mb-10">
+    <!-- Section Header: Clean 50/50 Split -->
+    <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 items-end text-center sm:text-left mb-3.5 sm:mb-4">
       <div class="lg:col-span-6 space-y-2 mx-auto sm:mx-0">
-        <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-emerald-300 text-[10px] sm:text-xs font-mono tracking-wider">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-emerald-300 text-[11px] font-mono tracking-wider">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
           <span>OUR IN-HOUSE ADVISORY ADVANTAGE</span>
         </div>
@@ -44,111 +63,204 @@ const capabilities = [
           <span class="block text-emerald-400">not in 3-week report cycles.</span>
         </h2>
       </div>
-      <div class="lg:col-span-6 relative sm:pl-6 lg:pl-8 py-1 mx-auto sm:mx-0">
-        <div class="hidden sm:block datum-line-v absolute left-0 top-1 bottom-1 w-[2px] rounded-full bg-gradient-to-b from-emerald-500 via-emerald-500/40 to-transparent" aria-hidden="true"></div>
+      <div class="lg:col-span-6 relative sm:pl-6 lg:pl-8 py-0.5 mx-auto sm:mx-0">
+        <div class="hidden sm:block datum-line-v absolute left-0 top-1 bottom-1 w-[2px] rounded-full bg-gradient-to-b from-emerald-500 via-emerald-500/30 to-transparent" aria-hidden="true"></div>
         <p class="ci-section-lead text-slate-300">
-          We engineered our own in-house computational physics engine so our senior advisors can test envelope, daylight and HVAC trade-offs with your team in a working session, with assumptions visible as the design changes.
+          We engineered our own computational physics engine so our senior advisors can test envelope, daylight, and HVAC trade-offs live with your team—with CAPEX, ROI, and carbon impact visible as the design changes.
         </p>
       </div>
     </div>
 
-    <!-- The In-House Engine Demonstration (Live Interactive CAD Window) -->
-    <div class="reveal mb-10 sm:mb-14">
-      <div class="max-w-5xl mx-auto mb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono px-1">
-        <div class="flex items-center gap-2 text-slate-300">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="font-medium text-white">THE IN-HOUSE CHARRETTE ENGINE</span>
-          <span class="hidden sm:inline text-slate-500">|</span>
-          <span class="hidden sm:inline text-slate-400 font-mono text-[11px]">Powered by ISO 52016-1 &amp; NBC 2026 Kernel</span>
-        </div>
-        <div class="text-[11px] text-emerald-400 flex items-center gap-1.5">
-          <span>Designed for live schematic design sessions</span>
-          <span>→</span>
-        </div>
-      </div>
-
-      <!-- Live 3D Twin & Parameter Controls -->
+    <!-- CINEMA-WIDE CLEARINFRA STUDIO SANDBOX -->
+    <div class="reveal mb-6 sm:mb-8 w-full">
       <CharretteStudioCard />
     </div>
 
-    <!-- MOBILE SNAP-SCROLL TOUCH DECK (< 768px) -->
-    <div class="md:hidden">
-      <!-- Status & Swipe Hint -->
-      <div class="flex items-center justify-between mb-3 px-1 text-slate-400 font-mono text-[10px]">
-        <div class="flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span id="adv-deck-counter" class="font-semibold text-slate-200">01 / 03 CORE CAPABILITIES</span>
-        </div>
-        <div class="flex items-center gap-1 text-[11px] text-slate-400">
-          <span class="text-[9px] uppercase tracking-wider">Swipe deck</span>
-          <span>→</span>
-        </div>
+    <!-- LIVE INTERACTIVE PIPELINE TRACE HEADER BAR -->
+    <div 
+      id="pipeline-trace-bar" 
+      class="reveal flex items-center justify-between px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-[#0E1522] border border-white/10 mb-2 sm:mb-5 font-mono text-xs select-none transition-all duration-200"
+    >
+      <div class="flex items-center gap-2 min-w-0">
+        <span id="pipeline-trace-dot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0 transition-colors duration-200"></span>
+        <span id="pipeline-trace-text" class="text-slate-300 font-medium text-[10px] sm:text-xs leading-snug sm:truncate transition-colors duration-200">
+          Hover or tap any module to trace end-to-end physics connectivity
+        </span>
       </div>
-
-      <!-- Snap Track with peek on right -->
-      <div 
-        id="adv-carousel"
-        class="flex gap-4 overflow-x-auto pb-3 pt-1 snap-x snap-mandatory scrollbar-none -mx-6 px-6"
-        style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch;"
-      >
-        {capabilities.map((item, idx) => (
-          <div 
-            data-adv-card={idx}
-            class="snap-center shrink-0 w-[84vw] max-w-[325px] rounded-2xl bg-[#131924] border border-white/10 p-5 shadow-xl flex flex-col justify-between text-left"
-          >
-            <div>
-              <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-white/[0.08]">
-                <span class="text-xs font-mono text-emerald-400 font-semibold">{item.num}</span>
-                <span class="text-[9px] font-mono text-slate-400 uppercase tracking-wider">{item.tag}</span>
-              </div>
-              <h3 class="text-base font-semibold text-white mb-2 leading-snug">
-                {item.title}
-              </h3>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                {item.desc}
-              </p>
-            </div>
-            <div class="pt-3 mt-3 border-t border-white/[0.08] text-[10px] font-mono text-emerald-400/80 flex items-center gap-1.5">
-              <span class="w-1 h-1 rounded-full bg-emerald-400"></span>
-              <span>Traceable first-principles pipeline</span>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <!-- Dot Indicators -->
-      <div class="flex items-center justify-center gap-1.5 pt-2" id="adv-dots">
-        {capabilities.map((_, idx) => (
-          <button
-            type="button"
-            data-adv-dot-index={idx}
-            class={`adv-dot h-1.5 rounded-full transition-all duration-200 ${idx === 0 ? 'w-5 bg-emerald-400' : 'w-1.5 bg-slate-700'}`}
-            aria-label={`Jump to capability ${idx + 1}`}
-          ></button>
-        ))}
+      <div class="hidden sm:flex items-center gap-2 shrink-0 text-[10px] text-slate-500 font-mono uppercase tracking-widest">
+        <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+        <span>Interactive Connectivity</span>
       </div>
     </div>
 
-    <!-- DESKTOP / TABLET GRID (>= 768px) -->
-    <div class="hidden md:grid md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 text-left">
-      {capabilities.map((item) => (
-        <div class="rounded-xl bg-white/[0.04] border border-white/10 hover:border-emerald-500/40 p-5 sm:p-6 transition-all duration-200 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.06]">
-              <span class="text-xs font-mono text-emerald-400 font-semibold">{item.num}</span>
-              <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">{item.tag}</span>
+    <!-- MOBILE CONNECTED 3-STAGE VERTICAL STACK (< 768px) -->
+    <div id="mobile-pipeline-stack" class="md:hidden flex flex-col">
+      {pipelineStages.map((item, idx) => (
+        <>
+          <div 
+            data-adv-card={idx}
+            class={`rounded-xl p-2.5 text-left transition-all duration-200 ${
+              item.isCore
+                ? 'bg-gradient-to-b from-[#0E1A26] to-[#0C141E] border border-emerald-500/35 shadow-md shadow-emerald-950/20'
+                : 'bg-[#101622]/90 border border-white/[0.08]'
+            }`}
+          >
+            <!-- Compact Single-Row Stage Header (Zero Truncation) -->
+            <div class="flex items-center justify-between gap-2 pb-1.5 mb-1.5 border-b border-white/[0.07]">
+              <span class={`text-[9.5px] font-mono font-semibold tracking-wider flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+                item.isCore ? 'text-emerald-400' : 'text-sky-400'
+              }`}>
+                <span class={`w-1.5 h-1.5 rounded-full shrink-0 ${item.isCore ? 'bg-emerald-400 animate-pulse' : 'bg-sky-400'}`}></span>
+                {item.num} // {item.stage}
+              </span>
+              <h3 class="text-[10.5px] sm:text-xs font-semibold text-white text-right leading-tight">
+                {item.title}
+              </h3>
             </div>
-            <h3 class="text-base sm:text-lg font-semibold text-white mb-2">
-              {item.title}
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              {item.desc}
-            </p>
+
+            <!-- Compact 3-Node Rows (Full Width, Zero Truncation) -->
+            <div class="grid grid-cols-1 gap-1">
+              {item.nodes.map((node) => (
+                <div 
+                  data-pipeline-node={node.id}
+                  class={`pipeline-node flex items-center justify-between gap-2 px-2.5 py-1 rounded-lg border transition-all duration-200 cursor-pointer select-none active:scale-[0.99] ${
+                    item.isCore
+                      ? 'bg-[#091119]/90 border-emerald-500/20'
+                      : 'bg-[#0B0F17]/90 border-white/[0.07]'
+                  }`}
+                >
+                  <div class="min-w-0">
+                    <span class="text-[11px] font-medium text-slate-100 block leading-tight node-title">{node.name}</span>
+                    <span class="text-[9.5px] font-mono text-slate-400 block leading-tight mt-0.5">{node.meta}</span>
+                  </div>
+                  <span class={`node-tag text-[8.5px] font-mono px-1.5 py-0.5 rounded border shrink-0 transition-colors duration-200 ${
+                    item.isCore
+                      ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+                      : 'bg-white/[0.04] text-slate-300 border-white/10'
+                  }`}>
+                    {node.tag}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
-          <div class="pt-3 mt-3 border-t border-white/[0.06] text-[11px] font-mono text-emerald-400/80">
-            <span>Traceable first-principles pipeline</span>
+
+          {/* Compact Vertical Flow Connector between Stage 01 -> 02 and Stage 02 -> 03 */}
+          {idx < pipelineStages.length - 1 && (
+            <div 
+              data-connector={idx === 0 ? 'ingest' : 'export'}
+              class="pipeline-connector flex items-center justify-center gap-2 py-0.5 select-none transition-all duration-200" 
+              aria-hidden="true"
+            >
+              <div class="connector-line-left w-8 h-[1px] bg-gradient-to-r from-transparent to-emerald-400/50 transition-all duration-200"></div>
+              <div class="connector-badge px-2 py-0.5 rounded-full bg-[#111A27] border border-emerald-500/40 flex items-center gap-1 text-emerald-400 shadow-sm transition-all duration-200">
+                <svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+                <span class="connector-label text-[8px] font-mono text-slate-400 uppercase tracking-widest transition-colors duration-200">
+                  {idx === 0 ? 'Ingest' : 'Export'}
+                </span>
+              </div>
+              <div class="connector-line-right w-8 h-[1px] bg-gradient-to-l from-transparent to-emerald-400/50 transition-all duration-200"></div>
+            </div>
+          )}
+        </>
+      ))}
+    </div>
+
+    <!-- DESKTOP & TABLET CONNECTED 3-STAGE ENGINE FLOW (>= 768px) -->
+    <div id="desktop-pipeline-grid" class="reveal hidden md:grid md:grid-cols-[1fr_auto_1.06fr_auto_1fr] items-stretch gap-3 lg:gap-4 text-left">
+      {pipelineStages.map((item, idx) => (
+        <>
+          <div class={`rounded-2xl p-5 lg:p-6 transition-all duration-200 flex flex-col justify-between relative ${
+            item.isCore
+              ? 'bg-gradient-to-b from-[#0E1A26] to-[#0C141E] border border-emerald-500/35 shadow-xl shadow-emerald-950/15 ring-1 ring-emerald-400/15'
+              : 'bg-[#101622]/85 border border-white/[0.08] hover:border-white/[0.15]'
+          }`}>
+            <div>
+              <!-- Stage Header -->
+              <div class="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-white/[0.07]">
+                <span class={`text-[10.5px] font-mono font-semibold tracking-wider flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+                  item.isCore ? 'text-emerald-400' : 'text-sky-400'
+                }`}>
+                  <span class={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                    item.isCore ? 'bg-emerald-400 animate-pulse' : 'bg-sky-400'
+                  }`}></span>
+                  {item.num} // {item.stage}
+                </span>
+                <span class={`text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full border whitespace-nowrap shrink-0 ${
+                  item.isCore
+                    ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+                    : 'bg-white/[0.03] text-slate-400 border-white/[0.08]'
+                }`}>
+                  {item.badge}
+                </span>
+              </div>
+
+              <!-- Stage Title & Lead -->
+              <h3 class="text-base lg:text-[17px] font-semibold text-white mb-1.5 leading-snug">
+                {item.title}
+              </h3>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                {item.desc}
+              </p>
+            </div>
+
+            <!-- 3 Structured Node Chips inside each Stage -->
+            <div class="space-y-2">
+              {item.nodes.map((node) => (
+                <div 
+                  data-pipeline-node={node.id}
+                  class={`pipeline-node flex items-center justify-between gap-2.5 px-3 py-2 rounded-xl border transition-all duration-200 cursor-pointer select-none ${
+                    item.isCore
+                      ? 'bg-[#091119]/90 border-emerald-500/20'
+                      : 'bg-[#0B0F17]/80 border-white/[0.06]'
+                  }`}
+                  tabindex="0"
+                  role="button"
+                  aria-label={`Trace ${node.name}`}
+                >
+                  <div class="min-w-0">
+                    <span class="text-xs font-medium text-slate-100 block truncate node-title">{node.name}</span>
+                    <span class="text-[10px] font-mono text-slate-400 block mt-0.5 truncate">{node.meta}</span>
+                  </div>
+                  <span class={`node-tag text-[9px] font-mono px-1.5 py-0.5 rounded border shrink-0 font-medium transition-colors duration-200 ${
+                    item.isCore
+                      ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+                      : 'bg-white/[0.04] text-slate-300 border-white/10'
+                  }`}>
+                    {node.tag}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+
+          {/* Animated Flow Connector between Stage 01 -> 02 and Stage 02 -> 03 */}
+          {idx < pipelineStages.length - 1 && (
+            <div 
+              id={idx === 0 ? 'connector-ingest' : 'connector-export'}
+              data-connector={idx === 0 ? 'ingest' : 'export'}
+              class="pipeline-connector flex flex-col items-center justify-center py-6 select-none transition-all duration-200" 
+              aria-hidden="true"
+            >
+              <div class="flex items-center">
+                <div class="connector-line-left w-4 lg:w-7 h-[1.5px] bg-gradient-to-r from-sky-400/40 to-emerald-400/80 relative overflow-hidden transition-all duration-200">
+                  <div class="connector-pulse absolute inset-0 bg-emerald-300 animate-pulse"></div>
+                </div>
+                <div class="connector-badge w-6 h-6 rounded-full bg-[#111A27] border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-md shadow-emerald-950/40 -mx-0.5 transition-all duration-200">
+                  <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+                <div class="connector-line-right w-4 lg:w-7 h-[1.5px] bg-gradient-to-r from-emerald-400/80 to-emerald-400/30 transition-all duration-200"></div>
+              </div>
+              <span class="connector-label text-[9px] font-mono text-slate-500 uppercase tracking-widest mt-1.5 transition-colors duration-200">
+                {idx === 0 ? 'Ingest' : 'Export'}
+              </span>
+            </div>
+          )}
+        </>
       ))}
     </div>
 
@@ -156,64 +268,274 @@ const capabilities = [
 </section>
 
 <script>
-  const advCarousel = document.getElementById('adv-carousel');
-  const advCounter = document.getElementById('adv-deck-counter');
-  const advDots = document.querySelectorAll('.adv-dot');
-  const advCards = document.querySelectorAll<HTMLElement>('[data-adv-card]');
+  // ─── INTERACTIVE HOVER & TAP CONNECTIVITY TRACE LOGIC ───
+  const traceBar = document.getElementById('pipeline-trace-bar');
+  const traceText = document.getElementById('pipeline-trace-text');
+  const traceDot = document.getElementById('pipeline-trace-dot');
+  const allNodes = document.querySelectorAll<HTMLElement>('.pipeline-node');
+  const connIngests = document.querySelectorAll<HTMLElement>('[data-connector="ingest"]');
+  const connExports = document.querySelectorAll<HTMLElement>('[data-connector="export"]');
 
-  let advCurrentIndex = 0;
-  const advTotal = advCards.length;
+  const defaultTraceLabel = 'Hover or tap any module to trace end-to-end physics connectivity';
+  const defaultTraceDot = '#10b981';
 
-  function updateActiveAdvCard(index: number) {
-    if (index < 0 || index >= advTotal) return;
-    advCurrentIndex = index;
-    if (advCounter) {
-      advCounter.textContent = `0${index + 1} / 0${advTotal} CORE CAPABILITIES`;
+  interface TraceConfig {
+    label: string;
+    dotColor: string;
+    nodes: string[];
+    connectors: string[];
+  }
+
+  const traceMap: Record<string, TraceConfig> = {
+    'node-massing': {
+      label: 'TRACING: Building Massing → Physics + AI Agent + NBC 2026 Graph-RAG → CAPEX, Code Dossier & .idf',
+      dotColor: '#38bdf8',
+      nodes: ['node-massing', 'node-physics', 'node-agent', 'node-compliance', 'node-capex', 'node-statutory', 'node-eplus'],
+      connectors: ['connector-ingest', 'connector-export']
+    },
+    'node-weather': {
+      label: 'TRACING: 8,760 Climate → ISO 52016-1 & ECBC Code Engine → Coil Loads, Code Dossier & .idf',
+      dotColor: '#38bdf8',
+      nodes: ['node-weather', 'node-physics', 'node-compliance', 'node-capex', 'node-statutory', 'node-eplus'],
+      connectors: ['connector-ingest', 'connector-export']
+    },
+    'node-cost': {
+      label: 'TRACING: India Cost DB → 27-Tool AI Pareto Sweeps → Net CAPEX & Day-1 Payback',
+      dotColor: '#34d399',
+      nodes: ['node-cost', 'node-agent', 'node-capex'],
+      connectors: ['connector-ingest', 'connector-export']
+    },
+    'node-physics': {
+      label: 'TRACING: Multi-Node Thermal Solver → Hourly Coil Peak → Chiller Right-Sizing & .idf Export',
+      dotColor: '#10b981',
+      nodes: ['node-massing', 'node-weather', 'node-physics', 'node-capex', 'node-eplus'],
+      connectors: ['connector-ingest', 'connector-export']
+    },
+    'node-agent': {
+      label: 'TRACING: 27-Tool AI Copilot → Automated Trade-Off Sweeps → Lowest CAPEX Pareto Sweet Spot',
+      dotColor: '#38bdf8',
+      nodes: ['node-massing', 'node-cost', 'node-agent', 'node-capex'],
+      connectors: ['connector-ingest', 'connector-export']
+    },
+    'node-compliance': {
+      label: 'TRACING: NBC 2026 Graph-RAG → Clause Verification → Statutory Dossier Submittal',
+      dotColor: '#fbbf24',
+      nodes: ['node-massing', 'node-weather', 'node-compliance', 'node-statutory'],
+      connectors: ['connector-ingest', 'connector-export']
+    },
+    'node-capex': {
+      label: 'TRACE: Net CAPEX & Chiller TR ← Thermal Physics Solver & 2025–26 Indian Cost DB',
+      dotColor: '#10b981',
+      nodes: ['node-capex', 'node-physics', 'node-agent', 'node-cost', 'node-massing', 'node-weather'],
+      connectors: ['connector-ingest', 'connector-export']
+    },
+    'node-statutory': {
+      label: 'TRACE: Statutory Dossier ← NBC 2026 (SP 7:2026 Parts B–F) & ECBC Graph-RAG Engine',
+      dotColor: '#fbbf24',
+      nodes: ['node-statutory', 'node-compliance', 'node-massing', 'node-weather'],
+      connectors: ['connector-ingest', 'connector-export']
+    },
+    'node-eplus': {
+      label: 'TRACE: EnergyPlus v25.1 (.idf) Submittal ← Multi-Node ISO 52016-1 Physics Core',
+      dotColor: '#38bdf8',
+      nodes: ['node-eplus', 'node-physics', 'node-massing', 'node-weather'],
+      connectors: ['connector-ingest', 'connector-export']
     }
-    advDots.forEach((dot, idx) => {
-      if (idx === index) {
-        dot.className = 'adv-dot h-1.5 rounded-full transition-all duration-200 w-5 bg-emerald-400';
+  };
+
+  let activeTraceNodeId: string | null = null;
+
+  function highlightConnector(connEl: HTMLElement | null, active: boolean, color: string) {
+    if (!connEl) return;
+    const badge = connEl.querySelector('.connector-badge') as HTMLElement | null;
+    const label = connEl.querySelector('.connector-label') as HTMLElement | null;
+    const lineLeft = connEl.querySelector('.connector-line-left') as HTMLElement | null;
+    const lineRight = connEl.querySelector('.connector-line-right') as HTMLElement | null;
+
+    if (active) {
+      connEl.style.opacity = '1';
+      if (badge) {
+        badge.style.borderColor = color;
+        badge.style.color = color;
+        badge.style.boxShadow = `0 0 16px ${color}60`;
+        badge.style.transform = 'scale(1.06)';
+      }
+      if (label) {
+        label.style.color = color;
+        label.style.fontWeight = '700';
+      }
+      if (lineLeft) lineLeft.style.opacity = '1';
+      if (lineRight) lineRight.style.opacity = '1';
+    } else {
+      connEl.style.opacity = '0.22';
+      if (badge) {
+        badge.style.borderColor = '';
+        badge.style.color = '';
+        badge.style.boxShadow = '';
+        badge.style.transform = '';
+      }
+      if (label) {
+        label.style.color = '';
+        label.style.fontWeight = '';
+      }
+    }
+  }
+
+  function resetConnector(connEl: HTMLElement | null) {
+    if (!connEl) return;
+    connEl.style.opacity = '1';
+    const badge = connEl.querySelector('.connector-badge') as HTMLElement | null;
+    const label = connEl.querySelector('.connector-label') as HTMLElement | null;
+    if (badge) {
+      badge.style.borderColor = '';
+      badge.style.color = '';
+      badge.style.boxShadow = '';
+      badge.style.transform = '';
+    }
+    if (label) {
+      label.style.color = '';
+      label.style.fontWeight = '';
+    }
+  }
+
+  function applyTrace(nodeId: string | null) {
+    if (!nodeId) {
+      activeTraceNodeId = null;
+      if (traceText) {
+        traceText.textContent = defaultTraceLabel;
+        traceText.style.color = '#cbd5e1';
+      }
+      if (traceDot) {
+        traceDot.style.backgroundColor = defaultTraceDot;
+      }
+      if (traceBar) {
+        traceBar.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        traceBar.style.backgroundColor = '#0E1522';
+      }
+
+      allNodes.forEach((node) => {
+        node.style.opacity = '1';
+        node.style.borderColor = '';
+        node.style.boxShadow = '';
+        node.style.backgroundColor = '';
+        node.style.transform = '';
+        const title = node.querySelector('.node-title') as HTMLElement | null;
+        if (title) title.style.color = '';
+      });
+
+      connIngests.forEach((el) => resetConnector(el));
+      connExports.forEach((el) => resetConnector(el));
+      return;
+    }
+
+    const config = traceMap[nodeId];
+    if (!config) return;
+
+    activeTraceNodeId = nodeId;
+
+    if (traceText) {
+      traceText.textContent = config.label;
+      traceText.style.color = '#ffffff';
+    }
+    if (traceDot) {
+      traceDot.style.backgroundColor = config.dotColor;
+    }
+    if (traceBar) {
+      traceBar.style.borderColor = `${config.dotColor}50`;
+      traceBar.style.backgroundColor = `${config.dotColor}10`;
+    }
+
+    allNodes.forEach((node) => {
+      const id = node.getAttribute('data-pipeline-node');
+      const isTarget = id === nodeId;
+      const isConnected = id && config.nodes.includes(id);
+
+      if (isConnected) {
+        node.style.opacity = '1';
+        node.style.borderColor = config.dotColor;
+        if (isTarget) {
+          node.style.boxShadow = `0 0 18px ${config.dotColor}55`;
+          node.style.backgroundColor = `${config.dotColor}1a`;
+          node.style.transform = 'translateY(-1px)';
+          const title = node.querySelector('.node-title') as HTMLElement | null;
+          if (title) title.style.color = '#ffffff';
+        } else {
+          node.style.boxShadow = `0 0 10px ${config.dotColor}30`;
+          node.style.backgroundColor = `${config.dotColor}0d`;
+          node.style.transform = '';
+          const title = node.querySelector('.node-title') as HTMLElement | null;
+          if (title) title.style.color = '#e2e8f0';
+        }
       } else {
-        dot.className = 'adv-dot h-1.5 rounded-full transition-all duration-200 w-1.5 bg-slate-700';
+        node.style.opacity = '0.22';
+        node.style.borderColor = '';
+        node.style.boxShadow = '';
+        node.style.backgroundColor = '';
+        node.style.transform = '';
+        const title = node.querySelector('.node-title') as HTMLElement | null;
+        if (title) title.style.color = '';
       }
     });
+
+    const hasIngest = config.connectors.includes('connector-ingest');
+    const hasExport = config.connectors.includes('connector-export');
+    connIngests.forEach((el) => highlightConnector(el, hasIngest, config.dotColor));
+    connExports.forEach((el) => highlightConnector(el, hasExport, config.dotColor));
   }
 
-  function scrollToAdvCard(index: number) {
-    if (!advCarousel || !advCards[index]) return;
-    const card = advCards[index];
-    advCarousel.scrollTo({
-      left: card.offsetLeft - advCarousel.offsetLeft,
-      behavior: 'smooth'
+  let pinnedNodeId: string | null = null;
+
+  allNodes.forEach((node) => {
+    const nodeId = node.getAttribute('data-pipeline-node');
+    if (!nodeId) return;
+
+    node.addEventListener('mouseenter', () => {
+      if (!pinnedNodeId) {
+        applyTrace(nodeId);
+      }
     });
-    updateActiveAdvCard(index);
-  }
 
-  if (advCarousel) {
-    let scrollTimeout: number | undefined;
-    advCarousel.addEventListener('scroll', () => {
-      window.clearTimeout(scrollTimeout);
-      scrollTimeout = window.setTimeout(() => {
-        const scrollLeft = advCarousel.scrollLeft;
-        let closestIndex = 0;
-        let minDiff = Infinity;
-        advCards.forEach((card, idx) => {
-          const cardLeft = card.offsetLeft - advCarousel.offsetLeft;
-          const diff = Math.abs(cardLeft - scrollLeft);
-          if (diff < minDiff) {
-            minDiff = diff;
-            closestIndex = idx;
-          }
-        });
-        updateActiveAdvCard(closestIndex);
-      }, 50);
-    }, { passive: true });
-  }
+    node.addEventListener('mouseleave', () => {
+      if (!pinnedNodeId) {
+        applyTrace(null);
+      }
+    });
 
-  advDots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const idx = Number(dot.getAttribute('data-adv-dot-index'));
-      scrollToAdvCard(idx);
+    // Touch & click support: first tap/click pins the trace, second tap clears it
+    node.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (pinnedNodeId === nodeId) {
+        pinnedNodeId = null;
+        applyTrace(null);
+      } else {
+        pinnedNodeId = nodeId;
+        applyTrace(nodeId);
+      }
     });
   });
+
+  // Tap outside to clear pinned trace
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement | null;
+    if (pinnedNodeId && !target?.closest('.pipeline-node')) {
+      pinnedNodeId = null;
+      applyTrace(null);
+    }
+  });
 </script>
+
+<style>
+  .pipeline-node {
+    transition: opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.18s ease;
+  }
+  .pipeline-connector {
+    transition: opacity 0.22s ease;
+  }
+  .connector-badge {
+    transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+</style>

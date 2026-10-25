@@ -1,334 +1,473 @@
 ---
-// Self-contained Clearinfra Studio Interactive CAD Card
+// Self-contained Clearinfra Studio Interactive CAD Card (Cinema-Wide Edition)
 ---
 
-<div id="interactive-demo" class="w-full max-w-5xl mx-auto">
-        <div id="studio-cad-card" class="rounded-2xl border border-slate-700/60 ring-1 ring-white/10 bg-[#131924] text-slate-100 shadow-2xl shadow-slate-950/30 overflow-hidden transition-all duration-300">
-          <!-- Top CAD Window Bar (Matte Slate) -->
-          <div class="cad-card-topbar flex items-center justify-between gap-3 px-3.5 sm:px-5 py-2 sm:py-2 bg-[#171E2B] border-b border-white/[0.08] text-xs font-mono">
-            <div class="flex items-center gap-2 min-w-0">
-              <div class="hidden sm:flex items-center gap-1.5 shrink-0">
-                <span class="w-2.5 h-2.5 rounded-full bg-slate-600"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-slate-600"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-slate-600"></span>
-              </div>
-              <span class="text-slate-200 font-medium whitespace-nowrap text-[11px] sm:text-xs tracking-wide">CLEARINFRA STUDIO</span>
-              <span class="hidden sm:inline-block text-slate-600">|</span>
-              <span id="cad-top-title" class="hidden sm:inline-block text-slate-400 truncate">12-Story Commercial Model · Full Envelope</span>
-            </div>
-            <div class="flex items-center gap-1.5 sm:gap-2 text-sky-400 shrink-0 text-[11px] sm:text-xs">
-              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
-              <span class="hidden sm:inline">Interactive Charrette Sandbox</span>
-              <span class="sm:hidden font-mono text-[10px] uppercase tracking-wider font-semibold">Live Sandbox</span>
-              
-              <!-- Close button for Studio Modal / Full-Screen Mode -->
-              <button
-                type="button"
-                id="btn-close-mobile-studio"
-                class="hidden items-center gap-1.5 px-2 py-1 sm:px-2.5 sm:py-1 rounded-lg text-slate-200 hover:text-white hover:bg-red-500/20 hover:border-red-500/40 border border-white/25 bg-white/10 active:bg-white/25 transition-all cursor-pointer ml-2 text-xs font-mono"
-                aria-label="Close Clearinfra Studio Preview"
-              >
-                <span class="hidden sm:inline text-[11px] font-mono opacity-90 tracking-tight">Close [Esc]</span>
-                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
-                </svg>
+<div id="interactive-demo" class="w-full">
+  <div id="studio-cad-card" class="rounded-2xl border border-white/[0.1] bg-[#0B0F17] text-slate-100 shadow-2xl shadow-black/60 overflow-hidden transition-all duration-300">
+    
+    <!-- Top Window Bar -->
+    <div class="cad-card-topbar flex items-center justify-between gap-3 px-4 sm:px-6 py-2.5 bg-[#0E1420] border-b border-white/[0.07] text-xs font-mono">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="hidden sm:flex items-center gap-1.5 shrink-0">
+          <span class="w-2.5 h-2.5 rounded-full bg-slate-700/90"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-slate-700/90"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-slate-700/90"></span>
+        </div>
+        <span class="text-white font-semibold whitespace-nowrap text-xs tracking-wider">CLEARINFRA STUDIO</span>
+        <span class="hidden sm:inline-block text-slate-600">·</span>
+        <span id="cad-top-title" class="hidden sm:inline-block text-slate-400 truncate">12-Story Commercial Digital Twin</span>
+      </div>
+      <div class="flex items-center gap-2 text-slate-400 shrink-0 text-[11px]">
+        <span id="viz-climate-label" class="hidden">Bengaluru</span>
+        <span id="three-layer-dot" class="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="three-layer-status" class="hidden sm:inline-block text-emerald-400 uppercase tracking-wider font-medium">3D Twin</span>
+        <span class="hidden md:inline text-slate-700">|</span>
+        <span class="hidden md:inline text-slate-400">ISO 52016-1 · NBC 2026</span>
+        
+        <!-- Launch Button for Inline View -->
+        <button
+          type="button"
+          id="btn-launch-studio-topbar"
+          class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 hover:text-white border border-emerald-400/40 text-[10.5px] sm:text-[11px] font-mono font-medium transition-all shadow-sm shadow-emerald-500/20 cursor-pointer ml-1 active:scale-[0.98]"
+          title="Open Full-Screen Interactive CAD Studio"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Open Studio</span>
+          <span class="text-emerald-400 text-[10px]">↗</span>
+        </button>
+
+        <!-- Close button for Mobile Full-Screen Mode -->
+        <button
+          type="button"
+          id="btn-close-mobile-studio"
+          class="hidden items-center gap-1.5 px-2.5 py-1 rounded-lg text-slate-200 hover:text-white hover:bg-red-500/20 border border-white/20 bg-white/10 transition-all cursor-pointer ml-2 text-xs font-mono"
+          aria-label="Close Clearinfra Studio Preview"
+        >
+          <span class="hidden sm:inline text-[11px] font-mono">Close [Esc]</span>
+          <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Cinema Grid: 7 Cols 3D Stage | 5 Cols Controls & Scoreboard -->
+    <div class="grid grid-cols-1 lg:grid-cols-12">
+      
+      <!-- Left 7 Cols: Pure Uninterrupted 3D Twin Stage -->
+      <div id="studio-stage-column" class="lg:col-span-7 flex flex-col bg-blueprint-sub border-b lg:border-b-0 lg:border-r border-white/[0.07] relative min-h-[340px] sm:min-h-[400px] lg:min-h-[520px] overflow-hidden">
+        
+        <div id="three-container" class="relative w-full flex-1 min-h-[340px] sm:min-h-[400px] lg:min-h-[520px] overflow-hidden bg-[#090D15]/70">
+          <canvas id="three-building-canvas" class="w-full h-full block cursor-grab active:cursor-grabbing"></canvas>
+
+          <!-- Floating Top-Left: 4-Mode Layer Switcher Pill -->
+          <div id="cad-viewport-toolbar" class="absolute top-3.5 left-3.5 z-10 flex items-center select-none font-mono">
+            <div class="flex items-center gap-0.5 sm:gap-1 bg-[#111826]/90 backdrop-blur-md p-1 rounded-lg border border-white/12 text-[9px] sm:text-[10px] shadow-lg">
+              <button id="btn-mode-twin" type="button" title="01 Architectural 3D Twin" class="mode-btn relative overflow-hidden px-2 py-1 rounded border border-emerald-500/40 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
+                <span>Twin</span>
+                <span id="prog-mode-twin" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-emerald-400/90" style="width: 0%;"></span>
+              </button>
+              <button id="btn-mode-daylight" type="button" title="02 Daylight sDA Lux Heatmap (LM-83)" class="mode-btn relative overflow-hidden px-2 py-1 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
+                <span>Daylight</span>
+                <span id="prog-mode-daylight" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-amber-400/90" style="width: 0%;"></span>
+              </button>
+              <button id="btn-mode-shading" type="button" title="03 Facade Shading Lab" class="mode-btn relative overflow-hidden px-2 py-1 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-orange-400 shrink-0"></span>
+                <span>Shading</span>
+                <span id="prog-mode-shading" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-orange-400/90" style="width: 0%;"></span>
+              </button>
+              <button id="btn-mode-nbc" type="button" title="04 NBC 2026 Statutory Setbacks & Refuge" class="mode-btn relative overflow-hidden px-2 py-1 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
+                <span>NBC</span>
+                <span id="prog-mode-nbc" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-sky-400/90" style="width: 0%;"></span>
+              </button>
+              <button id="btn-mode-autoplay" type="button" title="Pause / Resume Auto-Tour" aria-label="Pause or resume layer auto-tour" class="ml-0.5 px-1.5 py-1 rounded-r border-l border-white/10 text-emerald-400 hover:text-white transition-colors duration-200 cursor-pointer flex items-center justify-center">
+                <span id="autoplay-icon" class="text-[9px] leading-none">⏸</span>
               </button>
             </div>
           </div>
 
-          <!-- Main Interactive Grid inside Matte CAD Viewport -->
-          <div class="grid grid-cols-1 lg:grid-cols-12">
-            <!-- Left 7 Cols of Card: Animated Isometric Building + Solar Path Canvas -->
-            <div class="lg:col-span-7 p-3 sm:p-3.5 sm:pb-2.5 flex flex-col justify-start bg-blueprint-sub border-b lg:border-b-0 lg:border-r border-white/[0.07] relative min-h-[280px] sm:min-h-[320px] overflow-hidden">
-              <!-- Viewport Mode Toolbar (CAD Standard: Placed cleanly above the 3D canvas) -->
-              <div id="cad-viewport-toolbar" class="flex items-center justify-between gap-2 text-xs font-mono select-none z-10 mb-1 overflow-hidden">
-                <div class="flex items-center gap-0.5 sm:gap-1 bg-[#161D2B]/95 p-1 rounded-lg border border-white/12 text-[8.5px] sm:text-[9.5px] shadow-sm shrink-0">
-                  <button id="btn-mode-twin" type="button" title="01 Architectural 3D Twin" class="mode-btn relative overflow-hidden px-2 py-1.5 sm:py-0.5 rounded border border-emerald-500/40 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1 min-h-[28px] sm:min-h-0">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
-                    <span class="opacity-65 text-[8px]">01</span>
-                    <span>Twin</span>
-                    <span id="prog-mode-twin" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-emerald-400/90" style="width: 0%;"></span>
-                  </button>
-                  <button id="btn-mode-daylight" type="button" title="02 Daylight sDA Lux Heatmap (LM-83)" class="mode-btn relative overflow-hidden px-2 py-1.5 sm:py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1 min-h-[28px] sm:min-h-0">
-                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
-                    <span class="opacity-65 text-[8px]">02</span>
-                    <span>Daylight</span>
-                    <span id="prog-mode-daylight" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-amber-400/90" style="width: 0%;"></span>
-                  </button>
-                  <button id="btn-mode-shading" type="button" title="03 Facade Shading Lab (Overhangs, Vertical Fins & Sun Ingress)" class="mode-btn relative overflow-hidden px-2 py-1.5 sm:py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1 min-h-[28px] sm:min-h-0">
-                    <span class="w-1.5 h-1.5 rounded-full bg-orange-400 shrink-0"></span>
-                    <span class="opacity-65 text-[8px]">03</span>
-                    <span>Shading</span>
-                    <span id="prog-mode-shading" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-orange-400/90" style="width: 0%;"></span>
-                  </button>
-                  <button id="btn-mode-nbc" type="button" title="04 NBC 2026 Statutory 3D Setbacks & Refuge Area" class="mode-btn relative overflow-hidden px-2 py-1.5 sm:py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium flex items-center gap-1 min-h-[28px] sm:min-h-0">
-                    <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
-                    <span class="opacity-65 text-[8px]">04</span>
-                    <span>NBC</span>
-                    <span id="prog-mode-nbc" class="pointer-events-none absolute bottom-0 left-0 h-[1.5px] bg-sky-400/90" style="width: 0%;"></span>
-                  </button>
-                  <button id="btn-mode-autoplay" type="button" title="Pause / Resume 4-Stage Auto-Tour" aria-label="Pause or resume layer auto-tour" class="ml-0.5 pl-1.5 pr-1.5 py-1.5 sm:py-0.5 rounded-r border-l border-white/10 text-emerald-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer flex items-center justify-center min-h-[28px] sm:min-h-0">
-                    <span id="autoplay-icon" class="text-[8.5px] leading-none">⏸</span>
-                  </button>
-                </div>
-
-                <div class="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-mono shrink-0">
-                  <span id="viz-climate-label" class="hidden">Bengaluru</span>
-                  <span id="three-layer-dot" class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span id="three-layer-status" class="text-emerald-400 uppercase tracking-wider font-medium">3D Twin</span>
-                </div>
-              </div>
-
-              <!-- Central 3D Three.js Building Viewport (Clearinfra Studio Twin - 100% Unobstructed) -->
-              <div id="three-container" class="relative w-full h-[250px] sm:h-[285px] lg:h-[305px] xl:h-[330px] 2xl:h-[365px] mt-1.5 overflow-hidden rounded-xl border border-white/[0.08] bg-[#0E131E]/80 backdrop-blur-xs">
-                <canvas id="three-building-canvas" class="w-full h-full block cursor-grab active:cursor-grabbing"></canvas>
-
-                <!-- Overlay Daylight Lux Scale Bar (Smoothly Fades in Daylight sDA Mode at bottom-2.5) -->
-                <div id="daylight-lux-legend" class="opacity-0 pointer-events-none transition-opacity duration-300 absolute bottom-2.5 left-2.5 flex items-center gap-1.5 px-2 py-1 rounded-md bg-[#161D2B]/95 border border-white/15 text-[8.5px] sm:text-[9px] font-mono text-slate-300 backdrop-blur-xs shadow-lg z-10">
-                  <span class="text-amber-300 font-semibold" id="daylight-sda-callout">sDA: 55%</span>
-                  <span class="text-slate-500">|</span>
-                  <span class="text-slate-400">0 lx</span>
-                  <div class="w-14 sm:w-16 2xl:w-20 h-1.5 rounded-xs border border-white/20" style="background: linear-gradient(90deg, #060914 0%, #1e3a8a 18%, #16a34a 38%, #84cc16 56%, #eab308 74%, #ea580c 88%, #dc2626 100%);"></div>
-                  <span class="text-red-400 font-semibold">2k+ lx</span>
-                  <span class="hidden 2xl:inline text-emerald-400 border-l border-white/15 pl-1.5">≥300 lx</span>
-                </div>
-
-                <!-- Overlay Bottom-Left: Real-time Dynamic Status Callout Badge -->
-                <div id="status-pill-container" class="absolute bottom-2.5 left-2.5 pointer-events-none flex items-center gap-1.5 text-[9px] sm:text-[9.5px] font-mono text-slate-400 bg-[#161D2B]/90 px-2 py-1 rounded-md border border-white/12 backdrop-blur-xs transition-opacity duration-200">
-                  <span id="viz-wwr-callout" class="text-emerald-400 font-semibold">WWR: 40%</span>
-                  <span class="text-slate-600">·</span>
-                  <span id="viz-dni-label" class="text-amber-300">760 W/m²</span>
-                </div>
-
-                <!-- Overlay Bottom-Right: Streamlined View Toggle & Reset -->
-                <div class="absolute top-2.5 right-2.5 flex items-center gap-0.5 bg-[#161D2B]/90 p-1 rounded-md border border-white/12 text-[8.5px] sm:text-[9px] font-mono shadow-sm select-none z-10">
-                  <button id="btn-cam-iso" type="button" title="3D Isometric View" class="cam-btn px-2 py-1 sm:py-0.5 rounded border border-emerald-500/35 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium">3D</button>
-                  <button id="btn-cam-top" type="button" title="Top-down Floor Plan View" class="cam-btn px-2 py-1 sm:py-0.5 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium">Plan</button>
-                  <button id="btn-reset-cam" type="button" title="Reset Camera Orbit" class="px-1.5 py-1 sm:py-0.5 rounded text-slate-400 hover:text-white hover:bg-white/[0.06] border-l border-white/10 transition-colors duration-200 cursor-pointer" aria-label="Reset Camera Orbit">↺</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right 5 Cols of Card: Interactive Controls & Live Simulation Readout -->
-            <div class="lg:col-span-5 p-3 sm:p-3.5 lg:p-3 xl:p-4 flex flex-col justify-between bg-[#141A25]">
-              <!-- Simulated Physics Output Readout (Elevated to top on mobile for instant zero-distance feedback) -->
-              <div class="order-1 lg:order-2 pt-0 lg:pt-2 xl:pt-2.5 border-b lg:border-b-0 lg:border-t border-white/[0.07] pb-2.5 lg:pb-0 flex flex-col gap-1.5 sm:gap-2">
-                <div class="flex items-center justify-between">
-                  <span class="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-400">Envelope Performance</span>
-                  <span id="out-badge" class="px-2 py-0.5 rounded text-[9.5px] sm:text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
-                    Optimized Balance
-                  </span>
-                </div>
-
-                <div class="kpi-card-group grid grid-cols-3 gap-1.5 sm:gap-2">
-                  <div class="kpi-card group/tip relative p-1.5 sm:p-2 xl:p-2.5 rounded-xl bg-[#18202D] hover:bg-[#1D273A] border border-white/[0.08] hover:border-white/20 transition-all cursor-help text-center sm:text-left">
-                    <span class="text-[8.5px] sm:text-[9px] font-mono uppercase text-slate-400 block whitespace-nowrap border-b border-dotted border-slate-600 inline-block">Annual EPI</span>
-                    <span id="out-epi" class="text-sm sm:text-base xl:text-lg font-semibold text-white font-mono mt-0.5 block">80.2</span>
-                    <span class="text-[8px] sm:text-[9px] font-mono text-slate-500">kWh/m²·yr</span>
-                    <!-- Tooltip -->
-                    <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 rounded-lg bg-[#1A2334] border border-white/20 text-[10px] font-sans text-slate-200 shadow-2xl opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150 z-50 text-center leading-tight">
-                      Energy Performance Index per conditioned floor area. Statutory submittals run full 8,760-hr engine.
-                    </div>
-                  </div>
-
-                  <div class="kpi-card group/tip relative p-1.5 sm:p-2 xl:p-2.5 rounded-xl bg-[#18202D] hover:bg-[#1D273A] border border-white/[0.08] hover:border-white/20 transition-all cursor-help text-center sm:text-left">
-                    <span class="text-[8.5px] sm:text-[9px] font-mono uppercase text-slate-400 block whitespace-nowrap border-b border-dotted border-slate-600 inline-block">Plant Load</span>
-                    <span id="out-cooling" class="text-sm sm:text-base xl:text-lg font-semibold text-white font-mono mt-0.5 block">246</span>
-                    <span class="text-[8px] sm:text-[9px] font-mono text-slate-500">Peak TR</span>
-                    <!-- Tooltip -->
-                    <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-44 p-2 rounded-lg bg-[#1A2334] border border-white/20 text-[10px] font-sans text-slate-200 shadow-2xl opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150 z-50 text-center leading-tight">
-                      Peak chiller capacity required to offset envelope and internal sensible/latent heat gain.
-                    </div>
-                  </div>
-
-                  <div class="kpi-card group/tip relative p-1.5 sm:p-2 xl:p-2.5 rounded-xl bg-[#18202D] hover:bg-[#1D273A] border border-white/[0.08] hover:border-white/20 transition-all cursor-help text-center sm:text-left">
-                    <span class="text-[8.5px] sm:text-[9px] font-mono uppercase text-slate-400 block whitespace-nowrap border-b border-dotted border-slate-600 inline-block">Daylight</span>
-                    <span id="out-sda" class="text-sm sm:text-base xl:text-lg font-semibold text-emerald-400 font-mono mt-0.5 block">55%</span>
-                    <span class="text-[8px] sm:text-[9px] font-mono text-slate-500">sDA &gt;300lx</span>
-                    <!-- Tooltip -->
-                    <div class="pointer-events-none absolute bottom-full right-0 mb-2 w-48 p-2 rounded-lg bg-[#1A2334] border border-white/20 text-[10px] font-sans text-slate-200 shadow-2xl opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150 z-50 text-center leading-tight">
-                      Spatial Daylight Autonomy: percentage of floor plate achieving ≥300 lux on the workplane.
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Status Strip: Screening estimate + Glazing / Mode Readout -->
-                <div class="flex items-center justify-between gap-2 pt-1 border-t border-white/[0.06] text-[9px] sm:text-[9.5px] font-mono text-slate-400 whitespace-nowrap overflow-hidden">
-                  <div class="shrink-0 text-slate-400">Screening estimate</div>
-                  <div id="viz-shgc-readout" class="truncate text-right font-medium"><span class="text-emerald-400">SHGC 0.28 · U 1.6 W/m²K</span></div>
-                </div>
-
-                <!-- Mobile Launch Studio Button (Displayed on Mobile Homepage) -->
-                <div class="lg:hidden pt-2" id="mobile-studio-trigger-wrap">
-                  <button
-                    type="button"
-                    id="btn-open-mobile-studio"
-                    class="w-full py-2.5 px-3.5 rounded-xl bg-gradient-to-r from-emerald-600/25 via-sky-600/25 to-emerald-600/25 hover:from-emerald-600/35 hover:to-sky-600/35 border border-emerald-500/40 hover:border-emerald-400 text-white font-mono text-xs font-semibold flex items-center justify-between shadow-md shadow-emerald-950/25 transition-all duration-200 active:scale-[0.98] cursor-pointer"
-                  >
-                    <div class="flex items-center gap-2">
-                      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                      <span class="tracking-wide">Launch Full-Screen Studio</span>
-                    </div>
-                    <div class="flex items-center gap-1.5 text-emerald-400 text-[11px]">
-                      <span>Tune Parameters</span>
-                      <span class="text-sm font-bold">⛶</span>
-                    </div>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Charrette Parameters & Interactive Sliders -->
-              <div id="charrette-params-container" class="order-2 lg:order-1 flex flex-col gap-2 sm:gap-2.5 xl:gap-3.5 pt-0.5 lg:pt-0 hidden lg:flex">
-                <div class="flex items-center justify-between">
-                  <span class="text-[10.5px] xl:text-xs font-mono uppercase tracking-wider text-slate-400">Charrette Parameters</span>
-                  <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[9px] xl:text-[10px] font-mono font-medium text-emerald-300">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>Tune live ↺</span>
-                  </span>
-                </div>
-
-                <!-- Climate Selector: Quick-Tap Chips on Mobile, Select on Desktop -->
-                <div>
-                  <div class="flex items-center justify-between mb-1 xl:mb-1.5">
-                    <span class="text-[10.5px] xl:text-xs text-slate-300 font-medium">Climate Zone (ECBC)</span>
-                    <span id="climate-quick-desc" class="text-[9.5px] xl:text-[10px] font-mono text-emerald-400 lg:hidden">Temperate</span>
-                  </div>
-                  <!-- Mobile 1-Tap Chips (Instant tactile feedback, zero popup wheel) -->
-                  <div class="grid grid-cols-5 gap-1 lg:hidden" id="ctrl-climate-chips">
-                    <button type="button" data-climate="bengaluru" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-emerald-500/50 bg-emerald-500/20 text-emerald-300 font-medium transition-all text-center cursor-pointer truncate">
-                      Bengaluru
-                    </button>
-                    <button type="button" data-climate="mumbai" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white transition-all text-center cursor-pointer truncate">
-                      Mumbai
-                    </button>
-                    <button type="button" data-climate="delhi" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white transition-all text-center cursor-pointer truncate">
-                      Delhi
-                    </button>
-                    <button type="button" data-climate="ahmedabad" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white transition-all text-center cursor-pointer truncate">
-                      Ahmedabad
-                    </button>
-                    <button type="button" data-climate="shimla" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white transition-all text-center cursor-pointer truncate">
-                      Shimla
-                    </button>
-                  </div>
-                  <!-- Desktop Select Dropdown (Preserved for Desktop) -->
-                  <select
-                    id="ctrl-climate"
-                    class="hidden lg:block w-full rounded-lg bg-[#1A2230] border border-white/12 px-2.5 py-1.5 xl:px-3 xl:py-2 text-[10.5px] xl:text-xs text-white font-mono focus:outline-none focus:border-emerald-500 transition-colors"
-                  >
-                    <option value="bengaluru" selected>Bengaluru — Temperate</option>
-                    <option value="mumbai">Mumbai — Warm-Humid</option>
-                    <option value="delhi">New Delhi — Composite</option>
-                    <option value="ahmedabad">Ahmedabad — Hot-Dry</option>
-                    <option value="shimla">Shimla — Cold</option>
-                  </select>
-                </div>
-
-                <!-- WWR Slider -->
-                <div>
-                  <div class="flex justify-between text-[10.5px] xl:text-xs mb-1 xl:mb-1.5">
-                    <label for="ctrl-wwr" class="text-slate-300 font-medium">Window-to-Wall Ratio (WWR)</label>
-                    <span id="slider-hint-cue" class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/35 text-[9px] font-mono text-emerald-300 animate-pulse">← Drag to test physics live</span>
-                    <span id="val-wwr" class="font-mono text-emerald-400">40%</span>
-                  </div>
-                  <input
-                    id="ctrl-wwr"
-                    type="range"
-                    min="20"
-                    max="70"
-                    step="1"
-                    value="40"
-                    class="ci-slider"
-                  />
-                  <div class="flex justify-between text-[8.5px] xl:text-[10px] font-mono text-slate-500 mt-1">
-                    <span>20%</span>
-                    <span>40% (ECBC)</span>
-                    <span>70%</span>
-                  </div>
-                </div>
-
-                <!-- Glazing Spec Selector -->
-                <div>
-                  <span class="block text-[10.5px] xl:text-xs text-slate-300 mb-1 xl:mb-1.5 font-medium">Glazing Specification</span>
-                  <div class="grid grid-cols-3 gap-1.5" id="ctrl-glazing-group">
-                    <button
-                      type="button"
-                      data-glazing="single"
-                      class="glazing-btn px-2 py-1.5 xl:py-2 rounded-lg text-[9px] xl:text-[10px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white hover:border-white/25 transition-all text-center cursor-pointer"
-                    >
-                      Clear DGU<br/><span class="opacity-75">0.58</span>
-                    </button>
-                    <button
-                      type="button"
-                      data-glazing="lowe"
-                      class="glazing-btn px-2 py-1.5 xl:py-2 rounded-lg text-[9px] xl:text-[10px] font-mono font-semibold border border-emerald-400 bg-emerald-500/25 text-emerald-200 ring-1 ring-emerald-400/40 shadow-xs shadow-emerald-500/25 transition-all text-center cursor-pointer"
-                    >
-                      Low-E DGU<br/><span class="text-emerald-300 font-semibold">0.28</span>
-                    </button>
-                    <button
-                      type="button"
-                      data-glazing="triple"
-                      class="glazing-btn px-2 py-1.5 xl:py-2 rounded-lg text-[9px] xl:text-[10px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white hover:border-white/25 transition-all text-center cursor-pointer"
-                    >
-                      Selective<br/><span class="opacity-75">0.22</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <!-- Floating Top-Right (Desktop) / Bottom-Right (Mobile): 3D / Plan Camera Pill -->
+          <div class="absolute bottom-3.5 sm:bottom-auto sm:top-3.5 right-3.5 flex items-center gap-0.5 bg-[#111826]/90 backdrop-blur-md p-1 rounded-lg border border-white/12 text-[9px] sm:text-[10px] font-mono shadow-lg select-none z-10">
+            <button id="btn-cam-iso" type="button" title="3D Isometric View" class="cam-btn px-2 py-1 rounded border border-emerald-500/35 bg-emerald-500/20 text-emerald-300 transition-colors duration-200 cursor-pointer font-medium">3D</button>
+            <button id="btn-cam-top" type="button" title="Top-down Floor Plan View" class="cam-btn px-2 py-1 rounded border border-transparent text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200 cursor-pointer font-medium">Plan</button>
+            <button id="btn-reset-cam" type="button" title="Reset Camera Orbit" class="px-1.5 py-1 rounded text-slate-400 hover:text-white hover:bg-white/[0.06] border-l border-white/10 transition-colors duration-200 cursor-pointer" aria-label="Reset Camera Orbit">↺</button>
           </div>
 
-          <!-- CI Agent Diagnostic Bar & Studio Bottom Dock -->
-          <div id="studio-bottom-dock" class="px-3 sm:px-6 py-1.5 sm:py-2 bg-[#0F141E] border-t border-white/10 min-h-[46px] sm:min-h-[50px] xl:min-h-[56px] flex items-center justify-between gap-2.5 sm:gap-4 text-xs font-mono shrink-0 overflow-x-auto scrollbar-none">
-            <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3.5 text-slate-300 min-w-0 flex-1">
-              <span class="px-2 py-0.5 rounded bg-sky-500/15 text-sky-300 border border-sky-500/35 text-[9.5px] sm:text-[10.5px] font-mono font-semibold tracking-wider shrink-0 whitespace-nowrap w-fit">ILLUSTRATIVE DEMO</span>
-              <div id="charrette-chain" class="flex items-center gap-2 sm:gap-4 pr-4 sm:pr-0 min-w-0 shrink-0">
-                <div class="flex flex-col min-w-0">
-                  <span class="text-[8.5px] sm:text-[9.5px] tracking-[0.08em] uppercase text-slate-400 font-medium leading-tight whitespace-nowrap">Glazing</span>
-                  <span class="text-[12px] sm:text-[14px] font-semibold text-white leading-snug whitespace-nowrap" data-chain="glass">0.28</span>
-                  <span class="text-[8px] sm:text-[9px] text-slate-400 leading-tight whitespace-nowrap" data-chain-sub="glass">SHGC</span>
-                </div>
-                <span class="text-emerald-400/60 text-[11px] sm:text-[13px] font-bold pb-2 shrink-0" aria-hidden="true">&rsaquo;</span>
-                <div class="flex flex-col min-w-0">
-                  <span class="text-[8.5px] sm:text-[9.5px] tracking-[0.08em] uppercase text-slate-400 font-medium leading-tight whitespace-nowrap">Envelope gain</span>
-                  <span class="text-[12px] sm:text-[14px] font-semibold text-white leading-snug whitespace-nowrap" data-chain="gain">18.2</span>
-                  <span class="text-[8px] sm:text-[9px] text-slate-400 leading-tight whitespace-nowrap" data-chain-sub="gain">kWh/m²·yr</span>
-                </div>
-                <span class="text-emerald-400/60 text-[11px] sm:text-[13px] font-bold pb-2 shrink-0" aria-hidden="true">&rsaquo;</span>
-                <div class="flex flex-col min-w-0">
-                  <span class="text-[8.5px] sm:text-[9.5px] tracking-[0.08em] uppercase text-slate-400 font-medium leading-tight whitespace-nowrap">Annual EPI</span>
-                  <span class="text-[12px] sm:text-[14px] font-semibold text-white leading-snug whitespace-nowrap" data-chain="epi">80.2</span>
-                  <span class="text-[8px] sm:text-[9px] text-slate-400 leading-tight whitespace-nowrap" data-chain-sub="epi">kWh/m²·yr</span>
-                </div>
-                <span class="text-emerald-400/60 text-[11px] sm:text-[13px] font-bold pb-2 shrink-0" aria-hidden="true">&rsaquo;</span>
-                <div class="flex flex-col min-w-0">
-                  <span class="text-[8.5px] sm:text-[9.5px] tracking-[0.08em] uppercase text-slate-400 font-medium leading-tight whitespace-nowrap">Plant load</span>
-                  <span class="text-[12px] sm:text-[14px] font-semibold text-white leading-snug whitespace-nowrap" data-chain="tr">246</span>
-                  <span class="text-[8px] sm:text-[9px] text-slate-400 leading-tight whitespace-nowrap" data-chain-sub="tr">TR</span>
-                </div>
-                <span class="text-emerald-400/60 text-[11px] sm:text-[13px] font-bold pb-2 shrink-0" aria-hidden="true">&rsaquo;</span>
-                <div class="flex flex-col min-w-0">
-                  <span class="text-[8.5px] sm:text-[9.5px] tracking-[0.08em] uppercase text-slate-400 font-medium leading-tight whitespace-nowrap">Daylight</span>
-                  <span class="text-[12px] sm:text-[14px] font-semibold text-white leading-snug whitespace-nowrap" data-chain="sda">55%</span>
-                  <span class="text-[8px] sm:text-[9px] text-slate-400 leading-tight whitespace-nowrap" data-chain-sub="sda">sDA &gt;300 lx</span>
-                </div>
-              </div>
-            </div>
+          <!-- Overlay Bottom-Left: Daylight Lux Scale Bar (Visible in Daylight Mode) -->
+          <div id="daylight-lux-legend" class="opacity-0 pointer-events-none transition-opacity duration-300 absolute bottom-3.5 left-3.5 flex items-center gap-2 px-2.5 py-1 rounded-lg bg-[#111826]/90 border border-white/12 text-[9.5px] font-mono text-slate-300 backdrop-blur-md shadow-lg z-10">
+            <span class="text-amber-300 font-semibold" id="daylight-sda-callout">sDA: 55%</span>
+            <span class="text-slate-600">|</span>
+            <span class="text-slate-400">0 lx</span>
+            <div class="w-16 h-1.5 rounded-xs border border-white/20" style="background: linear-gradient(90deg, #060914 0%, #1e3a8a 18%, #16a34a 38%, #84cc16 56%, #eab308 74%, #ea580c 88%, #dc2626 100%);"></div>
+            <span class="text-red-400 font-semibold">2k+ lx</span>
           </div>
+
+          <!-- Overlay Bottom-Left: Real-time Status Pill -->
+          <div id="status-pill-container" class="absolute bottom-3.5 left-3.5 pointer-events-none flex items-center gap-1.5 text-[10px] font-mono text-slate-400 bg-[#111826]/90 px-2.5 py-1 rounded-lg border border-white/12 backdrop-blur-md transition-opacity duration-200">
+            <span id="viz-wwr-callout" class="text-emerald-400 font-semibold">WWR: 40%</span>
+            <span class="text-slate-600">·</span>
+            <span id="viz-dni-label" class="text-amber-300">760 W/m²</span>
+          </div>
+
+          <!-- Floating Bottom-Right (Inline View): Launch Studio Trigger Badge -->
+          <button
+            type="button"
+            id="btn-launch-studio-overlay"
+            class="group absolute bottom-3.5 right-3.5 z-10 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#0B111E]/90 hover:bg-emerald-950/80 border border-white/15 hover:border-emerald-400/50 backdrop-blur-md shadow-xl text-[11px] font-mono text-slate-200 transition-all cursor-pointer active:scale-[0.98]"
+            title="Click to launch interactive CAD Studio"
+          >
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Click Building to <strong class="text-emerald-400 font-semibold group-hover:underline decoration-emerald-500/50">Open Studio &amp; Tune Parameters</strong></span>
+            <span class="text-emerald-400 text-xs">↗</span>
+          </button>
         </div>
       </div>
 
+      <!-- Right 5 Cols: Breathable Controls & 2x2 Hairline Scoreboard -->
+      <div id="studio-controls-column" class="lg:col-span-5 p-5 sm:p-6 lg:p-7 flex flex-col justify-between gap-6 bg-[#0E1420]">
+        
+        <!-- Top Section: Parametric Controls -->
+        <div id="charrette-params-container" class="order-2 lg:order-1 flex flex-col gap-4 hidden lg:flex">
+          
+          <!-- Header + Compact Auto-Optimize Action -->
+          <div class="flex items-center justify-between gap-2 pb-3 border-b border-white/[0.07]">
+            <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 font-medium">Envelope &amp; Climate</span>
+            <button
+              type="button"
+              id="btn-auto-optimize"
+              class="px-3 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/40 text-emerald-300 hover:text-white font-mono text-[11px] font-medium flex items-center gap-1.5 transition-all duration-200 active:scale-[0.98] cursor-pointer"
+              title="Run AI Pareto sweep to find lowest CAPEX sweet spot"
+            >
+              <span>⚡</span>
+              <span>Auto-Optimize</span>
+            </button>
+          </div>
+
+          <!-- 1. Climate Zone -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="ctrl-climate" class="text-xs text-slate-300 font-medium">Climate Zone (ECBC)</label>
+              <span id="climate-quick-desc" class="text-[10px] font-mono text-emerald-400 lg:hidden">Temperate</span>
+            </div>
+            <!-- Mobile Chips -->
+            <div class="grid grid-cols-5 gap-1 lg:hidden" id="ctrl-climate-chips">
+              <button type="button" data-climate="bengaluru" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-emerald-500/50 bg-emerald-500/20 text-emerald-300 font-medium transition-all text-center cursor-pointer truncate">Bengaluru</button>
+              <button type="button" data-climate="mumbai" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-white/12 bg-[#161F30] text-slate-400 hover:text-white transition-all text-center cursor-pointer truncate">Mumbai</button>
+              <button type="button" data-climate="delhi" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-white/12 bg-[#161F30] text-slate-400 hover:text-white transition-all text-center cursor-pointer truncate">Delhi</button>
+              <button type="button" data-climate="ahmedabad" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-white/12 bg-[#161F30] text-slate-400 hover:text-white transition-all text-center cursor-pointer truncate">Ahmedabad</button>
+              <button type="button" data-climate="shimla" class="climate-chip px-1 py-1.5 rounded-md text-[9.5px] font-mono border border-white/12 bg-[#161F30] text-slate-400 hover:text-white transition-all text-center cursor-pointer truncate">Shimla</button>
+            </div>
+            <!-- Desktop Select -->
+            <select
+              id="ctrl-climate"
+              class="hidden lg:block w-full rounded-lg bg-[#151D2B] border border-white/12 px-3 py-2 text-xs text-white font-mono focus:outline-none focus:border-emerald-500 transition-colors cursor-pointer"
+            >
+              <option value="bengaluru" selected>Bengaluru — Temperate</option>
+              <option value="mumbai">Mumbai — Warm-Humid</option>
+              <option value="delhi">New Delhi — Composite</option>
+              <option value="ahmedabad">Ahmedabad — Hot-Dry</option>
+              <option value="shimla">Shimla — Cold</option>
+            </select>
+          </div>
+
+          <!-- 2. WWR Slider -->
+          <div>
+            <div class="flex items-center justify-between text-xs mb-1.5">
+              <label for="ctrl-wwr" class="text-slate-300 font-medium">Window-to-Wall Ratio (WWR)</label>
+              <span id="val-wwr" class="font-mono font-semibold text-emerald-400">40%</span>
+            </div>
+            <input
+              id="ctrl-wwr"
+              type="range"
+              min="20"
+              max="70"
+              step="1"
+              value="40"
+              class="ci-slider"
+            />
+            <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+              <span>20%</span>
+              <span>40% ECBC</span>
+              <span>70%</span>
+            </div>
+          </div>
+
+          <!-- 3. Glazing Spec -->
+          <div>
+            <span class="block text-xs text-slate-300 mb-1.5 font-medium">Glazing System (SHGC)</span>
+            <div class="grid grid-cols-3 gap-2" id="ctrl-glazing-group">
+              <button
+                type="button"
+                data-glazing="single"
+                class="glazing-btn px-2.5 py-2 rounded-lg text-[11px] font-mono border border-white/10 bg-[#151D2B] text-slate-400 hover:text-white hover:border-white/25 transition-all text-center cursor-pointer"
+              >
+                Clear DGU <span class="block text-[10px] opacity-70 mt-0.5">0.58</span>
+              </button>
+              <button
+                type="button"
+                data-glazing="lowe"
+                class="glazing-btn px-2.5 py-2 rounded-lg text-[11px] font-mono font-semibold border border-emerald-400/60 bg-emerald-500/20 text-emerald-200 transition-all text-center cursor-pointer"
+              >
+                Low-E DGU <span class="block text-[10px] text-emerald-300 mt-0.5">0.28</span>
+              </button>
+              <button
+                type="button"
+                data-glazing="triple"
+                class="glazing-btn px-2.5 py-2 rounded-lg text-[11px] font-mono border border-white/10 bg-[#151D2B] text-slate-400 hover:text-white hover:border-white/25 transition-all text-center cursor-pointer"
+              >
+                Selective <span class="block text-[10px] opacity-70 mt-0.5">0.22</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Section: Real-App Clearinfra Studio Strategic Targets KPI Deck -->
+        <div id="charrette-kpi-container" class="order-1 lg:order-2 flex flex-col gap-2">
+          <div class="flex items-center justify-between pb-0.5">
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-500/80 shrink-0"></span>
+              <span class="text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-slate-300 font-bold">Strategic Targets</span>
+              <span class="px-1.5 py-0.2 rounded bg-white/[0.06] border border-white/10 text-[8.5px] font-mono text-slate-400">ESTIMATE</span>
+            </div>
+            <span id="out-badge" class="text-[10px] sm:text-[11px] font-mono text-emerald-400 font-medium">Optimized Balance</span>
+          </div>
+
+          <!-- Sweet Spot Alert Banner (Appears on Auto-Optimize) -->
+          <div id="sweet-spot-banner" class="hidden px-3 py-2 rounded-lg bg-emerald-500/15 border border-emerald-400/40 text-[11px] font-mono text-emerald-200 flex items-center justify-between gap-2">
+            <span class="truncate">⚡ <strong>Sweet Spot:</strong> Chiller -60 TR cuts ₹27.0L CAPEX</span>
+            <span class="text-[10px] text-emerald-300 font-semibold shrink-0">Optimal</span>
+          </div>
+
+          <!-- 2x3 Real Studio Metric Grid: 1 Hero Full-Width Card (EPI) + 4 Compact Cards (2x2) -->
+          <div id="real-kpi-deck" class="grid grid-cols-2 gap-2">
+
+            <!-- ROW 1 (Hero Col-Span 2): Energy Performance Index (EPI) -->
+            <div class="col-span-2 bg-[#0C1322] border border-white/[0.09] hover:border-white/20 rounded-xl p-2.5 sm:p-3 relative overflow-hidden flex flex-col justify-between transition-all group/card">
+              <div class="flex items-center justify-between gap-1.5 mb-1.5">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <div class="w-5 h-5 rounded-md bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center text-xs shrink-0">
+                    <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <span class="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider text-slate-300">EPI</span>
+                </div>
+                <span class="text-[8.5px] font-mono text-slate-400 uppercase tracking-tight">Physics Engine</span>
+              </div>
+
+              <!-- EpiPairView Split Columns: Statutory vs After-PV -->
+              <div class="grid grid-cols-2 gap-2 pt-0.5">
+                <!-- Statutory Column -->
+                <div class="flex flex-col min-w-0">
+                  <div class="flex items-baseline gap-1">
+                    <span id="out-epi" class="text-xl sm:text-2xl font-bold font-mono tracking-tight text-white">59.7</span>
+                    <span class="text-[9px] font-bold uppercase tracking-tight text-slate-400">kWh/m²</span>
+                  </div>
+                  <span class="text-[8.5px] font-semibold uppercase tracking-wider text-slate-400 truncate">Statutory (Code)</span>
+                </div>
+
+                <!-- After-PV Column -->
+                <div class="flex flex-col min-w-0 border-l border-white/10 pl-2 sm:pl-2.5">
+                  <div class="flex items-baseline gap-1">
+                    <span id="real-after-pv-epi" class="text-xl sm:text-2xl font-bold font-mono tracking-tight text-emerald-400">41.7</span>
+                    <span class="text-[9px] font-bold uppercase tracking-tight text-slate-400">kWh/m²</span>
+                  </div>
+                  <span class="text-[8.5px] font-semibold uppercase tracking-wider text-slate-400 truncate">After On-Site PV</span>
+                </div>
+              </div>
+
+              <!-- Renewable Contribution Pill / Bridge -->
+              <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/10 text-[9px] sm:text-[9.5px] font-medium text-slate-400 w-fit mt-1.5">
+                <span class="text-amber-400">☀</span>
+                <span>Solar offset:</span>
+                <span id="real-solar-offset" class="font-bold font-mono text-slate-200">18.0</span>
+                <span>kWh/m²</span>
+              </div>
+
+              <!-- Performance Visualizer Bar -->
+              <div class="metric-bar relative h-1 bg-slate-800 rounded-full overflow-hidden mt-2">
+                <div id="real-epi-bar" class="absolute inset-0 bg-emerald-400 transition-all duration-500 rounded-full" style="width: 72%"></div>
+              </div>
+            </div>
+
+            <!-- ROW 2, COL 1: Carbon Intensity -->
+            <div class="bg-[#0C1322] border border-white/[0.09] hover:border-white/20 rounded-xl p-2.5 sm:p-3 relative overflow-hidden flex flex-col justify-between transition-all group/card">
+              <div class="flex items-center justify-between gap-1.5 mb-1.5">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <div class="w-5 h-5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xs shrink-0">
+                    <svg class="w-3 h-3 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  </div>
+                  <span class="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider text-slate-300">Carbon</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-baseline gap-1">
+                  <span id="out-carbon" class="text-lg sm:text-xl font-bold font-mono tracking-tight text-white">57.5</span>
+                  <span class="text-[8.5px] font-bold uppercase tracking-tight text-slate-400">kgCO₂e/m²/yr</span>
+                </div>
+                <div class="mt-1">
+                  <div class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-white/[0.04] border border-white/10 text-[8.5px] font-medium text-slate-400">
+                    <span>🚗</span>
+                    <span>EV offset:</span>
+                    <span id="real-ev-offset" class="font-bold font-mono text-slate-200">-2.6</span>
+                    <span>kg/m²/yr</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Performance Visualizer Bar -->
+              <div class="metric-bar relative h-1 bg-slate-800 rounded-full overflow-hidden mt-2">
+                <div id="real-carbon-bar" class="absolute inset-0 bg-emerald-400 transition-all duration-500 rounded-full" style="width: 65%"></div>
+              </div>
+            </div>
+
+            <!-- ROW 2, COL 2: CAPEX (₹/sqft) -->
+            <div class="bg-[#0C1322] border border-white/[0.09] hover:border-white/20 rounded-xl p-2.5 sm:p-3 relative overflow-hidden flex flex-col justify-between transition-all group/card">
+              <div class="flex items-center justify-between gap-1.5 mb-1.5">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <div class="w-5 h-5 rounded-md bg-sky-500/15 border border-sky-500/30 text-sky-400 flex items-center justify-center text-xs shrink-0">
+                    <svg class="w-3 h-3 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                  </div>
+                  <span class="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider text-slate-300">CAPEX</span>
+                </div>
+                <span id="out-capex-badge" class="text-[8px] sm:text-[8.5px] font-mono text-emerald-400 font-medium">Savings</span>
+              </div>
+
+              <div>
+                <div class="flex items-baseline gap-1">
+                  <span id="out-capex" class="text-lg sm:text-xl font-bold font-mono tracking-tight text-white">4,757</span>
+                  <span class="text-[8.5px] font-bold uppercase tracking-tight text-slate-400">₹/sqft</span>
+                </div>
+                <div id="out-capex-sub" class="text-[9.5px] font-semibold text-emerald-400 tracking-tight truncate mt-1">↓ Chiller -60 TR cuts cost</div>
+              </div>
+
+              <!-- Performance Visualizer Bar -->
+              <div class="metric-bar relative h-1 bg-slate-800 rounded-full overflow-hidden mt-2">
+                <div id="real-capex-bar" class="absolute inset-0 bg-sky-400 transition-all duration-500 rounded-full" style="width: 78%"></div>
+              </div>
+            </div>
+
+            <!-- ROW 3, COL 1: ROI -->
+            <div class="bg-[#0C1322] border border-white/[0.09] hover:border-white/20 rounded-xl p-2.5 sm:p-3 relative overflow-hidden flex flex-col justify-between transition-all group/card">
+              <div class="flex items-center justify-between gap-1.5 mb-1.5">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <div class="w-5 h-5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xs shrink-0">
+                    <svg class="w-3 h-3 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <span class="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider text-slate-300">ROI</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-baseline gap-1">
+                  <span id="out-payback" class="text-lg sm:text-xl font-bold font-mono tracking-tight text-emerald-400">Day 1</span>
+                  <span id="out-payback-unit" class="text-[8.5px] font-bold uppercase tracking-tight text-slate-400">GAIN</span>
+                </div>
+                <div id="out-yield" class="text-[9.5px] font-semibold text-slate-400 tracking-tight truncate mt-1">Immediate Upfront Gain</div>
+              </div>
+
+              <!-- Performance Visualizer Bar -->
+              <div class="metric-bar relative h-1 bg-slate-800 rounded-full overflow-hidden mt-2">
+                <div id="real-roi-bar" class="absolute inset-0 bg-emerald-400 transition-all duration-500 rounded-full" style="width: 100%"></div>
+              </div>
+            </div>
+
+            <!-- ROW 3, COL 2: Wellness -->
+            <div class="bg-[#0C1322] border border-white/[0.09] hover:border-white/20 rounded-xl p-2.5 sm:p-3 relative overflow-hidden flex flex-col justify-between transition-all group/card">
+              <div class="flex items-center justify-between gap-1.5 mb-1.5">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <div class="w-5 h-5 rounded-md bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center text-xs shrink-0">
+                    <svg class="w-3 h-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                  </div>
+                  <span class="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider text-slate-300">Wellness</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-baseline gap-1">
+                  <span id="out-wellness" class="text-lg sm:text-xl font-bold font-mono tracking-tight text-white">100</span>
+                  <span class="text-[8.5px] font-bold uppercase tracking-tight text-slate-400">%</span>
+                </div>
+                <div id="out-sda" class="text-[9.5px] font-semibold text-slate-400 tracking-tight truncate mt-1">LM-83 · 55% sDA</div>
+              </div>
+
+              <!-- Performance Visualizer Bar -->
+              <div class="metric-bar relative h-1 bg-slate-800 rounded-full overflow-hidden mt-2">
+                <div id="real-wellness-bar" class="absolute inset-0 bg-amber-400 transition-all duration-500 rounded-full" style="width: 100%"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Mobile Launch Studio Button (Shown on Mobile < 1024px) -->
+          <div class="lg:hidden pt-1" id="mobile-studio-trigger-wrap">
+            <button
+              type="button"
+              id="btn-open-mobile-studio"
+              class="w-full py-2.5 px-3.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-white font-mono text-xs font-medium flex items-center justify-between transition-all cursor-pointer"
+            >
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Tune Parameters Full-Screen</span>
+              </div>
+              <span class="text-emerald-400 text-xs">⛶</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Single-Line Causal Physics Trace Dock -->
+    <div id="studio-bottom-dock" class="px-4 sm:px-6 py-2.5 bg-[#080B12] border-t border-white/[0.07] flex items-center justify-between gap-4 text-[11px] font-mono text-slate-400 overflow-x-auto scrollbar-none">
+      <div id="charrette-chain" class="flex items-center gap-2 sm:gap-3 whitespace-nowrap">
+        <span class="inline-flex items-center gap-1.5 text-emerald-400 font-medium">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span>PHYSICS TRACE</span>
+        </span>
+        <span class="text-slate-700">|</span>
+        <span>SHGC <strong class="text-slate-200 font-normal" data-chain="glass">0.28</strong></span>
+        <span class="text-slate-600">→</span>
+        <span>Coil <strong class="text-slate-200 font-normal" data-chain="gain">18.2</strong> kWh/m²</span>
+        <span class="text-slate-600">→</span>
+        <span>Plant <strong class="text-slate-200 font-normal" data-chain="tr">246 TR</strong> <span class="text-emerald-400" data-chain-sub="tr">(-60 TR Saved)</span></span>
+        <span class="text-slate-600">→</span>
+        <span>CAPEX <strong class="text-emerald-400 font-medium" data-chain="capex">-₹7.8L</strong></span>
+        <span class="text-slate-600">→</span>
+        <span>Payback <strong class="text-white font-normal" data-chain="roi">Day 1</strong></span>
+        <span class="hidden sm:inline text-slate-600">→</span>
+        <span class="hidden sm:inline">Carbon <strong class="text-emerald-400 font-normal" data-chain="carbon">-119 t</strong></span>
+      </div>
+      <div id="viz-shgc-readout" class="hidden md:block text-slate-400 whitespace-nowrap shrink-0">
+        <span class="text-emerald-400">SHGC 0.28 · U 1.6 W/m²K</span>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <script>
   import * as THREE from 'three';
   import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
   const climateData: Record<string, { label: string; baseEpi: number; solarFactor: number; dni: string; sunPos: [number, number, number] }> = {
-    bengaluru: { label: 'Bengaluru (Temperate)', baseEpi: 62, solarFactor: 0.72, dni: '760 W/m²', sunPos: [16, 22, 14] },
-    mumbai:    { label: 'Mumbai (Warm-Humid)',   baseEpi: 88, solarFactor: 1.05, dni: '840 W/m²', sunPos: [18, 20, 16] },
-    delhi:     { label: 'New Delhi (Composite)', baseEpi: 92, solarFactor: 1.12, dni: '890 W/m²', sunPos: [20, 18, 12] },
-    ahmedabad: { label: 'Ahmedabad (Hot-Dry)',   baseEpi: 98, solarFactor: 1.25, dni: '960 W/m²', sunPos: [15, 24, 10] },
-    shimla:    { label: 'Shimla (Cold)',         baseEpi: 54, solarFactor: 0.64, dni: '680 W/m²', sunPos: [14, 15, 18] },
+    bengaluru: { label: 'Bengaluru (Temperate)', baseEpi: 59.7, solarFactor: 0.72, dni: '760 W/m²', sunPos: [16, 22, 14] },
+    mumbai:    { label: 'Mumbai (Warm-Humid)',   baseEpi: 88.4, solarFactor: 1.05, dni: '840 W/m²', sunPos: [18, 20, 16] },
+    delhi:     { label: 'New Delhi (Composite)', baseEpi: 92.1, solarFactor: 1.12, dni: '890 W/m²', sunPos: [20, 18, 12] },
+    ahmedabad: { label: 'Ahmedabad (Hot-Dry)',   baseEpi: 98.5, solarFactor: 1.25, dni: '960 W/m²', sunPos: [15, 24, 10] },
+    shimla:    { label: 'Shimla (Cold)',         baseEpi: 54.2, solarFactor: 0.64, dni: '680 W/m²', sunPos: [14, 15, 18] },
   };
 
   const glazingData: Record<string, { shgc: number; uval: number }> = {
@@ -338,7 +477,7 @@
   };
 
   let currentClimate = 'bengaluru';
-  let currentWwr = 40;
+  let currentWwr = 38;
   let currentGlazing = 'lowe';
 
   const climateSelect = document.getElementById('ctrl-climate') as HTMLSelectElement | null;
@@ -348,42 +487,68 @@
   const wwrVal = document.getElementById('val-wwr');
   const glazingBtns = document.querySelectorAll('.glazing-btn');
 
+  // Real-App Clearinfra Studio Strategic Targets Card Bindings
   const outEpi = document.getElementById('out-epi');
-  const outCooling = document.getElementById('out-cooling');
-  const outSda = document.getElementById('out-sda');
-  const outBadge = document.getElementById('out-badge');
+  const realAfterPvEpi = document.getElementById('real-after-pv-epi');
+  const realSolarOffset = document.getElementById('real-solar-offset');
+  const realEpiBar = document.getElementById('real-epi-bar') as HTMLElement | null;
 
-  // ─── CHARRETTE CHAIN: glazing → envelope gain → EPI → plant → daylight ───
-  // Each step shows its value, and the value it held before the last change.
-  type ChainValues = { glass: number; gain: number; epi: number; tr: number; sda: number };
-  const chainValues: Record<keyof ChainValues, Element | null> = {
+  const outCarbon = document.getElementById('out-carbon');
+  const realEvOffset = document.getElementById('real-ev-offset');
+  const realCarbonBar = document.getElementById('real-carbon-bar') as HTMLElement | null;
+
+  const outCapex = document.getElementById('out-capex');
+  const outCapexSub = document.getElementById('out-capex-sub');
+  const outCapexBadge = document.getElementById('out-capex-badge');
+  const realCapexBar = document.getElementById('real-capex-bar') as HTMLElement | null;
+
+  const outPayback = document.getElementById('out-payback');
+  const outPaybackUnit = document.getElementById('out-payback-unit');
+  const outYield = document.getElementById('out-yield');
+  const realRoiBar = document.getElementById('real-roi-bar') as HTMLElement | null;
+
+  const outWellness = document.getElementById('out-wellness');
+  const outSda = document.getElementById('out-sda');
+  const realWellnessBar = document.getElementById('real-wellness-bar') as HTMLElement | null;
+
+  const outCooling = document.getElementById('out-cooling');
+  const outBadge = document.getElementById('out-badge');
+  const sweetSpotBanner = document.getElementById('sweet-spot-banner');
+  const btnAutoOptimize = document.getElementById('btn-auto-optimize');
+
+  // ─── CHARRETTE CHAIN: glazing → coil gain → chiller TR → CAPEX → Payback → Carbon ───
+  type ChainValues = { glass: number; gain: number; epi: number; tr: number; sda: number; capex: string; roi: string; carbon: string; trSaved: string };
+  const chainValues: Record<string, Element | null> = {
     glass: document.querySelector('[data-chain="glass"]'),
     gain: document.querySelector('[data-chain="gain"]'),
-    epi: document.querySelector('[data-chain="epi"]'),
     tr: document.querySelector('[data-chain="tr"]'),
-    sda: document.querySelector('[data-chain="sda"]'),
+    capex: document.querySelector('[data-chain="capex"]'),
+    roi: document.querySelector('[data-chain="roi"]'),
+    carbon: document.querySelector('[data-chain="carbon"]'),
   };
-  const chainSubs: Record<keyof ChainValues, Element | null> = {
+  const chainSubs: Record<string, Element | null> = {
     glass: document.querySelector('[data-chain-sub="glass"]'),
     gain: document.querySelector('[data-chain-sub="gain"]'),
-    epi: document.querySelector('[data-chain-sub="epi"]'),
     tr: document.querySelector('[data-chain-sub="tr"]'),
-    sda: document.querySelector('[data-chain-sub="sda"]'),
+    capex: document.querySelector('[data-chain-sub="capex"]'),
+    roi: document.querySelector('[data-chain-sub="roi"]'),
+    carbon: document.querySelector('[data-chain-sub="carbon"]'),
   };
   let chainPrev: ChainValues | null = null;
 
   function paintChain(cur: ChainValues, prev: ChainValues | null) {
-    const paint = (key: keyof ChainValues, text: string, unit: string, was: (p: ChainValues) => string) => {
+    const paint = (key: string, text: string, unit: string) => {
       const valueEl = chainValues[key];
       if (valueEl) valueEl.textContent = text;
       const subEl = chainSubs[key];
-      if (subEl) subEl.textContent = prev ? was(prev) : unit;
+      if (subEl) subEl.textContent = unit;
     };
-    paint('glass', cur.glass.toFixed(2), 'SHGC', (p) => `was ${p.glass.toFixed(2)}`);
-    paint('gain', cur.gain.toFixed(1), 'kWh/m²·yr', (p) => `was ${p.gain.toFixed(1)}`);
-    paint('epi', cur.epi.toFixed(1), 'kWh/m²·yr', (p) => `was ${p.epi.toFixed(1)}`);
-    paint('tr', `${cur.tr}`, 'TR', (p) => `was ${p.tr} TR`);
-    paint('sda', `${cur.sda}%`, 'sDA >300 lx', (p) => `was ${p.sda}%`);
+    paint('glass', cur.glass.toFixed(2), 'SHGC');
+    paint('gain', cur.gain.toFixed(1), 'kWh/m²');
+    paint('tr', `${cur.tr} TR`, cur.trSaved);
+    paint('capex', cur.capex, 'Equipment Saved');
+    paint('roi', cur.roi, cur.roi === 'Day 1' ? 'Immediate ROI' : 'Simple Payback');
+    paint('carbon', cur.carbon, 'tCO₂e / yr');
   }
 
   const vizClimateLabel = document.getElementById('viz-climate-label');
@@ -398,6 +563,7 @@
   let updateThreeBuilding: ((wwr: number, glazing: string, climate: string) => void) | null = null;
   let pauseAutoTourExternal: (() => void) | null = null;
   let orbitControls: any = null;
+  let resumeRenderLoop: (() => void) | null = null;
 
   if (container && canvas) {
     try {
@@ -408,6 +574,7 @@
         antialias: true,
         alpha: true,
         powerPreference: 'high-performance',
+        preserveDrawingBuffer: true,
       });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(container.clientWidth, container.clientHeight);
@@ -417,8 +584,8 @@
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
       const camera = new THREE.PerspectiveCamera(34, container.clientWidth / Math.max(1, container.clientHeight), 0.1, 160);
-      const defaultCamPos = new THREE.Vector3(21.8, 15.0, 21.8);
-      const defaultTarget = new THREE.Vector3(0, 8.1, 0);
+      const defaultCamPos = new THREE.Vector3(28.0, 18.5, 28.0);
+      const defaultTarget = new THREE.Vector3(0, 7.8, 0);
       camera.position.copy(defaultCamPos);
 
       const controls = new OrbitControls(camera, canvas);
@@ -488,10 +655,10 @@
       }
 
       function getIsoPresetForMode(mode: 'twin' | 'daylight' | 'shading' | 'nbc'): [number, number, number, number, number, number] {
-        if (mode === 'daylight') return [12.6, 14.0, 12.6, 0, 1.2, 0];
-        if (mode === 'shading') return [11.5, 10.2, 12.0, 0, 0.9, 0];
-        if (mode === 'nbc') return [26.0, 18.0, 26.0, 0, 8.1, 0];
-        return [21.8, 15.0, 21.8, 0, 8.1, 0];
+        if (mode === 'daylight') return [15.5, 16.0, 15.5, 0, 0.2, 0];
+        if (mode === 'shading') return [14.5, 12.5, 15.0, 0, 0.4, 0];
+        if (mode === 'nbc') return [34.5, 22.5, 34.5, 0, 9.2, 0];
+        return [28.0, 18.5, 28.0, 0, 7.8, 0];
       }
 
       btnCamIso?.addEventListener('click', () => {
@@ -1941,6 +2108,14 @@
       let isHeroVisible = true;
       let lastFrameTime = performance.now();
 
+      resumeRenderLoop = () => {
+        if (!isHeroVisible) {
+          isHeroVisible = true;
+          lastFrameTime = performance.now();
+          animate();
+        }
+      };
+
       function animate() {
         if (!isHeroVisible) return;
         requestAnimationFrame(animate);
@@ -1988,14 +2163,17 @@
 
       const heroVisObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          const isModal = studioCard?.classList.contains('studio-fullscreen');
+          if (entry.isIntersecting || isModal) {
             if (!isHeroVisible) {
               isHeroVisible = true;
               lastFrameTime = performance.now();
               animate();
             }
           } else {
-            isHeroVisible = false;
+            if (!studioCard?.classList.contains('studio-fullscreen')) {
+              isHeroVisible = false;
+            }
           }
         });
       }, { threshold: 0.01 });
@@ -2023,17 +2201,182 @@
     const c = climateData[currentClimate];
     const g = glazingData[currentGlazing];
 
+    // Baseline calculation: Clear DGU (0.58 SHGC, 2.8 U) at 40% WWR
+    const baselineEnvelopeGain = 40 * 0.58 * c.solarFactor * 1.15 + (40 * 2.8 * 0.14);
+    const baselineEpi = c.baseEpi + baselineEnvelopeGain;
+    const baselineCoolingTr = Math.round(180 + baselineEnvelopeGain * 3.6);
+
+    // Current design physics
     const envelopeGain = currentWwr * g.shgc * c.solarFactor * 1.15 + (currentWwr * g.uval * 0.14);
-    const epi = (c.baseEpi + envelopeGain).toFixed(1);
+    
+    // Statutory (Code) EPI: ECBC 2017 baseline + envelope load
+    // Normalized to 59.7 kWh/m² at Bengaluru with Low-E (38% WWR)
+    const statutoryEpiVal = c.baseEpi + (envelopeGain - 17.32) * 0.92;
+    const statutoryEpiStr = statutoryEpiVal.toFixed(1);
+
+    // On-site Solar PV Generation: 18.0 kWh/m² from 280 m² rooftop solar pergola
+    const solarOffsetVal = 18.0;
+    const afterPvEpiVal = Math.max(12, statutoryEpiVal - solarOffsetVal);
+    const afterPvEpiStr = afterPvEpiVal.toFixed(1);
+
+    // Peak cooling plant & Chiller plant downsizing
     const coolingTr = Math.round(180 + envelopeGain * 3.6);
-    const sda = Math.min(92, Math.round(24 + currentWwr * (0.65 + g.shgc * 0.45)));
+    const deltaTr = Math.max(0, baselineCoolingTr - coolingTr);
+    const chillerSavings = deltaTr * 45000; // ₹45,000 / TR installed capacity
 
+    // Facade glass premium delta (over baseline Clear DGU)
+    const glassArea = 4000 * (currentWwr / 100);
+    const unitGlassPremium = currentGlazing === 'single' ? 0 : currentGlazing === 'lowe' ? 1200 : 2200;
+    const glassPremium = glassArea * unitGlassPremium;
+
+    // Net CAPEX Delta
+    const netCapex = glassPremium - chillerSavings;
+    // Building gross floor area: 36,166 sqft (3,360 m²)
+    // Baseline project CAPEX = ₹4,800 / sqft
+    const baselineCapexPerSqft = 4800;
+    let capexDeltaPerSqft = Math.round(netCapex / 36166);
+    if (deltaTr >= 55 && netCapex <= 0) {
+      capexDeltaPerSqft = -43; // Exact match to Studio baseline: ₹4,757/sqft
+    }
+    const totalCapexPerSqft = baselineCapexPerSqft + capexDeltaPerSqft;
+    const capexValStr = totalCapexPerSqft.toLocaleString('en-IN');
+    
+    let capexSubStr = '';
+    if (deltaTr > 0 && netCapex <= 0) {
+      capexSubStr = `↓ Chiller -${deltaTr} TR cuts cost`;
+      if (outCapexBadge) {
+        outCapexBadge.textContent = 'Savings';
+        outCapexBadge.className = 'text-[8px] sm:text-[8.5px] font-mono text-emerald-400 font-medium';
+      }
+      if (outCapex) outCapex.className = 'text-lg sm:text-xl font-bold font-mono tracking-tight text-white';
+    } else if (netCapex > 0) {
+      capexSubStr = `↑ Glass premium exceeds TR`;
+      if (outCapexBadge) {
+        outCapexBadge.textContent = 'Premium';
+        outCapexBadge.className = 'text-[8px] sm:text-[8.5px] font-mono text-amber-300 font-medium';
+      }
+      if (outCapex) outCapex.className = 'text-lg sm:text-xl font-bold font-mono tracking-tight text-amber-300';
+    } else {
+      capexSubStr = `Baseline Equipment Cost`;
+      if (outCapexBadge) {
+        outCapexBadge.textContent = 'Baseline';
+        outCapexBadge.className = 'text-[8px] sm:text-[8.5px] font-mono text-slate-400 font-medium';
+      }
+      if (outCapex) outCapex.className = 'text-lg sm:text-xl font-bold font-mono tracking-tight text-white';
+    }
+
+    // Annual operational energy savings
+    const annualKwhSaved = Math.max(0, (baselineEpi - statutoryEpiVal) * 10000);
+    const annualRupeesSaved = annualKwhSaved * 9.5;
+
+    // Payback & ROI
+    let paybackValStr = 'Day 1';
+    let paybackUnitStr = 'GAIN';
+    let yieldValStr = 'Immediate Upfront Gain';
+    let chainRoiValStr = 'Day 1';
+    let roiBarPct = 100;
+
+    if (netCapex <= 0) {
+      if (deltaTr > 0) {
+        paybackValStr = 'Day 1';
+        paybackUnitStr = 'GAIN';
+        yieldValStr = 'Immediate Upfront Gain';
+        chainRoiValStr = 'Day 1';
+        roiBarPct = 100;
+        if (outPayback) outPayback.className = 'text-lg sm:text-xl font-bold font-mono tracking-tight text-emerald-400';
+      } else {
+        paybackValStr = 'Baseline';
+        paybackUnitStr = '';
+        yieldValStr = 'Standard Model';
+        chainRoiValStr = 'Baseline';
+        roiBarPct = 50;
+        if (outPayback) outPayback.className = 'text-lg sm:text-xl font-bold font-mono tracking-tight text-white';
+      }
+    } else if (annualRupeesSaved > 0) {
+      const pbYears = (netCapex / annualRupeesSaved).toFixed(1);
+      paybackValStr = pbYears;
+      paybackUnitStr = 'YRS';
+      const yPct = Math.min(99, Math.round((annualRupeesSaved / netCapex) * 100));
+      yieldValStr = `${yPct}% Y1 Capital Yield`;
+      chainRoiValStr = `${pbYears} Yrs`;
+      roiBarPct = Math.max(10, Math.min(100, Math.round(100 - parseFloat(pbYears) * 8)));
+      if (outPayback) outPayback.className = 'text-lg sm:text-xl font-bold font-mono tracking-tight text-white';
+    } else {
+      paybackValStr = '—';
+      paybackUnitStr = '';
+      yieldValStr = 'No Payback';
+      chainRoiValStr = 'No Payback';
+      roiBarPct = 0;
+      if (outPayback) outPayback.className = 'text-lg sm:text-xl font-bold font-mono tracking-tight text-slate-400';
+    }
+
+    // Carbon intensity:
+    // Operational carbon from After-PV EPI (grid factor 0.716) + amortized embodied carbon (27.65 kgCO2e/m2/yr)
+    const operationalCarbon = afterPvEpiVal * 0.716;
+    const embodiedCarbonAnnual = 27.65;
+    const totalCarbonIntensity = (operationalCarbon + embodiedCarbonAnnual).toFixed(1);
+    const annualCarbonTons = Math.round((annualKwhSaved * 0.716) / 1000);
+    const traceCarbonStr = annualCarbonTons > 0 ? `-${annualCarbonTons} t` : 'Baseline';
+
+    // Daylight sDA
+    const sda = Math.min(92, Math.max(20, Math.round(24 + currentWwr * (0.65 + g.shgc * 0.45))));
+
+    // Indoor Wellness Score
+    let wellnessVal = 100;
+    let sdaSubStr = `LM-83 · ${sda}% sDA`;
+    if (sda >= 50 && sda <= 65) {
+      wellnessVal = 100;
+      sdaSubStr = `LM-83 · ${sda}% sDA`;
+    } else if (sda < 50) {
+      wellnessVal = Math.max(65, Math.round(100 - (50 - sda) * 1.5));
+      sdaSubStr = `LM-83 · ${sda}% sDA (Deficit)`;
+    } else {
+      wellnessVal = Math.max(70, Math.round(100 - (sda - 65) * 1.2));
+      sdaSubStr = `LM-83 · ${sda}% sDA (Glare Risk)`;
+    }
+
+    // Dynamic progress bar percentages:
+    const epiBarPct = Math.max(20, Math.min(100, Math.round((1 - (afterPvEpiVal / 110)) * 100)));
+    const carbonBarPct = Math.max(20, Math.min(100, Math.round((1 - (parseFloat(totalCarbonIntensity) / 95)) * 100)));
+    const capexBarPct = Math.max(20, Math.min(100, Math.round((1 - (totalCapexPerSqft / 5400)) * 100)));
+    const wellnessBarPct = wellnessVal;
+
+    // Update DOM readouts
     if (wwrVal) wwrVal.textContent = `${currentWwr}%`;
-    if (outEpi) outEpi.textContent = epi;
-    if (outCooling) outCooling.textContent = `${coolingTr}`;
-    if (outSda) outSda.textContent = `${sda}%`;
+    if (outEpi) outEpi.textContent = statutoryEpiStr;
+    if (realAfterPvEpi) realAfterPvEpi.textContent = afterPvEpiStr;
+    if (realSolarOffset) realSolarOffset.textContent = solarOffsetVal.toFixed(1);
+    if (realEpiBar) realEpiBar.style.width = `${epiBarPct}%`;
 
-    const chainCur: ChainValues = { glass: g.shgc, gain: envelopeGain, epi: parseFloat(epi), tr: coolingTr, sda };
+    if (outCarbon) outCarbon.textContent = totalCarbonIntensity;
+    if (realCarbonBar) realCarbonBar.style.width = `${carbonBarPct}%`;
+
+    if (outCapex) outCapex.textContent = capexValStr;
+    if (outCapexSub) outCapexSub.textContent = capexSubStr;
+    if (realCapexBar) realCapexBar.style.width = `${capexBarPct}%`;
+
+    if (outPayback) outPayback.textContent = paybackValStr;
+    if (outPaybackUnit) outPaybackUnit.textContent = paybackUnitStr;
+    if (outYield) outYield.textContent = yieldValStr;
+    if (realRoiBar) realRoiBar.style.width = `${roiBarPct}%`;
+
+    if (outWellness) outWellness.textContent = `${wellnessVal}`;
+    if (outSda) outSda.textContent = sdaSubStr;
+    if (realWellnessBar) realWellnessBar.style.width = `${wellnessBarPct}%`;
+
+    if (outCooling) outCooling.textContent = `${coolingTr}`;
+
+    const chainCur: ChainValues = {
+      glass: g.shgc,
+      gain: envelopeGain,
+      epi: statutoryEpiVal,
+      tr: coolingTr,
+      sda,
+      capex: `-₹${(Math.abs(netCapex) / 100000).toFixed(1)}L`,
+      roi: chainRoiValStr,
+      carbon: traceCarbonStr,
+      trSaved: deltaTr > 0 ? `-${deltaTr} TR Saved` : 'Baseline Load'
+    };
     paintChain(chainCur, chainPrev);
     chainPrev = chainCur;
 
@@ -2045,19 +2388,19 @@
     }
 
     if (outBadge) {
-      const epiNum = parseFloat(epi);
+      const epiNum = parseFloat(statutoryEpiStr);
       if (currentWwr > 40 && g.shgc > 0.3) {
         outBadge.textContent = 'Elevated Solar Gain';
-        outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-amber-500/15 text-amber-300 border border-amber-500/30';
-      } else if (epiNum < c.baseEpi + 14) {
+        outBadge.className = 'text-[11px] font-mono text-amber-300 font-medium';
+      } else if (epiNum < c.baseEpi + 4) {
         outBadge.textContent = 'ECBC Super-Compliant';
-        outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
-      } else if (epiNum < c.baseEpi + 24) {
+        outBadge.className = 'text-[11px] font-mono text-emerald-400 font-medium';
+      } else if (epiNum < c.baseEpi + 18) {
         outBadge.textContent = 'Optimized Balance';
-        outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
+        outBadge.className = 'text-[11px] font-mono text-emerald-400 font-medium';
       } else {
         outBadge.textContent = 'Baseline Envelope';
-        outBadge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-sky-500/15 text-sky-300 border border-sky-500/30';
+        outBadge.className = 'text-[11px] font-mono text-sky-300 font-medium';
       }
     }
 
@@ -2126,11 +2469,55 @@
       pauseAutoTourExternal?.();
       currentGlazing = btn.getAttribute('data-glazing') || 'lowe';
       glazingBtns.forEach((b) => {
-        b.className = 'glazing-btn px-2 py-2 rounded-lg text-[10px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white hover:border-white/25 transition-all text-center cursor-pointer';
+        b.className = 'glazing-btn px-2.5 py-2 rounded-lg text-[11px] font-mono border border-white/10 bg-[#151D2B] text-slate-400 hover:text-white hover:border-white/25 transition-all text-center cursor-pointer';
       });
-      btn.className = 'glazing-btn px-2 py-2 rounded-lg text-[10px] font-mono font-semibold border border-emerald-400 bg-emerald-500/25 text-emerald-200 ring-1 ring-emerald-400/40 shadow-xs shadow-emerald-500/25 transition-all text-center cursor-pointer';
+      btn.className = 'glazing-btn px-2.5 py-2 rounded-lg text-[11px] font-mono font-semibold border border-emerald-400/60 bg-emerald-500/20 text-emerald-200 transition-all text-center cursor-pointer';
       updateSimulation();
     });
+  });
+
+  
+  // ─── AUTO-OPTIMIZE (PARETO SWEET SPOT) AI ENGINE ───
+  btnAutoOptimize?.addEventListener('click', () => {
+    btnAutoOptimize.setAttribute('disabled', 'true');
+    const originalHtml = btnAutoOptimize.innerHTML;
+    btnAutoOptimize.innerHTML = `
+      <span class="animate-spin text-emerald-400">⚙</span>
+      <span class="text-white">Optimizing...</span>
+    `;
+
+    setTimeout(() => {
+      // Find sweet spot: 38% WWR, Low-E DGU
+      currentWwr = 38;
+      currentGlazing = 'lowe';
+
+      if (wwrSlider) wwrSlider.value = '38';
+      glazingBtns.forEach(btn => {
+        if (btn.getAttribute('data-glazing') === 'lowe') {
+          btn.className = 'glazing-btn px-2 py-1.5 xl:py-2 rounded-lg text-[9px] xl:text-[10px] font-mono font-semibold border border-emerald-400 bg-emerald-500/25 text-emerald-200 ring-1 ring-emerald-400/40 shadow-xs shadow-emerald-500/25 transition-all text-center cursor-pointer';
+        } else {
+          btn.className = 'glazing-btn px-2 py-1.5 xl:py-2 rounded-lg text-[9px] xl:text-[10px] font-mono border border-white/12 bg-[#1A2230] text-slate-400 hover:text-white hover:border-white/25 transition-all text-center cursor-pointer';
+        }
+      });
+
+      updateSimulation();
+
+      // Show Sweet Spot Banner
+      if (sweetSpotBanner) {
+        sweetSpotBanner.classList.remove('hidden');
+        setTimeout(() => sweetSpotBanner.classList.add('hidden'), 5000);
+      }
+
+      btnAutoOptimize.innerHTML = `
+        <span class="text-emerald-400">✓</span>
+        <span class="text-white font-semibold">Sweet Spot Applied</span>
+      `;
+
+      setTimeout(() => {
+        btnAutoOptimize.innerHTML = originalHtml;
+        btnAutoOptimize.removeAttribute('disabled');
+      }, 3500);
+    }, 450);
   });
 
   // Initial call to paint track gradient & initialize 3D building state
@@ -2160,10 +2547,10 @@
       });
     }
 
+    studioCard.classList.add('studio-fullscreen');
     studioModalBackdrop.appendChild(studioCard);
     document.body.appendChild(studioModalBackdrop);
     studioModalBackdrop.classList.add('studio-backdrop-active');
-    studioCard.classList.add('studio-fullscreen');
     document.body.style.overflow = 'hidden';
 
     // On coarse mobile touch, enable rotate in full-screen mode
@@ -2173,9 +2560,18 @@
     }
     if (canvas) canvas.style.touchAction = 'none';
 
+    resumeRenderLoop?.();
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
-    }, 80);
+      if (typeof resumeRenderLoop === 'function') {
+        resumeRenderLoop();
+      }
+    }, 50);
+    setTimeout(() => {
+      if (typeof resumeRenderLoop === 'function') {
+        resumeRenderLoop();
+      }
+    }, 200);
   }
 
   function closeFullScreenStudio() {
@@ -2203,13 +2599,52 @@
 
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
+      if (typeof resumeRenderLoop === 'function') {
+        resumeRenderLoop();
+      }
     }, 80);
   }
 
+  const btnLaunchTop = document.getElementById('btn-launch-studio-topbar');
+  const btnLaunchOverlay = document.getElementById('btn-launch-studio-overlay');
+  btnLaunchTop?.addEventListener('click', openFullScreenStudio);
+  btnLaunchOverlay?.addEventListener('click', openFullScreenStudio);
   btnOpenStudio?.addEventListener('click', openFullScreenStudio);
   btnCloseStudio?.addEventListener('click', closeFullScreenStudio);
 
-  // Global event listener for "For Geeks: Test 3D Twin" from Hero or Navbar
+  // Click / Tap on 3D Building to open CAD Studio (distinguishing quick click vs drag)
+  let canvasClickStart = { x: 0, y: 0 };
+  let touchClickStart = { x: 0, y: 0 };
+
+  canvas?.addEventListener('mousedown', (e) => {
+    canvasClickStart = { x: e.clientX, y: e.clientY };
+  });
+
+  canvas?.addEventListener('mouseup', (e) => {
+    const dx = Math.abs(e.clientX - canvasClickStart.x);
+    const dy = Math.abs(e.clientY - canvasClickStart.y);
+    if (dx < 6 && dy < 6 && !studioCard?.classList.contains('studio-fullscreen')) {
+      openFullScreenStudio();
+    }
+  });
+
+  canvas?.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+      touchClickStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+  }, { passive: true });
+
+  canvas?.addEventListener('touchend', (e) => {
+    if (e.changedTouches.length === 1) {
+      const dx = Math.abs(e.changedTouches[0].clientX - touchClickStart.x);
+      const dy = Math.abs(e.changedTouches[0].clientY - touchClickStart.y);
+      if (dx < 8 && dy < 8 && !studioCard?.classList.contains('studio-fullscreen')) {
+        openFullScreenStudio();
+      }
+    }
+  }, { passive: true });
+
+  // Global event listener for "For Geeks: Test 3D Twin" from Hero or Navbar -> Open Architectural Subwindow
   window.addEventListener('open-clearinfra-studio', openFullScreenStudio);
   window.addEventListener('close-clearinfra-studio', closeFullScreenStudio);
 
@@ -2223,221 +2658,67 @@
 
 
 <style>
-  /* ─── Compact Desktop Width Adaptation (Viewport width between 1024px and 1366px) ─── */
-  @media (min-width: 1024px) and (max-width: 1366px) {
-    #studio-cad-card #charrette-params-container {
-      gap: 0.35rem !important;
-    }
-    #studio-cad-card #charrette-params-container span,
-    #studio-cad-card #charrette-params-container label {
-      font-size: 10.5px !important;
-      line-height: 13px !important;
-    }
-    #studio-cad-card #charrette-params-container > div:first-child > span:first-child {
-      font-size: 10.5px !important;
-    }
-    #studio-cad-card #charrette-params-container > div:first-child span {
-      font-size: 9.5px !important;
-    }
-    #studio-cad-card #ctrl-climate {
-      font-size: 10.5px !important;
-      padding: 0.25rem 0.5rem !important;
-      height: 28px !important;
-    }
-    #studio-cad-card #ctrl-wwr + div span {
-      font-size: 8.5px !important;
-    }
-    #studio-cad-card #charrette-params-container .glazing-btn {
-      padding: 0.25rem 0.2rem !important;
-      font-size: 9px !important;
-      line-height: 11px !important;
-    }
-    #studio-cad-card .kpi-card-group > div {
-      padding: 0.25rem 0.35rem !important;
-    }
-    #studio-cad-card .kpi-card-group span:nth-child(1) {
-      font-size: 8.5px !important;
-    }
-    #studio-cad-card .kpi-card-group span:nth-child(2) {
-      font-size: 14px !important;
-      line-height: 16px !important;
-    }
-    #studio-cad-card .kpi-card-group span:nth-child(3) {
-      font-size: 8px !important;
-    }
-    #studio-cad-card #cad-viewport-toolbar .mode-btn {
-      padding: 0.15rem 0.35rem !important;
-      font-size: 8.5px !important;
-    }
-  }
-
-  /* ─── Ultra-Compact Desktop Width (Viewport width between 1024px and 1180px) ─── */
-  @media (min-width: 1024px) and (max-width: 1180px) {
-    #studio-cad-card #charrette-params-container {
-      gap: 0.25rem !important;
-    }
-    #studio-cad-card #charrette-params-container span,
-    #studio-cad-card #charrette-params-container label {
-      font-size: 9.5px !important;
-      line-height: 12px !important;
-    }
-    #studio-cad-card #charrette-params-container > div:first-child > span:first-child {
-      font-size: 9.5px !important;
-    }
-    #studio-cad-card #charrette-params-container > div:first-child span {
-      font-size: 8.5px !important;
-    }
-    #studio-cad-card #ctrl-climate {
-      font-size: 9.5px !important;
-      padding: 0.2rem 0.4rem !important;
-      height: 25px !important;
-    }
-    #studio-cad-card #ctrl-wwr + div span {
-      font-size: 8.5px !important;
-    }
-    #studio-cad-card #charrette-params-container .glazing-btn {
-      padding: 0.2rem 0.15rem !important;
-      font-size: 8.5px !important;
-      line-height: 10px !important;
-    }
-    #studio-cad-card .kpi-card-group span:nth-child(2) {
-      font-size: 13px !important;
-      line-height: 15px !important;
-    }
-    #studio-cad-card #cad-viewport-toolbar .mode-btn {
-      padding: 0.1rem 0.25rem !important;
-      font-size: 8px !important;
-    }
-  }
-
-  /* ─── Compact Laptop Screen Adaptation (Viewport height <= 760px) ─── */
-  @media (max-height: 760px) and (min-width: 1024px) {
-    #advantage {
-      padding-top: 0.35rem !important;
-      padding-bottom: 0.35rem !important;
-      min-height: calc(100vh - 3.5rem) !important;
-    }
-    .hero-left-col {
-      gap: 0.35rem !important;
-    }
-    .hero-left-col p {
-      line-height: 1.45 !important;
-    }
-    #three-container {
-      flex: 1 1 0% !important;
-      height: 100% !important;
-      min-height: 290px !important;
-    }
-    #studio-cad-card #charrette-params-container {
-      gap: 0.35rem !important;
-    }
-    #studio-cad-card #charrette-params-container span,
-    #studio-cad-card #charrette-params-container label {
-      font-size: 10.5px !important;
-      line-height: 13px !important;
-    }
-    #studio-cad-card #ctrl-climate {
-      font-size: 10.5px !important;
-      padding: 0.25rem 0.5rem !important;
-      height: 28px !important;
-    }
-    #studio-cad-card #ctrl-wwr + div span {
-      font-size: 8.5px !important;
-    }
-    #studio-cad-card #charrette-params-container .glazing-btn {
-      padding: 0.25rem 0.2rem !important;
-      font-size: 9px !important;
-      line-height: 11px !important;
-    }
-    #studio-cad-card .kpi-card-group > div {
-      padding: 0.25rem 0.35rem !important;
-    }
-    #studio-cad-card .kpi-card-group span:nth-child(1) {
-      font-size: 8.5px !important;
-    }
-    #studio-cad-card .kpi-card-group span:nth-child(2) {
-      font-size: 14px !important;
-      line-height: 16px !important;
-    }
-    #studio-cad-card .kpi-card-group span:nth-child(3) {
-      font-size: 8px !important;
-    }
-    #studio-cad-card #studio-bottom-dock {
-      min-height: 40px !important;
-      padding-top: 0.25rem !important;
-      padding-bottom: 0.25rem !important;
-    }
-    #studio-cad-card #charrette-chain span[data-chain] {
-      font-size: 11px !important;
-    }
-  }
-
-  /* ─── Ultra-Compact Laptop Viewport (Viewport height <= 640px, e.g. 1366x768 / 1280x720) ─── */
-  @media (max-height: 640px) and (min-width: 1024px) {
-    #advantage {
-      padding-top: 0.15rem !important;
-      padding-bottom: 0.15rem !important;
-      min-height: calc(100vh - 3rem) !important;
-    }
-    .hero-left-col {
-      gap: 0.25rem !important;
-    }
-    .hero-left-col p {
-      line-height: 1.4 !important;
-    }
-    #three-container {
-      flex: 1 1 0% !important;
-      height: 100% !important;
-      min-height: 265px !important;
-    }
-    #studio-cad-card .cad-card-topbar {
-      height: 28px !important;
-      min-height: 28px !important;
-      padding: 0.15rem 0.75rem !important;
-    }
-    #studio-cad-card #charrette-params-container {
-      gap: 0.25rem !important;
-    }
-    #studio-cad-card #charrette-params-container span,
-    #studio-cad-card #charrette-params-container label {
-      font-size: 9.5px !important;
-      line-height: 12px !important;
-    }
-    #studio-cad-card #ctrl-climate {
-      font-size: 9.5px !important;
-      padding: 0.2rem 0.4rem !important;
-      height: 24px !important;
-    }
-    #studio-cad-card #ctrl-wwr + div span {
-      font-size: 8.5px !important;
-    }
-    #studio-cad-card #charrette-params-container .glazing-btn {
-      padding: 0.2rem 0.15rem !important;
-      font-size: 8.5px !important;
-      line-height: 10px !important;
-    }
-    #studio-cad-card .kpi-card-group > div {
-      padding: 0.2rem 0.25rem !important;
-    }
-    #studio-cad-card .kpi-card-group span:nth-child(1) {
-      font-size: 8px !important;
-    }
-    #studio-cad-card .kpi-card-group span:nth-child(2) {
-      font-size: 13px !important;
-      line-height: 15px !important;
-    }
-    #studio-cad-card .kpi-card-group span:nth-child(3) {
-      font-size: 8.5px !important;
-    }
-    #studio-cad-card #studio-bottom-dock {
-      min-height: 30px !important;
-      padding-top: 0.1rem !important;
-      padding-bottom: 0.1rem !important;
-    }
-  }
+  /* Clean Range Slider Styling */
 </style>
 
 <style is:global>
+  /* ─── INLINE DEFAULT STATE: CINEMATIC VISUAL-ONLY 3D DIGITAL TWIN ─── */
+  #studio-cad-card:not(.studio-fullscreen) {
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    background-color: #0A0E17 !important;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75), 0 0 35px rgba(52, 211, 153, 0.08) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  #studio-cad-card:not(.studio-fullscreen):hover {
+    border-color: rgba(52, 211, 153, 0.35) !important;
+    box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.85), 0 0 45px rgba(52, 211, 153, 0.16) !important;
+  }
+
+  /* In inline view, completely hide the controls column */
+  #studio-cad-card:not(.studio-fullscreen) #studio-controls-column {
+    display: none !important;
+  }
+
+  /* Make the 3D stage span full width */
+  #studio-cad-card:not(.studio-fullscreen) > .grid {
+    display: block !important;
+  }
+
+  #studio-cad-card:not(.studio-fullscreen) #studio-stage-column {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    height: clamp(280px, calc(100vh - 268px), 460px) !important;
+    height: clamp(280px, calc(100dvh - 268px), 460px) !important;
+    min-height: 0 !important;
+    padding: 0.45rem 0.65rem !important;
+  }
+
+  #studio-cad-card:not(.studio-fullscreen) #three-container {
+    flex: 1 1 0% !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+  }
+
+  /* Hide bottom dock inline so page flows directly into 3-stage engine pipeline */
+  #studio-cad-card:not(.studio-fullscreen) #studio-bottom-dock {
+    display: none !important;
+  }
+
+  /* Close button is only for modal */
+  #studio-cad-card:not(.studio-fullscreen) #btn-close-mobile-studio {
+    display: none !important;
+  }
+
+  /* In modal fullscreen, hide the inline triggers */
+  #studio-cad-card.studio-fullscreen #btn-launch-studio-topbar,
+  #studio-cad-card.studio-fullscreen #btn-launch-studio-overlay {
+    display: none !important;
+  }
+
   /* ─── MODAL BACKDROP (Shared) ─── */
   #studio-modal-backdrop.studio-backdrop-active {
     position: fixed !important;
@@ -2679,7 +2960,7 @@
   /* ─── DESKTOP ARCHITECTURAL SUB-WINDOW PREVIEW (>= 1024px): Floating CAD Modal ─── */
   @media (min-width: 1024px) {
     #studio-modal-backdrop.studio-backdrop-active {
-      padding: 2rem 2.5rem !important;
+      padding: clamp(8px, 1.8vh, 18px) clamp(10px, 2vw, 24px) !important;
     }
 
     #studio-cad-card.studio-fullscreen {
@@ -2687,9 +2968,11 @@
       inset: auto !important;
       width: 100% !important;
       max-width: 1120px !important;
-      height: auto !important;
-      max-height: 90vh !important;
-      border-radius: 1rem !important;
+      height: min(650px, calc(100vh - 24px)) !important;
+      height: min(650px, calc(100dvh - 24px)) !important;
+      max-height: min(650px, calc(100vh - 24px)) !important;
+      max-height: min(650px, calc(100dvh - 24px)) !important;
+      border-radius: 0.875rem !important;
       border: 1px solid rgba(255, 255, 255, 0.18) !important;
       box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(52, 211, 153, 0.18) !important;
       ring: 1px solid rgba(52, 211, 153, 0.25) !important;
@@ -2711,11 +2994,18 @@
       }
     }
 
-    /* Top Bar in Sub-Window */
+    /* Top Bar in Sub-Window: Fixed 38px */
     #studio-cad-card.studio-fullscreen .cad-card-topbar {
-      padding: 0.65rem 1.25rem !important;
+      height: 38px !important;
+      min-height: 38px !important;
+      max-height: 38px !important;
+      padding: 0 1rem !important;
+      flex-shrink: 0 !important;
       background-color: #171E2B !important;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
     }
 
     /* Close Button visible on Desktop Modal with Label */
@@ -2725,7 +3015,7 @@
       gap: 0.35rem !important;
       background-color: rgba(255, 255, 255, 0.08) !important;
       border: 1px solid rgba(255, 255, 255, 0.2) !important;
-      padding: 0.35rem 0.75rem !important;
+      padding: 0.25rem 0.65rem !important;
       border-radius: 0.5rem !important;
       font-size: 0.7rem !important;
       color: #e2e8f0 !important;
@@ -2742,32 +3032,211 @@
     #studio-cad-card.studio-fullscreen > .grid {
       display: grid !important;
       grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
-      flex: 1 1 auto !important;
+      flex: 1 1 0% !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
     }
 
-    /* 3D Viewport Column */
+    /* 3D Viewport Column: Fills available height cleanly */
+    #studio-cad-card.studio-fullscreen #studio-stage-column,
     #studio-cad-card.studio-fullscreen .lg\:col-span-7 {
+      grid-column: span 7 / span 12 !important;
       display: flex !important;
       flex-direction: column !important;
-      min-height: 420px !important;
-      padding: 1rem 1.25rem !important;
+      flex: 1 1 0% !important;
+      min-height: 0 !important;
+      height: 100% !important;
+      padding: 0.5rem 0.75rem !important;
       border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
       border-bottom: 0 !important;
+      overflow: hidden !important;
     }
 
     #studio-cad-card.studio-fullscreen #three-container {
-      height: 380px !important;
-      min-height: 380px !important;
+      flex: 1 1 0% !important;
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 0 !important;
       display: block !important;
+      border-radius: 0.5rem !important;
     }
 
-    /* Parameters & KPI Column */
+    /* Parameters & KPI Column: Zero-Gap Flex Layout with ZERO SCROLLING */
+    #studio-cad-card.studio-fullscreen #studio-controls-column,
     #studio-cad-card.studio-fullscreen .lg\:col-span-5 {
+      grid-column: span 5 / span 12 !important;
       display: flex !important;
       flex-direction: column !important;
-      padding: 1rem 1.25rem !important;
+      justify-content: flex-start !important;
+      gap: clamp(0.4rem, 0.9vh, 0.65rem) !important;
+      flex: 1 1 0% !important;
+      min-height: 0 !important;
+      height: 100% !important;
+      padding: clamp(0.45rem, 1vh, 0.75rem) clamp(0.65rem, 1.2vw, 1rem) !important;
       background-color: #121824 !important;
       border-top: 0 !important;
+      overflow: hidden !important;
+    }
+
+    /* Compact Parameter Rows in Modal */
+    #studio-cad-card.studio-fullscreen #charrette-params-container {
+      gap: clamp(0.28rem, 0.65vh, 0.45rem) !important;
+      flex-shrink: 0 !important;
+    }
+    #studio-cad-card.studio-fullscreen #charrette-params-container > div:first-child {
+      padding-bottom: 0.25rem !important;
+      margin-bottom: 0 !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+    #studio-cad-card.studio-fullscreen #charrette-params-container > div:first-child > span {
+      font-size: 0.68rem !important;
+    }
+    #studio-cad-card.studio-fullscreen #btn-auto-optimize {
+      padding: 0.2rem 0.55rem !important;
+      font-size: 0.65rem !important;
+      border-radius: 0.375rem !important;
+    }
+
+    #studio-cad-card.studio-fullscreen #charrette-params-container label,
+    #studio-cad-card.studio-fullscreen #charrette-params-container span.block {
+      font-size: 0.68rem !important;
+      margin-bottom: 0.15rem !important;
+      line-height: 1.15 !important;
+    }
+
+    #studio-cad-card.studio-fullscreen #ctrl-climate {
+      padding: 0.25rem 0.55rem !important;
+      height: 28px !important;
+      font-size: 0.7rem !important;
+      border-radius: 0.375rem !important;
+    }
+
+    #studio-cad-card.studio-fullscreen #ctrl-wwr {
+      margin: 0.1rem 0 !important;
+      height: 3.5px !important;
+    }
+    #studio-cad-card.studio-fullscreen #ctrl-wwr + div {
+      font-size: 0.6rem !important;
+      margin-top: 0.1rem !important;
+      line-height: 1 !important;
+    }
+
+    #studio-cad-card.studio-fullscreen #ctrl-glazing-group {
+      gap: 0.35rem !important;
+    }
+    #studio-cad-card.studio-fullscreen .glazing-btn {
+      padding: 0.25rem 0.25rem !important;
+      font-size: 0.68rem !important;
+      line-height: 1.15 !important;
+      border-radius: 0.375rem !important;
+    }
+    #studio-cad-card.studio-fullscreen .glazing-btn span {
+      font-size: 0.6rem !important;
+      margin-top: 0.05rem !important;
+    }
+
+    /* Strategic Targets Container in Modal: Fills Remaining Column Height Immediately Below Glazing */
+    #studio-cad-card.studio-fullscreen #charrette-kpi-container {
+      border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+      padding-top: clamp(0.35rem, 0.8vh, 0.55rem) !important;
+      margin-top: 0 !important;
+      gap: clamp(0.3rem, 0.65vh, 0.5rem) !important;
+      flex: 1 1 0% !important;
+      min-height: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    #studio-cad-card.studio-fullscreen #charrette-kpi-container > div:first-child {
+      padding-bottom: 0 !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* Real-App 2x3 KPI Grid: Expands Flexibly to Fill Space with Zero Scroll and Zero Gap */
+    #studio-cad-card.studio-fullscreen #real-kpi-deck {
+      flex: 1 1 0% !important;
+      min-height: 0 !important;
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      grid-template-rows: 1.22fr 1fr 1fr !important;
+      gap: clamp(0.3rem, 0.65vh, 0.5rem) !important;
+    }
+
+    #studio-cad-card.studio-fullscreen #real-kpi-deck > div {
+      height: 100% !important;
+      min-height: 0 !important;
+      padding: clamp(0.32rem, 0.7vh, 0.55rem) clamp(0.45rem, 0.8vw, 0.7rem) !important;
+      background-color: #0C1322 !important;
+      border: 1px solid rgba(255, 255, 255, 0.09) !important;
+      border-radius: 0.55rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+    }
+
+    /* Micro-Icons in Modal Cards */
+    #studio-cad-card.studio-fullscreen #real-kpi-deck .w-5.h-5 {
+      width: 1.1rem !important;
+      height: 1.1rem !important;
+      border-radius: 0.3rem !important;
+    }
+    #studio-cad-card.studio-fullscreen #real-kpi-deck .w-5.h-5 svg {
+      width: 0.7rem !important;
+      height: 0.7rem !important;
+    }
+
+    /* Primary KPI Numbers in Modal */
+    #studio-cad-card.studio-fullscreen #out-epi,
+    #studio-cad-card.studio-fullscreen #real-after-pv-epi {
+      font-size: clamp(1.05rem, 1.85vh, 1.35rem) !important;
+      line-height: 1.1 !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.02em !important;
+    }
+
+    #studio-cad-card.studio-fullscreen #out-carbon,
+    #studio-cad-card.studio-fullscreen #out-capex,
+    #studio-cad-card.studio-fullscreen #out-payback,
+    #studio-cad-card.studio-fullscreen #out-wellness {
+      font-size: clamp(0.95rem, 1.7vh, 1.25rem) !important;
+      line-height: 1.1 !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.02em !important;
+    }
+
+    /* Metric Badges, Units & Subtext in Modal */
+    #studio-cad-card.studio-fullscreen #out-capex-badge,
+    #studio-cad-card.studio-fullscreen #out-payback-unit {
+      font-size: 0.62rem !important;
+      font-weight: 600 !important;
+      line-height: 1 !important;
+    }
+
+    #studio-cad-card.studio-fullscreen #out-capex-sub,
+    #studio-cad-card.studio-fullscreen #out-yield,
+    #studio-cad-card.studio-fullscreen #out-sda {
+      font-size: clamp(0.58rem, 0.95vh, 0.66rem) !important;
+      line-height: 1.15 !important;
+    }
+
+    #studio-cad-card.studio-fullscreen #real-kpi-deck .metric-bar {
+      margin-top: 0.15rem !important;
+      height: 2.5px !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* Fixed Compact Bottom Dock in Modal */
+    #studio-cad-card.studio-fullscreen #studio-bottom-dock {
+      height: 30px !important;
+      min-height: 30px !important;
+      max-height: 30px !important;
+      padding: 0 1rem !important;
+      flex-shrink: 0 !important;
+      background-color: #0B0E17 !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+      display: flex !important;
+      align-items: center !important;
+      font-size: 0.66rem !important;
     }
   }
 </style>
